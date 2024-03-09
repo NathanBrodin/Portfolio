@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import LocalFont from "next/font/local";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
+import { TailwindIndicator } from "@/components/tailwind-indicator";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -79,7 +80,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <TailwindIndicator />
+      </body>
     </html>
   );
 }
