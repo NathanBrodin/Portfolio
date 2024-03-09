@@ -78,9 +78,12 @@ export default function RootLayout({
       className={[inter.variable, calSans.variable].join(" ")}
       suppressHydrationWarning
     >
-      <body className="bg-black">
+      <body
+        className={`bg-black ${
+          process.env.NODE_ENV === "development" ? "debug-screens" : undefined
+        }`}
+      >
         {children}
-        <TailwindIndicator />
       </body>
     </html>
   );

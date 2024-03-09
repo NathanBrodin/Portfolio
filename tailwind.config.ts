@@ -104,7 +104,10 @@ const config = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("tailwindcss-debug-screens"),
+  ],
 } satisfies Config;
 
 export default config;
