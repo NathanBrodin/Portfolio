@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import LocalFont from "next/font/local";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
-import { TailwindIndicator } from "@/components/tailwind-indicator";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -79,7 +78,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className={`bg-black ${
+        className={`bg-black text-white ${
           process.env.NODE_ENV === "development" ? "debug-screens" : undefined
         }`}
       >
