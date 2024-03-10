@@ -16,14 +16,15 @@ export default function Cobe({ className, markers }: CobeProps) {
       return;
     }
 
-    let phi = 0;
+    let phi = 10;
+    let theta = 0.03;
 
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
       width: 600 * 2,
       height: 600 * 2,
-      phi: 0,
-      theta: 0,
+      phi: phi,
+      theta: theta,
       dark: 1,
       diffuse: 1.2,
       mapSamples: 16000,
