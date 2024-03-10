@@ -5,21 +5,10 @@ import Cobe from "@/components/cobe";
 
 export default function About() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center w-screen bg-gradient-to-bl from-black via-zinc-400/20 to-black">
-      <div className="bg-white/50 w-full max-w-5xl px-4 md:px-24 lg:px-0 flex flex-col lg:grid gap-4 lg:grid-cols-3">
-        <div className="h-96 flex items-center justify-center bg-blue-500 col-span-1">
-          1
-        </div>
-        <div className="h-96 flex items-center justify-center bg-blue-500 col-span-2 ">
-          2
-        </div>
-        <div className="h-96 flex items-center justify-center bg-blue-500 col-span-2">
-          3
-        </div>
-        <div className="h-96 flex items-center justify-center bg-blue-500 col-span-1">
-          4
-        </div>
-      </div>
+    <div
+      id="about"
+      className="min-h-screen flex flex-col items-center justify-center w-screen bg-gradient-to-bl from-black via-zinc-400/20 to-black"
+    >
       <BentoGrid>
         <BentoCard
           icon={Calendar}
@@ -75,7 +64,7 @@ export default function About() {
   );
 }
 
-function Widget() {
+export function Widget() {
   return (
     <div>
       <div className="rdp p-3 absolute right-0 top-10 origin-top rounded-md border transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] group-hover:scale-105">
