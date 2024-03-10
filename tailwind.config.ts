@@ -7,7 +7,6 @@ const config = {
     "./mdx-components.tsx",
     "content/**/*.mdx",
   ],
-
   theme: {
     extend: {
       typography: {
