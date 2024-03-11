@@ -1,5 +1,5 @@
 import { Calendar, Globe } from "lucide-react";
-import Cobe from "@/components/cobe";
+// import Cobe from "@/components/cobe";
 import { Bento, BentoCard } from "@/components/bento";
 import Particles from "./particles";
 
@@ -11,7 +11,7 @@ export default function About() {
     >
       <Particles
         className="absolute inset-0 -z-10 animate-fade-in"
-        quantity={200}
+        quantity={400}
       />
       <Bento>
         <BentoCard
@@ -39,18 +39,7 @@ export default function About() {
           icon={Globe}
           title="International Experience"
           description="Worked and studied in 3 different countries."
-          widget={
-            <div>
-              <Cobe
-                markers={[
-                  { location: [48.0785146, -0.7669906], size: 0.1 }, // Laval
-                  { location: [63.8391421, 23.1336845], size: 0.03 }, // Kokkola
-                  { location: [59.9133301, 10.7389701], size: 0.03 }, // Oslo
-                ]}
-                className="absolute inset-0 mx-auto aspect-[1/1] max-w-[600px] top-0 h-[600px] w-[600px] transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_30%,#000_100%)] group-hover:scale-105 sm:left-40"
-              />
-            </div>
-          }
+          widget={<div></div>}
           size="lg"
         />
         <BentoCard
