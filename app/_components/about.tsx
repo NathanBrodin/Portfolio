@@ -1,21 +1,24 @@
-import BentoCard from "@/components/bento/card";
-import BentoGrid from "@/components/bento/grid";
 import { Calendar, Globe } from "lucide-react";
 import Cobe from "@/components/cobe";
+import { Bento, BentoCard } from "@/components/bento";
+import Particles from "./particles";
 
 export default function About() {
   return (
     <div
       id="about"
-      className="min-h-screen flex flex-col items-center justify-center w-screen bg-gradient-to-bl from-black via-zinc-400/20 to-black"
+      className="flex py-24 flex-col relative items-center justify-center w-screen bg-gradient-to-bl from-black via-zinc-400/20 to-black"
     >
-      <BentoGrid>
+      <Particles
+        className="absolute inset-0 -z-10 animate-fade-in"
+        quantity={200}
+      />
+      <Bento>
         <BentoCard
           icon={Calendar}
           title="Calendar"
           description="Use the calendar to filter your files by date."
           widget={<Widget />}
-          link="/calendar"
         />
         <BentoCard
           icon={Calendar}
@@ -30,7 +33,6 @@ export default function About() {
               </div>
             </div>
           }
-          link="/calendar"
           size="lg"
         />
         <BentoCard
@@ -49,7 +51,6 @@ export default function About() {
               />
             </div>
           }
-          link="/international-experience"
           size="lg"
         />
         <BentoCard
@@ -57,9 +58,8 @@ export default function About() {
           title="Calendar"
           description="Use the calendar to filter your files by date."
           widget={<Widget />}
-          link="/calendar"
         />
-      </BentoGrid>
+      </Bento>
     </div>
   );
 }
