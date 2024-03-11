@@ -17,7 +17,7 @@ export default function Cobe({ className, markers }: CobeProps) {
     }
 
     let phi = 10;
-    let theta = 0.03;
+    let theta = 0.3;
 
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
@@ -37,7 +37,7 @@ export default function Cobe({ className, markers }: CobeProps) {
         // Called on every animation frame.
         // `state` will be an empty object, return updated params.
         state.phi = phi;
-        phi += 0.01;
+        phi += 0.003;
       },
     });
 
