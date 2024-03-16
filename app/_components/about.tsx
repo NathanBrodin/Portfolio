@@ -1,4 +1,4 @@
-import { Calendar, Globe } from "lucide-react";
+import { Calendar, Cpu, Globe } from "lucide-react";
 import Cobe from "@/components/cobe";
 import { Bento, BentoCard } from "@/components/bento";
 import Particles from "./particles";
@@ -21,9 +21,9 @@ export default function About() {
           widget={<Widget />}
         />
         <BentoCard
-          icon={Calendar}
-          title="Calendar"
-          description="Use the calendar to filter your files by date."
+          icon={Cpu}
+          title="Expertise in Modern Tools"
+          description="Proficient in the latest technologies and frameworks."
           widget={
             <div>
               <div className="flex h-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground absolute right-10 top-10 w-[70%] origin-top translate-x-0 border transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] group-hover:-translate-x-10">
