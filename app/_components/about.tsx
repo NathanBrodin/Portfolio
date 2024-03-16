@@ -2,6 +2,9 @@ import { Calendar, Cpu, Globe } from "lucide-react";
 import Cobe from "@/components/cobe";
 import { Bento, BentoCard } from "@/components/bento";
 import Particles from "./particles";
+import { InfiniteMovingCards } from "@/components/infinite-moving-cards";
+import { NextOutline, NextFilled } from "../Icons";
+import TechStack from "./about/tech-stack";
 
 export default function About() {
   return (
@@ -24,15 +27,7 @@ export default function About() {
           icon={Cpu}
           title="Expertise in Modern Tools"
           description="Proficient in the latest technologies and frameworks."
-          widget={
-            <div>
-              <div className="flex h-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground absolute right-10 top-10 w-[70%] origin-top translate-x-0 border transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] group-hover:-translate-x-10">
-                <div className="relative w-32 cursor-pointer overflow-hidden rounded-xl border p-4 border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05] dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15] transform-gpu blur-[1px] transition-all duration-300 ease-out hover:blur-none">
-                  Hello world
-                </div>
-              </div>
-            </div>
-          }
+          widget={<TechStack />}
           size="lg"
         />
         <BentoCard
