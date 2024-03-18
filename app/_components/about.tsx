@@ -1,8 +1,9 @@
-import { Cpu, Globe, TrafficCone } from "lucide-react";
+import { Compass, Cpu, Globe, TrafficCone } from "lucide-react";
 import Cobe from "@/components/cobe";
 import { Bento, BentoCard } from "@/components/bento";
 import Particles from "./particles";
 import TechStack from "./about/tech-stack";
+import Browser from "./about/browser";
 
 export default function About() {
   return (
@@ -45,10 +46,10 @@ export default function About() {
           size="lg"
         />
         <BentoCard
-          icon={TrafficCone}
-          title="Title"
-          description="This card has not been implemented yet."
-          widget={<Widget />}
+          icon={Compass}
+          title="6+ Months of Experience"
+          description="Working in web development."
+          widget={<Browser />}
         />
       </Bento>
     </div>
