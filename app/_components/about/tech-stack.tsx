@@ -1,5 +1,5 @@
 import { InfiniteMovingCards } from "@/components/infinite-moving-cards";
-import { Convex, Next, React } from "./tech-icons";
+import { Convex, Next, React, TailwindCSS, TypeScript } from "./tech-icons";
 
 const cards = [
   {
@@ -13,6 +13,18 @@ const cards = [
     href: "https://reactjs.org/",
     outlineIcon: React.outline,
     filledIcon: React.filled,
+  },
+  {
+    tech: "TypeScript",
+    href: "https://www.typescriptlang.org/",
+    outlineIcon: TypeScript.outline,
+    filledIcon: TypeScript.filled,
+  },
+  {
+    tech: "Tailwind",
+    href: "https://tailwindcss.com/",
+    outlineIcon: TailwindCSS.outline,
+    filledIcon: TailwindCSS.filled,
   },
   {
     tech: "Convex",
