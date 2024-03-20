@@ -1,20 +1,6 @@
 import { Geo } from "@vercel/edge";
 
-async function getLocation() {
-  const res = await fetch("http://localhost:3000/api/edge-geo");
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  const data: Geo = await res.json();
-
-  return data;
-}
-
-export default async function LocationInfos() {
-  const location: Geo = {}; // await getLocation();
-
+export default async function LocationInfos({ location }: { location: Geo }) {
   return (
     <div>
       <h1>Location Infos</h1>
@@ -24,6 +10,7 @@ export default async function LocationInfos() {
       <pre>{location.latitude ?? "Latitude"}</pre>
       <pre>{location.longitude ?? "Longitude"}</pre>
       <pre>{location.flag ?? "Flag"}</pre>
+      <pre>{location.region ?? "Server Region"}</pre>
     </div>
   );
 }
