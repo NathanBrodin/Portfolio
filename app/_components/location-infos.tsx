@@ -1,5 +1,6 @@
 import Cobe from "@/components/cobe";
 import { Geo } from "@vercel/edge";
+import Particles from "@/components/particles";
 
 export default async function LocationInfos({ location }: { location: Geo }) {
   const { latitude, longitude } = {
@@ -9,6 +10,7 @@ export default async function LocationInfos({ location }: { location: Geo }) {
 
   return (
     <div className="w-full max-w-6xl pr-16 flex flex-col lg:flex-row relative">
+      <Particles className="absolute inset-0 -z-10" quantity={400} />
       <Cobe
         className="flex-shrink-0 overflow-hidden -translate-x-44"
         size={750}

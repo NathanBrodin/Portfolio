@@ -1,7 +1,7 @@
 import { Compass, Cpu, Globe, TrafficCone } from "lucide-react";
 import Cobe from "@/components/cobe";
 import { Bento, BentoCard } from "@/components/bento";
-import Particles from "./particles";
+import Particles from "@/components/particles";
 import TechStack from "./about/tech-stack";
 import Browser from "./about/browser";
 
