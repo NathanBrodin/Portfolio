@@ -13,6 +13,7 @@
   "dependencies": {
     "@commitlint/cli": "^19.0.3",
     "@commitlint/config-conventional": "^19.0.3",
+    "@vercel/edge": "^1.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cobe": "^0.6.3",
