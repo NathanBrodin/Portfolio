@@ -13,7 +13,7 @@ async function getLocation() {
 }
 
 export default async function LocationInfos() {
-  const location = await getLocation();
+  const location: Geo = {}; // await getLocation();
 
   return (
     <div>
