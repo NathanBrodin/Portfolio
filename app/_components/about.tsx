@@ -20,13 +20,14 @@ export default function About() {
           icon={GraduationCap}
           title="Master's degree in SWE"
           description="In France's top engineering schools."
-          link="about/education"
+          link="education"
           widget={<Widget />}
         />
         <BentoCard
           icon={Cpu}
           title="Expertise in Modern Tools"
           description="Proficient in the latest technologies and frameworks."
+          link="tech-stack"
           widget={<TechStack />}
           size="lg"
         />
@@ -34,6 +35,7 @@ export default function About() {
           icon={Globe}
           title="International Experience"
           description="Worked and studied in 3 different countries."
+          link="international"
           widget={
             <Cobe
               markers={[
@@ -50,6 +52,7 @@ export default function About() {
           icon={Compass}
           title="6+ Mo. Work Experience"
           description="Working in web development."
+          link="experience"
           widget={<Browser />}
         />
       </Bento>
