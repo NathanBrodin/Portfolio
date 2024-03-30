@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { ArrowRight, LucideIcon } from "lucide-react";
+import Link from "next/link";
 import { ReactNode } from "react";
 
 interface BentoProps {
@@ -18,6 +19,7 @@ interface BentoCardProps {
   icon: LucideIcon;
   title: string;
   description: string;
+  link?: string;
   widget: ReactNode;
   size?: "sm" | "lg";
 }
@@ -26,6 +28,7 @@ export function BentoCard({
   icon: Icon,
   title,
   description,
+  link,
   widget,
   size = "sm",
 }: BentoCardProps) {
@@ -47,10 +50,13 @@ export function BentoCard({
         <p className="max-w-lg text-neutral-400">{description}</p>
       </div>
       <div className="pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-        <div className="inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-8 rounded-md px-3 text-xs pointer-events-auto">
+        <Link
+          href={link ?? "/"}
+          className="inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-8 rounded-md px-3 text-xs pointer-events-auto"
+        >
           Learn more
           <ArrowRight className="ml-2 h-4 w-4" />
-        </div>
+        </Link>
       </div>
       <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-neutral-800/10"></div>
     </div>

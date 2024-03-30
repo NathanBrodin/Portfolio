@@ -1,4 +1,4 @@
-import { Compass, Cpu, Globe, TrafficCone } from "lucide-react";
+import { Compass, Cpu, Globe, GraduationCap } from "lucide-react";
 import Cobe from "@/components/cobe";
 import { Bento, BentoCard } from "@/components/bento";
 import Particles from "@/components/particles";
@@ -17,7 +17,7 @@ export default function About() {
       />
       <Bento>
         <BentoCard
-          icon={TrafficCone}
+          icon={GraduationCap}
           title="Master's degree in SWE"
           description="In France's top engineering schools."
           widget={<Widget />}
