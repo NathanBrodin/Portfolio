@@ -18,8 +18,8 @@ export default function About() {
       <Bento>
         <BentoCard
           icon={TrafficCone}
-          title="Title"
-          description="This card has not been implemented yet."
+          title="Master's degree in SWE"
+          description="In France's top engineering schools."
           widget={<Widget />}
         />
         <BentoCard
@@ -47,7 +47,7 @@ export default function About() {
         />
         <BentoCard
           icon={Compass}
-          title="6+ Months of Experience"
+          title="6+ Mo. Work Experience"
           description="Working in web development."
           widget={<Browser />}
         />

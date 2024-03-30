@@ -24,8 +24,8 @@ export default function Home({
       <Hero />
       <DashedSeparator />
       <About />
-      <DashedSeparator />
-      <LocationInfos location={location} />
+      {/* <DashedSeparator />
+      <LocationInfos location={location} /> */}
     </div>
   );
 }
