@@ -20,6 +20,7 @@ export default function About() {
           icon={GraduationCap}
           title="Master's degree in SWE"
           description="In France's top engineering schools."
+          link="about/education"
           widget={<Widget />}
         />
         <BentoCard
