@@ -33,6 +33,7 @@
     "react-dom": "^18",
     "react-spring": "^9.7.3",
     "react-wrap-balancer": "^1.1.0",
+    "remark-gfm": "^4.0.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.163.0"
