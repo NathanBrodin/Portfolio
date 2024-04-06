@@ -64,7 +64,7 @@ export function Widget() {
   return (
     <div>
       <div className="rdp p-3 absolute right-0 top-10 origin-top transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] group-hover:scale-105">
-        <div className="p-4">esiea</div>
+        <div className="p-4"></div>
       </div>
     </div>
   );
