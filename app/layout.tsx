@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import LocalFont from "next/font/local";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
+import { BeamAnalytics } from "./_components/analytics";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -77,6 +79,10 @@ export default function RootLayout({
       className={[inter.variable, calSans.variable].join(" ")}
       suppressHydrationWarning
     >
+      <head>
+        <BeamAnalytics />
+        <Analytics />
+      </head>
       <body
         className={`bg-black text-white ${
           process.env.NODE_ENV === "development" ? "debug-screens" : undefined
