@@ -6,9 +6,6 @@ export const Project = defineDocumentType(() => ({
   contentType: "mdx",
 
   fields: {
-    published: {
-      type: "boolean",
-    },
     title: {
       type: "string",
       required: true,
@@ -22,6 +19,15 @@ export const Project = defineDocumentType(() => ({
     },
     repository: {
       type: "string",
+    },
+    link: {
+      type: "string",
+    },
+    published: {
+      type: "boolean",
+    },
+    index: {
+      type: "number",
     },
   },
   computedFields: {
