@@ -1,29 +1,42 @@
-import { allProjects } from "contentlayer/generated";
-import { useMDXComponent } from "next-contentlayer/hooks";
+import { projects } from ".velite";
 import { notFound } from "next/navigation";
+import { kv } from "@vercel/kv";
+import { MDXContent } from "@/components/mdx-content";
 
-export async function generateStaticParams() {
-  return allProjects.map((project) => ({
-    slug: project._raw.flattenedPath,
-  }));
+interface Props {
+  params: {
+    slug: string;
+  };
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  // Find the post for the current page.
-  const project = allProjects.find(
-    (project) => project._raw.flattenedPath === `projects/${params.slug}`,
-  );
+function getProjectBySlug(slug: string) {
+  return projects.find((project) => project.slug === slug);
+}
 
-  // 404 if the post does not exist.
+export default async function Page({ params }: Props) {
+  const project = getProjectBySlug(params.slug);
+
+  // 404 if the project does not exist.
   if (!project) notFound();
 
-  // Parse the MDX file via the useMDXComponent hook.
-  const MDXContent = useMDXComponent(project.body.code);
+  const views = await kv.incr(
+    ["pageviews", "projects", project.slug].join(":"),
+  );
 
   return (
     <div>
-      {/* Some code ... */}
-      <MDXContent />
+      <h1>This page has {views} views</h1>
+      <MDXContent code={project.content} />
     </div>
   );
+}
+
+export function generateMetadata({ params }: Props) {
+  const project = getProjectBySlug(params.slug);
+  if (project == null) return {};
+  return { title: project.title, description: project.description };
+}
+
+export function generateStaticParams() {
+  return projects.map(({ slug }) => ({ slug }));
 }

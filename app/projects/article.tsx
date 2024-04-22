@@ -1,4 +1,4 @@
-import type { Project } from "@/.contentlayer/generated";
+import type { Project } from ".velite";
 import Link from "next/link";
 import { ArrowRight, Eye } from "lucide-react";
 import { Card } from "@/components/card";
@@ -12,7 +12,7 @@ type Props = {
 
 export default function Article({ project, views, expanded = false }: Props) {
   return (
-    <Link href={`${project.url}`}>
+    <Link href={`${project.permalink}`}>
       <Card>
         <article
           className={cn("p-4 md:p-8", expanded && "relative w-full h-full")}
