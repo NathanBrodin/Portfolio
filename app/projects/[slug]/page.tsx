@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { kv } from "@vercel/kv";
 import { MDXContent } from "@/components/mdx-content";
 
+export const dynamic = "force-dynamic";
+
 interface Props {
   params: {
     slug: string;

@@ -2,8 +2,9 @@ import { projects as allProjects } from ".velite";
 import { kv } from "@vercel/kv";
 import Article from "./article";
 import { Navigation } from "@/components/nav";
+import { Suspense } from "react";
 
-const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 
 export default async function ProjectsPage() {
   const projects = allProjects.sort((a, b) => {
@@ -50,34 +51,46 @@ export default async function ProjectsPage() {
           </p>
         </div>
         <div className="w-full h-px bg-zinc-800" />
-        <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 ">
-          <Article
-            project={projects[0]}
-            views={views[0] ?? 0}
-            key={projects[0].slug}
-            expanded
-          />
-          <div className="flex flex-col w-full gap-8 mx-auto border-t border-gray-900/10 lg:mx-0 lg:border-t-0 ">
-            {projects.slice(1, 3).map((project, index) => (
+        <Suspense fallback={<TopProjecsLoader />}>
+          <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 ">
+            <Article
+              project={projects[0]}
+              views={views[0] ?? 0}
+              key={projects[0].slug}
+              expanded
+            />
+            <div className="flex flex-col w-full gap-8 mx-auto border-t border-gray-900/10 lg:mx-0 lg:border-t-0 ">
+              {projects.slice(1, 3).map((project, index) => (
+                <Article
+                  project={project}
+                  views={views[index + 1]}
+                  key={project.slug}
+                />
+              ))}
+            </div>
+          </div>
+        </Suspense>
+        <div className="hidden w-full h-px md:block bg-zinc-800" />
+        <Suspense fallback={<BottomProjectsLoader />}>
+          <div className="mx-auto mt-16 grid grid-flow-dense grid-cols-1 grid-rows[masonry] gap-8 leading-6 sm:mt-20 sm:grid-cols-2 lg:grid-cols-3 xl:mx-0">
+            {projects.slice(4).map((project, index) => (
               <Article
                 project={project}
-                views={views[index + 1]}
+                views={views[index + 4]}
                 key={project.slug}
               />
             ))}
           </div>
-        </div>
-        <div className="hidden w-full h-px md:block bg-zinc-800" />
-        <div className="mx-auto mt-16 grid grid-flow-dense grid-cols-1 grid-rows[masonry] gap-8 leading-6 sm:mt-20 sm:grid-cols-2 lg:grid-cols-3 xl:mx-0">
-          {projects.slice(4).map((project, index) => (
-            <Article
-              project={project}
-              views={views[index + 4]}
-              key={project.slug}
-            />
-          ))}
-        </div>
+        </Suspense>
       </div>
     </div>
   );
+}
+
+function TopProjecsLoader() {
+  return <div>Loading</div>;
+}
+
+function BottomProjectsLoader() {
+  return <div>Loading 2</div>;
 }
