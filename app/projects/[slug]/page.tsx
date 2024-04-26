@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import { projects } from ".velite";
 import { notFound } from "next/navigation";
 import { kv } from "@vercel/kv";
@@ -6,7 +8,7 @@ import { siteConfig } from "@/config/site";
 import { absoluteUrl } from "@/lib/utils";
 import { Navigation } from "@/app/_components/nav";
 import Header from "./header";
-import { DashedSeparator } from "@/components/dashed-separator";
+import { Eye, Github, Link2 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -30,12 +32,34 @@ export default async function Page({ params }: Props) {
     ["pageviews", "projects", project.slug].join(":"),
   );
 
+  const links: { href: string; children: React.ReactNode }[] = [];
+  if (project.repository) {
+    links.push({
+      href: project.repository,
+      children: <Github key="repository" className="w-5 h-5" />,
+    });
+  }
+  if (project.website) {
+    links.push({
+      href: project.website,
+      children: <Link2 key="website" className="w-5 h-5" />,
+    });
+  }
+  links.push({
+    href: "",
+    children: (
+      <span key="views" className="flex gap-2 items-center">
+        <Eye className="w-5 h-5" />
+        {Intl.NumberFormat("en-US", { notation: "compact" }).format(views)}
+      </span>
+    ),
+  });
+
   return (
-    <div className="min-h-screen">
-      <Navigation returnUrl="/projects" />
+    <div className="min-h-screen max-w-7xl flex flex-col items-center">
+      <Navigation returnUrl="/projects" links={links} />
       <Header project={project} />
-      <DashedSeparator />
-      <div className="bg-gradient-to-bl from-black via-zinc-400/20 to-black min-h-screen">
+      <div className="max-w-2xl pb-16 w-full">
         <MDXContent code={project.content} />
       </div>
     </div>
