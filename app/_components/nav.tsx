@@ -23,7 +23,7 @@ export function Navigation({ returnUrl, links }: Props) {
   }, []);
 
   return (
-    <header ref={ref}>
+    <nav ref={ref}>
       <div
         className={`fixed inset-x-0 top-0 z-50 backdrop-blur  duration-200 border-b  ${
           isIntersecting
@@ -51,6 +51,6 @@ export function Navigation({ returnUrl, links }: Props) {
           </div>
         </div>
       </div>
-    </header>
+    </nav>
   );
 }

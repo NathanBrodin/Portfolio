@@ -1,8 +1,8 @@
 import { projects as allProjects } from ".velite";
 import { kv } from "@vercel/kv";
 import Article from "./article";
-import { Navigation } from "@/components/nav";
 import { Suspense } from "react";
+import { Navigation } from "../_components/nav";
 
 export const dynamic = "force-dynamic";
 

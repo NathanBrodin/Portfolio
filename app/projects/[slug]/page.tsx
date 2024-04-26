@@ -2,6 +2,11 @@ import { projects } from ".velite";
 import { notFound } from "next/navigation";
 import { kv } from "@vercel/kv";
 import { MDXContent } from "@/components/mdx-content";
+import { siteConfig } from "@/config/site";
+import { absoluteUrl } from "@/lib/utils";
+import { Navigation } from "@/app/_components/nav";
+import Header from "./header";
+import { DashedSeparator } from "@/components/dashed-separator";
 
 export const dynamic = "force-dynamic";
 
@@ -26,9 +31,13 @@ export default async function Page({ params }: Props) {
   );
 
   return (
-    <div>
-      <h1>This page has {views} views</h1>
-      <MDXContent code={project.content} />
+    <div className="min-h-screen">
+      <Navigation returnUrl="/projects" />
+      <Header project={project} />
+      <DashedSeparator />
+      <div className="bg-gradient-to-bl from-black via-zinc-400/20 to-black min-h-screen">
+        <MDXContent code={project.content} />
+      </div>
     </div>
   );
 }
@@ -36,7 +45,24 @@ export default async function Page({ params }: Props) {
 export function generateMetadata({ params }: Props) {
   const project = getProjectBySlug(params.slug);
   if (project == null) return {};
-  return { title: project.title, description: project.description };
+  return {
+    title: project.title,
+    description: project.description,
+    openGraph: {
+      title: project.title,
+      description: project.description,
+      type: "article",
+      url: absoluteUrl(project.slug),
+      images: [
+        {
+          url: siteConfig.ogImage,
+          width: 1200,
+          height: 630,
+          alt: siteConfig.name,
+        },
+      ],
+    },
+  };
 }
 
 export function generateStaticParams() {
