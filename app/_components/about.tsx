@@ -1,3 +1,4 @@
+import { about } from ".velite";
 import { Compass, Cpu, Globe, GraduationCap } from "lucide-react";
 import Cobe from "@/components/cobe";
 import { Bento, BentoCard } from "@/components/bento";
@@ -5,7 +6,16 @@ import Particles from "@/components/particles";
 import TechStack from "./about/tech-stack";
 import Browser from "./about/browser";
 
+function getAboutBySlug(slug: string) {
+  return about.find((a) => a.slug === slug);
+}
+
 export default function About() {
+  const education = getAboutBySlug("education");
+  const techStack = getAboutBySlug("tech-stack");
+  const internationalExperience = getAboutBySlug("international-experience");
+  const workExperience = getAboutBySlug("work-experience");
+
   return (
     <div
       id="about"
@@ -18,24 +28,24 @@ export default function About() {
       <Bento>
         <BentoCard
           icon={GraduationCap}
-          title="Master's degree in SWE"
-          description="In France's top engineering schools."
-          link="education"
+          title={education!.title}
+          description={education!.description}
+          link={education!.slug}
           widget={<Widget />}
         />
         <BentoCard
           icon={Cpu}
-          title="Expertise in Modern Tools"
-          description="Proficient in the latest technologies and frameworks."
-          link="tech-stack"
+          title={techStack!.title}
+          description={techStack!.description}
+          link={techStack!.slug}
           widget={<TechStack />}
           size="lg"
         />
         <BentoCard
           icon={Globe}
-          title="International Experience"
-          description="Worked and studied in 3 different countries."
-          link="international"
+          title={internationalExperience!.title}
+          description={internationalExperience!.description}
+          link={internationalExperience!.slug}
           widget={
             <Cobe
               markers={[
@@ -50,9 +60,9 @@ export default function About() {
         />
         <BentoCard
           icon={Compass}
-          title="6+ Mo. Work Experience"
-          description="Working in web development."
-          link="experience"
+          title={workExperience!.title}
+          description={workExperience!.description}
+          link={workExperience!.slug}
           widget={<Browser />}
         />
       </Bento>

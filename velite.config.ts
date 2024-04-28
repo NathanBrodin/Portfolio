@@ -25,5 +25,18 @@ export default defineConfig({
           permalink: `/projects/${data.slug}`,
         })),
     },
+    about: {
+      name: "About",
+      pattern: "about/**/*.mdx",
+      schema: s.object({
+        title: s.string(),
+        subtitle: s.string(),
+        slug: s.slug("about"),
+        description: s.string(),
+        content: s.mdx(),
+        metadata: s.metadata(), // extract markdown reading-time, word-count, etc.
+        excerpt: s.excerpt(), // excerpt of markdown content
+      }),
+    },
   },
 });
