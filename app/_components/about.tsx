@@ -28,14 +28,14 @@ export default function About() {
       <Bento>
         <BentoCard
           icon={GraduationCap}
-          title={education!.title}
+          title={education!.subtitle}
           description={education!.description}
           link={education!.slug}
           widget={<Widget />}
         />
         <BentoCard
           icon={Cpu}
-          title={techStack!.title}
+          title={techStack!.subtitle}
           description={techStack!.description}
           link={techStack!.slug}
           widget={<TechStack />}
@@ -43,7 +43,7 @@ export default function About() {
         />
         <BentoCard
           icon={Globe}
-          title={internationalExperience!.title}
+          title={internationalExperience!.subtitle}
           description={internationalExperience!.description}
           link={internationalExperience!.slug}
           widget={
@@ -60,7 +60,7 @@ export default function About() {
         />
         <BentoCard
           icon={Compass}
-          title={workExperience!.title}
+          title={workExperience!.subtitle}
           description={workExperience!.description}
           link={workExperience!.slug}
           widget={<Browser />}
