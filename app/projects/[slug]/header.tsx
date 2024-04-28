@@ -32,6 +32,7 @@ export default function Header({ project }: { project: Project }) {
               {project.website && (
                 <Link
                   href={project.website}
+                  target="_blank"
                   className="relative border rounded-3xl hover:border-zinc-400/50 border-zinc-600 px-8 py-2 bg-zinc-700/20"
                 >
                   <div className="w-full h-full absolute inset-0 p-1">

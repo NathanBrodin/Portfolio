@@ -56,10 +56,10 @@ export default async function Page({ params }: Props) {
   });
 
   return (
-    <div className="min-h-screen max-w-7xl flex flex-col items-center">
+    <div className="min-h-screen w-full flex flex-col items-center">
       <Navigation returnUrl="/projects" links={links} />
       <Header project={project} />
-      <div className="max-w-2xl pb-16 w-full">
+      <div className="px-4 sm:px-8 md:px-0 max-w-2xl pb-16 w-full">
         <MDXContent code={project.content} />
       </div>
     </div>

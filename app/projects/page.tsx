@@ -37,7 +37,7 @@ export default async function ProjectsPage() {
     <div className="relative pb-16">
       <Navigation
         links={[
-          { href: "/about", children: "About" },
+          { href: "/#about", children: "About" },
           { href: "/contact", children: "Contact" },
         ]}
       />
@@ -47,7 +47,7 @@ export default async function ProjectsPage() {
             Projects
           </h2>
           <p className="mt-4 text-zinc-400">
-            Some of the projects are from work and some are on my own time.
+            Here&apos;s a selection of projects I&apos;ve worked on.
           </p>
         </div>
         <div className="w-full h-px bg-zinc-800" />
@@ -73,10 +73,10 @@ export default async function ProjectsPage() {
         <div className="hidden w-full h-px md:block bg-zinc-800" />
         <Suspense fallback={<BottomProjectsLoader />}>
           <div className="mx-auto mt-16 grid grid-flow-dense grid-cols-1 grid-rows[masonry] gap-8 leading-6 sm:mt-20 sm:grid-cols-2 lg:grid-cols-3 xl:mx-0">
-            {projects.slice(4).map((project, index) => (
+            {projects.slice(3).map((project, index) => (
               <Article
                 project={project}
-                views={views[index + 4]}
+                views={views[index + 3]}
                 key={project.slug}
               />
             ))}

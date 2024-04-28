@@ -22,7 +22,8 @@ export default function Article({ project, views, expanded = false }: Props) {
               {project.date ? (
                 <time dateTime={new Date(project.date).toISOString()}>
                   {Intl.DateTimeFormat(undefined, {
-                    dateStyle: "medium",
+                    month: "long",
+                    year: "numeric",
                   }).format(new Date(project.date))}
                 </time>
               ) : (
@@ -44,7 +45,7 @@ export default function Article({ project, views, expanded = false }: Props) {
           </p>
           {expanded && (
             <div className="absolute bottom-4 md:bottom-8">
-              <div className="hidden text-zinc-200 hover:text-zinc-50 lg:block">
+              <div className="hidden text-zinc-200 hover:text-zinc-50 lg:block hover:translate-x-2 transition-all duration-150">
                 <div className="flex gap-2">
                   <p>Read more </p>
                   <ArrowRight className="w-6 h-6" />
