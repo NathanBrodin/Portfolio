@@ -4,14 +4,22 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import { getStargazersCount as getServerStargazersCount } from '@/lib/functions'
+import { useQuery } from '@tanstack/react-query'
+import { useServerFn } from '@tanstack/react-start'
 
 type GitHubStarsProps = {
   repo: string
-  stargazersCount: number
 }
 
-export function GitHubStars({ repo, stargazersCount }: GitHubStarsProps) {
-  const 
+export function GitHubStars({ repo }: GitHubStarsProps) {
+  const getStargazersCount = useServerFn(getServerStargazersCount)
+
+  const { data: stargazersCount } = useQuery({
+    queryKey: [repo],
+    queryFn: () => getStargazersCount({ data: { repo } }),
+  })
+
   return (
     <Tooltip>
       <TooltipTrigger
@@ -40,13 +48,13 @@ export function GitHubStars({ repo, stargazersCount }: GitHubStarsProps) {
             notation: 'compact',
             compactDisplay: 'short',
           })
-            .format(stargazersCount)
+            .format(stargazersCount ?? 0)
             .toLowerCase()}
         </span>
       </TooltipTrigger>
 
       <TooltipContent className="font-sans">
-        {new Intl.NumberFormat('en-US').format(stargazersCount)} stars
+        {new Intl.NumberFormat('en-US').format(stargazersCount ?? 0)} stars
       </TooltipContent>
     </Tooltip>
   )
