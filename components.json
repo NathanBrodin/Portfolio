@@ -20,6 +20,7 @@
     "hooks": "@/hooks"
   },
   "registries": {
-    "@coss": "https://coss.com/ui/r/{name}.json"
+    "@coss": "https://coss.com/ui/r/{name}.json",
+    "@ncdai": "https://chanhdai.com/r/{name}.json"
   }
 }

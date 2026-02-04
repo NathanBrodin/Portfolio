@@ -2,9 +2,10 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 
-import { ThemeProvider } from 'next-themes'
+import { ThemeProvider } from '@/providers/theme'
 import appCss from '../styles.css?url'
 import { Header } from '@/components/header'
+import { Footer } from '@/components/footer'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -41,6 +42,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <ThemeProvider>
           <Header />
           {children}
+          <Footer />
         </ThemeProvider>
         <TanStackDevtools
           config={{
