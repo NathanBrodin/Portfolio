@@ -28,7 +28,7 @@ function Combobox<ItemValue, Multiple extends boolean | undefined = false>(
   return (
     <ComboboxContext.Provider value={{ chipsRef, multiple: !!props.multiple }}>
       <ComboboxPrimitive.Root
-        {...(props as ComboboxRootProps<ItemValue, Multiple>)}
+        {...(props)}
       />
     </ComboboxContext.Provider>
   )
@@ -49,7 +49,7 @@ function ComboboxInput({
   ref?: React.Ref<HTMLInputElement>
 }) {
   const { multiple } = React.useContext(ComboboxContext)
-  const sizeValue = (size ?? 'default') as 'sm' | 'default' | 'lg' | number
+  const sizeValue = (size ?? 'default')
 
   // multiple mode
   if (multiple) {

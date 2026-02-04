@@ -23,7 +23,7 @@ function AutocompleteInput({
   size?: 'sm' | 'default' | 'lg' | number
   ref?: React.Ref<HTMLInputElement>
 }) {
-  const sizeValue = (size ?? 'default') as 'sm' | 'default' | 'lg' | number
+  const sizeValue = (size ?? 'default')
 
   return (
     <div className="text-foreground relative w-full not-has-[>*.w-full]:w-fit has-disabled:opacity-64">

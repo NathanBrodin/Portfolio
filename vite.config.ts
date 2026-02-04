@@ -1,4 +1,4 @@
-import { fileURLToPath, URL } from 'url'
+import { fileURLToPath, URL } from 'node:url'
 
 import tailwindcss from '@tailwindcss/vite'
 import viteReact from '@vitejs/plugin-react'
