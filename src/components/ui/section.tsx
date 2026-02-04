@@ -1,5 +1,6 @@
-import { cn } from '@/lib/utils'
 import React from 'react'
+
+import { cn } from '@/lib/utils'
 
 export function Section({
   className,
@@ -8,7 +9,7 @@ export function Section({
   return (
     <section
       className={cn(
-        'flex item-center justify-between border-x w-full px-4 py-1 max-w-5xl relative',
+        'item-center relative flex w-full max-w-5xl justify-between border-x px-4 py-1',
         className,
       )}
       {...props}

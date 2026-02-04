@@ -4,12 +4,12 @@ import { Diamond } from './ui/diamond'
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-background px-4 border-b flex item-center justify-center">
-      <div className="flex item-center justify-between border-x w-full px-4 py-1 max-w-5xl relative">
+    <header className="bg-background item-center sticky top-0 z-50 flex justify-center border-b px-4">
+      <div className="item-center relative flex w-full max-w-5xl justify-between border-x px-4 py-1">
         <span className="font-display text-xl font-semibold">Nathan</span>
         <div className="relative flex items-center">
           <GitHubStars repo="NathanBrodin/portfolio" />
-          <span className="mx-2 flex h-4 w-px bg-border" />
+          <span className="bg-border mx-2 flex h-4 w-px" />
           <ThemeToggle />
         </div>
         <Diamond bottom left />

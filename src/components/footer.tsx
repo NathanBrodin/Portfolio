@@ -4,9 +4,9 @@ import { Separator } from './ui/separator'
 
 export function Footer() {
   return (
-    <footer className="px-4 border-t flex item-center justify-center ">
-      <div className="flex item-center justify-between border-x w-full px-4  max-w-5xl relative">
-        <p className="text-muted-foreground text-sm py-2">
+    <footer className="item-center flex justify-center border-t px-4">
+      <div className="item-center relative flex w-full max-w-5xl justify-between border-x px-4">
+        <p className="text-muted-foreground py-2 text-sm">
           Built by{' '}
           <a
             className="link"
@@ -14,12 +14,12 @@ export function Footer() {
             target="_blank"
             rel="noopener"
           >
-            Nathan
+            Nathan Brodin
           </a>
         </p>
-        <div className="mx-auto flex items-center justify-center gap-3 border-x border-edge bg-background px-4">
+        <div className="border-edge bg-background mx-auto flex items-center justify-center gap-3 border-x px-4">
           <a
-            className="flex items-center text-muted-foreground transition-colors hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground flex items-center transition-colors"
             href="https://x.com/nathan-brodin?utm_source=brodin.dev"
             target="_blank"
             rel="noopener noreferrer"
@@ -29,7 +29,7 @@ export function Footer() {
           </a>
           <Separator orientation="vertical" />
           <a
-            className="flex items-center text-muted-foreground transition-colors hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground flex items-center transition-colors"
             href="https://github.com/NathanBrodin?utm_source=brodin-dev"
             target="_blank"
             rel="noopener noreferrer"
@@ -39,7 +39,7 @@ export function Footer() {
           </a>
           <Separator orientation="vertical" />
           <a
-            className="flex items-center text-muted-foreground transition-colors hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground flex items-center transition-colors"
             href="https://www.linkedin.com/in/nathan-brodin?utm_source=brodin.dev"
             target="_blank"
             rel="noopener noreferrer"
@@ -48,7 +48,7 @@ export function Footer() {
             <span className="sr-only">LinkedIn</span>
           </a>
         </div>
-        <p className="text-muted-foreground text-sm py-2">
+        <p className="text-muted-foreground py-2 text-sm">
           Inspired by{' '}
           <a
             className="link"

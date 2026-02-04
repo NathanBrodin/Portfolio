@@ -1,3 +1,6 @@
+import { useQuery } from '@tanstack/react-query'
+import { useServerFn } from '@tanstack/react-start'
+
 import { Button } from '@/components/ui/button'
 import {
   Tooltip,
@@ -5,8 +8,6 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { getStargazersCount as getServerStargazersCount } from '@/lib/functions'
-import { useQuery } from '@tanstack/react-query'
-import { useServerFn } from '@tanstack/react-start'
 
 type GitHubStarsProps = {
   repo: string
@@ -50,7 +51,7 @@ export function GitHubStars({ repo }: GitHubStarsProps) {
             fill="currentColor"
           />
         </svg>
-        <span className="text-[13px] text-muted-foreground tabular-nums">
+        <span className="text-muted-foreground text-[13px] tabular-nums">
           {count}
         </span>
       </TooltipTrigger>

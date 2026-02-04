@@ -175,7 +175,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-sans relative isolate min-h-svh flex flex-col h-full w-screen overflow-x-clip;
+    @apply bg-background text-foreground relative isolate flex h-full min-h-svh w-screen flex-col overflow-x-clip font-sans;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -209,5 +209,5 @@
 }
 
 @utility link {
-  @apply font-medium underline underline-offset-4 hover:text-foreground transition-colors;
+  @apply hover:text-foreground font-medium underline underline-offset-4 transition-colors;
 }
