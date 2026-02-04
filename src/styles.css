@@ -1,7 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
-
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 
 @font-face {
   font-family: 'Writer';
@@ -176,7 +175,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-sans relative min-h-screen isolate min-h-svh w-screen overflow-x-clip;
+    @apply bg-background text-foreground font-sans relative isolate min-h-svh flex flex-col h-full w-screen overflow-x-clip;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
