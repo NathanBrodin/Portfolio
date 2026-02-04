@@ -176,11 +176,17 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans relative min-h-screen isolate min-h-svh w-screen overflow-x-clip;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1 {
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    font-size: clamp(2.25rem, 1.5rem + 2.5vw, 2.7rem);
   }
 
   ::-webkit-scrollbar {
@@ -201,4 +207,8 @@
   [id] {
     @apply scroll-mt-18;
   }
+}
+
+@utility link {
+  @apply font-medium underline underline-offset-4 hover:text-foreground transition-colors;
 }

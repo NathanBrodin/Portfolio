@@ -20,6 +20,13 @@ export function GitHubStars({ repo }: GitHubStarsProps) {
     queryFn: () => getStargazersCount({ data: { repo } }),
   })
 
+  const count = new Intl.NumberFormat('en-US', {
+    notation: 'compact',
+    compactDisplay: 'short',
+  })
+    .format(stargazersCount ?? 0)
+    .toLowerCase()
+
   return (
     <Tooltip>
       <TooltipTrigger
@@ -44,18 +51,10 @@ export function GitHubStars({ repo }: GitHubStarsProps) {
           />
         </svg>
         <span className="text-[13px] text-muted-foreground tabular-nums">
-          {new Intl.NumberFormat('en-US', {
-            notation: 'compact',
-            compactDisplay: 'short',
-          })
-            .format(stargazersCount ?? 0)
-            .toLowerCase()}
+          {count}
         </span>
       </TooltipTrigger>
-
-      <TooltipContent className="font-sans">
-        {new Intl.NumberFormat('en-US').format(stargazersCount ?? 0)} stars
-      </TooltipContent>
+      <TooltipContent className="font-sans">{count} stars</TooltipContent>
     </Tooltip>
   )
 }
