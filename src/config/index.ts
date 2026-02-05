@@ -8,10 +8,4 @@ export type LinkItem = {
   iconImage?: string
 }
 
-export type ThemeItem = {
-  label: string
-  value: 'light' | 'dark' | 'system'
-  icon: React.ComponentType<LucideProps>
-}
-
-export type MenuItem = LinkItem | ThemeItem
+export type MenuItem = LinkItem

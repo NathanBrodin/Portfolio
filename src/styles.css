@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 @import 'tailwindcss';
+@plugin '@toolwind/corner-shape';
 @import 'tw-animate-css';
 
 @font-face {
@@ -210,4 +211,10 @@
 
 @utility link {
   @apply hover:text-foreground font-medium underline underline-offset-4 transition-colors;
+}
+
+@custom-variant supports-corner-shape {
+  @supports (corner-shape: initial) {
+    @slot;
+  }
 }

@@ -1,8 +1,8 @@
-import type { LucideProps } from 'lucide-react'
 import {
   ArrowDownIcon,
   ArrowUpIcon,
   CornerDownLeftIcon,
+  ExternalLinkIcon,
   MonitorIcon,
   MoonIcon,
   SearchIcon,
@@ -11,7 +11,7 @@ import {
 import { Fragment, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 
-import { useNavigate } from '@tanstack/react-router'
+import { Link } from '@tanstack/react-router'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -35,7 +35,6 @@ import type { MenuItem } from '@/config'
 import { PORTFOLIO_LINKS } from '@/config/portfolio-links'
 import { SOCIAL_LINKS } from '@/config/social-links'
 import { useIsMac } from '@/hooks/use-is-mac'
-import { useTheme } from '@/providers/theme'
 
 export interface Group {
   value: string
@@ -63,32 +62,11 @@ export const THEME_ITEMS = [
 export const groupedItems: Group[] = [
   { items: PORTFOLIO_LINKS, value: 'Portfolio' },
   { items: SOCIAL_LINKS, value: 'Social Links' },
-  { items: THEME_ITEMS, value: 'Theme' },
 ]
 
 export function CommandMenu() {
-  const { setTheme } = useTheme()
   const isMac = useIsMac()
-  const navigate = useNavigate()
   const [open, setOpen] = useState(false)
-
-  function handleItemClick(item: MenuItem) {
-    if ('description' in item) {
-      // This is a LinkItem
-      if (
-        item.value.startsWith('http://') ||
-        item.value.startsWith('https://')
-      ) {
-        window.open(item.value, '_blank', 'noopener,noreferrer')
-      } else {
-        navigate({ to: item.value })
-      }
-    } else {
-      // This is a ThemeItem
-      setTheme(item.value as 'light' | 'dark' | 'system')
-    }
-    setOpen(false)
-  }
 
   useHotkeys('mod+k, slash', (e) => {
     e.preventDefault()
@@ -120,46 +98,42 @@ export function CommandMenu() {
                     <CommandGroupLabel>{group.value}</CommandGroupLabel>
                     <CommandCollection>
                       {(item: MenuItem) => {
-                        if ('description' in item) {
-                          // This is a LinkItem
-                          const Icon = item.icon ?? Fragment
-                          return (
-                            <CommandItem
-                              key={item.value}
-                              onClick={() => handleItemClick(item)}
-                              value={item.value}
-                            >
-                              {item.iconImage ? (
-                                <img
-                                  src={item.iconImage}
-                                  width={16}
-                                  height={16}
-                                  className="mr-2"
-                                />
-                              ) : (
-                                <Icon
-                                  className="mr-2 size-4 opacity-80"
-                                  strokeWidth={2}
-                                />
-                              )}
-                              <span className="flex-1">{item.label}</span>
-                            </CommandItem>
-                          )
-                        } else {
-                          // This is a ThemeItem - icon is always defined
-                          const Icon =
-                            item.icon as React.ComponentType<LucideProps>
-                          return (
-                            <CommandItem
-                              key={item.value}
-                              onClick={() => handleItemClick(item)}
-                              value={item.value}
-                            >
-                              <Icon className="mr-2 size-4" />
-                              <span className="flex-1">{item.label}</span>
-                            </CommandItem>
-                          )
-                        }
+                        const Icon = item.icon ?? Fragment
+
+                        const isExternal = item.value.startsWith('http')
+                        const externalLinkOptions = isExternal
+                          ? { target: '_blank', rel: 'noopener noreferrer' }
+                          : {}
+
+                        return (
+                          <CommandItem
+                            className="flex w-full items-center"
+                            key={item.value}
+                            render={
+                              <Link
+                                to={item.value}
+                                onClick={() => setOpen(false)}
+                                {...externalLinkOptions}
+                              />
+                            }
+                          >
+                            {item.iconImage ? (
+                              <img
+                                src={item.iconImage}
+                                alt={item.label}
+                                width={16}
+                                height={16}
+                                className="corner-squircle mr-2 rounded-sm supports-corner-shape:rounded-[50%]"
+                              />
+                            ) : (
+                              <Icon className="mr-2 h-4 w-4 opacity-80" />
+                            )}
+                            <span className="flex-1">{item.label}</span>
+                            {isExternal && (
+                              <ExternalLinkIcon className="size-4" />
+                            )}
+                          </CommandItem>
+                        )
                       }}
                     </CommandCollection>
                   </CommandGroup>
