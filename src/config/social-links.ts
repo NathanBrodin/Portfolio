@@ -2,31 +2,27 @@ import { LinkItem } from '.'
 
 export const SOCIAL_LINKS: LinkItem[] = [
   {
-    iconImage:
-      'https://assets.chanhdai.com/images/link-icons/x.webp?t=1759581475',
+    iconImage: '/link-icons/twitter.webp',
     label: 'Twitter',
-    description: '@iamncdai',
-    value: 'https://x.com/iamncdai',
+    description: '@nathan_brodin',
+    value: 'https://twitter.com/nathan_brodin',
   },
   {
-    iconImage:
-      'https://assets.chanhdai.com/images/link-icons/github.webp?t=1759581475',
+    iconImage: '/link-icons/github.webp',
     label: 'GitHub',
-    description: 'ncdai',
-    value: 'https://github.com/ncdai',
+    description: 'NathanBrodin',
+    value: 'https://github.com/NathanBrodin',
   },
   {
-    iconImage:
-      'https://assets.chanhdai.com/images/link-icons/linkedin.webp?t=1759581475',
+    iconImage: '/link-icons/linkedin.webp',
     label: 'LinkedIn',
-    description: 'ncdai',
-    value: 'https://linkedin.com/in/ncdai',
+    description: 'nathan-brodin',
+    value: 'https://linkedin.com/in/nathan-brodin',
   },
   {
-    iconImage:
-      'https://assets.chanhdai.com/images/link-icons/linkedin.webp?t=1759581475',
+    iconImage: '/link-icons/letterboxd.webp',
     label: 'Letterboxd',
-    description: 'ncdai',
-    value: 'https://linkedin.com/in/ncdai',
+    description: 'nathannnnnn',
+    value: 'https://letterboxd.com/nathannnnnn',
   },
 ]

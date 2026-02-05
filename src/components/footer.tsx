@@ -1,3 +1,5 @@
+import { SOCIAL_LINKS } from '@/config/social-links'
+
 import { Diamond } from './ui/diamond'
 import { Icons } from './ui/icons'
 import { Separator } from './ui/separator'
@@ -20,7 +22,7 @@ export function Footer() {
         <div className="border-edge bg-background mx-auto flex items-center justify-center gap-3 border-x px-4">
           <a
             className="text-muted-foreground hover:text-foreground flex items-center transition-colors"
-            href="https://x.com/nathan-brodin?utm_source=brodin.dev"
+            href={SOCIAL_LINKS[0].value}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -30,7 +32,7 @@ export function Footer() {
           <Separator orientation="vertical" />
           <a
             className="text-muted-foreground hover:text-foreground flex items-center transition-colors"
-            href="https://github.com/NathanBrodin?utm_source=brodin-dev"
+            href={SOCIAL_LINKS[1].value}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -40,7 +42,7 @@ export function Footer() {
           <Separator orientation="vertical" />
           <a
             className="text-muted-foreground hover:text-foreground flex items-center transition-colors"
-            href="https://www.linkedin.com/in/nathan-brodin?utm_source=brodin.dev"
+            href={SOCIAL_LINKS[2].value}
             target="_blank"
             rel="noopener noreferrer"
           >

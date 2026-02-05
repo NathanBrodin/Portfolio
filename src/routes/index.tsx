@@ -1,8 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
 
+import { SocialLinks } from '@/components/social-links'
 import { Section } from '@/components/ui/section'
 import { SectionDivider } from '@/components/ui/section-divider'
-import WorldMap from '@/components/ui/world-map'
 
 export const Route = createFileRoute('/')({ component: App })
 
@@ -19,6 +19,8 @@ function App() {
           </p>
         </div>
       </Section>
+      <SectionDivider />
+      <SocialLinks />
       <SectionDivider />
       <Section className="h-fit px-0 py-0">
         {/*<WorldMap
