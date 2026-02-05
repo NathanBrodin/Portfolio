@@ -23,7 +23,7 @@ export function SectionDivider({
       <Diamond top right />
       <Diamond bottom left />
       <Diamond bottom right />
-      <svg className="text-primary-foreground pointer-events-none absolute inset-0 -z-1 size-full py-px opacity-30 select-none dark:opacity-60">
+      <svg className="text-primary pointer-events-none absolute inset-0 -z-1 size-full py-px opacity-10 select-none dark:opacity-5">
         <defs>
           <pattern
             id={patternId}

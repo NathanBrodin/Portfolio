@@ -34,6 +34,7 @@ import { Kbd, KbdGroup } from '@/components/ui/kbd'
 import type { MenuItem } from '@/config'
 import { PORTFOLIO_LINKS } from '@/config/portfolio-links'
 import { SOCIAL_LINKS } from '@/config/social-links'
+import { useIsMac } from '@/hooks/use-is-mac'
 import { useTheme } from '@/providers/theme'
 
 export interface Group {
@@ -67,6 +68,7 @@ export const groupedItems: Group[] = [
 
 export function CommandMenu() {
   const { setTheme } = useTheme()
+  const isMac = useIsMac()
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
 
@@ -102,7 +104,7 @@ export function CommandMenu() {
         <SearchIcon />
         <span className="sr-only">Open Command Palette</span>
         <KbdGroup>
-          <Kbd>⌘</Kbd>
+          <Kbd>{isMac ? '⌘' : 'Ctrl'}</Kbd>
           <Kbd>K</Kbd>
         </KbdGroup>
       </CommandDialogTrigger>
@@ -135,7 +137,10 @@ export function CommandMenu() {
                                   className="mr-2"
                                 />
                               ) : (
-                                <Icon className="mr-2 size-4" />
+                                <Icon
+                                  className="mr-2 size-4 opacity-80"
+                                  strokeWidth={2}
+                                />
                               )}
                               <span className="flex-1">{item.label}</span>
                             </CommandItem>
