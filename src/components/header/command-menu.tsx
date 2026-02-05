@@ -1,3 +1,4 @@
+import type { LucideProps } from 'lucide-react'
 import {
   ArrowDownIcon,
   ArrowUpIcon,
@@ -30,20 +31,15 @@ import {
   CommandSeparator,
 } from '@/components/ui/command'
 import { Kbd, KbdGroup } from '@/components/ui/kbd'
-import type { LinkItem } from '@/config'
+import type { MenuItem } from '@/config'
 import { PORTFOLIO_LINKS } from '@/config/portfolio-links'
 import { SOCIAL_LINKS } from '@/config/social-links'
 import { useTheme } from '@/providers/theme'
 
 export interface Group {
   value: string
-  items: LinkItem[]
+  items: MenuItem[]
 }
-
-export const groupedItems: Group[] = [
-  { items: PORTFOLIO_LINKS, value: 'Portfolio' },
-  { items: SOCIAL_LINKS, value: 'Social Links' },
-]
 
 export const THEME_ITEMS = [
   {
@@ -63,22 +59,32 @@ export const THEME_ITEMS = [
   },
 ]
 
+export const groupedItems: Group[] = [
+  { items: PORTFOLIO_LINKS, value: 'Portfolio' },
+  { items: SOCIAL_LINKS, value: 'Social Links' },
+  { items: THEME_ITEMS, value: 'Theme' },
+]
+
 export function CommandMenu() {
   const { setTheme } = useTheme()
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
 
-  function handleItemClick(item: LinkItem) {
-    if (item.value.startsWith('http://') || item.value.startsWith('https://')) {
-      window.open(item.value, '_blank', 'noopener,noreferrer')
+  function handleItemClick(item: MenuItem) {
+    if ('description' in item) {
+      // This is a LinkItem
+      if (
+        item.value.startsWith('http://') ||
+        item.value.startsWith('https://')
+      ) {
+        window.open(item.value, '_blank', 'noopener,noreferrer')
+      } else {
+        navigate({ to: item.value })
+      }
     } else {
-      navigate({ to: item.value })
+      // This is a ThemeItem
+      setTheme(item.value as 'light' | 'dark' | 'system')
     }
-    setOpen(false)
-  }
-
-  function handleThemeChange(theme: 'light' | 'dark' | 'system') {
-    setTheme(theme)
     setOpen(false)
   }
 
@@ -111,51 +117,50 @@ export function CommandMenu() {
                   <CommandGroup items={group.items}>
                     <CommandGroupLabel>{group.value}</CommandGroupLabel>
                     <CommandCollection>
-                      {(item: LinkItem) => {
-                        const Icon = item.icon ?? Fragment
-                        return (
-                          <CommandItem
-                            key={item.value}
-                            onClick={() => handleItemClick(item)}
-                            value={item.value}
-                          >
-                            {item.iconImage ? (
-                              <img
-                                src={item.iconImage}
-                                width={16}
-                                height={16}
-                                className="mr-2"
-                              />
-                            ) : (
+                      {(item: MenuItem) => {
+                        if ('description' in item) {
+                          // This is a LinkItem
+                          const Icon = item.icon ?? Fragment
+                          return (
+                            <CommandItem
+                              key={item.value}
+                              onClick={() => handleItemClick(item)}
+                              value={item.value}
+                            >
+                              {item.iconImage ? (
+                                <img
+                                  src={item.iconImage}
+                                  width={16}
+                                  height={16}
+                                  className="mr-2"
+                                />
+                              ) : (
+                                <Icon className="mr-2 size-4" />
+                              )}
+                              <span className="flex-1">{item.label}</span>
+                            </CommandItem>
+                          )
+                        } else {
+                          // This is a ThemeItem - icon is always defined
+                          const Icon =
+                            item.icon as React.ComponentType<LucideProps>
+                          return (
+                            <CommandItem
+                              key={item.value}
+                              onClick={() => handleItemClick(item)}
+                              value={item.value}
+                            >
                               <Icon className="mr-2 size-4" />
-                            )}
-                            <span className="flex-1">{item.label}</span>
-                          </CommandItem>
-                        )
+                              <span className="flex-1">{item.label}</span>
+                            </CommandItem>
+                          )
+                        }
                       }}
                     </CommandCollection>
                   </CommandGroup>
                   <CommandSeparator />
                 </Fragment>
               ))}
-              <CommandGroup items={THEME_ITEMS}>
-                <CommandGroupLabel>Theme</CommandGroupLabel>
-                <CommandCollection>
-                  {(item: (typeof THEME_ITEMS)[0]) => {
-                    const Icon = item.icon
-                    return (
-                      <CommandItem
-                        key={item.value}
-                        onClick={() => handleThemeChange(item.value)}
-                        value={item.value}
-                      >
-                        <Icon className="mr-2 size-4" />
-                        <span className="flex-1">{item.label}</span>
-                      </CommandItem>
-                    )
-                  }}
-                </CommandCollection>
-              </CommandGroup>
             </CommandList>
           </CommandPanel>
           <CommandFooter>
