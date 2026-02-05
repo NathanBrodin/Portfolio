@@ -1,3 +1,5 @@
+import { useId } from 'react'
+
 import { cn } from '@/lib/utils'
 
 import { Diamond } from './diamond'
@@ -6,6 +8,8 @@ export function SectionDivider({
   className,
   ...props
 }: React.ComponentProps<'section'>) {
+  const patternId = useId()
+
   return (
     <section
       className={cn(
@@ -22,7 +26,7 @@ export function SectionDivider({
       <svg className="text-primary-foreground pointer-events-none absolute inset-0 -z-1 size-full py-px opacity-30 select-none dark:opacity-60">
         <defs>
           <pattern
-            id=":S6:"
+            id={patternId}
             width="4"
             height="4"
             patternUnits="userSpaceOnUse"
@@ -38,7 +42,7 @@ export function SectionDivider({
             ></line>
           </pattern>
         </defs>
-        <rect width="100%" height="100%" fill="url(#:S6:)"></rect>
+        <rect width="100%" height="100%" fill={`url(#${patternId})`}></rect>
       </svg>
     </section>
   )
