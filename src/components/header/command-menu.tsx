@@ -80,7 +80,8 @@ export function CommandMenu() {
       <CommandDialogTrigger render={<Button variant="outline" />}>
         <SearchIcon />
         <span className="sr-only">Open Command Palette</span>
-        <KbdGroup>
+        <span className="text-xs sm:hidden">Search</span>
+        <KbdGroup className="hidden sm:flex">
           <Kbd>{isMac ? '⌘' : 'Ctrl'}</Kbd>
           <Kbd>K</Kbd>
         </KbdGroup>

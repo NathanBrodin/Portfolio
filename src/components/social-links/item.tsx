@@ -14,8 +14,8 @@ export function SocialLinkItem({
       className={cn(
         'group hover:bg-accent/50 bg-background flex cursor-pointer items-center gap-4 p-4 pr-2 transition-[background-color] ease-out',
         'first:border-x first:border-b',
-        'nth-2:border-x nth-2:border-b',
-        'nth-3:border-x nth-3:border-t',
+        'nth-2:border-x nth-2:border-t nth-2:border-b sm:nth-2:border-t-0',
+        'nth-3:border-x nth-3:border-t nth-3:border-b sm:nth-3:border-b-0',
         'last:border-x last:border-t',
       )}
       href={value}
