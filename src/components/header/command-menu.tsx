@@ -28,7 +28,6 @@ import {
   CommandItem,
   CommandList,
   CommandPanel,
-  CommandSeparator,
 } from '@/components/ui/command'
 import { Kbd, KbdGroup } from '@/components/ui/kbd'
 import type { MenuItem } from '@/config'
@@ -92,54 +91,51 @@ export function CommandMenu() {
           <CommandPanel>
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandList>
-              {groupedItems.map((group, _index) => (
-                <Fragment key={group.value}>
-                  <CommandGroup items={group.items}>
-                    <CommandGroupLabel>{group.value}</CommandGroupLabel>
-                    <CommandCollection>
-                      {(item: MenuItem) => {
-                        const Icon = item.icon ?? Fragment
+              {(group: Group) => (
+                <CommandGroup items={group.items} key={group.value}>
+                  <CommandGroupLabel>{group.value}</CommandGroupLabel>
+                  <CommandCollection>
+                    {(item: MenuItem) => {
+                      const Icon = item.icon ?? Fragment
 
-                        const isExternal = item.value.startsWith('http')
-                        const externalLinkOptions = isExternal
-                          ? { target: '_blank', rel: 'noopener noreferrer' }
-                          : {}
+                      const isExternal = item.value.startsWith('http')
+                      const externalLinkOptions = isExternal
+                        ? { target: '_blank', rel: 'noopener noreferrer' }
+                        : {}
 
-                        return (
-                          <CommandItem
-                            className="flex w-full items-center"
-                            key={item.value}
-                            render={
-                              <Link
-                                to={item.value}
-                                onClick={() => setOpen(false)}
-                                {...externalLinkOptions}
-                              />
-                            }
-                          >
-                            {item.iconImage ? (
-                              <img
-                                src={item.iconImage}
-                                alt={item.label}
-                                width={16}
-                                height={16}
-                                className="corner-squircle mr-2 rounded-sm supports-corner-shape:rounded-[50%]"
-                              />
-                            ) : (
-                              <Icon className="mr-2 h-4 w-4 opacity-80" />
-                            )}
-                            <span className="flex-1">{item.label}</span>
-                            {isExternal && (
-                              <ExternalLinkIcon className="size-4" />
-                            )}
-                          </CommandItem>
-                        )
-                      }}
-                    </CommandCollection>
-                  </CommandGroup>
-                  <CommandSeparator />
-                </Fragment>
-              ))}
+                      return (
+                        <CommandItem
+                          className="flex w-full items-center"
+                          key={item.value}
+                          render={
+                            <Link
+                              to={item.value}
+                              onClick={() => setOpen(false)}
+                              {...externalLinkOptions}
+                            />
+                          }
+                        >
+                          {item.iconImage ? (
+                            <img
+                              src={item.iconImage}
+                              alt={item.label}
+                              width={16}
+                              height={16}
+                              className="corner-squircle mr-2 rounded-sm supports-corner-shape:rounded-[50%]"
+                            />
+                          ) : (
+                            <Icon className="mr-2 h-4 w-4 opacity-80" />
+                          )}
+                          <span className="flex-1">{item.label}</span>
+                          {isExternal && (
+                            <ExternalLinkIcon className="size-4" />
+                          )}
+                        </CommandItem>
+                      )
+                    }}
+                  </CommandCollection>
+                </CommandGroup>
+              )}
             </CommandList>
           </CommandPanel>
           <CommandFooter>
