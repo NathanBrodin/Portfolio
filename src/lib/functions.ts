@@ -1,5 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 
+import { env } from '@/env'
+
 export const getStargazersCount = createServerFn({ method: 'GET' })
   .inputValidator((data: { repo: string }) => data)
   .handler(async ({ data }) => {
@@ -9,7 +11,7 @@ export const getStargazersCount = createServerFn({ method: 'GET' })
         {
           headers: {
             Accept: 'application/vnd.github+json',
-            Authorization: `Bearer ${process.env.GITHUB_API_TOKEN}`,
+            Authorization: `Bearer ${env.GITHUB_API_TOKEN}`,
             'X-GitHub-Api-Version': '2022-11-28',
           },
         },

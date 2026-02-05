@@ -34,7 +34,7 @@ export function SectionDivider({
               x2="0"
               y2="4"
               stroke="currentColor"
-              stroke-width="1.5"
+              strokeWidth="1.5"
             ></line>
           </pattern>
         </defs>
