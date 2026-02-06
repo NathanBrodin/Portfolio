@@ -12,3 +12,5 @@
 - Agents.md to verify the project
 - knip: clean up stuff
 - add sound when opening the `Collapsible` and others
+- Linkedin banner page, takes screenshot. cf shadcn for that
+- og should be a screenshot
