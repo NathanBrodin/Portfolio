@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 
-import { Experience } from '@/config'
+import type { Experience } from '@/lib/experiences'
 
 import { Diamond } from '../ui/diamond'
 import { ExperiencePositionItem } from './position-item'

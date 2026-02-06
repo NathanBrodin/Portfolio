@@ -1,15 +1,18 @@
-import { EDUCATION, WORK_EXPERIENCES } from '@/config/experiences'
+import { getEducation, getWorkExperiences } from '@/lib/experiences'
 
 import { Section, SectionTitle } from '../ui/section'
 import { SubSectionDivider } from '../ui/section-divider'
 import { ExperienceItem } from './item'
 
 export function Experiences() {
+  const workExperiences = getWorkExperiences()
+  const education = getEducation()
+
   return (
     <Section id="experience" className="flex flex-col">
       <SectionTitle>Experiences</SectionTitle>
       <div>
-        {WORK_EXPERIENCES.map((experience) => (
+        {workExperiences.map((experience) => (
           <ExperienceItem key={experience.id} experience={experience} />
         ))}
       </div>
@@ -18,7 +21,7 @@ export function Experiences() {
         Education
       </h2>
       <div>
-        {EDUCATION.map((experience) => (
+        {education.map((experience) => (
           <ExperienceItem key={experience.id} experience={experience} />
         ))}
       </div>

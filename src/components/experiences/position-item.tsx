@@ -7,7 +7,7 @@ import {
   CollapsibleWithContext,
 } from '@/components/ui/collapsible'
 import { Separator } from '@/components/ui/separator'
-import type { ExperiencePosition } from '@/config'
+import type { ExperiencePosition } from '@/lib/experiences'
 import { calculateEmploymentDuration, cn } from '@/lib/utils'
 
 import { Markdown } from '../markdown'

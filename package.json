@@ -45,10 +45,11 @@
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.0.6",
     "unified": "^11.0.5",
-    "vite-tsconfig-paths": "^6.0.2",
-    "zod": "^4.3.6"
+    "vite-tsconfig-paths": "^6.0.2"
   },
   "devDependencies": {
+    "@content-collections/core": "^0.13.1",
+    "@content-collections/vite": "^0.2.8",
     "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
     "@tailwindcss/typography": "^0.5.19",
     "@tanstack/devtools-vite": "^0.3.11",
@@ -67,6 +68,7 @@
     "typescript": "^5.7.2",
     "vite": "^7.1.7",
     "vitest": "^3.0.5",
-    "web-vitals": "^5.1.0"
+    "web-vitals": "^5.1.0",
+    "zod": "^4.3.6"
   }
 }

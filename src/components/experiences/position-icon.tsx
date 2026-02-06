@@ -7,7 +7,7 @@ import {
   LightbulbIcon,
 } from 'lucide-react'
 
-import { ExperiencePositionIcon } from '@/config'
+import type { ExperiencePositionIcon } from '@/lib/experiences'
 
 const iconMap: Record<
   ExperiencePositionIcon,
