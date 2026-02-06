@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 import { Experiences } from '@/components/experiences'
+import { Projects } from '@/components/projects'
 import { SocialLinks } from '@/components/social-links'
 import { Grid } from '@/components/ui/backgrounds/grid'
 import { Noise } from '@/components/ui/backgrounds/noise'
@@ -29,8 +30,9 @@ function App() {
       <SectionDivider />
       <Experiences />
       <SectionDivider />
-      <Section className="h-fit px-0 py-0">
-        {/*<WorldMap
+      <Projects />
+      {/*<SectionclassName="h-fit px-0 py-0">
+        <WorldMap
           dots={[
             {
               start: {
@@ -63,10 +65,10 @@ function App() {
               end: { lat: -1.2921, lng: 36.8219 }, // Nairobi
             },
           ]}
-        />*/}
+        />
       </Section>
       <SectionDivider />
-      <Section className="h-full flex-1">Other section</Section>
+      <Section className="h-full flex-1">Other section</Section>*/}
     </main>
   )
 }

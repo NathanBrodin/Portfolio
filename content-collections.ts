@@ -10,7 +10,7 @@ const experiences = defineCollection({
     companyId: z.string(),
     companyName: z.string(),
     companyLogo: z.string().optional(),
-    companyWebsite: z.string().url().optional(),
+    companyWebsite: z.url().optional(),
     isCurrentEmployer: z.boolean().default(false),
 
     // Position info
@@ -36,6 +36,25 @@ const experiences = defineCollection({
   }),
 })
 
+const projects = defineCollection({
+  name: 'projects',
+  directory: 'content/projects',
+  include: '**/*.md',
+  schema: z.object({
+    id: z.string(),
+    title: z.string(),
+    link: z.url().optional(),
+    logo: z.string().optional(),
+    startDate: z.string(),
+    endDate: z.string().optional(),
+    skills: z.array(z.string()).default([]),
+    isExpanded: z.boolean().default(false),
+
+    // Ordering
+    order: z.number(),
+  }),
+})
+
 export default defineConfig({
-  collections: [experiences],
+  collections: [experiences, projects],
 })
