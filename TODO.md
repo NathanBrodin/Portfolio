@@ -11,3 +11,4 @@
 - Installation guide
 - Agents.md to verify the project
 - knip: clean up stuff
+- add sound when opening the `Collapsible` and others

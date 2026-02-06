@@ -22,7 +22,7 @@ export const getStargazersCount = createServerFn({ method: 'GET' })
       }
 
       const json = (await response.json()) as { stargazers_count?: number }
-      return Number(json?.stargazers_count) || 0
+      return Number(json.stargazers_count) || 0
     } catch {
       return 0
     }

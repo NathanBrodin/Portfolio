@@ -12,7 +12,7 @@ export function Header() {
         <Nav />
         <div className="relative flex items-center *:first:mr-4">
           <CommandMenu />
-          <GitHubStars repo="NathanBrodin/portfolio" />
+          <GitHubStars repo="NathanBrodin/Portfolio" />
           <span className="bg-border mx-2 flex h-4 w-px" />
           <ThemeToggle />
         </div>
