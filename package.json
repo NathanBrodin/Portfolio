@@ -1,6 +1,24 @@
 {
   "name": "portfolio",
-  "private": true,
+  "description": "Nathan Brodin's Portfolio.",
+  "homepage": "https://brodin.dev",
+  "license": "MIT",
+  "author": {
+    "name": "Nathan Brodin",
+    "email": "nathan@brodin.dev",
+    "url": "https://github.com/nathanbrodin"
+  },
+  "contributors": [
+    {
+      "name": "Nathan Brodin",
+      "email": "nathan@brodin.dev",
+      "url": "https://github.com/nathanbrodin"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathanbrodin/portfolio.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite dev --port 3000",
