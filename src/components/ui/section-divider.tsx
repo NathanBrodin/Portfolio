@@ -24,3 +24,25 @@ export function SectionDivider({
     </section>
   )
 }
+
+export function SubSectionDivider({
+  className,
+  ...props
+}: React.ComponentProps<'section'>) {
+  return (
+    <section
+      className={cn(
+        'item-center relative flex h-4 w-full max-w-5xl justify-between border-x border-b px-4 py-1',
+        className,
+      )}
+      {...props}
+      data-slot="sub-section-divider"
+    >
+      <Diamond top left />
+      <Diamond top right />
+      <Diamond bottom left />
+      <Diamond bottom right />
+      <Lines />
+    </section>
+  )
+}

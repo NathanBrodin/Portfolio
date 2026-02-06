@@ -122,6 +122,7 @@ export function CommandMenu() {
                               alt={item.label}
                               width={16}
                               height={16}
+                              loading="lazy"
                               className="corner-squircle mr-2 rounded-sm supports-corner-shape:rounded-[50%]"
                             />
                           ) : (

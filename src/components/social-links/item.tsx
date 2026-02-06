@@ -29,6 +29,7 @@ export function SocialLinkItem({
           alt={label}
           width={48}
           height={48}
+          loading="lazy"
         />
         <div className="corner-squircle pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 ring-inset supports-corner-shape:rounded-[50%] dark:ring-white/15" />
       </div>
