@@ -189,7 +189,8 @@ function AnchoredToasts() {
             ? TOAST_ICONS[toast.type as keyof typeof TOAST_ICONS]
             : null
           const tooltipStyle =
-            (toast.data as { tooltipStyle?: boolean })?.tooltipStyle ?? false
+            (toast.data as { tooltipStyle?: boolean } | undefined)
+              ?.tooltipStyle ?? false
           const positionerProps = toast.positionerProps
 
           if (!positionerProps?.anchor) {

@@ -24,17 +24,7 @@ let sharedAudioContext: AudioContext | null = null
 function getAudioContext(): AudioContext | null {
   if (sharedAudioContext) return sharedAudioContext
 
-  const AudioContextClass =
-    window.AudioContext ||
-    (window as unknown as { webkitAudioContext: typeof AudioContext })
-      .webkitAudioContext
-
-  if (!AudioContextClass) {
-    console.warn('Web Audio API is not supported in this browser.')
-    return null
-  }
-
-  sharedAudioContext = new AudioContextClass()
+  sharedAudioContext = new AudioContext()
   return sharedAudioContext
 }
 

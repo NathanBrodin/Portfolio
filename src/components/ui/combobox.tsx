@@ -17,12 +17,12 @@ const ComboboxContext = React.createContext<{
 })
 
 type ComboboxRootProps<
-  ItemValue,
-  Multiple extends boolean | undefined,
-> = Parameters<typeof ComboboxPrimitive.Root<ItemValue, Multiple>>[0]
+  TItemValue,
+  TMultiple extends boolean | undefined,
+> = Parameters<typeof ComboboxPrimitive.Root<TItemValue, TMultiple>>[0]
 
-function Combobox<ItemValue, Multiple extends boolean | undefined = false>(
-  props: ComboboxPrimitive.Root.Props<ItemValue, Multiple>,
+function Combobox<TItemValue, TMultiple extends boolean | undefined = false>(
+  props: ComboboxPrimitive.Root.Props<TItemValue, TMultiple>,
 ) {
   const chipsRef = React.useRef<Element | null>(null)
   return (

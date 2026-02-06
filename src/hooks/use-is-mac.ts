@@ -1,11 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
+
+function getIsMac() {
+  return navigator.platform.toUpperCase().includes('MAC')
+}
+
+function getServerSnapshot() {
+  return true
+}
+
+function subscribe() {
+  // Platform doesn't change, no need to subscribe to anything
+  return () => {}
+}
 
 export function useIsMac() {
-  const [isMac, setIsMac] = useState(true)
-
-  useEffect(() => {
-    setIsMac(navigator.platform.toUpperCase().includes('MAC'))
-  }, [])
-
-  return isMac
+  return useSyncExternalStore(subscribe, getIsMac, getServerSnapshot)
 }

@@ -3,6 +3,9 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import { tanstackConfig } from '@tanstack/eslint-config'
 
 export default [
+  {
+    ignores: ['.output/**', '.content-collections/**'],
+  },
   ...tanstackConfig,
   reactHooks.configs.flat.recommended,
   {
