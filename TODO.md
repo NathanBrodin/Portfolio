@@ -8,3 +8,6 @@
   - Page title
 - [LLM Optimization](https://tanstack.com/start/latest/docs/framework/react/guide/llmo)
   - Make the markdown files available
+- Installation guide
+- Agents.md to verify the project
+- knip: clean up stuff

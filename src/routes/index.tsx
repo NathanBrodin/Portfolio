@@ -2,6 +2,8 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Experiences } from '@/components/experiences'
 import { SocialLinks } from '@/components/social-links'
+import { Grid } from '@/components/ui/backgrounds/grid'
+import { Noise } from '@/components/ui/backgrounds/noise'
 import { Section } from '@/components/ui/section'
 import { SectionDivider } from '@/components/ui/section-divider'
 
@@ -9,8 +11,9 @@ export const Route = createFileRoute('/')({ component: App })
 
 function App() {
   return (
-    <main className="flex h-full flex-1 flex-col items-center px-4">
-      <Section className="px-4 py-12">
+    <main className="relative flex h-full flex-1 flex-col items-center px-4">
+      <Noise />
+      <Section className="relative px-4 py-12">
         <div className="flex flex-col">
           <h1 className="font-display text-primary scroll-mt-24 text-center font-normal text-balance">
             Nathan Brodin
@@ -19,6 +22,7 @@ function App() {
             Frontend Engineer
           </p>
         </div>
+        <Grid />
       </Section>
       <SectionDivider />
       <SocialLinks />
