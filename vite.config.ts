@@ -26,8 +26,16 @@ const config = defineConfig({
     }),
     tailwindcss(),
     tanstackStart(),
-    viteReact(),
+    viteReact({
+      babel: {
+        plugins: ['babel-plugin-react-compiler'],
+      },
+    }),
   ],
+  optimizeDeps: {
+    // Pre-bundle barrel-heavy libraries to improve dev server startup time
+    include: ['lucide-react'],
+  },
 })
 
 export default config
