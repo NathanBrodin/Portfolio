@@ -11,22 +11,6 @@ import { siteConfig } from '@/config/site'
 
 export const Route = createFileRoute('/')({
   component: App,
-  head: () => ({
-    meta: [
-      { title: siteConfig.title },
-      { name: 'description', content: siteConfig.description },
-      { name: 'creator', content: siteConfig.name },
-      // Open Graph
-      { property: 'og:title', content: siteConfig.title },
-      { property: 'og:description', content: siteConfig.description },
-      { property: 'og:image', content: siteConfig.og },
-      // Twitter Card
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: siteConfig.title },
-      { name: 'twitter:description', content: siteConfig.title },
-      { name: 'twitter:image', content: siteConfig.og },
-    ],
-  }),
 })
 
 function App() {
@@ -50,7 +34,7 @@ function App() {
       <Experiences />
       <SectionDivider />
       <Projects />
-      {/*<SectionclassName="h-fit px-0 py-0">
+      {/* <SectionclassName="h-fit px-0 py-0">
         <WorldMap
           dots={[
             {

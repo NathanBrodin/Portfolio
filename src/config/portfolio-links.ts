@@ -7,7 +7,7 @@ import {
   TextInitialIcon,
 } from 'lucide-react'
 
-import { LinkItem } from '.'
+import type { LinkItem } from '.'
 
 export const PORTFOLIO_LINKS: LinkItem[] = [
   {

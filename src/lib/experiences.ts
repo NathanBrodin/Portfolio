@@ -1,7 +1,5 @@
-import {
-  allExperiences,
-  Experience as ContentExperience,
-} from 'content-collections'
+import type { Experience as ContentExperience } from 'content-collections'
+import { allExperiences } from 'content-collections'
 
 export type ExperiencePositionIcon =
   | 'code'

@@ -1,4 +1,4 @@
-import { LinkItem } from '.'
+import type { LinkItem } from '.'
 
 export const SOCIAL_LINKS: LinkItem[] = [
   {

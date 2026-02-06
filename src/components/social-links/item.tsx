@@ -1,6 +1,6 @@
 import { ArrowUpRightIcon } from 'lucide-react'
 
-import { LinkItem } from '@/config'
+import type { LinkItem } from '@/config'
 import { cn } from '@/lib/utils'
 
 export function SocialLinkItem({
