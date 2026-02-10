@@ -9,11 +9,6 @@ import {
   CollapsibleWithContext,
 } from '@/components/ui/collapsible'
 import { Tag } from '@/components/ui/tag'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
 import { ProseMono } from '@/components/ui/typography'
 
 import { Button } from '../ui/button'
@@ -96,9 +91,9 @@ export function ProjectItem({
       </CollapsibleTrigger>
       <CollapsibleContent>
         <div className="space-y-2 px-4 py-2">
-          {project.content && (
+          {project.markup && (
             <ProseMono>
-              <Markdown content={project.content} />
+              <Markdown content={project.markup} />
             </ProseMono>
           )}
 

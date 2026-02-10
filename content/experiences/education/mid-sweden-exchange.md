@@ -17,3 +17,5 @@ order: 2
 ---
 
 Exchange Semester in Sundsvall, Sweden. Applying systems concepts both on paper and on the ski slopes.
+
+It was more project based, with real implementation of distributed systems and IoT. But also very theorical algorithm applications.

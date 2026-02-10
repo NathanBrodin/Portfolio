@@ -1,6 +1,8 @@
 import { defineCollection, defineConfig } from '@content-collections/core'
 import { z } from 'zod'
 
+import { renderMarkdown } from './src/lib/markdown'
+
 const experiences = defineCollection({
   name: 'experiences',
   directory: 'content/experiences',
@@ -27,13 +29,16 @@ const experiences = defineCollection({
     // Ordering
     order: z.number(),
   }),
-  transform: (doc) => ({
-    ...doc,
-    category: doc._meta.path.startsWith('work/')
-      ? ('work' as const)
-      : ('education' as const),
-    description: doc.content,
-  }),
+  transform: async (doc) => {
+    const { markup } = await renderMarkdown(doc.content)
+    return {
+      ...doc,
+      category: doc._meta.path.startsWith('work/')
+        ? ('work' as const)
+        : ('education' as const),
+      description: markup,
+    }
+  },
 })
 
 const projects = defineCollection({
@@ -53,6 +58,13 @@ const projects = defineCollection({
     // Ordering
     order: z.number(),
   }),
+  transform: async (doc) => {
+    const { markup } = await renderMarkdown(doc.content)
+    return {
+      ...doc,
+      markup,
+    }
+  },
 })
 
 export default defineConfig({

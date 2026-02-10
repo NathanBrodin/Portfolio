@@ -20,4 +20,6 @@ skills:
 order: 1
 ---
 
-Completed with exchange semesters in Finland, Sweden, and internships in Norway. Graduated with 92/100.
+I completed my Master's degree in Software Engineering at [ESIEA](https://esiea.fr), the 7th best graduate Engineering school in France. Graduated with 92/100. 
+
+The first few years relied heavely on mathematics, algorithms, physics and electronics, moving toward programming and broader software development and software engineering practices at the end. Coupled with 3 internships for a year of real work experience as I graduated.

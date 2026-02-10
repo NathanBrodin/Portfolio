@@ -17,4 +17,5 @@ skills:
 order: 3
 ---
 
-Exchange Semester in Kokkola, Finland. Enjoying the Northern Lights and the snow (and sometimes studying).
+Exchange Semester in Kokkola, Finland. Enjoyed the Northern Lights and the snow (and sometimes studied).
+Got an introduction to databases (`SELECT * FROM grades;`), operating systems (playing with Arch) and different programming languages to do the same things (calculator app in Python and C#).
