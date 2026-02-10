@@ -23,13 +23,13 @@ skills:
 order: 1
 ---
 
-Built a production-grade web platform from scratch with full ownership over frontend, backend, and infrastructure.
+I'm building an entire web platform from scratch: frontend, backend, infrastructure, all of it.
 
-- Designed and implemented the full architecture with long-term scalability in mind
-- Implemented full RBAC, admin tooling, and resource management
-- Established end-to-end type safety using OpenAPI (drf-spectacular) and Orval-generated TanStack Query hooks
-- Built a modern frontend stack: React 19 (Compiler), Vite, TypeScript, TanStack Router/Query/Table/Pacer, Tailwind, shadcn/ui and coss ui, Base UI
-- Developed backend services with Django REST Framework, Redis caching, external ClickHouse integration, and PostgreSQL
-- Containerized the entire system with Docker and deployed via nginx on self-managed servers
-- Built optimized CI pipelines covering linting, builds, schema generation, and automated testing (~700 backend tests, ~100 Playwright E2E) with full caching and sharding
-- Wrote extensive documentation, DX tooling, DB seeding, and Makefile commands enabling full setup in a few commands
+- Designed the full architecture with long-term scalability in mind
+- Set up end-to-end type safety with OpenAPI (drf-spectacular) and Orval-generated TanStack Query hooks
+- Built the frontend with React 19 + Compiler, Vite, TanStack Router/Query/Table/Pacer, Tailwind, shadcn/ui, coss ui, and Base UI
+- Implemented RBAC, admin tooling, and resource management
+- Backend runs on Django REST Framework with Redis caching, ClickHouse integration, and PostgreSQL
+- Containerized everything with Docker, deployed via NGINX on self-managed servers
+- CI covers linting, builds, schema generation, and automated testing (~700 backend tests, ~100 Playwright E2E) with caching and sharding
+- Wrote docs, DX tooling, DB seeding, and Makefile commands so the whole thing sets up in a few commands

@@ -6,12 +6,12 @@ startDate: '03.2024'
 endDate: '03.2024'
 skills:
   - TypeScript
+  - React.js
   - Next.js
   - Tailwind CSS
+  - Convex
 
 order: 3
 ---
 
-Write is a online markdown editor that allows you to write and preview markdown in real-time. It also supports exporting to PDF.
-
-Started as a clone of Notion, I wanted to create a simple and easy to use markdown editor that could be used by anyone. The key principle was to keep it simple and easy to use.
+A Notion-style markdown editor. Write and preview markdown in real-time, export to PDF. Started as a Notion clone because I wanted something simple that just works. Built with Next.js, Tailwind, and Convex.
