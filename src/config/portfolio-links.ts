@@ -30,14 +30,4 @@ export const PORTFOLIO_LINKS: LinkItem[] = [
     value: '/#projects',
     icon: BoxIcon,
   },
-  {
-    label: 'Honors & Awards',
-    value: '/#awards',
-    icon: AwardIcon,
-  },
-  {
-    label: 'Certifications',
-    value: '/#certs',
-    icon: CircleCheckBigIcon,
-  },
 ]

@@ -56,7 +56,7 @@ export function CollapsibleList<T>({
             render={
               <Button
                 className="group/collapsible-trigger flex px-3"
-                variant="default"
+                variant="secondary"
               />
             }
           >

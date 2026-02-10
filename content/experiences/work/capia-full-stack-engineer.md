@@ -19,7 +19,6 @@ skills:
   - NGINX
   - UI/UX Design
   - Design System
-isExpanded: true
 
 order: 1
 ---

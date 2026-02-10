@@ -17,13 +17,14 @@ function App() {
   return (
     <main className="relative flex h-full flex-1 flex-col items-center px-4">
       <Noise />
-      <Section className="relative px-4 py-12">
+      <Section className="relative p-16">
         <div className="flex flex-col">
-          <h1 className="font-display text-primary scroll-mt-24 text-center font-normal text-balance">
+          <h1 className="font-display text-primary scroll-mt-24 font-normal">
             Nathan Brodin
           </h1>
-          <p className="text-muted-foreground text-sm text-balance">
-            Frontend Engineer
+          <p className="text-muted-foreground max-w-md text-sm">
+            A software engineer with a passion for web development, design, and
+            user experience.
           </p>
         </div>
         <Grid />
@@ -34,6 +35,8 @@ function App() {
       <Experiences />
       <SectionDivider />
       <Projects />
+      <SectionDivider />
+      <Section className="h-16" />
       {/* <SectionclassName="h-fit px-0 py-0">
         <WorldMap
           dots={[

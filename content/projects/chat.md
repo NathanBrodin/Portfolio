@@ -10,7 +10,7 @@ skills:
   - Tailwind CSS
   - Tanstack
 
-order: 2
+order: 1
 ---
 
 My AI Portfolio, might be migrated in some sort over here.
