@@ -2,13 +2,13 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Experiences } from '@/components/experiences'
 import { GithubContributions } from '@/components/github-contributions'
+import { MyWorldMap } from '@/components/my-world-map'
 import { Projects } from '@/components/projects'
 import { SocialLinks } from '@/components/social-links'
 import { Grid } from '@/components/ui/backgrounds/grid'
 import { Noise } from '@/components/ui/backgrounds/noise'
 import { Section } from '@/components/ui/section'
 import { SectionDivider } from '@/components/ui/section-divider'
-import { siteConfig } from '@/config/site'
 
 export const Route = createFileRoute('/')({
   component: App,
@@ -31,6 +31,8 @@ function App() {
         <Grid />
       </Section>
       <SectionDivider />
+      <MyWorldMap />
+      <SectionDivider />
       <SocialLinks />
       <SectionDivider />
       <GithubContributions />
@@ -40,44 +42,6 @@ function App() {
       <Projects />
       <SectionDivider />
       <Section className="h-16" />
-      {/* <SectionclassName="h-fit px-0 py-0">
-        <WorldMap
-          dots={[
-            {
-              start: {
-                lat: 64.2008,
-                lng: -149.4937,
-              }, // Alaska (Fairbanks)
-              end: {
-                lat: 34.0522,
-                lng: -118.2437,
-              }, // Los Angeles
-            },
-            {
-              start: { lat: 64.2008, lng: -149.4937 }, // Alaska (Fairbanks)
-              end: { lat: -15.7975, lng: -47.8919 }, // Brazil (Brasília)
-            },
-            {
-              start: { lat: -15.7975, lng: -47.8919 }, // Brazil (Brasília)
-              end: { lat: 38.7223, lng: -9.1393 }, // Lisbon
-            },
-            {
-              start: { lat: 51.5074, lng: -0.1278 }, // London
-              end: { lat: 28.6139, lng: 77.209 }, // New Delhi
-            },
-            {
-              start: { lat: 28.6139, lng: 77.209 }, // New Delhi
-              end: { lat: 43.1332, lng: 131.9113 }, // Vladivostok
-            },
-            {
-              start: { lat: 28.6139, lng: 77.209 }, // New Delhi
-              end: { lat: -1.2921, lng: 36.8219 }, // Nairobi
-            },
-          ]}
-        />
-      </Section>
-      <SectionDivider />
-      <Section className="h-full flex-1">Other section</Section>*/}
     </main>
   )
 }
