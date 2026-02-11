@@ -6,6 +6,7 @@ export const siteConfig = {
   og: 'https://brodin.dev/og.png',
   authorUrl: 'https://brodin.dev',
   twitterHandle: '@nathan_brodin',
+  githubHandle: 'NathanBrodin',
   keywords: [
     'Nathan Brodin',
     'Frontend Engineer',

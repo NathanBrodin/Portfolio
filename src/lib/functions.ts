@@ -1,6 +1,11 @@
 import { createServerFn } from '@tanstack/react-start'
 
+import type { Activity } from '@/components/kibo-ui/contribution-graph'
 import { env } from '@/env'
+
+type GitHubContributionsResponse = {
+  contributions: Activity[]
+}
 
 export const getStargazersCount = createServerFn({ method: 'GET' })
   .inputValidator((data: { repo: string }) => data)
@@ -25,5 +30,19 @@ export const getStargazersCount = createServerFn({ method: 'GET' })
       return Number(json.stargazers_count) || 0
     } catch {
       return 0
+    }
+  })
+
+export const getGithubContributions = createServerFn({ method: 'GET' })
+  .inputValidator((data: { user: string }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const response = await fetch(
+        `https://github-contributions-api.jogruber.de/v4/${data.user}?y=last`,
+      )
+      const json = (await response.json()) as GitHubContributionsResponse
+      return json.contributions
+    } catch {
+      return
     }
   })

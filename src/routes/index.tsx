@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 import { Experiences } from '@/components/experiences'
+import { GithubContributions } from '@/components/github-contributions'
 import { Projects } from '@/components/projects'
 import { SocialLinks } from '@/components/social-links'
 import { Grid } from '@/components/ui/backgrounds/grid'
@@ -31,6 +32,8 @@ function App() {
       </Section>
       <SectionDivider />
       <SocialLinks />
+      <SectionDivider />
+      <GithubContributions />
       <SectionDivider />
       <Experiences />
       <SectionDivider />

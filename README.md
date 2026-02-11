@@ -19,7 +19,7 @@ My Portfolio, to showcase my work as a Frontend Engineer.
 
 Ensure you have the following installed:
 
-- [Node.js](https://nodejs.org/) 
+- [Node.js](https://nodejs.org/)
 - [pnpm](https://pnpm.io/)
 - [Git](https://git-scm.com/)
 
@@ -55,7 +55,6 @@ pnpm dev
 ```
 
 The application should now be available at http://localhost:3000
-
 
 ## Star History
 
