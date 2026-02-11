@@ -44,7 +44,6 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
-    "dotted-map": "^2.2.3",
     "gray-matter": "^4.0.3",
     "html-react-parser": "^5.2.16",
     "lucide-react": "^0.561.0",
