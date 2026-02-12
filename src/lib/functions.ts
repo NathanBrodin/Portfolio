@@ -1,4 +1,5 @@
 import { createServerFn } from '@tanstack/react-start'
+import { getRequestHeader } from '@tanstack/react-start/server'
 
 import type { Activity } from '@/components/kibo-ui/contribution-graph'
 import { env } from '@/env'
@@ -46,3 +47,22 @@ export const getGithubContributions = createServerFn({ method: 'GET' })
       return
     }
   })
+
+export const getUsersLocation = createServerFn({ method: 'GET' }).handler(
+  async () => {
+    const lat = getRequestHeader('x-vercel-ip-latitude')
+    const lng = getRequestHeader('x-vercel-ip-lontitude')
+
+    if (!lat || !lng) {
+      return {
+        lat: null,
+        lng: null,
+      }
+    }
+
+    return {
+      lat: parseFloat(lat),
+      lng: parseFloat(lng),
+    }
+  },
+)

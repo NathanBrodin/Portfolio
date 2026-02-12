@@ -51,10 +51,53 @@ function createCurvedPath(
   return `M ${start.x} ${start.y} Q ${midX} ${midY} ${end.x} ${end.y}`
 }
 
+/**
+ * Pre-compute the stagger grid data from a set of map points.
+ * This is a pure function of the point array and can be cached.
+ */
+function computeStaggerData(points: Array<{ x: number; y: number }>) {
+  const sorted = [...points].sort((a, b) => a.y - b.y || a.x - b.x)
+  const rowMap = new Map<number, number>()
+  let step = 0
+  let prevY = Number.NaN
+  let prevXInRow = Number.NaN
+
+  for (const p of sorted) {
+    if (p.y !== prevY) {
+      prevY = p.y
+      prevXInRow = Number.NaN
+      if (!rowMap.has(p.y)) rowMap.set(p.y, rowMap.size)
+    }
+    if (!Number.isNaN(prevXInRow)) {
+      const delta = p.x - prevXInRow
+      if (delta > 0) step = step === 0 ? delta : Math.min(step, delta)
+    }
+    prevXInRow = p.x
+  }
+
+  return { xStep: step || 1, yToRowIndex: rowMap }
+}
+
+/**
+ * Pre-computed default map data at module level so the expensive
+ * createMap() call only happens once (at import time), not during render.
+ */
+const DEFAULT_WIDTH = 150
+const DEFAULT_HEIGHT = 75
+const DEFAULT_MAP_SAMPLES = 5000
+
+const defaultMapData = createMap({
+  width: DEFAULT_WIDTH,
+  height: DEFAULT_HEIGHT,
+  mapSamples: DEFAULT_MAP_SAMPLES,
+})
+
+const defaultStaggerData = computeStaggerData(defaultMapData.points)
+
 export function DottedMap({
-  width = 150,
-  height = 75,
-  mapSamples = 5000,
+  width = DEFAULT_WIDTH,
+  height = DEFAULT_HEIGHT,
+  mapSamples = DEFAULT_MAP_SAMPLES,
   markers = [],
   paths = [],
   markerColor = '#FF6900',
@@ -66,46 +109,24 @@ export function DottedMap({
   style,
 }: DottedMapProps) {
   const containerRef = React.useRef<HTMLDivElement>(null)
+  const tooltipRef = React.useRef<HTMLDivElement>(null)
   const [hoveredMarker, setHoveredMarker] =
     React.useState<ProcessedMarker | null>(null)
-  const [tooltipPos, setTooltipPos] = React.useState<{
-    x: number
-    y: number
-  }>({ x: 0, y: 0 })
 
-  const { points, addMarkers } = createMap({
-    width,
-    height,
-    mapSamples,
-  })
+  // Use pre-computed data when using default dimensions, otherwise compute
+  const useDefaults =
+    width === DEFAULT_WIDTH &&
+    height === DEFAULT_HEIGHT &&
+    mapSamples === DEFAULT_MAP_SAMPLES
+  const mapData = useDefaults
+    ? defaultMapData
+    : createMap({ width, height, mapSamples })
+  const { points, addMarkers } = mapData
+  const { xStep, yToRowIndex } = useDefaults
+    ? defaultStaggerData
+    : computeStaggerData(points)
 
   const processedMarkers: ProcessedMarker[] = addMarkers(markers)
-
-  // Compute stagger helpers in a single, simple pass
-  const computeStagger = () => {
-    const sorted = [...points].sort((a, b) => a.y - b.y || a.x - b.x)
-    const rowMap = new Map<number, number>()
-    let step = 0
-    let prevY = Number.NaN
-    let prevXInRow = Number.NaN
-
-    for (const p of sorted) {
-      if (p.y !== prevY) {
-        // new row
-        prevY = p.y
-        prevXInRow = Number.NaN
-        if (!rowMap.has(p.y)) rowMap.set(p.y, rowMap.size)
-      }
-      if (!Number.isNaN(prevXInRow)) {
-        const delta = p.x - prevXInRow
-        if (delta > 0) step = step === 0 ? delta : Math.min(step, delta)
-      }
-      prevXInRow = p.x
-    }
-
-    return { xStep: step || 1, yToRowIndex: rowMap }
-  }
-  const { xStep, yToRowIndex } = computeStagger()
 
   const getMarkerOffset = (marker: ProcessedMarker) => {
     const rowIndex = yToRowIndex.get(marker.y) ?? 0
@@ -138,12 +159,13 @@ export function DottedMap({
   ) => {
     if (!marker.label) return
     const container = containerRef.current
-    if (!container) return
+    const tooltip = tooltipRef.current
+    if (!container || !tooltip) return
+
     const rect = container.getBoundingClientRect()
-    setTooltipPos({
-      x: event.clientX - rect.left,
-      y: event.clientY - rect.top,
-    })
+    tooltip.style.left = `${event.clientX - rect.left}px`
+    tooltip.style.top = `${event.clientY - rect.top}px`
+
     setHoveredMarker(marker)
   }
 
@@ -234,7 +256,7 @@ export function DottedMap({
               <circle
                 cx={cx}
                 cy={cy}
-                r={markerSize * 4}
+                r={markerSize * 6}
                 fill="transparent"
                 className="opacity-0 transition-opacity duration-200 group-hover:opacity-10"
                 style={{ fill: markerColor }}
@@ -274,23 +296,29 @@ export function DottedMap({
       </svg>
 
       {/* Tooltip overlay */}
-      {hoveredMarker && hoveredMarker.label && (
-        <div
-          className="bg-popover text-popover-foreground pointer-events-none absolute z-50 rounded-md border px-3 py-1.5 text-sm shadow-md"
-          style={{
-            left: tooltipPos.x,
-            top: tooltipPos.y,
-            transform: 'translate(-50%, -100%) translateY(-8px)',
-          }}
-        >
-          <p className="font-medium">{hoveredMarker.label}</p>
-          {hoveredMarker.description && (
-            <p className="text-muted-foreground text-xs">
-              {hoveredMarker.description}
-            </p>
-          )}
-        </div>
-      )}
+      <div
+        ref={tooltipRef}
+        className={cn(
+          'bg-popover text-popover-foreground pointer-events-none absolute z-50 rounded-md border px-3 py-1.5 text-sm shadow-md transition-opacity duration-150',
+          hoveredMarker?.label ? 'opacity-100' : 'opacity-0',
+        )}
+        style={{
+          left: 0,
+          top: 0,
+          transform: 'translate(-50%, -100%) translateY(-16px)',
+        }}
+      >
+        {hoveredMarker && (
+          <>
+            <p className="font-medium">{hoveredMarker.label}</p>
+            {hoveredMarker.description && (
+              <p className="text-muted-foreground text-xs">
+                {hoveredMarker.description}
+              </p>
+            )}
+          </>
+        )}
+      </div>
     </div>
   )
 }
