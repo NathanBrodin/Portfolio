@@ -41,13 +41,14 @@ export function MyWorldMap() {
   const userLocation = {
     lat: 37.7879363,
     lng: -122.4075201,
+    animated: true,
     label: 'You',
     description: "That's where you are",
   }
   return (
     <Section className="flex flex-col">
       <h2 className="sr-only">My World Map</h2>
-      <div className="relative h-75 w-full overflow-hidden">
+      <div className="relative h-75 w-full">
         <DottedMap
           markers={[TROMSO, KOKKOLA, OSLO, LAVAL, SUNDSVALL, userLocation]}
           paths={[{ start: 'Tromso', end: 'You', animated: true }]}

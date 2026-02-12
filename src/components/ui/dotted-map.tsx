@@ -229,10 +229,18 @@ export function DottedMap({
           return (
             <g
               key={`marker-${marker.x}-${marker.y}-${index}`}
-              onMouseEnter={(e) => handleMarkerHover(marker, e)}
-              onMouseLeave={handleMarkerLeave}
-              className="cursor-pointer"
+              className="group cursor-pointer"
             >
+              <circle
+                cx={cx}
+                cy={cy}
+                r={markerSize * 4}
+                fill="transparent"
+                className="opacity-0 transition-opacity duration-200 group-hover:opacity-10"
+                style={{ fill: markerColor }}
+                onMouseEnter={(e) => handleMarkerHover(marker, e)}
+                onMouseLeave={handleMarkerLeave}
+              />
               <circle cx={cx} cy={cy} r={markerSize} fill={markerColor} />
               {marker.animated && (
                 <circle
