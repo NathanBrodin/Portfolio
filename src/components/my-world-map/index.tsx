@@ -10,7 +10,7 @@ const TROMSO = {
   lat: 69.649208,
   lng: 18.955324,
   label: 'Tromso',
-  description: 'The beautiful city I live in',
+  description: 'Where I currently live, north of the Arctic Circle',
   animated: true,
 }
 
@@ -18,28 +18,28 @@ const LAVAL = {
   lat: 48.070469,
   lng: -0.7736,
   label: 'Laval',
-  description: 'My Hometown',
+  description: 'Where it all started: my hometown in France',
 }
 
 const SUNDSVALL = {
   lat: 62.390839,
   lng: 17.306919,
   label: 'Sundsvall',
-  description: 'My last exchange semester',
+  description: 'Exchange semester in Sweden',
 }
 
 const OSLO = {
   lat: 59.913868,
   lng: 10.752245,
   label: 'Oslo',
-  description: 'Where I did my 3 interships',
+  description: 'Spent 3 internships learning frontend engineering here',
 }
 
 const KOKKOLA = {
   lat: 63.8391421,
   lng: 23.1336845,
   label: 'Kokkola',
-  description: 'Where I did my first exchange semester',
+  description: 'First exchange semester under the Northern Lights',
 }
 
 export function MyWorldMap() {
