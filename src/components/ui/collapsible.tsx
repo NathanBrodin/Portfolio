@@ -1,5 +1,3 @@
-'use client'
-
 import { Collapsible as CollapsiblePrimitive } from '@base-ui/react/collapsible'
 import { createContext, useContext, useEffect, useRef, useState } from 'react'
 

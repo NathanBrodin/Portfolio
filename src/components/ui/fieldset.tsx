@@ -1,5 +1,3 @@
-'use client'
-
 import { Fieldset as FieldsetPrimitive } from '@base-ui/react/fieldset'
 
 import { cn } from '@/lib/utils'

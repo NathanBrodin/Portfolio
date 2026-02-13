@@ -1,5 +1,3 @@
-'use client'
-
 import { Tabs as TabsPrimitive } from '@base-ui/react/tabs'
 
 import { cn } from '@/lib/utils'
