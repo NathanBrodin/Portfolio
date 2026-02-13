@@ -5,6 +5,7 @@ import { GithubContributions } from '@/components/github-contributions'
 import { MyWorldMap } from '@/components/my-world-map'
 import { Projects } from '@/components/projects'
 import { SocialLinks } from '@/components/social-links'
+import { TechStack } from '@/components/tech-stack'
 import { Grid } from '@/components/ui/backgrounds/grid'
 import { Noise } from '@/components/ui/backgrounds/noise'
 import { Section } from '@/components/ui/section'
@@ -36,6 +37,8 @@ function App() {
       <SocialLinks />
       <SectionDivider />
       <GithubContributions />
+      <SectionDivider />
+      <TechStack />
       <SectionDivider />
       <Experiences />
       <SectionDivider />

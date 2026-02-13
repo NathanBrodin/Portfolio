@@ -7,6 +7,7 @@ import {
 
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
+import { TooltipProvider } from '@/components/ui/tooltip'
 import { siteConfig } from '@/config/site'
 import { ThemeProvider } from '@/providers/theme'
 
@@ -52,9 +53,11 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <ThemeProvider>
-          <Header />
-          {children}
-          <Footer />
+          <TooltipProvider>
+            <Header />
+            {children}
+            <Footer />
+          </TooltipProvider>
         </ThemeProvider>
         <Scripts />
       </body>
