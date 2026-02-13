@@ -53,7 +53,7 @@ export function MyWorldMap() {
   const isLocation = location?.lat != null
 
   return (
-    <Section className="flex flex-col">
+    <Section className="bg-background/50 flex flex-col">
       <h2 className="sr-only">My World Map</h2>
       <div className="relative h-50 w-full sm:h-75">
         <DottedMap
