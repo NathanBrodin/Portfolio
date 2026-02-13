@@ -24,8 +24,10 @@ export function CollapsibleList<T>({
   keyExtractor?: (item: T) => string
   renderItem: (item: T) => React.ReactNode
 }) {
+  const [open, setOpen] = React.useState(false)
+
   return (
-    <Collapsible>
+    <Collapsible open={open} onOpenChange={setOpen}>
       {items.slice(0, max).map((award, index) => (
         <Slot
           key={typeof keyExtractor === 'function' ? keyExtractor(award) : index}
@@ -60,17 +62,12 @@ export function CollapsibleList<T>({
               />
             }
           >
-            <span className="hidden group-data-[state=closed]/collapsible-trigger:block">
-              Show More
-            </span>
-
-            <span className="hidden group-data-[state=open]/collapsible-trigger:block">
-              Show Less
-            </span>
+            <span className={open ? 'hidden' : ''}>Show More</span>
+            <span className={open ? '' : 'hidden'}>Show Less</span>
 
             <ChevronDownIcon
-              className="group-data-[state=open]/collapsible-trigger:rotate-180"
               aria-hidden
+              className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
             />
           </CollapsibleTrigger>
         </div>
