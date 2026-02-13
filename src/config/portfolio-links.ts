@@ -1,8 +1,6 @@
 import {
-  AwardIcon,
   BoxIcon,
   BriefcaseBusinessIcon,
-  CircleCheckBigIcon,
   LayersIcon,
   TextInitialIcon,
 } from 'lucide-react'
@@ -17,7 +15,7 @@ export const PORTFOLIO_LINKS: LinkItem[] = [
   },
   {
     label: 'Tech Stack',
-    value: '/#stack',
+    value: '/#tech-stack',
     icon: LayersIcon,
   },
   {
