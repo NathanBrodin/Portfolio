@@ -90,7 +90,7 @@ export function ExperiencePositionItem({
               ) : (
                 <span>{end}</span>
               )}
-              ({duration})
+              <span className="hidden sm:flex">({duration})</span>
             </dd>
           </dl>
         </div>

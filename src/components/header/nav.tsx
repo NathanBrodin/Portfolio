@@ -10,7 +10,7 @@ import {
 
 export function Nav() {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="xs:flex hidden">
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuLink

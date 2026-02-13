@@ -17,9 +17,9 @@ export const Route = createFileRoute('/')({
 
 function App() {
   return (
-    <main className="relative flex h-full flex-1 flex-col items-center px-4">
+    <main className="relative flex h-full flex-1 flex-col items-center overflow-x-hidden px-4">
       <Noise />
-      <Section className="relative p-16">
+      <Section className="relative p-4 py-8 sm:p-16">
         <div className="flex flex-col">
           <h1 className="font-display text-primary scroll-mt-24 font-normal">
             Nathan Brodin

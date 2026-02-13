@@ -55,7 +55,7 @@ export function MyWorldMap() {
   return (
     <Section className="flex flex-col">
       <h2 className="sr-only">My World Map</h2>
-      <div className="relative h-75 w-full">
+      <div className="relative h-50 w-full sm:h-75">
         <DottedMap
           markers={[
             TROMSO,
