@@ -28,7 +28,7 @@ export function ExperiencePositionItem({
     <CollapsibleWithContext
       defaultOpen={position.isExpanded}
       render={
-        <div className="last:before:bg-background relative last:before:absolute last:before:h-full last:before:w-4" />
+        <div className="last:before:bg-background relative last:before:absolute last:before:left-3 last:before:h-full last:before:w-px" />
       }
     >
       <CollapsibleTrigger
