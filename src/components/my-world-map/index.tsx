@@ -50,7 +50,7 @@ export function MyWorldMap() {
     queryFn: () => getUsersLocation(),
   })
 
-  const isLocation = location?.lat != null && location?.lng != null
+  const isLocation = location?.lat != null
 
   return (
     <Section className="flex flex-col">

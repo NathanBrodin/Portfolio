@@ -49,7 +49,7 @@ export const getGithubContributions = createServerFn({ method: 'GET' })
   })
 
 export const getUsersLocation = createServerFn({ method: 'GET' }).handler(
-  async () => {
+  () => {
     const lat = getRequestHeader('x-vercel-ip-latitude')
     const lng = getRequestHeader('x-vercel-ip-lontitude')
 
