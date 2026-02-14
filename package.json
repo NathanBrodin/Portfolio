@@ -48,6 +48,7 @@
     "lucide-react": "^0.561.0",
     "motion": "^12.31.0",
     "nitro": "npm:nitro-nightly@latest",
+    "posthog-js": "^1.347.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-hotkeys-hook": "^5.2.4",

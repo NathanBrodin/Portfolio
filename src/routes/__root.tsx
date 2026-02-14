@@ -9,6 +9,7 @@ import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { siteConfig } from '@/config/site'
+import { AnalyticsProvider } from '@/providers/analytics'
 import { ThemeProvider } from '@/providers/theme'
 
 import appCss from '../styles.css?url'
@@ -52,13 +53,15 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <ThemeProvider>
-          <TooltipProvider>
-            <Header />
-            {children}
-            <Footer />
-          </TooltipProvider>
-        </ThemeProvider>
+        <AnalyticsProvider>
+          <ThemeProvider>
+            <TooltipProvider>
+              <Header />
+              {children}
+              <Footer />
+            </TooltipProvider>
+          </ThemeProvider>
+        </AnalyticsProvider>
         <Scripts />
       </body>
     </html>
