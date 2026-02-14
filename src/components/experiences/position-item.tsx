@@ -1,4 +1,5 @@
 import { InfinityIcon } from 'lucide-react'
+import posthog from 'posthog-js'
 
 import {
   CollapsibleChevronsIcon,
@@ -36,6 +37,11 @@ export function ExperiencePositionItem({
           'block w-full text-left',
           'hover:before:bg-muted/50 relative before:absolute before:-top-1 before:-right-1 before:-bottom-1.5 before:left-7 before:-z-1 before:rounded-lg before:transition-[background-color] before:ease-out',
         )}
+        onClick={() => {
+          posthog.capture('experience_position_toggled', {
+            position: position.title,
+          })
+        }}
       >
         <div className="relative z-1 mb-1 flex items-center gap-3">
           <div

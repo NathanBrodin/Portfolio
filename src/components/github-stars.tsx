@@ -1,3 +1,5 @@
+import posthog from 'posthog-js'
+
 import { useQuery } from '@tanstack/react-query'
 import { useServerFn } from '@tanstack/react-start'
 
@@ -40,6 +42,9 @@ export function GitHubStars({ repo }: GitHubStarsProps) {
                 href={`https://github.com/${repo}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  posthog.capture('github_repo_clicked', { repo })
+                }}
               />
             }
           />

@@ -1,3 +1,5 @@
+import posthog from 'posthog-js'
+
 import { SOCIAL_LINKS } from '@/config/social-links'
 
 import { Diamond } from './ui/diamond'
@@ -15,6 +17,12 @@ export function Footer() {
             href="https://brodin.dev"
             target="_blank"
             rel="noopener"
+            onClick={() => {
+              posthog.capture('footer_link_clicked', {
+                label: 'Nathan Brodin',
+                url: 'https://brodin.dev',
+              })
+            }}
           >
             Nathan Brodin
           </a>
@@ -25,6 +33,12 @@ export function Footer() {
             href={SOCIAL_LINKS[0].value}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              posthog.capture('footer_link_clicked', {
+                label: 'Twitter',
+                url: SOCIAL_LINKS[0].value,
+              })
+            }}
           >
             <Icons.x className="size-4" />
             <span className="sr-only">X</span>
@@ -35,6 +49,12 @@ export function Footer() {
             href={SOCIAL_LINKS[1].value}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              posthog.capture('footer_link_clicked', {
+                label: 'GitHub',
+                url: SOCIAL_LINKS[1].value,
+              })
+            }}
           >
             <Icons.github className="size-4" />
             <span className="sr-only">GitHub</span>

@@ -1,4 +1,5 @@
 import { LoaderIcon } from 'lucide-react'
+import posthog from 'posthog-js'
 import { use } from 'react'
 
 import type { Activity } from '@/components/kibo-ui/contribution-graph'
@@ -50,6 +51,11 @@ export function GitHubContributionGraph({
                 href={`https://github.com/${siteConfig.githubHandle}`}
                 target="_blank"
                 rel="noopener"
+                onClick={() => {
+                  posthog.capture('github_profile_clicked', {
+                    source: 'contribution_graph',
+                  })
+                }}
               >
                 GitHub
               </a>

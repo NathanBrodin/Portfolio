@@ -8,6 +8,7 @@ import {
   SearchIcon,
   SunIcon,
 } from 'lucide-react'
+import posthog from 'posthog-js'
 import { Fragment, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 
@@ -112,7 +113,14 @@ export function CommandMenu() {
                           render={
                             <Link
                               to={item.value}
-                              onClick={() => setOpen(false)}
+                              onClick={() => {
+                                setOpen(false)
+                                posthog.capture('command_menu_item_clicked', {
+                                  label: item.label,
+                                  url: item.value,
+                                  is_external: isExternal,
+                                })
+                              }}
                               {...externalLinkOptions}
                             />
                           }

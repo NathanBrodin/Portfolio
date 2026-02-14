@@ -1,5 +1,6 @@
 import type { Project } from 'content-collections'
 import { BoxIcon, InfinityIcon, LinkIcon } from 'lucide-react'
+import posthog from 'posthog-js'
 
 import { Markdown } from '@/components/markdown'
 import {
@@ -28,7 +29,12 @@ export function ProjectItem({
       defaultOpen={project.isExpanded}
       render={<div className={className} />}
     >
-      <CollapsibleTrigger className="hover:bg-muted/50 flex w-full items-center gap-2 px-4 py-2 pr-2 text-left">
+      <CollapsibleTrigger
+        onClick={() => {
+          posthog.capture('project_toggled', { project: project.title })
+        }}
+        className="hover:bg-muted/50 flex w-full items-center gap-2 px-4 py-2 pr-2 text-left"
+      >
         {project.logo ? (
           <img
             src={project.logo}
@@ -77,7 +83,19 @@ export function ProjectItem({
         <Button
           variant="ghost"
           size="icon"
-          render={<a href={project.link} target="_blank" rel="noopener" />}
+          render={
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener"
+              onClick={() => {
+                posthog.capture('project_link_clicked', {
+                  project: project.title,
+                  url: project.link,
+                })
+              }}
+            />
+          }
         >
           <LinkIcon className="size-4" />
           <span className="sr-only">Open Project Link</span>
