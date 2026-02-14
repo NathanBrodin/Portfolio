@@ -56,8 +56,6 @@ export const getUsersLocation = createServerFn({ method: 'GET' }).handler(
     const lat = getRequestHeader('x-vercel-ip-latitude')
     const lng = getRequestHeader('x-vercel-ip-longitude')
 
-    console.log({ lat, lng })
-
     if (!lat || !lng) {
       return {
         lat: null,

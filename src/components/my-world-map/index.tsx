@@ -50,8 +50,6 @@ export function MyWorldMap() {
     queryFn: () => getUsersLocation(),
   })
 
-  console.log('Location from the component: ', location)
-
   const isLocation = location?.lat != null
 
   return (
