@@ -1,10 +1,8 @@
 import { PostHogProvider } from 'posthog-js/react'
 import type { ReactNode } from 'react'
 
-import { env } from '@/env'
-
-const posthogKey = env.VITE_PUBLIC_POSTHOG_KEY
-const posthogHost = env.VITE_PUBLIC_POSTHOG_HOST
+const posthogKey = import.meta.env.VITE_PUBLIC_POSTHOG_KEY
+const posthogHost = import.meta.env.VITE_PUBLIC_POSTHOG_HOST
 
 const options = posthogHost
   ? ({
