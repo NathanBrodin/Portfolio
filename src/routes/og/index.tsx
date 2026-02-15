@@ -48,11 +48,11 @@ function RouteComponent() {
           </div>
 
           {/* Content */}
-          <div className="relative flex flex-col items-center justify-center px-10 py-10 text-center">
-            <h1 className="font-display text-primary text-7xl font-normal">
+          <div className="relative flex flex-col items-center justify-center p-14 text-center">
+            <h1 className="font-display text-primary text-8xl font-normal">
               Nathan Brodin
             </h1>
-            <p className="text-muted-foreground mt-2 max-w-xl text-xl leading-5">
+            <p className="text-muted-foreground mt-2 max-w-xl text-2xl leading-5">
               A software engineer with a passion for web development, design,
               and user experience.
             </p>
@@ -64,7 +64,7 @@ function RouteComponent() {
             <Diamond top left className="left-[-4px] z-50" />
             <Diamond top right className="right-[-4px] z-50" />
             <Lines className="opacity-5 select-none dark:opacity-2" />
-            <ul className="flew-wrap bg-background border-x-border relative flex gap-4 border-x-[0.5px] p-4">
+            <ul className="flew-wrap bg-background border-x-border relative flex gap-4 border-x-[0.5px] p-6">
               <Diamond top left className="left-[-4px] z-50" />
               <Diamond top right className="right-[-4px] z-50" />
               <Diamond bottom left className="left-[-4px] z-50" />
@@ -77,15 +77,15 @@ function RouteComponent() {
                         <img
                           src={`/tech-stack-icons/${tech.key}-light.svg`}
                           alt={`${tech.title} light icon`}
-                          width={32}
-                          height={32}
+                          width={36}
+                          height={36}
                           className="block dark:hidden"
                         />
                         <img
                           src={`/tech-stack-icons/${tech.key}-dark.svg`}
                           alt={`${tech.title} dark icon`}
-                          width={32}
-                          height={32}
+                          width={36}
+                          height={36}
                           className="hidden dark:block"
                         />
                       </>
@@ -93,8 +93,8 @@ function RouteComponent() {
                       <img
                         src={`/tech-stack-icons/${tech.key}.svg`}
                         alt={`${tech.title} icon`}
-                        width={32}
-                        height={32}
+                        width={36}
+                        height={36}
                       />
                     )}
                   </li>

@@ -37,6 +37,7 @@ export function TechStack() {
                           width={32}
                           height={32}
                           className="block dark:hidden"
+                          loading="lazy"
                         />
                         <img
                           src={`/tech-stack-icons/${tech.key}-dark.svg`}
@@ -44,6 +45,7 @@ export function TechStack() {
                           width={32}
                           height={32}
                           className="hidden dark:block"
+                          loading="lazy"
                         />
                       </>
                     ) : (
@@ -52,6 +54,7 @@ export function TechStack() {
                         alt={`${tech.title} icon`}
                         width={32}
                         height={32}
+                        loading="lazy"
                       />
                     )}
                   </TooltipTrigger>

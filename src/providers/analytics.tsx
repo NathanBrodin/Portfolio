@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react'
 import { PostHogProvider } from 'posthog-js/react'
 import type { ReactNode } from 'react'
 
@@ -19,6 +20,7 @@ export function AnalyticsProvider({ children }: { children: ReactNode }) {
   return (
     <PostHogProvider apiKey={posthogKey} options={options}>
       {children}
+      <Analytics />
     </PostHogProvider>
   )
 }

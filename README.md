@@ -15,6 +15,13 @@ My Portfolio, to showcase my work as a Frontend Engineer.
 - [coss ui](https://coss.com/ui)
 - [Content Collections](https://www.content-collections.dev/)
 
+## Inspiration
+
+My Portfolio is inspired by:
+
+- [Chanhdai](https://chanhdai.com/), for the components and general layout.
+- [Zed](https://zed.dev), for the fonts and general style.
+
 ## Prerequisites
 
 Ensure you have the following installed:
@@ -55,6 +62,7 @@ pnpm dev
 ```
 
 The application should now be available at http://localhost:3000
+
 
 ## Star History
 

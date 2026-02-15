@@ -15,6 +15,7 @@ export function Header() {
       <div className="item-center relative flex w-full max-w-5xl justify-between border-x px-4 py-1">
         <div className="flex items-center">
           <Button size="icon" variant="ghost" render={<Link to="/" />}>
+            <span className="sr-only">Go to home</span>
             <Logo className="text-primary mr-2" size={16} />
           </Button>
           <Nav />
