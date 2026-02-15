@@ -23,16 +23,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { title: siteConfig.title },
         { name: 'author', content: siteConfig.name },
         { name: 'keywords', content: siteConfig.keywords.join(', ') },
+        { name: 'description', content: siteConfig.description },
         { name: 'robots', content: 'index, follow' },
         { name: 'theme-color', content: '#000000' },
-        // Open Graph (global defaults)
+        // Open Graph
         { property: 'og:type', content: 'website' },
         { property: 'og:url', content: siteConfig.url },
         { property: 'og:site_name', content: siteConfig.name },
+        { property: 'og:title', content: siteConfig.title },
+        { property: 'og:description', content: siteConfig.description },
+        { property: 'og:image', content: siteConfig.og },
         { property: 'og:locale', content: 'en_US' },
-        // Twitter Card (global defaults)
+        // Twitter Card
+        { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:site', content: siteConfig.twitterHandle },
         { name: 'twitter:creator', content: siteConfig.twitterHandle },
+        { name: 'twitter:title', content: siteConfig.title },
+        { name: 'twitter:description', content: siteConfig.description },
+        { name: 'twitter:image', content: siteConfig.og },
       ],
       links: [
         { rel: 'stylesheet', href: appCss },

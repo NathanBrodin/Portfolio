@@ -1,7 +1,8 @@
 export const siteConfig = {
   title: 'Nathan Brodin | Portfolio',
   name: 'Nathan Brodin',
-  description: 'My Portfolio',
+  description:
+    'Frontend Engineer crafting modern web experiences. Explore my projects, skills, and journey in web development.',
   url: 'https://brodin.dev',
   og: 'https://brodin.dev/og.png',
   authorUrl: 'https://brodin.dev',
