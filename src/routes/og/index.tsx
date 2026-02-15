@@ -4,7 +4,6 @@ import { Grid } from '@/components/ui/backgrounds/grid'
 import { Lines } from '@/components/ui/backgrounds/lines'
 import { Noise } from '@/components/ui/backgrounds/noise'
 import { Diamond } from '@/components/ui/diamond'
-import { SectionDivider } from '@/components/ui/section-divider'
 import { TECH_STACK } from '@/config/tech-stack'
 
 export const Route = createFileRoute('/og/')({
@@ -21,9 +20,10 @@ function RouteComponent() {
     'nextjs2',
   ] as const
 
-  const stack = TECH_STACK.filter((tech) =>
-    (keys as readonly string[]).includes(tech.key),
-  )
+  const stack = keys.flatMap((key) => {
+    const tech = TECH_STACK.find((t) => t.key === key)
+    return tech ? [tech] : []
+  })
 
   return (
     <main className="flex h-full w-full flex-1 items-center justify-center">
@@ -33,20 +33,42 @@ function RouteComponent() {
         style={{ width: 1200, height: 630 }}
       >
         <Noise />
-        <div className="before:bg-border after:bg-border relative flex flex-col before:absolute before:top-0 before:-left-[100vw] before:z-10 before:h-[0.5px] before:w-[200vw] after:absolute after:bottom-0 after:-left-[100vw] after:z-10 after:h-[0.5px] after:w-[200vw]">
-          <div className="bg-border pointer-events-none absolute top-1/2 left-0 h-[200vh] w-[0.5px] -translate-y-1/2" />
-          <div className="bg-border pointer-events-none absolute top-1/2 right-0 h-[200vh] w-[0.5px] -translate-y-1/2" />
-          <div className="flex flex-col items-center justify-center px-10 py-10 text-center">
+        <div className="relative flex flex-col">
+          {/* Full-height vertical lines */}
+          <div className="bg-border pointer-events-none absolute top-1/2 left-0 z-10 h-[200vh] w-[0.5px] -translate-y-1/2" />
+          <div className="bg-border pointer-events-none absolute top-1/2 right-0 z-10 h-[200vh] w-[0.5px] -translate-y-1/2" />
+
+          {/* Top divider */}
+          <div className="before:bg-border after:bg-border relative flex h-4 items-center justify-between px-4 py-1 before:absolute before:top-0 before:-left-[100vw] before:z-10 before:h-[0.5px] before:w-[200vw] after:absolute after:bottom-0 after:-left-[100vw] after:z-10 after:h-[0.5px] after:w-[200vw]">
+            <Diamond top left className="left-[-4px] z-50" />
+            <Diamond top right className="right-[-4px] z-50" />
+            <Diamond bottom left className="left-[-4px] z-50" />
+            <Diamond bottom right className="right-[-4px] z-50" />
+            <Lines />
+          </div>
+
+          {/* Content */}
+          <div className="relative flex flex-col items-center justify-center px-10 py-10 text-center">
             <h1 className="font-display text-primary text-7xl font-normal">
               Nathan Brodin
             </h1>
-            <p className="text-muted-foreground mt-2 max-w-xl text-xl">
+            <p className="text-muted-foreground mt-2 max-w-xl text-xl leading-5">
               A software engineer with a passion for web development, design,
               and user experience.
             </p>
+            <Grid />
           </div>
-          <div className="flex items-center justify-center py-4">
-            <ul className="flew-wrap flex gap-4">
+
+          {/* Tech stack */}
+          <div className="border-t-border relative flex items-center justify-center border-t-[0.5px]">
+            <Diamond top left className="left-[-4px] z-50" />
+            <Diamond top right className="right-[-4px] z-50" />
+            <Lines className="opacity-5 select-none dark:opacity-2" />
+            <ul className="flew-wrap bg-background border-x-border relative flex gap-4 border-x-[0.5px] p-4">
+              <Diamond top left className="left-[-4px] z-50" />
+              <Diamond top right className="right-[-4px] z-50" />
+              <Diamond bottom left className="left-[-4px] z-50" />
+              <Diamond bottom right className="right-[-4px] z-50" />
               {stack.map((tech) => {
                 return (
                   <li key={tech.key} className="flex">
@@ -79,6 +101,15 @@ function RouteComponent() {
                 )
               })}
             </ul>
+          </div>
+
+          {/* Bottom divider */}
+          <div className="before:bg-border after:bg-border relative flex h-4 items-center justify-between px-4 py-1 before:absolute before:top-0 before:-left-[100vw] before:z-10 before:h-[0.5px] before:w-[200vw] after:absolute after:bottom-0 after:-left-[100vw] after:z-10 after:h-[0.5px] after:w-[200vw]">
+            <Diamond top left className="left-[-4px] z-50" />
+            <Diamond top right className="right-[-4px] z-50" />
+            <Diamond bottom left className="left-[-4px] z-50" />
+            <Diamond bottom right className="right-[-4px] z-50" />
+            <Lines />
           </div>
         </div>
       </div>
