@@ -1,9 +1,19 @@
 import { Collapsible as CollapsiblePrimitive } from '@base-ui/react/collapsible'
-import { createContext, useContext, useEffect, useRef, useState } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 
 import { ChevronsDownUpIcon } from '@/components/ui/icons/chevrons-down-up-icon'
 import type { ChevronsDownUpIconHandle } from '@/components/ui/icons/chevrons-down-up-icon'
+import { useSound } from '@/hooks/use-sound'
 import { cn } from '@/lib/utils'
+import { switchOffSound } from '@/sounds/switch-off'
+import { switchOnSound } from '@/sounds/switch-on'
 
 function Collapsible({ ...props }: CollapsiblePrimitive.Root.Props) {
   return <CollapsiblePrimitive.Root data-slot="collapsible" {...props} />
@@ -58,13 +68,30 @@ const useCollapsible = () => {
 
 function CollapsibleWithContext({
   defaultOpen,
+  noSound,
   ...props
-}: React.ComponentProps<typeof Collapsible>) {
+}: React.ComponentProps<typeof Collapsible> & { noSound?: boolean }) {
   const [open, setOpen] = useState(defaultOpen ?? false)
+  const [playSwitchOn] = useSound(switchOnSound)
+  const [playSwitchOff] = useSound(switchOffSound)
+
+  const handleOpenChange = useCallback(
+    (nextOpen: boolean) => {
+      if (!noSound) {
+        if (nextOpen) {
+          playSwitchOn()
+        } else {
+          playSwitchOff()
+        }
+      }
+      setOpen(nextOpen)
+    },
+    [noSound, playSwitchOn, playSwitchOff],
+  )
 
   return (
     <CollapsibleContext.Provider value={{ open }}>
-      <Collapsible open={open} onOpenChange={setOpen} {...props} />
+      <Collapsible open={open} onOpenChange={handleOpenChange} {...props} />
     </CollapsibleContext.Provider>
   )
 }

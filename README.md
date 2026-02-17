@@ -14,6 +14,7 @@ My Portfolio, to showcase my work as a Frontend Engineer.
 - [Base UI](https://base-ui.com)
 - [coss ui](https://coss.com/ui)
 - [Content Collections](https://www.content-collections.dev/)
+- [Soundcn](https://www.soundcn.xyz/)
 
 ## Inspiration
 
@@ -62,7 +63,6 @@ pnpm dev
 ```
 
 The application should now be available at http://localhost:3000
-
 
 ## Star History
 

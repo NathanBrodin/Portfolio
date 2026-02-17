@@ -12,23 +12,27 @@ import {
 } from '@/components/ui/tooltip'
 import { useSound } from '@/hooks/use-sound'
 import { useTheme } from '@/providers/theme'
+import { switch005Sound } from '@/sounds/switch-005'
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
 
-  const playClick = useSound('/audio/click.wav')
+  const [play] = useSound(switch005Sound)
 
   const switchTheme = useCallback(() => {
-    playClick(0.5)
+    play()
+
     setTheme(theme === 'dark' ? 'light' : 'dark')
-  }, [theme, setTheme, playClick])
+  }, [theme, setTheme, play])
 
   useHotkeys('d', switchTheme)
 
   return (
     <Tooltip>
       <TooltipTrigger
-        render={<Button variant="ghost" size="icon" onClick={switchTheme} />}
+        render={
+          <Button variant="ghost" noSound size="icon" onClick={switchTheme} />
+        }
       >
         <MoonIcon className="relative hidden after:absolute after:-inset-2 dark:block" />
         <SunMediumIcon className="relative hidden not-dark:block after:absolute after:-inset-2" />

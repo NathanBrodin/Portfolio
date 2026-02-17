@@ -9,7 +9,7 @@ import { Section } from '../ui/section'
 const TROMSO = {
   lat: 69.649208,
   lng: 18.955324,
-  label: 'Tromso',
+  label: 'Tromsø',
   description: 'Where I currently live, north of the Arctic Circle',
   animated: true,
 }
@@ -39,7 +39,7 @@ const KOKKOLA = {
   lat: 63.8391421,
   lng: 23.1336845,
   label: 'Kokkola',
-  description: 'First exchange semester under the Northern Lights',
+  description: 'My first exchange semester, under the Northern Lights',
 }
 
 export function MyWorldMap() {

@@ -10,7 +10,7 @@ import type { LinkItem } from '.'
 export const PORTFOLIO_LINKS: LinkItem[] = [
   {
     label: 'About',
-    value: '/#about',
+    value: '/',
     icon: TextInitialIcon,
   },
   {
