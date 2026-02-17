@@ -1,8 +1,8 @@
 <svg width="201" height="200" viewBox="0 0 201 200" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
-    .logo { fill: #a16207; }
+    .logo { fill: #00786f; }
     @media (prefers-color-scheme: dark) {
-      .logo { fill: #fef9c3; }
+      .logo { fill: #cbfbf1; }
     }
   </style>
   <circle class="logo" cx="49.2184" cy="48.4004" r="48.4" />

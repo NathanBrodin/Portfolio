@@ -20,9 +20,9 @@ export const SOCIAL_LINKS: LinkItem[] = [
     value: 'https://twitter.com/nathan_brodin',
   },
   {
-    iconImage: '/link-icons/letterboxd.webp',
-    label: 'Letterboxd',
-    description: 'nathannnnnn',
-    value: 'https://letterboxd.com/nathannnnnn',
+    iconImage: '/link-icons/zoho-mail.png',
+    label: 'Email',
+    description: 'nathan@brodin.dev',
+    value: 'mailto:nathan@brodin.dev',
   },
 ]

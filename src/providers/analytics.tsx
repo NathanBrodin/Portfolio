@@ -7,6 +7,7 @@ const posthogHost = import.meta.env.VITE_PUBLIC_POSTHOG_HOST
 
 const options = posthogHost
   ? ({
+      cookieless_mode: 'always',
       api_host: posthogHost,
       defaults: '2026-01-30',
     } as const)

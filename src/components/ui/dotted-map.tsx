@@ -153,24 +153,37 @@ export function DottedMap({
     animated: boolean
   }>
 
+  const hoverTimeoutRef = React.useRef<NodeJS.Timeout | null>(null)
+
   const handleMarkerHover = (
     marker: ProcessedMarker,
     event: React.MouseEvent,
   ) => {
     if (!marker.label) return
+
+    // Clear any pending "leave" timer
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+      hoverTimeoutRef.current = null
+    }
+
     const container = containerRef.current
     const tooltip = tooltipRef.current
     if (!container || !tooltip) return
 
     const rect = container.getBoundingClientRect()
-    tooltip.style.left = `${event.clientX - rect.left}px`
-    tooltip.style.top = `${event.clientY - rect.top}px`
 
     setHoveredMarker(marker)
+
+    tooltip.style.left = `${event.clientX - rect.left}px`
+    tooltip.style.top = `${event.clientY - rect.top}px`
   }
 
   const handleMarkerLeave = () => {
-    setHoveredMarker(null)
+    // Add a tiny delay before hiding to bridge small gaps
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredMarker(null)
+    }, 100)
   }
 
   return (
@@ -263,7 +276,13 @@ export function DottedMap({
                 onMouseEnter={(e) => handleMarkerHover(marker, e)}
                 onMouseLeave={handleMarkerLeave}
               />
-              <circle cx={cx} cy={cy} r={markerSize} fill={markerColor} />
+              <circle
+                cx={cx}
+                cy={cy}
+                r={markerSize}
+                fill={markerColor}
+                style={{ pointerEvents: 'none' }}
+              />
               {marker.animated && (
                 <circle
                   cx={cx}
@@ -271,6 +290,7 @@ export function DottedMap({
                   r={markerSize}
                   fill={markerColor}
                   opacity="0.5"
+                  style={{ pointerEvents: 'none' }}
                 >
                   <animate
                     attributeName="r"
