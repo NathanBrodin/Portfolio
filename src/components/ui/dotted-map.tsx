@@ -1,6 +1,13 @@
 import * as React from 'react'
-import { createMap } from 'svg-dotted-map'
 
+import {
+  LAT_TO_Y,
+  LNG_ORIGIN_X,
+  LNG_SCALE_X,
+  MAP_DIMENSIONS,
+  MAP_DOTS_PATH,
+  MAP_STAGGER,
+} from '@/generated/map-data'
 import { cn } from '@/lib/utils'
 
 interface Marker {
@@ -19,16 +26,12 @@ interface CurvedPath {
 }
 
 export interface DottedMapProps extends React.SVGProps<SVGSVGElement> {
-  width?: number
-  height?: number
-  mapSamples?: number
   markers?: Marker[]
   paths?: CurvedPath[]
   dotColor?: string
   markerColor?: string
   lineColor?: string
   markerSize?: number
-  dotRadius?: number
   stagger?: boolean
 }
 
@@ -51,127 +54,63 @@ function createCurvedPath(
 }
 
 /**
- * Pre-compute the stagger grid data from a set of map points.
- * This is a pure function of the point array and can be cached.
+ * Interpolate latitude to SVG Y using the pre-computed lookup table.
+ * The map uses a non-linear (Mercator-like) projection, so we linearly
+ * interpolate between the nearest two sampled latitudes.
  */
-function computeStaggerData(points: Array<{ x: number; y: number }>) {
-  const sorted = [...points].sort((a, b) => a.y - b.y || a.x - b.x)
-  const rowMap = new Map<number, number>()
-  let step = 0
-  let prevY = Number.NaN
-  let prevXInRow = Number.NaN
+function latToY(lat: number): number {
+  // Clamp to lookup range
+  const first = LAT_TO_Y[0]
+  const last = LAT_TO_Y[LAT_TO_Y.length - 1]
+  if (lat <= first[0]) return first[1]
+  if (lat >= last[0]) return last[1]
 
-  for (const p of sorted) {
-    if (p.y !== prevY) {
-      prevY = p.y
-      prevXInRow = Number.NaN
-      if (!rowMap.has(p.y)) rowMap.set(p.y, rowMap.size)
-    }
-    if (!Number.isNaN(prevXInRow)) {
-      const delta = p.x - prevXInRow
-      if (delta > 0) step = step === 0 ? delta : Math.min(step, delta)
-    }
-    prevXInRow = p.x
+  // Binary search for the right interval
+  let lo = 0
+  let hi = LAT_TO_Y.length - 1
+  while (lo < hi - 1) {
+    const mid = (lo + hi) >> 1
+    if (LAT_TO_Y[mid][0] <= lat) lo = mid
+    else hi = mid
   }
 
-  return { xStep: step || 1, yToRowIndex: rowMap }
+  const [lat0, y0] = LAT_TO_Y[lo]
+  const [lat1, y1] = LAT_TO_Y[hi]
+  const t = (lat - lat0) / (lat1 - lat0)
+  return y0 + t * (y1 - y0)
 }
 
-/**
- * Build a single SVG path string from an array of dot positions.
- * Each dot becomes a tiny circle arc, reducing ~2000 <circle> elements
- * to a single <path> element for significantly better DOM performance.
- */
-function buildDotsPath(
-  points: Array<{ x: number; y: number }>,
-  dotRadius: number,
-  stagger: boolean,
-  xStep: number,
-  yToRowIndex: Map<number, number>,
-): string {
-  const parts: string[] = []
-  const r = dotRadius
-  for (const point of points) {
-    const rowIndex = yToRowIndex.get(point.y) ?? 0
-    const offsetX = stagger && rowIndex % 2 === 1 ? xStep / 2 : 0
-    const cx = point.x + offsetX
-    const cy = point.y
-    // A circle as two arcs: move to left edge, arc top half, arc bottom half
-    parts.push(
-      `M${cx - r},${cy}a${r},${r} 0 1,0 ${r * 2},0a${r},${r} 0 1,0 -${r * 2},0`,
-    )
+/** Project lat/lng to SVG x/y using pre-computed projection data. */
+function projectMarker(marker: Marker): ProcessedMarker {
+  const { lat, lng, ...rest } = marker
+  return {
+    x: LNG_ORIGIN_X + lng * LNG_SCALE_X,
+    y: latToY(lat),
+    ...rest,
   }
-  return parts.join('')
 }
-
-/**
- * Pre-computed default map data at module level so the expensive
- * createMap() call only happens once (at import time), not during render.
- */
-const DEFAULT_WIDTH = 150
-const DEFAULT_HEIGHT = 75
-const DEFAULT_MAP_SAMPLES = 5000
-
-const defaultMapData = createMap({
-  width: DEFAULT_WIDTH,
-  height: DEFAULT_HEIGHT,
-  mapSamples: DEFAULT_MAP_SAMPLES,
-})
-
-const defaultStaggerData = computeStaggerData(defaultMapData.points)
-
-/** Pre-computed path string for the default dot pattern. */
-const defaultDotsPath = buildDotsPath(
-  defaultMapData.points,
-  0.25,
-  true,
-  defaultStaggerData.xStep,
-  defaultStaggerData.yToRowIndex,
-)
 
 export function DottedMap({
-  width = DEFAULT_WIDTH,
-  height = DEFAULT_HEIGHT,
-  mapSamples = DEFAULT_MAP_SAMPLES,
   markers = [],
   paths = [],
   markerColor = '#FF6900',
   lineColor = '#0ea5e9',
   markerSize = 0.4,
-  dotRadius = 0.25,
   stagger = true,
   className,
   style,
 }: DottedMapProps) {
+  const { width, height } = MAP_DIMENSIONS
   const containerRef = React.useRef<HTMLDivElement>(null)
   const tooltipRef = React.useRef<HTMLDivElement>(null)
   const [hoveredMarker, setHoveredMarker] =
     React.useState<ProcessedMarker | null>(null)
 
-  // Use pre-computed data when using default dimensions, otherwise compute
-  const useDefaults =
-    width === DEFAULT_WIDTH &&
-    height === DEFAULT_HEIGHT &&
-    mapSamples === DEFAULT_MAP_SAMPLES
-  const mapData = useDefaults
-    ? defaultMapData
-    : createMap({ width, height, mapSamples })
-  const { points, addMarkers } = mapData
-  const { xStep, yToRowIndex } = useDefaults
-    ? defaultStaggerData
-    : computeStaggerData(points)
-
-  // Use pre-computed dots path for defaults, otherwise build on the fly
-  const dotsPathD =
-    useDefaults && dotRadius === 0.25 && stagger
-      ? defaultDotsPath
-      : buildDotsPath(points, dotRadius, stagger, xStep, yToRowIndex)
-
-  const processedMarkers: ProcessedMarker[] = addMarkers(markers)
+  const processedMarkers = markers.map(projectMarker)
 
   const getMarkerOffset = (marker: ProcessedMarker) => {
-    const rowIndex = yToRowIndex.get(marker.y) ?? 0
-    return stagger && rowIndex % 2 === 1 ? xStep / 2 : 0
+    const rowIndex = MAP_STAGGER.yToRowIndex.get(marker.y) ?? 0
+    return stagger && rowIndex % 2 === 1 ? MAP_STAGGER.xStep / 2 : 0
   }
 
   // Resolve paths to projected coordinates
@@ -202,7 +141,6 @@ export function DottedMap({
   ) => {
     if (!marker.label) return
 
-    // Clear any pending "leave" timer
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current)
       hoverTimeoutRef.current = null
@@ -221,7 +159,6 @@ export function DottedMap({
   }
 
   const handleMarkerLeave = () => {
-    // Add a tiny delay before hiding to bridge small gaps
     hoverTimeoutRef.current = setTimeout(() => {
       setHoveredMarker(null)
     }, 100)
@@ -238,8 +175,8 @@ export function DottedMap({
         className={cn('text-gray-500 dark:text-gray-500', className)}
         style={{ width: '100%', height: '100%', ...style }}
       >
-        {/* Single path for all map dots instead of thousands of <circle> elements */}
-        <path d={dotsPathD} fill="currentColor" />
+        {/* Single path for all map dots -- pre-computed at build time */}
+        <path d={MAP_DOTS_PATH} fill="currentColor" />
 
         {/* Curved paths */}
         {resolvedPaths.length > 0 && (

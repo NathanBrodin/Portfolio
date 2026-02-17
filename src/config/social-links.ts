@@ -20,7 +20,7 @@ export const SOCIAL_LINKS: LinkItem[] = [
     value: 'https://twitter.com/nathan_brodin',
   },
   {
-    iconImage: '/link-icons/zoho-mail.png',
+    iconImage: '/link-icons/zoho-mail.webp',
     label: 'Email',
     description: 'nathan@brodin.dev',
     value: 'mailto:nathan@brodin.dev',

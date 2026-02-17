@@ -1,7 +1,7 @@
 ---
 companyId: dnb
 companyName: DNB
-companyLogo: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIA4kiHiaJvUAa97zmIfNwIIIg8tcTaXHrvw&s
+companyLogo: /company-logos/dnb.webp
 companyWebsite: https://dnb.no
 
 title: Frontend Engineer Intern

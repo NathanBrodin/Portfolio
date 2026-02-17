@@ -1,7 +1,7 @@
 ---
 companyId: capia
 companyName: Capia AS
-companyLogo: https://images.squarespace-cdn.com/content/v1/5f27c912c34e3f4a2e5060b8/1597067506482-PKOV0OB9KXSE9IWDRNRV/logo.png?format=1500w
+companyLogo: /company-logos/capia.webp
 companyWebsite: https://capia.no/
 isCurrentEmployer: true
 
