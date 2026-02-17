@@ -3,7 +3,7 @@ import { useRender } from '@base-ui/react/use-render'
 import { cva, type VariantProps } from 'class-variance-authority'
 import type * as React from 'react'
 
-import { useSound } from '@/hooks/use-sound'
+import { playSound } from '@/lib/play-sound'
 import { cn } from '@/lib/utils'
 import { click005Sound } from '@/sounds/click-005'
 
@@ -62,15 +62,13 @@ function Button({
   render,
   ...props
 }: ButtonProps) {
-  const [playClick] = useSound(click005Sound)
-
   const typeValue: React.ButtonHTMLAttributes<HTMLButtonElement>['type'] =
     render ? undefined : 'button'
 
   const defaultProps = {
     className: cn(buttonVariants({ className, size, variant })),
     'data-slot': 'button',
-    onClick: noSound ? undefined : () => playClick(),
+    onClick: noSound ? undefined : () => playSound(click005Sound),
     type: typeValue,
   }
 

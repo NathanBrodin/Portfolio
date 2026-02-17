@@ -8,7 +8,6 @@ import {
   SearchIcon,
   SunIcon,
 } from 'lucide-react'
-import posthog from 'posthog-js'
 import { Fragment, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 
@@ -35,6 +34,7 @@ import type { MenuItem } from '@/config'
 import { PORTFOLIO_LINKS } from '@/config/portfolio-links'
 import { SOCIAL_LINKS } from '@/config/social-links'
 import { useIsMac } from '@/hooks/use-is-mac'
+import { capture } from '@/lib/analytics'
 
 export interface Group {
   value: string
@@ -115,7 +115,7 @@ export function CommandMenu() {
                               to={item.value}
                               onClick={() => {
                                 setOpen(false)
-                                posthog.capture('command_menu_item_clicked', {
+                                capture('command_menu_item_clicked', {
                                   label: item.label,
                                   url: item.value,
                                   is_external: isExternal,

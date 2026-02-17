@@ -1,6 +1,5 @@
 import type { Project } from 'content-collections'
 import { BoxIcon, InfinityIcon, LinkIcon } from 'lucide-react'
-import posthog from 'posthog-js'
 
 import { Markdown } from '@/components/markdown'
 import {
@@ -11,6 +10,7 @@ import {
 } from '@/components/ui/collapsible'
 import { Tag } from '@/components/ui/tag'
 import { ProseMono } from '@/components/ui/typography'
+import { capture } from '@/lib/analytics'
 
 import { Button } from '../ui/button'
 
@@ -31,7 +31,7 @@ export function ProjectItem({
     >
       <CollapsibleTrigger
         onClick={() => {
-          posthog.capture('project_toggled', { project: project.title })
+          capture('project_toggled', { project: project.title })
         }}
         className="hover:bg-muted/50 flex w-full items-center gap-2 px-4 py-2 pr-2 text-left"
       >
@@ -89,7 +89,7 @@ export function ProjectItem({
               target="_blank"
               rel="noopener"
               onClick={() => {
-                posthog.capture('project_link_clicked', {
+                capture('project_link_clicked', {
                   project: project.title,
                   url: project.link,
                 })

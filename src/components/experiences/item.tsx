@@ -1,6 +1,6 @@
-import posthog from 'posthog-js'
 import { Fragment } from 'react'
 
+import { capture } from '@/lib/analytics'
 import type { Experience } from '@/lib/experiences'
 
 import { Diamond } from '../ui/diamond'
@@ -35,7 +35,7 @@ export function ExperienceItem({ experience }: { experience: Experience }) {
               target="_blank"
               rel="noopener"
               onClick={() => {
-                posthog.capture('experience_company_clicked', {
+                capture('experience_company_clicked', {
                   company: experience.companyName,
                   url: experience.companyWebsite,
                 })

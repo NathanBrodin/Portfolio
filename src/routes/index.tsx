@@ -10,12 +10,27 @@ import { Grid } from '@/components/ui/backgrounds/grid'
 import { Noise } from '@/components/ui/backgrounds/noise'
 import { Section } from '@/components/ui/section'
 import { SectionDivider } from '@/components/ui/section-divider'
+import { siteConfig } from '@/config/site'
+import { getGithubContributions, getStargazersCount } from '@/lib/functions'
 
 export const Route = createFileRoute('/')({
   component: App,
+  headers: () => ({
+    'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=604800',
+  }),
+  loader: async () => {
+    const [contributions, stargazersCount] = await Promise.all([
+      getGithubContributions({ data: { user: siteConfig.githubHandle } }),
+      getStargazersCount({ data: { repo: 'NathanBrodin/Portfolio' } }),
+    ])
+    return { contributions, stargazersCount }
+  },
+  staleTime: 60_000,
 })
 
 function App() {
+  const { contributions } = Route.useLoaderData()
+
   return (
     <main className="relative flex h-full flex-1 flex-col items-center overflow-x-hidden px-4">
       <Noise />
@@ -36,7 +51,7 @@ function App() {
       <SectionDivider />
       <SocialLinks />
       <SectionDivider />
-      <GithubContributions />
+      <GithubContributions contributions={contributions} />
       <SectionDivider />
       <TechStack />
       <SectionDivider />

@@ -1,7 +1,3 @@
-import { LoaderIcon } from 'lucide-react'
-import posthog from 'posthog-js'
-import { use } from 'react'
-
 import type { Activity } from '@/components/kibo-ui/contribution-graph'
 import {
   ContributionGraph,
@@ -12,13 +8,14 @@ import {
   ContributionGraphTotalCount,
 } from '@/components/kibo-ui/contribution-graph'
 import { siteConfig } from '@/config/site'
+import { capture } from '@/lib/analytics'
 
 export function GitHubContributionGraph({
   contributions,
 }: {
-  contributions: Promise<Activity[] | undefined>
+  contributions: Activity[] | undefined
 }) {
-  const data = use(contributions) ?? []
+  const data = contributions ?? []
 
   return (
     <ContributionGraph
@@ -52,7 +49,7 @@ export function GitHubContributionGraph({
                 target="_blank"
                 rel="noopener"
                 onClick={() => {
-                  posthog.capture('github_profile_clicked', {
+                  capture('github_profile_clicked', {
                     source: 'contribution_graph',
                   })
                 }}
@@ -67,13 +64,5 @@ export function GitHubContributionGraph({
         <ContributionGraphLegend />
       </ContributionGraphFooter>
     </ContributionGraph>
-  )
-}
-
-export function GitHubContributionFallback() {
-  return (
-    <div className="flex h-40.5 w-full items-center justify-center">
-      <LoaderIcon className="text-muted-foreground animate-spin" />
-    </div>
   )
 }

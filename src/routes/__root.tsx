@@ -44,6 +44,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       ],
       links: [
         { rel: 'stylesheet', href: appCss },
+        {
+          rel: 'preload',
+          href: '/fonts/iAWriterQuattroV.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossOrigin: 'anonymous',
+        },
+        {
+          rel: 'preload',
+          href: '/fonts/Lora-latin.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossOrigin: 'anonymous',
+        },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'canonical', href: siteConfig.url },
         { rel: 'manifest', href: '/manifest.json' },

@@ -1,8 +1,5 @@
 import { createServerFn } from '@tanstack/react-start'
-import {
-  getRequestHeader,
-  getRequestHeaders,
-} from '@tanstack/react-start/server'
+import { getRequestHeader } from '@tanstack/react-start/server'
 
 import type { Activity } from '@/components/kibo-ui/contribution-graph'
 import { env } from '@/env'

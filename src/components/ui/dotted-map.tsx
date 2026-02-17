@@ -1,4 +1,3 @@
-import { motion } from 'motion/react'
 import * as React from 'react'
 import { createMap } from 'svg-dotted-map'
 
@@ -79,6 +78,33 @@ function computeStaggerData(points: Array<{ x: number; y: number }>) {
 }
 
 /**
+ * Build a single SVG path string from an array of dot positions.
+ * Each dot becomes a tiny circle arc, reducing ~2000 <circle> elements
+ * to a single <path> element for significantly better DOM performance.
+ */
+function buildDotsPath(
+  points: Array<{ x: number; y: number }>,
+  dotRadius: number,
+  stagger: boolean,
+  xStep: number,
+  yToRowIndex: Map<number, number>,
+): string {
+  const parts: string[] = []
+  const r = dotRadius
+  for (const point of points) {
+    const rowIndex = yToRowIndex.get(point.y) ?? 0
+    const offsetX = stagger && rowIndex % 2 === 1 ? xStep / 2 : 0
+    const cx = point.x + offsetX
+    const cy = point.y
+    // A circle as two arcs: move to left edge, arc top half, arc bottom half
+    parts.push(
+      `M${cx - r},${cy}a${r},${r} 0 1,0 ${r * 2},0a${r},${r} 0 1,0 -${r * 2},0`,
+    )
+  }
+  return parts.join('')
+}
+
+/**
  * Pre-computed default map data at module level so the expensive
  * createMap() call only happens once (at import time), not during render.
  */
@@ -93,6 +119,15 @@ const defaultMapData = createMap({
 })
 
 const defaultStaggerData = computeStaggerData(defaultMapData.points)
+
+/** Pre-computed path string for the default dot pattern. */
+const defaultDotsPath = buildDotsPath(
+  defaultMapData.points,
+  0.25,
+  true,
+  defaultStaggerData.xStep,
+  defaultStaggerData.yToRowIndex,
+)
 
 export function DottedMap({
   width = DEFAULT_WIDTH,
@@ -125,6 +160,12 @@ export function DottedMap({
   const { xStep, yToRowIndex } = useDefaults
     ? defaultStaggerData
     : computeStaggerData(points)
+
+  // Use pre-computed dots path for defaults, otherwise build on the fly
+  const dotsPathD =
+    useDefaults && dotRadius === 0.25 && stagger
+      ? defaultDotsPath
+      : buildDotsPath(points, dotRadius, stagger, xStep, yToRowIndex)
 
   const processedMarkers: ProcessedMarker[] = addMarkers(markers)
 
@@ -197,19 +238,8 @@ export function DottedMap({
         className={cn('text-gray-500 dark:text-gray-500', className)}
         style={{ width: '100%', height: '100%', ...style }}
       >
-        {points.map((point, index) => {
-          const rowIndex = yToRowIndex.get(point.y) ?? 0
-          const offsetX = stagger && rowIndex % 2 === 1 ? xStep / 2 : 0
-          return (
-            <circle
-              cx={point.x + offsetX}
-              cy={point.y}
-              r={dotRadius}
-              fill="currentColor"
-              key={`${point.x}-${point.y}-${index}`}
-            />
-          )
-        })}
+        {/* Single path for all map dots instead of thousands of <circle> elements */}
+        <path d={dotsPathD} fill="currentColor" />
 
         {/* Curved paths */}
         {resolvedPaths.length > 0 && (
@@ -231,18 +261,15 @@ export function DottedMap({
         {resolvedPaths.map((path, i) => {
           const d = createCurvedPath(path.start, path.end)
           return path.animated ? (
-            <motion.path
+            <path
               key={`path-${i}`}
               d={d}
               fill="none"
               stroke="url(#path-gradient)"
               strokeWidth="0.25"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{
-                duration: 1,
-                delay: 0.5 * i,
-                ease: 'easeOut',
+              className="animate-draw-path"
+              style={{
+                animationDelay: `${0.5 * i}s`,
               }}
             />
           ) : (

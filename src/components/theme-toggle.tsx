@@ -10,20 +10,18 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { useSound } from '@/hooks/use-sound'
+import { playSound } from '@/lib/play-sound'
 import { useTheme } from '@/providers/theme'
 import { switch005Sound } from '@/sounds/switch-005'
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
 
-  const [play] = useSound(switch005Sound)
-
   const switchTheme = useCallback(() => {
-    play()
+    playSound(switch005Sound)
 
     setTheme(theme === 'dark' ? 'light' : 'dark')
-  }, [theme, setTheme, play])
+  }, [theme, setTheme])
 
   useHotkeys('d', switchTheme)
 

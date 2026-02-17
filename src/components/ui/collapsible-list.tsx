@@ -1,5 +1,4 @@
 import { ChevronDownIcon } from 'lucide-react'
-import posthog from 'posthog-js'
 import React from 'react'
 
 import { Button } from '@/components/ui/button'
@@ -8,6 +7,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible'
+import { capture } from '@/lib/analytics'
 
 export function CollapsibleList<T>({
   items,
@@ -58,7 +58,7 @@ export function CollapsibleList<T>({
                 className="group/collapsible-trigger flex px-3"
                 variant="secondary"
                 onClick={() => {
-                  posthog.capture('list_toggled', { expanded: !open })
+                  capture('list_toggled', { expanded: !open })
                 }}
               />
             }

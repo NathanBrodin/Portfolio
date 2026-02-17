@@ -1,5 +1,3 @@
-import posthog from 'posthog-js'
-
 import { useQuery } from '@tanstack/react-query'
 import { useServerFn } from '@tanstack/react-start'
 
@@ -9,6 +7,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import { capture } from '@/lib/analytics'
 import { getStargazersCount as getServerStargazersCount } from '@/lib/functions'
 
 type GitHubStarsProps = {
@@ -43,7 +42,7 @@ export function GitHubStars({ repo }: GitHubStarsProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => {
-                  posthog.capture('github_repo_clicked', { repo })
+                  capture('github_repo_clicked', { repo })
                 }}
               />
             }

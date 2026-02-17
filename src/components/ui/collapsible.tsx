@@ -10,7 +10,7 @@ import {
 
 import { ChevronsDownUpIcon } from '@/components/ui/icons/chevrons-down-up-icon'
 import type { ChevronsDownUpIconHandle } from '@/components/ui/icons/chevrons-down-up-icon'
-import { useSound } from '@/hooks/use-sound'
+import { playSound } from '@/lib/play-sound'
 import { cn } from '@/lib/utils'
 import { switchOffSound } from '@/sounds/switch-off'
 import { switchOnSound } from '@/sounds/switch-on'
@@ -72,21 +72,15 @@ function CollapsibleWithContext({
   ...props
 }: React.ComponentProps<typeof Collapsible> & { noSound?: boolean }) {
   const [open, setOpen] = useState(defaultOpen ?? false)
-  const [playSwitchOn] = useSound(switchOnSound)
-  const [playSwitchOff] = useSound(switchOffSound)
 
   const handleOpenChange = useCallback(
     (nextOpen: boolean) => {
       if (!noSound) {
-        if (nextOpen) {
-          playSwitchOn()
-        } else {
-          playSwitchOff()
-        }
+        playSound(nextOpen ? switchOnSound : switchOffSound)
       }
       setOpen(nextOpen)
     },
-    [noSound, playSwitchOn, playSwitchOff],
+    [noSound],
   )
 
   return (

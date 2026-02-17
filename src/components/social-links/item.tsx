@@ -1,7 +1,7 @@
 import { ArrowUpRightIcon } from 'lucide-react'
-import posthog from 'posthog-js'
 
 import type { LinkItem } from '@/config'
+import { capture } from '@/lib/analytics'
 import { cn } from '@/lib/utils'
 
 export function SocialLinkItem({
@@ -23,7 +23,7 @@ export function SocialLinkItem({
       target="_blank"
       rel="noopener"
       onClick={() => {
-        posthog.capture('social_link_clicked', { label, url: value })
+        capture('social_link_clicked', { label, url: value })
       }}
     >
       <div className="relative size-12 shrink-0">
