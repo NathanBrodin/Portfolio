@@ -23,13 +23,12 @@ skills:
 order: 1
 ---
 
-I'm building an entire web platform from scratch: frontend, backend, infrastructure, all of it.
+I'm building a production grade web application from scratch: frontend, backend and infrastructure.
 
-- Designed the full architecture with long-term scalability in mind
-- Set up end-to-end type safety with OpenAPI (drf-spectacular) and Orval-generated TanStack Query hooks
-- Built the frontend with React 19 + Compiler, Vite, TanStack Router/Query/Table/Pacer, Tailwind, shadcn/ui, coss ui, and Base UI
-- Implemented RBAC, admin tooling, and resource management
-- Backend runs on Django REST Framework with Redis caching, ClickHouse integration, and PostgreSQL
-- Containerized everything with Docker, deployed via NGINX on self-managed servers
-- CI covers linting, builds, schema generation, and automated testing (~700 backend tests, ~100 Playwright E2E) with caching and sharding
-- Wrote docs, DX tooling, DB seeding, and Makefile commands so the whole thing sets up in a few commands
+- Frontend with [React 19](https://react.dev/) + [Compiler](https://react.dev/learn/react-compiler), [Vite](https://vite.dev/), [TanStack Router](https://tanstack.com/router/latest)/[Query](https://tanstack.com/query/latest)/[Table](https://tanstack.com/table/latest)/[Pacer](https://tanstack.com/pacer/latest), [Tailwind](https://tailwindcss.com/), [Base UI](https://base-ui.com/), [shadcn/ui](https://ui.shadcn.com/) (and [coss ui](https://coss.com/ui/docs))
+- Backend with [Django REST Framework](https://www.django-rest-framework.org/) with [Redis](https://redis.io/) for caching, [ClickHouse](https://clickhouse.com/) integration, and [PostgreSQL](https://www.postgresql.org/)
+- Infrastructure with [Docker](https://www.docker.com/), deployed via [NGINX](https://nginx.org/) on [self-managed servers](https://www.hetzner.com/)
+- I've set up full end-to-end type safety with [drf-spectacular](https://drf-spectacular.readthedocs.io/en/latest/) (OpenAPI schema generation) and [Orval-generated](https://orval.dev/) TanStack Query hooks
+- Implemented [RBAC](https://en.wikipedia.org/wiki/Role-based_access_control), admin tooling, and resource management
+- Made the [CI](https://github.com/features/actions) covers linting, builds, schema generation, and automated testing (~700 backend tests, ~100 [Playwright](https://playwright.dev/) E2E tests) with caching and sharding
+- Wrote full docs, DX tooling, DB seeding, and [Makefile commands](https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html) so the whole project sets up in a few commands

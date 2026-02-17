@@ -20,4 +20,4 @@ skills:
 order: 3
 ---
 
-Built a GenAI chatbot platform used by 100+ users. From blank repo to well-tested app (92% coverage, Storybook, documented architecture). Focused on developer experience: clean code, consistent styling, and full test setup. A step up in product impact and engineering quality.
+Built the frontend of a GenAI chatbot platform used by 100+ users. From blank repo to well-tested app (92% coverage, Storybook, documented architecture). Focused on developer experience: clean code, consistent styling, and full test setup.

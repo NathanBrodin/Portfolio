@@ -14,14 +14,14 @@ skills:
   - React.js
   - CSS
   - Playwright
+  - Redux
 
 order: 2
 ---
 
-Worked across multiple AI products used by 100k+ users. Last internship, 6 months, counted toward my Master's degree (graded 92/100).
+Worked across multiple AI products used by 100k+ users. It was my end of studies internship, of 6 months, that counted toward my Master's degree (graded 92/100).
 
-- Built a full E2E test suite with Playwright. 350+ tests across browsers, CI runs in under 90s with caching and sharding
-- Refactored the styling architecture to make it more scalable and consistent
-- Led theming and dark mode for DNB's public chatbot UI (1.5M+ conversations/year)
+- Managed to push to production +15 massive features accross 3 frontend applications
 - Migrated a production app from Gatsby to Vite, cutting build times by 60%
+- Built a full E2E test suite with Playwright. With 350+ tests across browsers, and a CI than runs under 90s with caching and sharding
 - Wrote technical docs and analysis reports, generally tried to make the DX better for the team
