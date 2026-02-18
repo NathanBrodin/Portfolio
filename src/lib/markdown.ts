@@ -1,6 +1,4 @@
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeRaw from 'rehype-raw'
-import rehypeSlug from 'rehype-slug'
 import rehypeStringify from 'rehype-stringify'
 import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
@@ -26,11 +24,6 @@ export async function renderMarkdown(content: string): Promise<MarkdownResult> {
     .use(remarkGfm) // Support GitHub Flavored Markdown
     .use(remarkRehype, { allowDangerousHtml: true }) // Convert to HTML AST
     .use(rehypeRaw) // Process raw HTML in markdown
-    .use(rehypeSlug) // Add IDs to headings
-    .use(rehypeAutolinkHeadings, {
-      behavior: 'wrap',
-      properties: { className: ['anchor'] },
-    })
     .use(rehypeStringify) // Serialize to HTML string
     .process(content)
 

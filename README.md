@@ -16,12 +16,20 @@ My Portfolio, to showcase my work as a Frontend Engineer.
 - [Content Collections](https://www.content-collections.dev/)
 - [Soundcn](https://www.soundcn.xyz/)
 
-## Inspiration
+### Inspiration
 
 My Portfolio is inspired by:
 
 - [Chanhdai](https://chanhdai.com/), for the components and general layout.
 - [Zed](https://zed.dev), for the fonts and general style.
+
+### Features
+
+- Light/Dark themes
+- SEO optimized ([JSON-LD schema](https://json-ld.org), sitemap, robots)
+- Analytics with [PostHog](https://posthog.com)
+- Markdown Content
+- Perfect Lighthouse Score
 
 ## Prerequisites
 

@@ -24,6 +24,12 @@ const options: HTMLReactParserOptions = {
             </Link>
           )
         }
+
+        return (
+          <a href={href} target="_blank" rel="noopener noreferrer">
+            {domToReact(domNode.children as DOMNode[], options)}
+          </a>
+        )
       }
 
       if (domNode.name === 'img') {

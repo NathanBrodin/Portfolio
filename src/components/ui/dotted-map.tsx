@@ -1,3 +1,4 @@
+import { motion } from 'motion/react'
 import * as React from 'react'
 
 import {
@@ -95,7 +96,7 @@ export function DottedMap({
   paths = [],
   markerColor = '#FF6900',
   lineColor = '#0ea5e9',
-  markerSize = 0.4,
+  markerSize = 0.5,
   stagger = true,
   className,
   style,
@@ -198,15 +199,18 @@ export function DottedMap({
         {resolvedPaths.map((path, i) => {
           const d = createCurvedPath(path.start, path.end)
           return path.animated ? (
-            <path
+            <motion.path
               key={`path-${i}`}
               d={d}
               fill="none"
               stroke="url(#path-gradient)"
               strokeWidth="0.25"
-              className="animate-draw-path"
-              style={{
-                animationDelay: `${0.5 * i}s`,
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{
+                duration: 1,
+                delay: 0.5 * i,
+                ease: 'easeOut',
               }}
             />
           ) : (
