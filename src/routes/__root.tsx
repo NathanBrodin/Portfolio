@@ -8,7 +8,7 @@ import {
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { TooltipProvider } from '@/components/ui/tooltip'
-import { siteConfig } from '@/config/site'
+import { siteConfig, siteJsonLd } from '@/config/site'
 import { AnalyticsProvider } from '@/providers/analytics'
 import { ThemeProvider } from '@/providers/theme'
 
@@ -61,6 +61,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'canonical', href: siteConfig.url },
         { rel: 'manifest', href: '/manifest.json' },
+      ],
+      scripts: [
+        {
+          type: 'application/ld+json',
+          children: JSON.stringify(siteJsonLd),
+        },
       ],
     }),
 
