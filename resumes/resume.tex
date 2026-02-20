@@ -1,0 +1,95 @@
+%-------------------------
+% Resume — Nathan Brodin — Software Engineer
+%-------------------------
+
+\input{shared}
+
+\renewcommand{\resumeVariantTitle}{Software Engineer}
+
+\begin{document}
+
+\resumeHeader
+
+% ==================== EXPERIENCE ====================
+\section{Experience}
+
+\resumeSubheading
+  {Capia AS}{Troms\o{}, Norway}
+  {Full Stack Engineer}{Aug 2025 -- Present}
+\begin{itemize}
+  \item Built a production-grade web application from scratch: React 19 frontend with TanStack Router/Query, Django REST Framework backend with PostgreSQL, Redis, and ClickHouse, deployed via Docker and NGINX on self-managed servers.
+  \item Implemented full end-to-end type safety using OpenAPI schema generation and auto-generated TanStack Query hooks, along with RBAC, admin tooling, and resource management features.
+  \item Set up CI pipelines covering linting, builds, schema generation, and automated testing (\textasciitilde700 backend tests, \textasciitilde100 Playwright E2E tests) with caching and sharding. Wrote full documentation, DX tooling, and database seeding.
+\end{itemize}
+
+\vspace{4pt}
+
+\resumeSubheading
+  {DNB}{Oslo, Norway}
+  {Frontend Engineer Intern}{Feb 2025 -- Jul 2025}
+\begin{itemize}
+  \item Shipped 15+ features to production across 3 frontend applications serving AI products used by 100k+ users. End-of-studies internship graded 92/100.
+  \item Migrated a production application from Gatsby to Vite, cutting build times by 60\%.
+  \item Built a full E2E test suite with Playwright: 350+ tests across browsers, CI running under 90 seconds with caching and sharding.
+\end{itemize}
+
+\vspace{4pt}
+
+\resumeSubheading
+  {DNB}{Oslo, Norway}
+  {Frontend Engineer Intern}{Apr 2024 -- Aug 2024}
+\begin{itemize}
+  \item Built the frontend of a GenAI chatbot platform used by 100+ users, from blank repository to well-tested application with 92\% test coverage and documented architecture.
+  \item Established developer experience standards including Storybook component documentation, consistent styling conventions, and a comprehensive testing setup.
+\end{itemize}
+
+\vspace{4pt}
+
+\resumeSubheading
+  {DNB}{Oslo, Norway}
+  {Frontend Engineer Intern}{Jul 2023 -- Aug 2023}
+\begin{itemize}
+  \item Shipped an internal admin panel from scratch based on Figma designs, used by 10+ users. Handled end-to-end ownership: UI implementation, API integration, authentication, and deployment.
+\end{itemize}
+
+% ==================== EDUCATION ====================
+\section{Education}
+
+\resumeSubheading
+  {ESIEA Graduate School of Engineering}{Laval, France}
+  {Master of Engineering in Software Engineering --- Graduated 92/100}{Sep 2020 -- Jul 2025}
+\begin{itemize}
+  \item Coursework in algorithms, systems programming, distributed systems, and full stack development. Completed 3 internships (1 year of professional experience) during the program.
+  \item Exchange semesters at Mid Sweden University (Sundsvall, Sweden) and Centria University of Applied Sciences (Kokkola, Finland).
+\end{itemize}
+
+% ==================== PROJECTS ====================
+\section{Projects}
+
+\resumeProjectHeading
+  {\href{https://chat.brodin.dev}{Chat}}{AI-powered conversational portfolio using React Server Components with streaming. Built with Next.js, Vercel AI SDK, Tailwind CSS, and Drizzle.}
+
+\vspace{2pt}
+
+\resumeProjectHeading
+  {\href{https://zed.dev/extensions?query=vercel}{Zed Vercel Theme}}{A theme for the Zed Editor inspired by Vercel's design language. Top 15 most downloaded with 52k+ downloads.}
+
+\vspace{2pt}
+
+\resumeProjectHeading
+  {\href{https://brodin.dev}{Portfolio}}{Personal website built with React 19, TanStack Start, and Tailwind CSS. SSR, SEO-optimized, perfect Lighthouse score.}
+
+\vspace{2pt}
+
+\resumeProjectHeading
+  {\href{https://write.brodin.dev}{Write}}{Notion-style markdown editor with real-time preview and PDF export. Built with Next.js, Tailwind CSS, and Convex.}
+
+% ==================== SKILLS ====================
+\section{Skills}
+
+\noindent\textbf{Languages:} TypeScript, JavaScript, Python, C \\
+\textbf{Frameworks \& Libraries:} React, Next.js, Django, TanStack, Tailwind CSS, Redux, shadcn/ui, Base UI, Playwright \\
+\textbf{Tools \& Infrastructure:} Docker, NGINX, Git, Linux, Vercel, Figma \\
+\textbf{Databases:} PostgreSQL, Redis
+
+\end{document}

@@ -1,0 +1,93 @@
+%-------------------------
+% Shared resume preamble — Nathan Brodin
+% Used by all resume variants via \input{shared}
+%
+% Compile with: lualatex or pdflatex
+%   - lualatex + texlive-luatex: uses iA Writer Quattro (body) and Lora (headings)
+%   - pdflatex: uses TeX Gyre Schola (body) and TeX Gyre Pagella (headings)
+%-------------------------
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[top=0.4in,bottom=0.4in,left=0.5in,right=0.5in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{iftex}
+
+% ---------- Fonts ----------
+% Writer (iA Writer Quattro) for body text, Lora for headings
+% Falls back to TeX-bundled alternatives when using pdflatex
+
+\ifluatex
+  \usepackage{fontspec}
+  \setmainfont{iAWriterQuattroV}[
+    Path=../public/fonts/,
+    Extension=.ttf,
+  ]
+  \newfontfamily\displayfont{Lora}[
+    Path=../public/fonts/,
+    Extension=.ttf,
+  ]
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  % TeX Gyre Schola — closest to iA Writer Quattro (slab serif)
+  \usepackage{tgschola}
+  % For display headings, switch to TeX Gyre Pagella (Palatino-like serif)
+  \newcommand{\displayfont}{\fontfamily{qpl}\selectfont}
+\fi
+
+% ---------- Colors ----------
+% Light mode only, matching the portfolio CSS variables
+% --primary: teal-700 (#0f766e) — headings and section rules
+% --foreground: neutral-800 (#262626) — body text
+\definecolor{primary}{HTML}{0f766e}
+\definecolor{foreground}{HTML}{262626}
+
+\color{foreground}
+
+% ---------- Hyperlink colors ----------
+\hypersetup{
+  colorlinks=true,
+  urlcolor=foreground,
+}
+
+% ---------- Section formatting ----------
+% Note: \MakeUppercase is used instead of \uppercase to avoid uppercasing
+% color names inside \titleformat (which would turn {primary} into {PRIMARY}).
+\titleformat{\section}{\large\displayfont\bfseries\color{primary}}{}{0em}{\MakeUppercase}[\color{primary}\titlerule]
+\titlespacing*{\section}{0pt}{6pt}{3pt}
+
+% ---------- Custom commands ----------
+\newcommand{\resumeVariantTitle}{Software Engineer}
+
+\newcommand{\resumeHeader}{%
+  \begin{center}
+    {\LARGE\displayfont\bfseries\color{primary} Nathan Brodin} \\[2pt]
+    {\large \resumeVariantTitle} \\[2pt]
+    \href{mailto:nathan@brodin.dev}{nathan@brodin.dev}%
+    \enspace$\cdot$\enspace Troms\o{}, Norway \\
+    \href{https://brodin.dev}{brodin.dev}%
+    \enspace$\cdot$\enspace \href{https://linkedin.com/in/nathan-brodin}{linkedin.com/in/nathan-brodin}%
+    \enspace$\cdot$\enspace \href{https://github.com/NathanBrodin}{github.com/NathanBrodin}
+  \end{center}
+  \vspace{-4pt}
+}
+
+\newcommand{\resumeSubheading}[4]{%
+  \noindent{\displayfont\bfseries #1} \hfill #2 \\
+  \textit{#3} \hfill \textit{#4}%
+}
+
+\newcommand{\resumeProjectHeading}[2]{%
+  \noindent{\displayfont\bfseries #1} --- #2%
+}
+
+% ---------- List settings ----------
+\setlist[itemize]{nosep, leftmargin=12pt}
+
+% ---------- No page numbers ----------
+\pagestyle{empty}

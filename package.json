@@ -30,7 +30,8 @@
     "check": "prettier --write . && eslint --fix",
     "knip": "knip",
     "generate:og": "tsx scripts/generate-og.ts",
-    "generate:map": "tsx scripts/generate-map-data.ts"
+    "generate:map": "tsx scripts/generate-map-data.ts",
+    "generate:resume": "tsx scripts/generate-resume.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.1.0",
