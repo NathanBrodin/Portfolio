@@ -76,7 +76,7 @@ export function MyWorldMap() {
               : []),
           ]}
           paths={
-            isLocation ? [{ start: 'Tromso', end: 'You', animated: true }] : []
+            isLocation ? [{ start: 'Tromsø', end: 'You', animated: true }] : []
           }
           markerColor="var(--primary)"
           lineColor="var(--primary)"
