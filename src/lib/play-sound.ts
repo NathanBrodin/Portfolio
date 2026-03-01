@@ -1,5 +1,7 @@
 import type { SoundAsset } from '@/lib/sound-types'
 
+import { haptic } from './haptic'
+
 let audioContext: AudioContext | null = null
 
 function getAudioContext(): AudioContext {
@@ -51,4 +53,6 @@ export function playSound(sound: SoundAsset, volume = 0.5): void {
     gain.connect(ctx.destination)
     source.start(0)
   })
+
+  haptic()
 }
