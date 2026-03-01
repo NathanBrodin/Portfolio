@@ -7,6 +7,7 @@ import {
 
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
+import { NotFound } from '@/components/not-found'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { siteConfig, siteJsonLd } from '@/config/site'
 import { AnalyticsProvider } from '@/providers/analytics'
@@ -71,6 +72,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     }),
 
     shellComponent: RootDocument,
+    notFoundComponent: () => {
+      return <NotFound />
+    },
   },
 )
 
