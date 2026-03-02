@@ -7,6 +7,7 @@ import { MyWorldMap } from '@/components/my-world-map'
 import { Projects } from '@/components/projects'
 import { SocialLinks } from '@/components/social-links'
 import { TechStack } from '@/components/tech-stack'
+import { Dither } from '@/components/ui/backgrounds/dither'
 import { Grid } from '@/components/ui/backgrounds/grid'
 import { Noise } from '@/components/ui/backgrounds/noise'
 import { Section } from '@/components/ui/section'
@@ -35,7 +36,7 @@ function App() {
   return (
     <main className="relative flex h-full flex-1 flex-col items-center overflow-x-hidden px-4">
       <Noise />
-      <Section className="relative p-4 py-8 sm:p-16">
+      <Section className="relative p-4 py-8 sm:p-24">
         <div className="flex flex-col">
           <h1 className="font-display text-primary scroll-mt-24 font-normal">
             Nathan Brodin
@@ -45,6 +46,7 @@ function App() {
             user experience.
           </p>
         </div>
+        <Dither />
         <Grid />
       </Section>
       <SectionDivider />
@@ -58,7 +60,15 @@ function App() {
       <SectionDivider />
       <Experiences />
       <SectionDivider />
+      <Section className="h-25">
+        <Dither offset={0.4} />
+      </Section>
+      <SectionDivider />
       <Projects />
+      <SectionDivider />
+      <Section className="h-25">
+        <Dither offset={-0.3} />
+      </Section>
       <SectionDivider />
       <Certifications />
       <SectionDivider />
