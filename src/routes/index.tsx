@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
+import { Certifications } from '@/components/certifications'
 import { Experiences } from '@/components/experiences'
 import { GithubContributions } from '@/components/github-contributions'
 import { MyWorldMap } from '@/components/my-world-map'
@@ -58,6 +59,8 @@ function App() {
       <Experiences />
       <SectionDivider />
       <Projects />
+      <SectionDivider />
+      <Certifications />
       <SectionDivider />
       <Section className="h-16" />
     </main>

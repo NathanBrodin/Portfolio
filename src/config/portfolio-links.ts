@@ -1,6 +1,7 @@
 import {
   BoxIcon,
   BriefcaseBusinessIcon,
+  CircleCheckBigIcon,
   LayersIcon,
   TextInitialIcon,
 } from 'lucide-react'
@@ -27,5 +28,10 @@ export const PORTFOLIO_LINKS: LinkItem[] = [
     label: 'Projects',
     value: '/#projects',
     icon: BoxIcon,
+  },
+  {
+    label: 'Certifications',
+    value: '/#certifications',
+    icon: CircleCheckBigIcon,
   },
 ]

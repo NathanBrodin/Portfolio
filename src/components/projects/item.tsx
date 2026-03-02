@@ -33,7 +33,7 @@ export function ProjectItem({
         onClick={() => {
           capture('project_toggled', { project: project.title })
         }}
-        className="hover:bg-muted/50 flex w-full items-center gap-2 px-4 py-2 pr-2 text-left"
+        className="hover:bg-muted/50 flex w-full items-center gap-2 p-2 text-left"
       >
         {project.logo ? (
           <img
