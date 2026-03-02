@@ -1,4 +1,4 @@
-import { Certification } from 'content-collections'
+import type { Certification } from 'content-collections'
 import { ArrowUpRightIcon, CircleCheckBigIcon } from 'lucide-react'
 
 import { Separator } from '@/components/ui/separator'

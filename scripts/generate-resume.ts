@@ -1,7 +1,7 @@
 #!/usr/bin/env tsx
-import { execSync } from 'child_process'
-import { existsSync } from 'fs'
-import path from 'path'
+import { execSync } from 'node:child_process'
+import { existsSync } from 'node:fs'
+import path from 'node:path'
 
 // Check if LaTeX compiler is available
 function findLaTeXCompiler(): string | null {

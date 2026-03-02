@@ -34,6 +34,10 @@ export interface DottedMapProps extends React.SVGProps<SVGSVGElement> {
   lineColor?: string
   markerSize?: number
   stagger?: boolean
+  /** Label of the marker to highlight externally (e.g. from a legend hover) */
+  highlightedLabel?: string | null
+  /** Called when the user hovers/unhovers a marker on the map */
+  onMarkerHover?: (label: string | null) => void
 }
 
 type ProcessedMarker = {
@@ -98,6 +102,8 @@ export function DottedMap({
   lineColor = '#0ea5e9',
   markerSize = 0.5,
   stagger = true,
+  highlightedLabel,
+  onMarkerHover,
   className,
   style,
 }: DottedMapProps) {
@@ -154,6 +160,7 @@ export function DottedMap({
     const rect = container.getBoundingClientRect()
 
     setHoveredMarker(marker)
+    onMarkerHover?.(marker.label)
 
     tooltip.style.left = `${event.clientX - rect.left}px`
     tooltip.style.top = `${event.clientY - rect.top}px`
@@ -162,6 +169,7 @@ export function DottedMap({
   const handleMarkerLeave = () => {
     hoverTimeoutRef.current = setTimeout(() => {
       setHoveredMarker(null)
+      onMarkerHover?.(null)
     }, 100)
   }
 
@@ -229,6 +237,8 @@ export function DottedMap({
           const offsetX = getMarkerOffset(marker)
           const cx = marker.x + offsetX
           const cy = marker.y
+          const isHighlighted =
+            highlightedLabel != null && marker.label === highlightedLabel
           return (
             <g
               key={`marker-${marker.x}-${marker.y}-${index}`}
@@ -239,7 +249,10 @@ export function DottedMap({
                 cy={cy}
                 r={markerSize * 6}
                 fill="transparent"
-                className="opacity-0 transition-opacity duration-200 group-hover:opacity-10"
+                className={cn(
+                  'transition-opacity duration-200 group-hover:opacity-10',
+                  isHighlighted ? 'opacity-15' : 'opacity-0',
+                )}
                 style={{ fill: markerColor }}
                 onMouseEnter={(e) => handleMarkerHover(marker, e)}
                 onMouseLeave={handleMarkerLeave}

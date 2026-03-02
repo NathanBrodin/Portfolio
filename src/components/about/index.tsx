@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { useQuery } from '@tanstack/react-query'
 import { useServerFn } from '@tanstack/react-start'
 
@@ -82,6 +84,8 @@ export function About() {
     queryFn: () => getUsersLocation(),
   })
 
+  const [hoveredLabel, setHoveredLabel] = useState<string | null>(null)
+
   const isLocation = location?.lat != null
 
   return (
@@ -94,8 +98,8 @@ export function About() {
         <div className="text-muted-foreground flex flex-col gap-3 text-sm">
           <p>
             Originally from the west of France, I&apos;ve been moving north ever
-            since: interning in Oslo, exchanging in Finland and Sweden,
-            and somehow ending up north of the Arctic Circle in Tromsø, Norway.
+            since: interning in Oslo, exchanging in Finland and Sweden, and
+            somehow ending up north of the Arctic Circle in Tromsø, Norway.
           </p>
           <p>
             I build things for the web, mostly on the frontend, and I care way
@@ -104,7 +108,16 @@ export function About() {
         </div>
         <ul className="flex flex-col gap-1.5">
           {LEGEND_ITEMS.map((item) => (
-            <li key={item.label} className="flex items-start gap-2">
+            <li
+              key={item.label}
+              className={`flex cursor-pointer items-start gap-2 rounded-sm px-1 py-0.5 transition-colors duration-150 ${
+                hoveredLabel === item.label
+                  ? 'bg-primary/10'
+                  : 'hover:bg-muted/50'
+              }`}
+              onMouseEnter={() => setHoveredLabel(item.label)}
+              onMouseLeave={() => setHoveredLabel(null)}
+            >
               <LegendDot animated={item.animated} />
               <span className="text-muted-foreground text-xs leading-tight">
                 <span className="text-foreground font-medium">
@@ -116,7 +129,13 @@ export function About() {
             </li>
           ))}
           {isLocation && (
-            <li className="flex items-start gap-2">
+            <li
+              className={`flex cursor-pointer items-start gap-2 rounded-sm px-1 py-0.5 transition-colors duration-150 ${
+                hoveredLabel === 'You' ? 'bg-primary/10' : 'hover:bg-muted/50'
+              }`}
+              onMouseEnter={() => setHoveredLabel('You')}
+              onMouseLeave={() => setHoveredLabel(null)}
+            >
               <LegendDot animated />
               <span className="text-muted-foreground text-xs leading-tight">
                 <span className="text-foreground font-medium">You</span>
@@ -157,6 +176,8 @@ export function About() {
             }
             markerColor="var(--primary)"
             lineColor="var(--primary)"
+            highlightedLabel={hoveredLabel}
+            onMarkerHover={setHoveredLabel}
           />
         </div>
       </div>

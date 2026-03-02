@@ -1,9 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
 
+import { About } from '@/components/about'
 import { Certifications } from '@/components/certifications'
 import { Experiences } from '@/components/experiences'
 import { GithubContributions } from '@/components/github-contributions'
-import { About } from '@/components/about'
 import { Projects } from '@/components/projects'
 import { SocialLinks } from '@/components/social-links'
 import { TechStack } from '@/components/tech-stack'
