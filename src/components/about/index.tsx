@@ -94,7 +94,7 @@ export function About() {
         <div className="text-muted-foreground flex flex-col gap-3 text-sm">
           <p>
             Originally from the west of France, I&apos;ve been moving north ever
-            since: studying in Finland, interning in Oslo, exchanging in Sweden,
+            since: interning in Oslo, exchanging in Finland and Sweden,
             and somehow ending up north of the Arctic Circle in Tromsø, Norway.
           </p>
           <p>
