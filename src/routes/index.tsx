@@ -3,7 +3,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Certifications } from '@/components/certifications'
 import { Experiences } from '@/components/experiences'
 import { GithubContributions } from '@/components/github-contributions'
-import { MyWorldMap } from '@/components/my-world-map'
+import { About } from '@/components/about'
 import { Projects } from '@/components/projects'
 import { SocialLinks } from '@/components/social-links'
 import { TechStack } from '@/components/tech-stack'
@@ -50,7 +50,7 @@ function App() {
         <Grid />
       </Section>
       <SectionDivider />
-      <MyWorldMap />
+      <About />
       <SectionDivider />
       <SocialLinks />
       <SectionDivider />

@@ -11,7 +11,7 @@ import type { LinkItem } from '.'
 export const PORTFOLIO_LINKS: LinkItem[] = [
   {
     label: 'About',
-    value: '/',
+    value: '/#about',
     icon: TextInitialIcon,
   },
   {
