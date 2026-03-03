@@ -1,3 +1,4 @@
+import { useTheme } from '@lonik/themer'
 import { useCallback } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 
@@ -11,17 +12,15 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { playSound } from '@/lib/play-sound'
-import { useTheme } from '@/providers/theme'
 import { switch005Sound } from '@/sounds/switch-005'
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
 
   const switchTheme = useCallback(() => {
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
     playSound(switch005Sound)
-
-    setTheme(theme === 'dark' ? 'light' : 'dark')
-  }, [theme, setTheme])
+  }, [resolvedTheme, setTheme])
 
   useHotkeys('d', switchTheme)
 
@@ -37,7 +36,7 @@ export function ThemeToggle() {
         <span className="sr-only">Theme Toggle</span>
       </TooltipTrigger>
 
-      <TooltipContent className="pr-2 pl-3">
+      <TooltipContent className="">
         <div className="flex items-center gap-3">
           Toggle Mode
           <Kbd>D</Kbd>

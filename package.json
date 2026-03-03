@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.1.0",
+    "@lonik/themer": "^0.5.2",
     "@paper-design/shaders-react": "^0.0.71",
     "@t3-oss/env-core": "^0.13.10",
     "@tailwindcss/vite": "^4.0.6",

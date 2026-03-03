@@ -1,3 +1,5 @@
+import { ThemeProvider } from '@lonik/themer'
+
 import type { QueryClient } from '@tanstack/react-query'
 import {
   createRootRouteWithContext,
@@ -11,7 +13,6 @@ import { NotFound } from '@/components/not-found'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { siteConfig, siteJsonLd } from '@/config/site'
 import { AnalyticsProvider } from '@/providers/analytics'
-import { ThemeProvider } from '@/providers/theme'
 
 import appCss from '../styles.css?url'
 
@@ -70,7 +71,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         },
       ],
     }),
-
     shellComponent: RootDocument,
     notFoundComponent: () => {
       return <NotFound />
@@ -86,7 +86,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <AnalyticsProvider>
-          <ThemeProvider>
+          <ThemeProvider disableTransitionOnChange>
             <TooltipProvider>
               <Header />
               {children}

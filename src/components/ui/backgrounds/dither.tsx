@@ -1,14 +1,15 @@
+import { useTheme } from '@lonik/themer'
 import { Dithering } from '@paper-design/shaders-react'
 
 import { cn } from '@/lib/utils'
-import { useTheme } from '@/providers/theme'
 
 export function Dither({
   offset,
   className,
   ...props
 }: React.ComponentProps<'div'> & { offset?: number }) {
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
+
   return (
     <div
       className={cn(
@@ -20,8 +21,8 @@ export function Dither({
       <Dithering
         width={1280}
         height={400}
-        colorBack={theme === 'dark' ? '#000000' : '#FFFFFF'}
-        colorFront={theme === 'dark' ? '#cbfbf1' : '#00786f'}
+        colorBack={resolvedTheme === 'dark' ? '#000000' : '#FFFFFF'}
+        colorFront={resolvedTheme === 'dark' ? '#cbfbf1' : '#00786f'}
         shape="warp"
         type="4x4"
         size={1.0}
