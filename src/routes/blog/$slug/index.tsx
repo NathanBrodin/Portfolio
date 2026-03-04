@@ -36,6 +36,7 @@ export const Route = createFileRoute('/blog/$slug/')({
 
     const { post } = loaderData
     const url = `${siteConfig.url}/blog/${post.slug}`
+    const ogImage = `${siteConfig.url}/og/blog/${post.slug}.png`
     const title =
       post.title.length > 53
         ? `${post.title.slice(0, 53)}... | NB`
@@ -49,7 +50,7 @@ export const Route = createFileRoute('/blog/$slug/')({
       description: post.description,
       datePublished: post.date,
       url,
-      image: siteConfig.og,
+      image: ogImage,
       author: {
         '@id': `${siteConfig.url}/#person`,
       },
@@ -76,11 +77,11 @@ export const Route = createFileRoute('/blog/$slug/')({
         { property: 'og:description', content: description },
         { property: 'og:url', content: url },
         { property: 'og:type', content: 'article' },
-        { property: 'og:image', content: siteConfig.og },
+        { property: 'og:image', content: ogImage },
         // Twitter Card
         { name: 'twitter:title', content: post.title },
         { name: 'twitter:description', content: description },
-        { name: 'twitter:image', content: siteConfig.og },
+        { name: 'twitter:image', content: ogImage },
         // Article metadata
         { property: 'article:published_time', content: post.date },
         ...post.tags.map((tag: string) => ({

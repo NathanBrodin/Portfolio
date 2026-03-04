@@ -30,7 +30,7 @@ Now I'm not going to lie and say I designed and coded everything myself. I took 
 
 I still went a different way than Chanhdai for the code implementation: choosing to store content in markdown files using Content Collections, using Base-ui (because of Base UI) for components, and generally going with a different style. So this was not just a simple copy/paste or a fork; there was still a lot of work involved.
 
-For Zed, I stole the fonts for the headings and text, and the grid layout with the "diamonds" at the intersections. It really adds personality to my portfolio (not *my* personality since I stole it, but **some** personality).
+For Zed, I stole the fonts for the headings and text, and the grid layout with the "diamonds" at the intersections. It really adds personality to my portfolio (not _my_ personality since I stole it, but **some** personality).
 
 Also, by a great coincidence, Chanhdai had very basic sound design—like a sound when changing the theme—and I wanted to push things further by having different sounds around the entire app. I was looking around on the web for good sound libraries and all, but couldn't find anything interesting. Then the next day, I saw a tweet about the upcoming release of [Soundcn](https://www.soundcn.xyz/), which was **exactly** what I was looking for. So now you get a bunch of sounds when clicking on stuff in my portfolio. It's a nice touch!
 
