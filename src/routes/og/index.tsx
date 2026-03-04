@@ -33,18 +33,18 @@ function RouteComponent() {
     <Page>
       <div
         id="og"
-        className="relative mt-2 flex flex-col items-center overflow-hidden border"
+        className="relative mt-2 flex h-full flex-col justify-between overflow-hidden border p-14"
         style={{ width: 1200, height: 630 }}
       >
-        <Section className="h-full border-none"></Section>
-        <Section className="flex h-fit flex-col border-none py-24">
+        <div />
+        <div className="flex flex-col gap-2">
           <PageTitle className="text-9xl">Nathan Brodin</PageTitle>
           <PageDescription className="max-w-3xl text-2xl">
             A software engineer with a passion for web development, design, and
             user experience.
           </PageDescription>
-        </Section>
-        <Section className="h-full border-none">
+        </div>
+        <div>
           <ul className="flew-wrap relative flex gap-4 p-4">
             {stack.map((tech) => {
               return (
@@ -78,7 +78,7 @@ function RouteComponent() {
               )
             })}
           </ul>
-        </Section>
+        </div>
 
         <div className="pointer-events-none absolute inset-0 -z-1 h-full w-full overflow-hidden opacity-10">
           <Dithering
