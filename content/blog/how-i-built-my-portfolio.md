@@ -1,5 +1,5 @@
 ---
-title: 'Hello, World!'
+title: '"You Wouldn’t Steal a DIV": How I Built My Portfolio'
 description: 'A story about how I built my portfolio and what went through my mind while building it'
 date: '2026-03-04'
 tags: ['web-development']
@@ -12,7 +12,7 @@ I wanted to talk a bit about my [portfolio](https://brodin.dev), how I built it,
 
 ## 1 Stack, 2 Stack, Tech Stack, 4
 
-> (If you didn't read that header in Slim Shady's voice, I don't know what to tell you.)
+> (If you didn't read that header [in Slim Shady's voice](https://youtu.be/F2hiFbuQ-Qw?si=h6omylv9pJwJIVgp&t=93), I don't know what to tell you.)
 
 First of all, let's talk tech stack. I used to have all of my personal projects (including my previous portfolio) built with [Next.js](https://nextjs.org/). These are small side projects, without complicated logic, and with simple needs. Yet, I would always run into Next.js issues and edge cases, not to even mention hydration issues. When I got to choose a stack for a new project at my job, I couldn't see Next.js as a contender for a production-grade application, considering the issues I had with small projects.
 
@@ -43,3 +43,6 @@ Lastly, the thing that elevated my portfolio from a good portfolio to a **Whoah*
 So in conclusion, I would say this portfolio is a cross between Chanhdai and Zed, with a better stack.
 
 Go ahead, click around to hear the sound integration (it gets annoying after a while, be careful), check out the dither shaders on the headings, and [check out the source code here](https://github.com/NathanBrodin/Portfolio) if you want to steal from me like I stole from everyone (but at least leave a star on the repo pls).
+
+- Blog Title reference: [This classic: "You Wouldn't Steal a Car"](https://www.youtube.com/watch?v=P-pYiWGSN8w)
+- My Portfolio: [brodin.dev](https://brodin.dev)

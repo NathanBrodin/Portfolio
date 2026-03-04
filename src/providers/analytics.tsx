@@ -1,4 +1,5 @@
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import { lazy, Suspense, type ReactNode } from 'react'
 
 const posthogKey = import.meta.env.VITE_PUBLIC_POSTHOG_KEY
@@ -26,6 +27,7 @@ export function AnalyticsProvider({ children }: { children: ReactNode }) {
       <LazyPostHogProvider apiKey={posthogKey} options={options}>
         {children}
         <Analytics />
+        <SpeedInsights />
       </LazyPostHogProvider>
     </Suspense>
   )

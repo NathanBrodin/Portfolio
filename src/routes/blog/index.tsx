@@ -68,7 +68,7 @@ function RouteComponent() {
           </PageDescription>
         </PageHeader>
         <SectionDivider />
-        <Section>
+        <Section className="min-h-max flex-1 items-start">
           {publishedPosts.map((post) => (
             <Link
               key={post.slug}
