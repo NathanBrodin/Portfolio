@@ -30,6 +30,8 @@ My Portfolio is inspired by:
 - Analytics with [PostHog](https://posthog.com)
 - Markdown Content
 - Perfect Lighthouse Score
+- Blog Section for SEO purposes
+- Sound design
 
 ## Prerequisites
 

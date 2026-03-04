@@ -61,7 +61,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           crossOrigin: 'anonymous',
         },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'canonical', href: siteConfig.url },
         { rel: 'manifest', href: '/manifest.json' },
       ],
       scripts: [

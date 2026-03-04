@@ -95,6 +95,28 @@ const certifications = defineCollection({
   },
 })
 
+const blogPosts = defineCollection({
+  name: 'blogPosts',
+  directory: 'content/blog',
+  include: '**/*.md',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    date: z.string(), // ISO 8601: 'YYYY-MM-DD'
+    tags: z.array(z.string()).default([]),
+    published: z.boolean().default(true),
+  }),
+  transform: async (doc) => {
+    const { markup } = await renderMarkdown(doc.content)
+    const { content: _, ...rest } = doc
+    return {
+      ...rest,
+      slug: doc._meta.path,
+      markup,
+    }
+  },
+})
+
 export default defineConfig({
-  collections: [experiences, projects, certifications],
+  collections: [experiences, projects, certifications, blogPosts],
 })

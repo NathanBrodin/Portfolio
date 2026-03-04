@@ -8,12 +8,11 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import type { createStart } from '@tanstack/react-start'
-
-import type { getRouter } from './router.tsx'
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OgIndexRouteImport } from './routes/og/index'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as BlogSlugIndexRouteImport } from './routes/blog/$slug/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -25,31 +24,49 @@ const OgIndexRoute = OgIndexRouteImport.update({
   path: '/og/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugIndexRoute = BlogSlugIndexRouteImport.update({
+  id: '/blog/$slug/',
+  path: '/blog/$slug/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blog/': typeof BlogIndexRoute
   '/og/': typeof OgIndexRoute
+  '/blog/$slug/': typeof BlogSlugIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/blog': typeof BlogIndexRoute
   '/og': typeof OgIndexRoute
+  '/blog/$slug': typeof BlogSlugIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blog/': typeof BlogIndexRoute
   '/og/': typeof OgIndexRoute
+  '/blog/$slug/': typeof BlogSlugIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/og/'
+  fullPaths: '/' | '/blog/' | '/og/' | '/blog/$slug/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/og'
-  id: '__root__' | '/' | '/og/'
+  to: '/' | '/blog' | '/og' | '/blog/$slug'
+  id: '__root__' | '/' | '/blog/' | '/og/' | '/blog/$slug/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   OgIndexRoute: typeof OgIndexRoute
+  BlogSlugIndexRoute: typeof BlogSlugIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,17 +85,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OgIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug/': {
+      id: '/blog/$slug/'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug/'
+      preLoaderRoute: typeof BlogSlugIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BlogIndexRoute: BlogIndexRoute,
   OgIndexRoute: OgIndexRoute,
+  BlogSlugIndexRoute: BlogSlugIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
 
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
 declare module '@tanstack/react-start' {
   interface Register {
     ssr: true
