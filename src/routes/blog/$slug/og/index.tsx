@@ -6,8 +6,6 @@ import { createFileRoute, notFound } from '@tanstack/react-router'
 
 import { Grid } from '@/components/ui/backgrounds/grid'
 import { Page, PageDescription, PageTitle } from '@/components/ui/page'
-import { Section } from '@/components/ui/section'
-import { SectionDivider } from '@/components/ui/section-divider'
 
 function findPost(slug: string) {
   return allBlogPosts.find((post) => post.slug === slug && post.published)

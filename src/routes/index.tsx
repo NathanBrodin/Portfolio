@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 import { About } from '@/components/about'
+import { BlogPreview } from '@/components/blog-preview'
 import { Certifications } from '@/components/certifications'
 import { Experiences } from '@/components/experiences'
 import { GithubContributions } from '@/components/github-contributions'
@@ -71,6 +72,12 @@ function App() {
       </Section>
       <SectionDivider />
       <Certifications />
+      <SectionDivider />
+      <Section className="h-25">
+        <Dither offset={-0.3} />
+      </Section>
+      <SectionDivider />
+      <BlogPreview />
       <SectionDivider />
       <Section className="h-16" />
     </Page>

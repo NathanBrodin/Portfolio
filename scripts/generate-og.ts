@@ -50,6 +50,13 @@ async function generateOg() {
     console.log('Generating site OG image...')
     await captureOg(page, `${BASE_URL}/og`, path.join(PUBLIC_DIR, 'og.png'))
 
+    console.log('Generating blog OG image...')
+    await captureOg(
+      page,
+      `${BASE_URL}/blog/og`,
+      path.join(PUBLIC_DIR, 'og', 'blog.png'),
+    )
+
     // Blog post OG images
     const slugs = getBlogSlugs()
     if (slugs.length > 0) {

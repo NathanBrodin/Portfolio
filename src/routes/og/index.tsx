@@ -5,7 +5,6 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Grid } from '@/components/ui/backgrounds/grid'
 import { Page, PageDescription, PageTitle } from '@/components/ui/page'
-import { Section } from '@/components/ui/section'
 import { TECH_STACK } from '@/config/tech-stack'
 
 export const Route = createFileRoute('/og/')({
