@@ -1,3 +1,5 @@
+import { RssIcon } from 'lucide-react'
+
 import { SOCIAL_LINKS } from '@/config/social-links'
 import { capture } from '@/lib/analytics'
 
@@ -77,6 +79,20 @@ export function Footer() {
           >
             <Icons.linkedin className="size-4" />
             <span className="sr-only">LinkedIn</span>
+          </a>
+          <Separator orientation="vertical" />
+          <a
+            className="text-muted-foreground hover:text-foreground flex items-center transition-colors"
+            href="/blog/rss"
+            onClick={() => {
+              capture('footer_link_clicked', {
+                label: 'RSS',
+                url: '/blog/rss',
+              })
+            }}
+          >
+            <RssIcon className="size-4" />
+            <span className="sr-only">RSS Feed</span>
           </a>
         </div>
         <p className="text-muted-foreground py-2 text-sm">

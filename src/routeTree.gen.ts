@@ -9,13 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OgIndexRouteImport } from './routes/og/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as BlogRssRouteRouteImport } from './routes/blog/rss/route'
 import { Route as BlogOgIndexRouteImport } from './routes/blog/og/index'
 import { Route as BlogSlugIndexRouteImport } from './routes/blog/$slug/index'
 import { Route as BlogSlugOgIndexRouteImport } from './routes/blog/$slug/og/index'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -29,6 +36,11 @@ const OgIndexRoute = OgIndexRouteImport.update({
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRssRouteRoute = BlogRssRouteRouteImport.update({
+  id: '/blog/rss',
+  path: '/blog/rss',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogOgIndexRoute = BlogOgIndexRouteImport.update({
@@ -49,6 +61,8 @@ const BlogSlugOgIndexRoute = BlogSlugOgIndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog/rss': typeof BlogRssRouteRoute
   '/blog/': typeof BlogIndexRoute
   '/og/': typeof OgIndexRoute
   '/blog/$slug/': typeof BlogSlugIndexRoute
@@ -57,6 +71,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog/rss': typeof BlogRssRouteRoute
   '/blog': typeof BlogIndexRoute
   '/og': typeof OgIndexRoute
   '/blog/$slug': typeof BlogSlugIndexRoute
@@ -66,6 +82,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog/rss': typeof BlogRssRouteRoute
   '/blog/': typeof BlogIndexRoute
   '/og/': typeof OgIndexRoute
   '/blog/$slug/': typeof BlogSlugIndexRoute
@@ -76,16 +94,28 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/sitemap.xml'
+    | '/blog/rss'
     | '/blog/'
     | '/og/'
     | '/blog/$slug/'
     | '/blog/og/'
     | '/blog/$slug/og/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blog' | '/og' | '/blog/$slug' | '/blog/og' | '/blog/$slug/og'
+  to:
+    | '/'
+    | '/sitemap.xml'
+    | '/blog/rss'
+    | '/blog'
+    | '/og'
+    | '/blog/$slug'
+    | '/blog/og'
+    | '/blog/$slug/og'
   id:
     | '__root__'
     | '/'
+    | '/sitemap.xml'
+    | '/blog/rss'
     | '/blog/'
     | '/og/'
     | '/blog/$slug/'
@@ -95,6 +125,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  BlogRssRouteRoute: typeof BlogRssRouteRoute
   BlogIndexRoute: typeof BlogIndexRoute
   OgIndexRoute: typeof OgIndexRoute
   BlogSlugIndexRoute: typeof BlogSlugIndexRoute
@@ -104,6 +136,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -123,6 +162,13 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog/'
       preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/rss': {
+      id: '/blog/rss'
+      path: '/blog/rss'
+      fullPath: '/blog/rss'
+      preLoaderRoute: typeof BlogRssRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/og/': {
@@ -151,6 +197,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  BlogRssRouteRoute: BlogRssRouteRoute,
   BlogIndexRoute: BlogIndexRoute,
   OgIndexRoute: OgIndexRoute,
   BlogSlugIndexRoute: BlogSlugIndexRoute,

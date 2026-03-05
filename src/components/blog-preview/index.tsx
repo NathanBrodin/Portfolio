@@ -19,6 +19,7 @@ export function BlogPreview() {
             params={{ slug: post.slug }}
             key={post.slug}
             className="p-4"
+            aria-label={post.title}
           >
             <div className="relative transition-transform select-none hover:scale-101 [&_img]:aspect-1200/630 [&_img]:rounded-xl">
               <img
@@ -26,6 +27,7 @@ export function BlogPreview() {
                 width={1200}
                 height={630}
                 fetchPriority="low"
+                alt={post.title}
               />
               <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 ring-inset dark:ring-white/10" />
             </div>
