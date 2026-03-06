@@ -7,13 +7,16 @@ import { Button } from '../ui/button'
 import { Section, SectionTitle } from '../ui/section'
 
 export function BlogPreview() {
-  const latestPosts = allBlogPosts.slice(0, 4)
+  const posts = allBlogPosts
+    .filter((post) => post.published)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 4)
 
   return (
     <Section id="blog-preview" className="flex flex-col">
       <SectionTitle>Blog</SectionTitle>
       <div className="grid grid-cols-1 sm:grid-cols-2">
-        {latestPosts.map((post) => (
+        {posts.map((post) => (
           <Link
             to="/blog/$slug"
             params={{ slug: post.slug }}
