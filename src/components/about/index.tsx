@@ -128,7 +128,7 @@ export function About() {
               </span>
             </li>
           ))}
-          {isLocation && (
+          {isLocation ? (
             <li
               className={`flex cursor-pointer items-start gap-2 rounded-sm px-1 py-0.5 transition-colors duration-150 ${
                 hoveredLabel === 'You' ? 'bg-primary/10' : 'hover:bg-muted/50'
@@ -143,6 +143,8 @@ export function About() {
                 That&apos;s where you are
               </span>
             </li>
+          ) : (
+            <li className="h-4.75" />
           )}
         </ul>
       </div>
