@@ -18,7 +18,7 @@ First of all, let's talk tech stack. I used to have all of my personal projects 
 
 At that time, everyone was talking about [Tanstack Start](https://tanstack.com/start/latest): the "DX God." But even their starter app had linting and TS issues, so I wasn't fully impressed. I stuck with only Tanstack Router for that project, and as weeks passed by working with the entire Tanstack Ecosystem (except Start), I was really enjoying it. The documentation is well written and extensive (even too much sometimes), DX actually made sense, and I could find all of the features I liked about Next.js (file base routing for example) while still having great performance (15s builds).
 
-So this led me to build this portfolio with Tanstack Start! I still love Vercel's UX, and wander around their dashboard to see how I should implement my stuff, but I think I'll leave Next.js behind for now.
+So this led me to give a second chance to Tanstack Start, and I built this portfolio with it! I still love Vercel's UX, and wander around their dashboard to see how I should implement my stuff, but I think I'll leave Next.js behind for now. And personal projects are made to experiment with stuff. So I just want to try out different tech and see what I like or not, purely on feelings.
 
 Then for the component library, I was really into [coss ui](https://coss.com/ui). I stumbled upon it randomly one day and loved it so much. My [Nathan's AI](https://chat.brodin.dev) project already had a UI heavily inspired by [cal.com](https://cal.com/): send button, message suggestions... So when I saw they had a [shadcn/ui](https://ui.shadcn.com/) library with that kind of style, it was perfect for what I needed.
 
@@ -36,13 +36,13 @@ Also, by a great coincidence, Chanhdai had very basic sound design, like a sound
 
 ## From good to WHOA
 
-Lastly, the thing that elevated my portfolio from a good portfolio to a **Whoa** portfolio are the dither shaders (from [Paper Shaders](https://shaders.paper.design/dithering)) that I have for page headings and section dividers. I had dither shaders in mind since the first day I saw them on [React Bits](https://reactbits.dev/backgrounds/dither), but couldn't find a good way to integrate them. So it ended up being a crossover between stealing the idea from zed.dev (open the dev console and see `data-paper-shader` on the headings) and [Fumadocs](https://www.fumadocs.dev/), which had them as well.
+Lastly, the thing that elevated my portfolio from a good portfolio to a **Whoa** portfolio are the dither shaders (from [Paper Shaders](https://shaders.paper.design/dithering)) that I have for page headings and section dividers. I had dither shaders in mind since the first day I saw them on [React Bits](https://reactbits.dev/backgrounds/dither), but couldn't find a good way to integrate them. So it ended up being a crossover between inspiration from the heading of zed.dev (open the dev console and see `data-paper-shader` on the headings) and [Fumadocs](https://www.fumadocs.dev/), which had them as well.
 
 ## To wrap things up
 
 So in conclusion, I would say this portfolio is a cross between Chanhdai and Zed, with a better stack.
 
-Go ahead, click around to hear the sound integration (it gets annoying after a while, be careful), check out the dither shaders on the headings, and [check out the source code here](https://github.com/NathanBrodin/Portfolio) if you want to steal from me like I stole from everyone (but at least leave a star on the repo pls).
+Go ahead, click around to hear the sound integration (it gets annoying after a while, be careful), check out the dither shaders on the headings, and [check out the source code here](https://github.com/NathanBrodin/Portfolio) if you want to steal from me like I did from everyone (but at least leave a star on the repo).
 
 - Blog Title reference: [This classic: "You Wouldn't Steal a Car"](https://www.youtube.com/watch?v=P-pYiWGSN8w)
 - My Portfolio: [brodin.dev](https://brodin.dev)
