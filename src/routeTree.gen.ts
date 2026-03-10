@@ -8,15 +8,18 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
+import type { createStart } from '@tanstack/react-start'
+
+import type { getRouter } from './router.tsx'
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as OgIndexRouteImport } from './routes/og/index'
-import { Route as BlogIndexRouteImport } from './routes/blog/index'
-import { Route as BlogRssRouteRouteImport } from './routes/blog/rss/route'
-import { Route as BlogOgIndexRouteImport } from './routes/blog/og/index'
 import { Route as BlogSlugIndexRouteImport } from './routes/blog/$slug/index'
 import { Route as BlogSlugOgIndexRouteImport } from './routes/blog/$slug/og/index'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as BlogOgIndexRouteImport } from './routes/blog/og/index'
+import { Route as BlogRssRouteRouteImport } from './routes/blog/rss/route'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as OgIndexRouteImport } from './routes/og/index'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -209,8 +212,6 @@ export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
 
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
 declare module '@tanstack/react-start' {
   interface Register {
     ssr: true

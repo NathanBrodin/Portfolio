@@ -1,6 +1,5 @@
 import { Fragment } from 'react'
 
-import { capture } from '@/lib/analytics'
 import type { Experience } from '@/lib/experiences'
 
 import { Diamond } from '../ui/diamond'
@@ -34,12 +33,6 @@ export function ExperienceItem({ experience }: { experience: Experience }) {
               href={experience.companyWebsite}
               target="_blank"
               rel="noopener"
-              onClick={() => {
-                capture('experience_company_clicked', {
-                  company: experience.companyName,
-                  url: experience.companyWebsite,
-                })
-              }}
             >
               {experience.companyName}
             </a>

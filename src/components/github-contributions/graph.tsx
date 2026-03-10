@@ -8,7 +8,6 @@ import {
   ContributionGraphTotalCount,
 } from '@/components/kibo-ui/contribution-graph'
 import { siteConfig } from '@/config/site'
-import { capture } from '@/lib/analytics'
 
 export function GitHubContributionGraph({
   contributions,
@@ -48,11 +47,6 @@ export function GitHubContributionGraph({
                 href={`https://github.com/${siteConfig.githubHandle}`}
                 target="_blank"
                 rel="noopener"
-                onClick={() => {
-                  capture('github_profile_clicked', {
-                    source: 'contribution_graph',
-                  })
-                }}
               >
                 GitHub
               </a>

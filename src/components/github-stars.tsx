@@ -7,7 +7,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { capture } from '@/lib/analytics'
 import { getStargazersCount as getServerStargazersCount } from '@/lib/functions'
 
 type GitHubStarsProps = {
@@ -41,9 +40,6 @@ export function GitHubStars({ repo }: GitHubStarsProps) {
                 href={`https://github.com/${repo}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => {
-                  capture('github_repo_clicked', { repo })
-                }}
               />
             }
           />

@@ -1,7 +1,6 @@
 import { RssIcon } from 'lucide-react'
 
 import { SOCIAL_LINKS } from '@/config/social-links'
-import { capture } from '@/lib/analytics'
 
 import { Diamond } from './ui/diamond'
 import { Icons } from './ui/icons'
@@ -22,12 +21,6 @@ export function Footer() {
             href="https://brodin.dev"
             target="_blank"
             rel="noopener"
-            onClick={() => {
-              capture('footer_link_clicked', {
-                label: 'Nathan Brodin',
-                url: 'https://brodin.dev',
-              })
-            }}
           >
             Nathan Brodin
           </a>
@@ -38,12 +31,6 @@ export function Footer() {
             href={twitterLink?.value}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => {
-              capture('footer_link_clicked', {
-                label: 'Twitter',
-                url: twitterLink?.value,
-              })
-            }}
           >
             <Icons.x className="size-4" />
             <span className="sr-only">Twitter</span>
@@ -54,12 +41,6 @@ export function Footer() {
             href={githubLink?.value}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => {
-              capture('footer_link_clicked', {
-                label: 'GitHub',
-                url: githubLink?.value,
-              })
-            }}
           >
             <Icons.github className="size-4" />
             <span className="sr-only">GitHub</span>
@@ -70,12 +51,6 @@ export function Footer() {
             href={linkedinLink?.value}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => {
-              capture('footer_link_clicked', {
-                label: 'Linkedin',
-                url: linkedinLink?.value,
-              })
-            }}
           >
             <Icons.linkedin className="size-4" />
             <span className="sr-only">LinkedIn</span>
@@ -84,12 +59,6 @@ export function Footer() {
           <a
             className="text-muted-foreground hover:text-foreground flex items-center transition-colors"
             href="/blog/rss"
-            onClick={() => {
-              capture('footer_link_clicked', {
-                label: 'RSS',
-                url: '/blog/rss',
-              })
-            }}
           >
             <RssIcon className="size-4" />
             <span className="sr-only">RSS Feed</span>

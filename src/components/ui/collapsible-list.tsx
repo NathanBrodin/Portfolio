@@ -7,7 +7,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible'
-import { capture } from '@/lib/analytics'
 
 export function CollapsibleList<T>({
   items,
@@ -57,9 +56,6 @@ export function CollapsibleList<T>({
               <Button
                 className="group/collapsible-trigger flex px-3"
                 variant="secondary"
-                onClick={() => {
-                  capture('list_toggled', { expanded: !open })
-                }}
               />
             }
           >

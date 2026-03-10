@@ -1,7 +1,6 @@
 import { ArrowUpRightIcon } from 'lucide-react'
 
 import type { LinkItem } from '@/config'
-import { capture } from '@/lib/analytics'
 import { cn } from '@/lib/utils'
 
 export function SocialLinkItem({
@@ -22,9 +21,6 @@ export function SocialLinkItem({
       href={value}
       target="_blank"
       rel="noopener"
-      onClick={() => {
-        capture('social_link_clicked', { label, url: value })
-      }}
     >
       <div className="relative size-12 shrink-0">
         <img

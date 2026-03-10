@@ -1,8 +1,8 @@
 ---
-title: "Over-Engineering for 8 Users: Building a Full Stack App with Django and React"
-description: "A deep dive into software architecture, surviving siloed APIs, and over-engineering for 8 users."
-date: "2026-03-06"
-tags: ["web-development", "software-architecture", "react", "django"]
+title: 'Over-Engineering for 8 Users: Building a Full Stack App with Django and React'
+description: 'A deep dive into software architecture, surviving siloed APIs, and over-engineering for 8 users.'
+date: '2026-03-06'
+tags: ['web-development', 'software-architecture', 'react', 'django']
 published: false
 ---
 
@@ -29,17 +29,17 @@ function PageHeader({
   className,
   render,
   ...props
-}: useRender.ComponentProps<"header">) {
+}: useRender.ComponentProps<'header'>) {
   const defaultProps = {
-    className: cn("grid auto-rows-min items-start gap-2", className),
-    "data-slot": "page-header",
-  };
+    className: cn('grid auto-rows-min items-start gap-2', className),
+    'data-slot': 'page-header',
+  }
 
   return useRender({
-    defaultTagName: "header",
-    props: mergeProps<"header">(defaultProps, props),
+    defaultTagName: 'header',
+    props: mergeProps<'header'>(defaultProps, props),
     render,
-  });
+  })
 }
 ```
 

@@ -10,7 +10,6 @@ import {
 } from '@/components/ui/collapsible'
 import { Tag } from '@/components/ui/tag'
 import { ProseMono } from '@/components/ui/typography'
-import { capture } from '@/lib/analytics'
 
 import { Button } from '../ui/button'
 
@@ -29,12 +28,7 @@ export function ProjectItem({
       defaultOpen={project.isExpanded}
       render={<div className={className} />}
     >
-      <CollapsibleTrigger
-        onClick={() => {
-          capture('project_toggled', { project: project.title })
-        }}
-        className="hover:bg-muted/50 flex w-full items-center gap-2 p-2 text-left"
-      >
+      <CollapsibleTrigger className="hover:bg-muted/50 flex w-full items-center gap-2 p-2 text-left">
         {project.logo ? (
           <img
             src={project.logo}
@@ -83,19 +77,7 @@ export function ProjectItem({
         <Button
           variant="ghost"
           size="icon"
-          render={
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener"
-              onClick={() => {
-                capture('project_link_clicked', {
-                  project: project.title,
-                  url: project.link,
-                })
-              }}
-            />
-          }
+          render={<a href={project.link} target="_blank" rel="noopener" />}
         >
           <LinkIcon className="size-4" />
           <span className="sr-only">Open Project Link</span>
