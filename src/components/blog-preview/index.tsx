@@ -30,6 +30,7 @@ export function BlogPreview() {
                 width={1200}
                 height={630}
                 fetchPriority="low"
+                loading="lazy"
                 alt={post.title}
               />
               <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 ring-inset dark:ring-white/10" />
