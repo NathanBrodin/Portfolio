@@ -60,6 +60,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           type: 'font/woff2',
           crossOrigin: 'anonymous',
         },
+        {
+          rel: 'preload',
+          href: '/fonts/iAWriterMonoV.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossOrigin: 'anonymous',
+        },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'manifest', href: '/manifest.json' },
         {

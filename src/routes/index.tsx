@@ -1,11 +1,8 @@
+import { lazy, Suspense } from 'react'
+
 import { createFileRoute } from '@tanstack/react-router'
 
 import { About } from '@/components/about'
-import { BlogPreview } from '@/components/blog-preview'
-import { Certifications } from '@/components/certifications'
-import { Experiences } from '@/components/experiences'
-import { GithubContributions } from '@/components/github-contributions'
-import { Projects } from '@/components/projects'
 import { SocialLinks } from '@/components/social-links'
 import { TechStack } from '@/components/tech-stack'
 import { Dither } from '@/components/ui/backgrounds/dither'
@@ -19,6 +16,36 @@ import { Section } from '@/components/ui/section'
 import { SectionDivider } from '@/components/ui/section-divider'
 import { siteConfig } from '@/config/site'
 import { getGithubContributions, getStargazersCount } from '@/lib/functions'
+
+const LazyGithubContributions = lazy(() =>
+  import('@/components/github-contributions').then((mod) => ({
+    default: mod.GithubContributions,
+  })),
+)
+
+const LazyExperiences = lazy(() =>
+  import('@/components/experiences').then((mod) => ({
+    default: mod.Experiences,
+  })),
+)
+
+const LazyProjects = lazy(() =>
+  import('@/components/projects').then((mod) => ({
+    default: mod.Projects,
+  })),
+)
+
+const LazyCertifications = lazy(() =>
+  import('@/components/certifications').then((mod) => ({
+    default: mod.Certifications,
+  })),
+)
+
+const LazyBlogPreview = lazy(() =>
+  import('@/components/blog-preview').then((mod) => ({
+    default: mod.BlogPreview,
+  })),
+)
 
 export const Route = createFileRoute('/')({
   component: App,
@@ -55,29 +82,39 @@ function App() {
       <SectionDivider />
       <SocialLinks />
       <SectionDivider />
-      <GithubContributions contributions={contributions} />
+      <Suspense>
+        <LazyGithubContributions contributions={contributions} />
+      </Suspense>
       <SectionDivider />
       <TechStack />
       <SectionDivider />
-      <Experiences />
+      <Suspense>
+        <LazyExperiences />
+      </Suspense>
       <SectionDivider />
       <Section className="h-25">
         <Dither offset={0.4} />
       </Section>
       <SectionDivider />
-      <Projects />
+      <Suspense>
+        <LazyProjects />
+      </Suspense>
       <SectionDivider />
       <Section className="h-25">
         <Dither offset={-0.3} />
       </Section>
       <SectionDivider />
-      <Certifications />
+      <Suspense>
+        <LazyCertifications />
+      </Suspense>
       <SectionDivider />
       <Section className="h-25">
         <Dither offset={-0.3} />
       </Section>
       <SectionDivider />
-      <BlogPreview />
+      <Suspense>
+        <LazyBlogPreview />
+      </Suspense>
       <SectionDivider />
       <Section className="h-16" />
     </Page>
