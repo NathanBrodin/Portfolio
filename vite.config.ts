@@ -19,8 +19,8 @@ const config = defineConfig({
   plugins: [
     contentCollections(),
     devtools(),
-    nitro(),
-    // this is the plugin that enables path aliases
+    // https://github.com/TanStack/router/issues/6562#issuecomment-3981102682
+    nitro({ preset: 'vercel', vercel: { entryFormat: 'node' } }),
     viteTsConfigPaths({
       projects: ['./tsconfig.json'],
     }),
