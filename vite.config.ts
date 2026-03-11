@@ -19,7 +19,6 @@ const config = defineConfig({
   plugins: [
     contentCollections(),
     devtools(),
-    // https://github.com/TanStack/router/issues/6562#issuecomment-3981102682
     nitro(),
     viteTsConfigPaths({
       projects: ['./tsconfig.json'],
@@ -28,7 +27,7 @@ const config = defineConfig({
     tanstackStart({
       prerender: {
         enabled: true,
-        crawlLinks: false,
+        crawlLinks: true,
       },
     }),
     viteReact({
