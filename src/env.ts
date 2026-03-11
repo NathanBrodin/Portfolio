@@ -6,10 +6,7 @@ export const env = createEnv({
     GITHUB_API_TOKEN: z.string().min(1),
   },
   clientPrefix: 'VITE_PUBLIC_',
-  client: {
-    VITE_PUBLIC_POSTHOG_KEY: z.string().optional(),
-    VITE_PUBLIC_POSTHOG_HOST: z.string().optional(),
-  },
+  client: {},
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
 })

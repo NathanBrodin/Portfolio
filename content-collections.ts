@@ -25,8 +25,7 @@ const experiences = defineCollection({
       .optional(),
     skills: z.array(z.string()).default([]),
     isExpanded: z.boolean().default(false),
-
-    // Ordering
+    content: z.string(),
     order: z.number(),
   }),
   transform: async (doc) => {
@@ -55,9 +54,8 @@ const projects = defineCollection({
     endDate: z.string().optional(),
     skills: z.array(z.string()).default([]),
     isExpanded: z.boolean().default(false),
-
-    // Ordering
     order: z.number(),
+    content: z.string(),
   }),
   transform: async (doc) => {
     const { markup } = await renderMarkdown(doc.content)
@@ -81,9 +79,8 @@ const certifications = defineCollection({
     credentialUrl: z.url(),
     issuerIconName: z.string().optional(),
     isExpanded: z.boolean().default(false),
-
-    // Ordering
     order: z.number(),
+    content: z.string(),
   }),
   transform: async (doc) => {
     const { markup } = await renderMarkdown(doc.content)
@@ -105,6 +102,7 @@ const blogPosts = defineCollection({
     date: z.string(), // ISO 8601: 'YYYY-MM-DD'
     tags: z.array(z.string()).default([]),
     published: z.boolean().default(true),
+    content: z.string(),
   }),
   transform: async (doc) => {
     const { markup } = await renderMarkdown(doc.content)
