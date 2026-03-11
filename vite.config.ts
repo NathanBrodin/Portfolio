@@ -20,7 +20,7 @@ const config = defineConfig({
     contentCollections(),
     devtools(),
     // https://github.com/TanStack/router/issues/6562#issuecomment-3981102682
-    nitro({ preset: 'vercel', vercel: { entryFormat: 'node' } }),
+    nitro(),
     viteTsConfigPaths({
       projects: ['./tsconfig.json'],
     }),
