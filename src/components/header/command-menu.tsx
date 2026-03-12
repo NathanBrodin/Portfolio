@@ -3,10 +3,7 @@ import {
   ArrowUpIcon,
   CornerDownLeftIcon,
   ExternalLinkIcon,
-  MonitorIcon,
-  MoonIcon,
   SearchIcon,
-  SunIcon,
 } from 'lucide-react'
 import { Fragment, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
@@ -40,28 +37,12 @@ export interface Group {
   items: MenuItem[]
 }
 
-export const THEME_ITEMS = [
-  {
-    label: 'Light',
-    value: 'light' as const,
-    icon: SunIcon,
-  },
-  {
-    label: 'Dark',
-    value: 'dark' as const,
-    icon: MoonIcon,
-  },
-  {
-    label: 'System',
-    value: 'system' as const,
-    icon: MonitorIcon,
-  },
-]
-
 export const groupedItems: Group[] = [
   { items: PORTFOLIO_LINKS, value: 'Portfolio' },
   { items: SOCIAL_LINKS, value: 'Social Links' },
 ]
+
+const SERVER_ENDPOINTS = ['/llms.txt', '/blog/rss']
 
 export function CommandMenu() {
   const isMac = useIsMac()
@@ -101,6 +82,9 @@ export function CommandMenu() {
                       const Icon = item.icon ?? Fragment
 
                       const isExternal = item.value.startsWith('http')
+                      const isServerEndpoint = SERVER_ENDPOINTS.includes(
+                        item.value,
+                      )
                       const externalLinkOptions = isExternal
                         ? { target: '_blank', rel: 'noopener noreferrer' }
                         : {}
@@ -110,13 +94,22 @@ export function CommandMenu() {
                           className="flex w-full items-center"
                           key={item.value}
                           render={
-                            <Link
-                              to={item.value}
-                              onClick={() => {
-                                setOpen(false)
-                              }}
-                              {...externalLinkOptions}
-                            />
+                            isServerEndpoint ? (
+                              <a
+                                href={item.value}
+                                onClick={() => {
+                                  setOpen(false)
+                                }}
+                              />
+                            ) : (
+                              <Link
+                                to={item.value}
+                                onClick={() => {
+                                  setOpen(false)
+                                }}
+                                {...externalLinkOptions}
+                              />
+                            )
                           }
                         >
                           {item.iconImage ? (

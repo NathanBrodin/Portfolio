@@ -2,6 +2,7 @@ import {
   BoxIcon,
   BriefcaseBusinessIcon,
   CircleCheckBigIcon,
+  FileTextIcon,
   LayersIcon,
   RssIcon,
   TextInitialIcon,
@@ -38,6 +39,16 @@ export const PORTFOLIO_LINKS: LinkItem[] = [
   {
     label: 'Blog',
     value: '/blog',
+    icon: RssIcon,
+  },
+  {
+    label: 'llms.txt',
+    value: '/llms.txt',
+    icon: FileTextIcon,
+  },
+  {
+    label: 'RSS Feed',
+    value: '/blog/rss',
     icon: RssIcon,
   },
 ]

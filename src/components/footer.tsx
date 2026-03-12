@@ -27,6 +27,13 @@ export function Footer() {
         </p>
         <div className="bg-background mx-auto flex items-center justify-center gap-3 border-x px-4">
           <a
+            className="text-muted-foreground hover:text-foreground flex items-center font-mono text-xs transition-colors"
+            href="/llms.txt"
+          >
+            llms.txt
+          </a>
+          <Separator orientation="vertical" />
+          <a
             className="text-muted-foreground hover:text-foreground flex items-center transition-colors"
             href={twitterLink?.value}
             target="_blank"
