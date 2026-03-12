@@ -17,6 +17,7 @@ export type ExperiencePosition = {
   }
   employmentType?: string
   description?: string
+  content: string
   icon?: ExperiencePositionIcon
   skills: string[]
   isExpanded: boolean
@@ -63,6 +64,7 @@ export function getExperiencesByCategory(
       },
       employmentType: exp.employmentType,
       description: exp.markup,
+      content: exp.content,
       icon: exp.icon,
       skills: exp.skills,
       isExpanded: exp.isExpanded,

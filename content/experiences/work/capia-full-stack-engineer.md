@@ -30,5 +30,5 @@ I'm building a production grade web application from scratch: frontend, backend 
 - Infrastructure with [Docker](https://www.docker.com/), deployed via [NGINX](https://nginx.org/) on [self-managed servers](https://www.hetzner.com/)
 - I've set up full end-to-end type safety with [drf-spectacular](https://drf-spectacular.readthedocs.io/en/latest/) (OpenAPI schema generation) and [Orval-generated](https://orval.dev/) TanStack Query hooks
 - Implemented [RBAC](https://en.wikipedia.org/wiki/Role-based_access_control), admin tooling, and resource management
-- Made the [CI](https://github.com/features/actions) covers linting, builds, schema generation, and automated testing (~700 backend tests, ~100 [Playwright](https://playwright.dev/) E2E tests) with caching and sharding
+- Made the [CI](https://github.com/features/actions) cover linting, builds, schema generation, and automated testing (~700 backend tests, ~100 [Playwright](https://playwright.dev/) E2E tests) with caching and sharding
 - Wrote full docs, DX tooling, DB seeding, and [Makefile commands](https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html) so the whole project sets up in a few commands

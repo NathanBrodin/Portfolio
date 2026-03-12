@@ -13,7 +13,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OgIndexRouteImport } from './routes/og/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
-import { Route as llmsLlmsFullDottxtRouteImport } from './routes/(llms)/llms-full[.]txt'
+import { Route as llmsLlmsDottxtRouteImport } from './routes/(llms)/llms[.]txt'
 import { Route as BlogRssRouteRouteImport } from './routes/blog/rss/route'
 import { Route as BlogOgIndexRouteImport } from './routes/blog/og/index'
 import { Route as BlogSlugIndexRouteImport } from './routes/blog/$slug/index'
@@ -39,9 +39,9 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const llmsLlmsFullDottxtRoute = llmsLlmsFullDottxtRouteImport.update({
-  id: '/(llms)/llms-full.txt',
-  path: '/llms-full.txt',
+const llmsLlmsDottxtRoute = llmsLlmsDottxtRouteImport.update({
+  id: '/(llms)/llms.txt',
+  path: '/llms.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogRssRouteRoute = BlogRssRouteRouteImport.update({
@@ -69,7 +69,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/rss': typeof BlogRssRouteRoute
-  '/llms-full.txt': typeof llmsLlmsFullDottxtRoute
+  '/llms.txt': typeof llmsLlmsDottxtRoute
   '/blog/': typeof BlogIndexRoute
   '/og/': typeof OgIndexRoute
   '/blog/$slug/': typeof BlogSlugIndexRoute
@@ -80,7 +80,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/rss': typeof BlogRssRouteRoute
-  '/llms-full.txt': typeof llmsLlmsFullDottxtRoute
+  '/llms.txt': typeof llmsLlmsDottxtRoute
   '/blog': typeof BlogIndexRoute
   '/og': typeof OgIndexRoute
   '/blog/$slug': typeof BlogSlugIndexRoute
@@ -92,7 +92,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/rss': typeof BlogRssRouteRoute
-  '/(llms)/llms-full.txt': typeof llmsLlmsFullDottxtRoute
+  '/(llms)/llms.txt': typeof llmsLlmsDottxtRoute
   '/blog/': typeof BlogIndexRoute
   '/og/': typeof OgIndexRoute
   '/blog/$slug/': typeof BlogSlugIndexRoute
@@ -105,7 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/sitemap.xml'
     | '/blog/rss'
-    | '/llms-full.txt'
+    | '/llms.txt'
     | '/blog/'
     | '/og/'
     | '/blog/$slug/'
@@ -116,7 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/sitemap.xml'
     | '/blog/rss'
-    | '/llms-full.txt'
+    | '/llms.txt'
     | '/blog'
     | '/og'
     | '/blog/$slug'
@@ -127,7 +127,7 @@ export interface FileRouteTypes {
     | '/'
     | '/sitemap.xml'
     | '/blog/rss'
-    | '/(llms)/llms-full.txt'
+    | '/(llms)/llms.txt'
     | '/blog/'
     | '/og/'
     | '/blog/$slug/'
@@ -139,7 +139,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   BlogRssRouteRoute: typeof BlogRssRouteRoute
-  llmsLlmsFullDottxtRoute: typeof llmsLlmsFullDottxtRoute
+  llmsLlmsDottxtRoute: typeof llmsLlmsDottxtRoute
   BlogIndexRoute: typeof BlogIndexRoute
   OgIndexRoute: typeof OgIndexRoute
   BlogSlugIndexRoute: typeof BlogSlugIndexRoute
@@ -177,11 +177,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(llms)/llms-full.txt': {
-      id: '/(llms)/llms-full.txt'
-      path: '/llms-full.txt'
-      fullPath: '/llms-full.txt'
-      preLoaderRoute: typeof llmsLlmsFullDottxtRouteImport
+    '/(llms)/llms.txt': {
+      id: '/(llms)/llms.txt'
+      path: '/llms.txt'
+      fullPath: '/llms.txt'
+      preLoaderRoute: typeof llmsLlmsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/rss': {
@@ -219,7 +219,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   BlogRssRouteRoute: BlogRssRouteRoute,
-  llmsLlmsFullDottxtRoute: llmsLlmsFullDottxtRoute,
+  llmsLlmsDottxtRoute: llmsLlmsDottxtRoute,
   BlogIndexRoute: BlogIndexRoute,
   OgIndexRoute: OgIndexRoute,
   BlogSlugIndexRoute: BlogSlugIndexRoute,
