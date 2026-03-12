@@ -3,8 +3,8 @@ companyId: education
 companyName: Education
 
 title: ESIEA Graduate School of Engineering
-startDate: '09.2020'
-endDate: '07.2025'
+startDate: '2020-09'
+endDate: '2025-07'
 employmentType: Master of Engineering
 icon: education
 skills:

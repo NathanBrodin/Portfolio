@@ -5,8 +5,8 @@ companyLogo: /company-logos/dnb.webp
 companyWebsite: https://dnb.no
 
 title: Frontend Engineer Intern
-startDate: '04.2024'
-endDate: '08.2024'
+startDate: '2024-04'
+endDate: '2024-08'
 employmentType: Internship
 icon: code
 skills:

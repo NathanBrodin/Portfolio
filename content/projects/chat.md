@@ -2,8 +2,8 @@
 id: chat
 title: Chat
 link: https://chat.brodin.dev
-startDate: '02.2025'
-endDate: '05.2025'
+startDate: '2025-02'
+endDate: '2025-05'
 skills:
   - TypeScript
   - React.js

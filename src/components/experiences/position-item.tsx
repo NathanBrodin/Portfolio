@@ -7,8 +7,13 @@ import {
   CollapsibleWithContext,
 } from '@/components/ui/collapsible'
 import { Separator } from '@/components/ui/separator'
+import {
+  calculateEmploymentDuration,
+  formatDate,
+  formatEmploymentDuration,
+} from '@/lib/date'
 import type { ExperiencePosition } from '@/lib/experiences'
-import { calculateEmploymentDuration, cn } from '@/lib/utils'
+import { cn } from '@/lib/utils'
 
 import { Markdown } from '../markdown'
 import { Tag } from '../ui/tag'
@@ -22,7 +27,6 @@ export function ExperiencePositionItem({
 }) {
   const { start, end } = position.employmentPeriod
   const isOngoing = !end
-  const duration = calculateEmploymentDuration(start, end)
 
   return (
     <CollapsibleWithContext
@@ -77,7 +81,7 @@ export function ExperiencePositionItem({
           <dl>
             <dt className="sr-only">Employment Period</dt>
             <dd className="flex items-center gap-0.5">
-              <span>{start}</span>
+              <time dateTime={start}>{formatDate(start)}</time>
               <span className="font-mono">—</span>
               {isOngoing ? (
                 <>
@@ -88,9 +92,15 @@ export function ExperiencePositionItem({
                   <span className="sr-only">Present</span>
                 </>
               ) : (
-                <span>{end}</span>
+                <time dateTime={end}>{formatDate(end)}</time>
               )}
-              <span className="hidden sm:flex">({duration})</span>
+              <span className="hidden sm:flex">
+                (
+                <time dateTime={formatEmploymentDuration(start, end)}>
+                  {calculateEmploymentDuration(start, end)}
+                </time>
+                )
+              </span>
             </dd>
           </dl>
         </div>

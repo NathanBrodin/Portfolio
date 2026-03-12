@@ -62,7 +62,7 @@ export function getExperiencesByCategory(
         end: exp.endDate,
       },
       employmentType: exp.employmentType,
-      description: exp.description,
+      description: exp.markup,
       icon: exp.icon,
       skills: exp.skills,
       isExpanded: exp.isExpanded,

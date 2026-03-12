@@ -3,8 +3,8 @@ companyId: education
 companyName: Education
 
 title: Centria University of Applied Sciences
-startDate: '09.2022'
-endDate: '12.2022'
+startDate: '2022-09'
+endDate: '2022-12'
 employmentType: Exchange Semester
 icon: education
 skills:

@@ -3,8 +3,8 @@ companyId: education
 companyName: Education
 
 title: Mid Sweden University
-startDate: '09.2024'
-endDate: '01.2025'
+startDate: '2024-09'
+endDate: '2025-01'
 employmentType: Exchange Semester
 icon: education
 skills:

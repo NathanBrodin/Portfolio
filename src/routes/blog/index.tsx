@@ -15,6 +15,7 @@ import { SectionDivider } from '@/components/ui/section-divider'
 import { Separator } from '@/components/ui/separator'
 import { Tag } from '@/components/ui/tag'
 import { siteConfig } from '@/config/site'
+import { formatFullDate } from '@/lib/date'
 import { cn } from '@/lib/utils'
 
 const publishedPosts = allBlogPosts
@@ -93,15 +94,6 @@ export const Route = createFileRoute('/blog/')({
   component: RouteComponent,
 })
 
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr)
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
-}
-
 function RouteComponent() {
   return (
     <Page>
@@ -138,7 +130,9 @@ function RouteComponent() {
                 <dl>
                   <dt className="sr-only">Published</dt>
                   <dd>
-                    <time dateTime={post.date}>{formatDate(post.date)}</time>
+                    <time dateTime={post.date}>
+                      {formatFullDate(post.date)}
+                    </time>
                   </dd>
                 </dl>
                 <Separator

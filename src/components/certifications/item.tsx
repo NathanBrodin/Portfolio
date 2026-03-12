@@ -2,6 +2,7 @@ import type { Certification } from 'content-collections'
 import { ArrowUpRightIcon, CircleCheckBigIcon } from 'lucide-react'
 
 import { Separator } from '@/components/ui/separator'
+import { formatDate } from '@/lib/date'
 import { cn } from '@/lib/utils'
 
 import { getIcon } from '../ui/icons'
@@ -55,7 +56,11 @@ export function CertificationItem({
 
           <dl>
             <dt className="sr-only">Issued on</dt>
-            <dd>{certification.issueDate}</dd>
+            <dd>
+              <time dateTime={certification.issueDate}>
+                {formatDate(certification.issueDate)}
+              </time>
+            </dd>
           </dl>
         </div>
       </div>

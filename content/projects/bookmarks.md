@@ -2,8 +2,8 @@
 id: bookmarks
 title: Bookmarks
 link: https://bookmarks.brodin.dev
-startDate: '10.2025'
-endDate: '10.2025'
+startDate: '2025-10'
+endDate: '2025-10'
 skills:
   - TypeScript
   - React.js

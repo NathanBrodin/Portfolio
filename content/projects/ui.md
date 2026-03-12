@@ -2,8 +2,8 @@
 id: ui
 title: UI
 link: https://ui.brodin.dev
-startDate: '07.2025'
-endDate: '09.2025'
+startDate: '2025-07'
+endDate: '2025-09'
 skills:
   - TypeScript
   - React.js

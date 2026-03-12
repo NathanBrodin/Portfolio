@@ -16,6 +16,7 @@ import { Section } from '@/components/ui/section'
 import { SectionDivider } from '@/components/ui/section-divider'
 import { Prose } from '@/components/ui/typography'
 import { siteConfig } from '@/config/site'
+import { formatFullDate } from '@/lib/date'
 
 function findPost(slug: string) {
   return allBlogPosts.find((post) => post.slug === slug && post.published)
@@ -102,15 +103,6 @@ export const Route = createFileRoute('/blog/$slug/')({
   notFoundComponent: () => <NotFound />,
 })
 
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr)
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
-}
-
 function RouteComponent() {
   const { post } = Route.useLoaderData()
 
@@ -130,7 +122,7 @@ function RouteComponent() {
             dateTime={post.date}
             className="text-muted-foreground font-mono text-sm"
           >
-            {formatDate(post.date)}
+            {formatFullDate(post.date)}
           </time>
         </PageDescription>
       </PageHeader>

@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/collapsible'
 import { Tag } from '@/components/ui/tag'
 import { ProseMono } from '@/components/ui/typography'
+import { formatDate } from '@/lib/date'
 
 import { Button } from '../ui/button'
 
@@ -54,7 +55,9 @@ export function ProjectItem({
           <dl className="text-muted-foreground text-sm">
             <dt className="sr-only">Period</dt>
             <dd className="flex items-center gap-0.5">
-              <span>{project.startDate}</span>
+              <time dateTime={project.startDate}>
+                {formatDate(project.startDate)}
+              </time>
               {!isSinglePeriod && (
                 <>
                   <span className="font-mono">—</span>
@@ -67,7 +70,9 @@ export function ProjectItem({
                       <span className="sr-only">Present</span>
                     </>
                   ) : (
-                    <span>{project.endDate}</span>
+                    <time dateTime={project.endDate}>
+                      {project.endDate && formatDate(project.endDate)}
+                    </time>
                   )}
                 </>
               )}

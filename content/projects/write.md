@@ -2,8 +2,8 @@
 id: write
 title: Write
 link: https://write.brodin.dev
-startDate: '03.2024'
-endDate: '03.2024'
+startDate: '2024-03'
+endDate: '2024-03'
 skills:
   - TypeScript
   - React.js

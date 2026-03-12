@@ -6,7 +6,7 @@ companyWebsite: https://capia.no/
 isCurrentEmployer: true
 
 title: Full Stack Engineer
-startDate: '08.2025'
+startDate: '2025-08'
 employmentType: Full-time
 icon: code
 skills:

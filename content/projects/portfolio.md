@@ -2,7 +2,7 @@
 id: portfolio
 title: Portfolio
 link: https://brodin.dev
-startDate: '02.2026'
+startDate: '2026-02'
 skills:
   - TypeScript
   - React.js

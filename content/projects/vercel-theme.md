@@ -2,8 +2,8 @@
 id: vercel-theme
 title: Zed Vercel Theme
 link: https://zed.dev/extensions?query=vercel
-startDate: '07.2025'
-endDate: '07.2025'
+startDate: '2025-07'
+endDate: '2025-07'
 skills:
   - Zed
   - VIM

@@ -30,13 +30,12 @@ const experiences = defineCollection({
   }),
   transform: async (doc) => {
     const { markup } = await renderMarkdown(doc.content)
-    const { content: _, ...rest } = doc
     return {
-      ...rest,
+      ...doc,
       category: doc._meta.path.startsWith('work/')
         ? ('work' as const)
         : ('education' as const),
-      description: markup,
+      markup,
     }
   },
 })
@@ -59,9 +58,8 @@ const projects = defineCollection({
   }),
   transform: async (doc) => {
     const { markup } = await renderMarkdown(doc.content)
-    const { content: _, ...rest } = doc
     return {
-      ...rest,
+      ...doc,
       markup,
     }
   },
@@ -84,9 +82,8 @@ const certifications = defineCollection({
   }),
   transform: async (doc) => {
     const { markup } = await renderMarkdown(doc.content)
-    const { content: _, ...rest } = doc
     return {
-      ...rest,
+      ...doc,
       markup,
     }
   },
@@ -106,9 +103,8 @@ const blogPosts = defineCollection({
   }),
   transform: async (doc) => {
     const { markup } = await renderMarkdown(doc.content)
-    const { content: _, ...rest } = doc
     return {
-      ...rest,
+      ...doc,
       slug: doc._meta.path,
       markup,
     }
