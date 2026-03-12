@@ -10,18 +10,24 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OgIndexRouteImport } from './routes/og/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
-import { Route as llmsLlmsDottxtRouteImport } from './routes/(llms)/llms[.]txt'
 import { Route as BlogRssRouteRouteImport } from './routes/blog/rss/route'
 import { Route as BlogOgIndexRouteImport } from './routes/blog/og/index'
 import { Route as BlogSlugIndexRouteImport } from './routes/blog/$slug/index'
+import { Route as BlogSlugPostDotmdRouteRouteImport } from './routes/blog/$slug/post[.md]/route'
 import { Route as BlogSlugOgIndexRouteImport } from './routes/blog/$slug/og/index'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
+  id: '/llms.txt',
+  path: '/llms.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -39,11 +45,6 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const llmsLlmsDottxtRoute = llmsLlmsDottxtRouteImport.update({
-  id: '/(llms)/llms.txt',
-  path: '/llms.txt',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const BlogRssRouteRoute = BlogRssRouteRouteImport.update({
   id: '/blog/rss',
   path: '/blog/rss',
@@ -59,6 +60,11 @@ const BlogSlugIndexRoute = BlogSlugIndexRouteImport.update({
   path: '/blog/$slug/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogSlugPostDotmdRouteRoute = BlogSlugPostDotmdRouteRouteImport.update({
+  id: '/blog/$slug/post.md',
+  path: '/blog/$slug/post.md',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogSlugOgIndexRoute = BlogSlugOgIndexRouteImport.update({
   id: '/blog/$slug/og/',
   path: '/blog/$slug/og/',
@@ -67,22 +73,24 @@ const BlogSlugOgIndexRoute = BlogSlugOgIndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/rss': typeof BlogRssRouteRoute
-  '/llms.txt': typeof llmsLlmsDottxtRoute
   '/blog/': typeof BlogIndexRoute
   '/og/': typeof OgIndexRoute
+  '/blog/$slug/post.md': typeof BlogSlugPostDotmdRouteRoute
   '/blog/$slug/': typeof BlogSlugIndexRoute
   '/blog/og/': typeof BlogOgIndexRoute
   '/blog/$slug/og/': typeof BlogSlugOgIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/rss': typeof BlogRssRouteRoute
-  '/llms.txt': typeof llmsLlmsDottxtRoute
   '/blog': typeof BlogIndexRoute
   '/og': typeof OgIndexRoute
+  '/blog/$slug/post.md': typeof BlogSlugPostDotmdRouteRoute
   '/blog/$slug': typeof BlogSlugIndexRoute
   '/blog/og': typeof BlogOgIndexRoute
   '/blog/$slug/og': typeof BlogSlugOgIndexRoute
@@ -90,11 +98,12 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/rss': typeof BlogRssRouteRoute
-  '/(llms)/llms.txt': typeof llmsLlmsDottxtRoute
   '/blog/': typeof BlogIndexRoute
   '/og/': typeof OgIndexRoute
+  '/blog/$slug/post.md': typeof BlogSlugPostDotmdRouteRoute
   '/blog/$slug/': typeof BlogSlugIndexRoute
   '/blog/og/': typeof BlogOgIndexRoute
   '/blog/$slug/og/': typeof BlogSlugOgIndexRoute
@@ -103,33 +112,36 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/llms.txt'
     | '/sitemap.xml'
     | '/blog/rss'
-    | '/llms.txt'
     | '/blog/'
     | '/og/'
+    | '/blog/$slug/post.md'
     | '/blog/$slug/'
     | '/blog/og/'
     | '/blog/$slug/og/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/llms.txt'
     | '/sitemap.xml'
     | '/blog/rss'
-    | '/llms.txt'
     | '/blog'
     | '/og'
+    | '/blog/$slug/post.md'
     | '/blog/$slug'
     | '/blog/og'
     | '/blog/$slug/og'
   id:
     | '__root__'
     | '/'
+    | '/llms.txt'
     | '/sitemap.xml'
     | '/blog/rss'
-    | '/(llms)/llms.txt'
     | '/blog/'
     | '/og/'
+    | '/blog/$slug/post.md'
     | '/blog/$slug/'
     | '/blog/og/'
     | '/blog/$slug/og/'
@@ -137,11 +149,12 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LlmsDottxtRoute: typeof LlmsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   BlogRssRouteRoute: typeof BlogRssRouteRoute
-  llmsLlmsDottxtRoute: typeof llmsLlmsDottxtRoute
   BlogIndexRoute: typeof BlogIndexRoute
   OgIndexRoute: typeof OgIndexRoute
+  BlogSlugPostDotmdRouteRoute: typeof BlogSlugPostDotmdRouteRoute
   BlogSlugIndexRoute: typeof BlogSlugIndexRoute
   BlogOgIndexRoute: typeof BlogOgIndexRoute
   BlogSlugOgIndexRoute: typeof BlogSlugOgIndexRoute
@@ -154,6 +167,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms.txt': {
+      id: '/llms.txt'
+      path: '/llms.txt'
+      fullPath: '/llms.txt'
+      preLoaderRoute: typeof LlmsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -177,13 +197,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(llms)/llms.txt': {
-      id: '/(llms)/llms.txt'
-      path: '/llms.txt'
-      fullPath: '/llms.txt'
-      preLoaderRoute: typeof llmsLlmsDottxtRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/blog/rss': {
       id: '/blog/rss'
       path: '/blog/rss'
@@ -205,6 +218,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/$slug/post.md': {
+      id: '/blog/$slug/post.md'
+      path: '/blog/$slug/post.md'
+      fullPath: '/blog/$slug/post.md'
+      preLoaderRoute: typeof BlogSlugPostDotmdRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/$slug/og/': {
       id: '/blog/$slug/og/'
       path: '/blog/$slug/og'
@@ -217,11 +237,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LlmsDottxtRoute: LlmsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   BlogRssRouteRoute: BlogRssRouteRoute,
-  llmsLlmsDottxtRoute: llmsLlmsDottxtRoute,
   BlogIndexRoute: BlogIndexRoute,
   OgIndexRoute: OgIndexRoute,
+  BlogSlugPostDotmdRouteRoute: BlogSlugPostDotmdRouteRoute,
   BlogSlugIndexRoute: BlogSlugIndexRoute,
   BlogOgIndexRoute: BlogOgIndexRoute,
   BlogSlugOgIndexRoute: BlogSlugOgIndexRoute,

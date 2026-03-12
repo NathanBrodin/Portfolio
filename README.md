@@ -27,10 +27,10 @@ My Portfolio is inspired by:
 
 - Light/Dark themes
 - SEO optimized ([JSON-LD schema](https://json-ld.org), sitemap, robots)
-- Analytics with [PostHog](https://posthog.com)
 - Markdown Content
 - Perfect Lighthouse Score
-- Blog Section for SEO purposes
+- Blog Section
+- llms.txt
 - Sound design
 
 ## Prerequisites

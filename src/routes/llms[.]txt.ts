@@ -140,14 +140,14 @@ function generateBlogMarkdown(): string {
 
   for (const post of posts) {
     lines.push(
-      `- [${post.title}](${siteConfig.url}/blog/${post.slug}) - ${post.description} | ${post.date}`,
+      `- [${post.title}](${siteConfig.url}/blog/${post.slug}/post.md) - ${post.description} | ${post.date}`,
     )
   }
 
   return lines.join('\n')
 }
 
-export const Route = createFileRoute('/(llms)/llms.txt')({
+export const Route = createFileRoute('/llms.txt')({
   server: {
     handlers: {
       GET: () => {

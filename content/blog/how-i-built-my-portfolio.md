@@ -28,7 +28,8 @@ I can also consider myself a proud Open Source Contributor after getting **two P
 
 Now I'm not going to lie and say I designed and coded everything myself. I took large parts of the code and page layout from the open-source portfolio by [Chanhdai](https://chanhdai.com) and design inspiration from [zed.dev](https://zed.dev), which I had previously attempted in unfinished side projects (https://trends.brodin.dev and https://ui.brodin.dev if they're still available).
 
-I still went a different way than Chanhdai for the code implementation. For example, I chose to store my content in markdown files using [Content Collections](https://www.content-collections.dev/). I did this specifically so I could easily serve my portfolio's content in plain text in the future, perfect for LLM consumption, which ties right back into the needs of my [Nathan's AI](https://chat.brodin.dev) project. I also used Base-ui (because of coss ui) for components, and generally went with a different style. So this was not just a simple copy/paste or a fork, there was still a lot of work involved.
+I still went a different way than Chanhdai for the code implementation. For example, I chose to store my content in markdown files using [Content Collections](https://www.content-collections.dev/). I did this specifically so I could easily serve my portfolio's content in plain text, perfect for LLM consumption, which ties right back into the needs of my [Nathan's AI](https://chat.brodin.dev) project.
+I also used Base-ui (because of coss ui) for components, and generally went with a different style. So this was not just a simple copy/paste or a fork, there was still a lot of work involved.
 
 For Zed, I took the [same fonts](https://zed.dev/attributions#fonts) for the headings and text, and the grid layout with the "diamonds" at the intersections. It really adds personality to my portfolio (not _my_ personality since I stole it, but **some** personality).
 
