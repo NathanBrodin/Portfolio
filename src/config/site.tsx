@@ -1,10 +1,10 @@
 import type { Graph } from 'schema-dts'
 
 export const siteConfig = {
-  title: 'Nathan Brodin | Portfolio',
+  title: 'Nathan Brodin | Frontend Engineer',
   name: 'Nathan Brodin',
   description:
-    'Frontend Engineer crafting modern web experiences. Explore my projects, skills, and journey in web development.',
+    'A frontend engineer with a passion for web development, design, and user experience.',
   url: 'https://brodin.dev',
   og: 'https://brodin.dev/og.png',
   authorUrl: 'https://brodin.dev',
@@ -31,13 +31,15 @@ export const siteJsonLd: Graph = {
       name: 'Nathan Brodin',
       url: 'https://brodin.dev',
       image: 'https://brodin.dev/og.png',
-      jobTitle: 'Software Engineer',
+      jobTitle: 'Frontend Engineer',
       description:
-        'Frontend Engineer crafting modern web experiences. Explore my projects, skills, and journey in web development.',
+        'A frontend engineer with a passion for web development, design, and user experience.',
       sameAs: [
         'https://github.com/NathanBrodin',
         'https://linkedin.com/in/nathan-brodin',
         'https://twitter.com/nathan_brodin',
+        'https://medium.com/@nathan-brodin',
+        'https://dev.to/nathan-brodin',
       ],
       knowsAbout: [
         'TypeScript',
@@ -65,10 +67,10 @@ export const siteJsonLd: Graph = {
     {
       '@type': 'WebSite',
       '@id': 'https://brodin.dev/#website',
-      name: 'Nathan Brodin | Portfolio',
+      name: 'Nathan Brodin | Frontend Engineer',
       url: 'https://brodin.dev',
       description:
-        'Frontend Engineer crafting modern web experiences. Explore my projects, skills, and journey in web development.',
+        'A frontend engineer with a passion for web development, design, and user experience.',
       inLanguage: 'en-US',
       author: {
         '@id': 'https://brodin.dev/#person',
@@ -77,10 +79,10 @@ export const siteJsonLd: Graph = {
     {
       '@type': 'ProfilePage',
       '@id': 'https://brodin.dev/#profilepage',
-      name: 'Nathan Brodin | Portfolio',
+      name: 'Nathan Brodin | Frontend Engineer',
       url: 'https://brodin.dev',
       description:
-        'Frontend Engineer crafting modern web experiences. Explore my projects, skills, and journey in web development.',
+        'A frontend engineer with a passion for web development, design, and user experience.',
       inLanguage: 'en-US',
       isPartOf: {
         '@id': 'https://brodin.dev/#website',

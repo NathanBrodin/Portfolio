@@ -44,11 +44,8 @@ function App() {
   return (
     <Page>
       <PageHeader>
-        <PageTitle>Nathan Brodin</PageTitle>
-        <PageDescription>
-          A software engineer with a passion for web development, design, and
-          user experience.
-        </PageDescription>
+        <PageTitle>{siteConfig.name}</PageTitle>
+        <PageDescription>{siteConfig.description}</PageDescription>
       </PageHeader>
       <SectionDivider />
       <About />
