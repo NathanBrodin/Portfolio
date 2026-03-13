@@ -106,7 +106,7 @@ export function ExperiencePositionItem({
         </div>
       </CollapsibleTrigger>
 
-      <CollapsibleContent>
+      <CollapsibleContent hiddenUntilFound>
         {position.description && (
           <ProseMono className="pt-2 pl-9">
             <Markdown content={position.description} />

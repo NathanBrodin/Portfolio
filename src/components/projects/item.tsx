@@ -94,7 +94,7 @@ export function ProjectItem({
           <CollapsibleChevronsIcon />
         </div>
       </CollapsibleTrigger>
-      <CollapsibleContent>
+      <CollapsibleContent hiddenUntilFound>
         <div className="space-y-2 px-4 py-2">
           {project.markup && (
             <ProseMono>
