@@ -101,7 +101,9 @@ export function CommandMenu() {
                     {(item: MenuItem) => {
                       const Icon = item.icon ?? Fragment
 
-                      const isExternal = item.value.startsWith('http')
+                      const isExternal =
+                        item.value.startsWith('http') ||
+                        item.value.startsWith('mailto')
                       const isOther = OTHERS_LINKS.some(
                         (link) => link.value === item.value,
                       )
