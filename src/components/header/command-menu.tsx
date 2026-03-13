@@ -1,9 +1,13 @@
+import { allBlogPosts } from 'content-collections'
 import {
   ArrowDownIcon,
   ArrowUpIcon,
   CornerDownLeftIcon,
   ExternalLinkIcon,
+  FileTextIcon,
+  RssIcon,
   SearchIcon,
+  TextAlignStartIcon,
 } from 'lucide-react'
 import { Fragment, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
@@ -32,17 +36,15 @@ import { PORTFOLIO_LINKS } from '@/config/portfolio-links'
 import { SOCIAL_LINKS } from '@/config/social-links'
 import { useIsMac } from '@/hooks/use-is-mac'
 
+const OTHERS_LINKS = [
+  { label: 'llms.txt', value: '/llms.txt', icon: FileTextIcon },
+  { label: 'RSS Feed', value: '/blog/rss', icon: RssIcon },
+]
+
 export interface Group {
   value: string
   items: MenuItem[]
 }
-
-export const groupedItems: Group[] = [
-  { items: PORTFOLIO_LINKS, value: 'Portfolio' },
-  { items: SOCIAL_LINKS, value: 'Social Links' },
-]
-
-const SERVER_ENDPOINTS = ['/llms.txt', '/blog/rss']
 
 export function CommandMenu() {
   const isMac = useIsMac()
@@ -55,6 +57,24 @@ export function CommandMenu() {
       return !open
     })
   })
+
+  const posts = allBlogPosts
+    .filter((post) => post.published)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+  const groupedItems: Group[] = [
+    { items: PORTFOLIO_LINKS, value: 'Menu' },
+    { items: SOCIAL_LINKS, value: 'Social Links' },
+    {
+      value: 'Blog posts',
+      items: posts.map((post) => ({
+        value: `blog/${post.slug}`,
+        label: post.title,
+        icon: TextAlignStartIcon,
+      })),
+    },
+    { items: OTHERS_LINKS, value: 'Others' },
+  ]
 
   return (
     <CommandDialog onOpenChange={setOpen} open={open}>
@@ -82,8 +102,8 @@ export function CommandMenu() {
                       const Icon = item.icon ?? Fragment
 
                       const isExternal = item.value.startsWith('http')
-                      const isServerEndpoint = SERVER_ENDPOINTS.includes(
-                        item.value,
+                      const isOther = OTHERS_LINKS.some(
+                        (link) => link.value === item.value,
                       )
                       const externalLinkOptions = isExternal
                         ? { target: '_blank', rel: 'noopener noreferrer' }
@@ -94,7 +114,7 @@ export function CommandMenu() {
                           className="flex w-full items-center"
                           key={item.value}
                           render={
-                            isServerEndpoint ? (
+                            isOther || isExternal ? (
                               <a
                                 href={item.value}
                                 onClick={() => {
