@@ -1,4 +1,6 @@
-import type { Activity } from '@/components/kibo-ui/contribution-graph'
+import { siteConfig } from '@/config/site'
+
+import type { Activity } from './contribution-graph'
 import {
   ContributionGraph,
   ContributionGraphBlock,
@@ -6,8 +8,7 @@ import {
   ContributionGraphFooter,
   ContributionGraphLegend,
   ContributionGraphTotalCount,
-} from '@/components/kibo-ui/contribution-graph'
-import { siteConfig } from '@/config/site'
+} from './contribution-graph'
 
 export function GitHubContributionGraph({
   contributions,
