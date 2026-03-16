@@ -1,7 +1,7 @@
 ---
 title: 'Between Tradition and Modernity: Building a Full Stack App with Django and React'
 description: 'A deep dive into bridging the gap between isolated APIs, enforcing type safety across the stack, and finding the value in building robust architecture for small user bases.'
-date: '2026-03-06'
+date: '2026-03-16'
 tags: ['web-development', 'software-architecture', 'react', 'django']
 published: true
 ---
