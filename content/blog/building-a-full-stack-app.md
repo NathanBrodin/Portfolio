@@ -1,9 +1,9 @@
 ---
-title: 'Over-Engineering for 8 Users: Building a Full Stack App with Django and React'
-description: 'A deep dive into software architecture, surviving siloed APIs, and over-engineering for 8 users.'
+title: 'Between Tradition and Modernity: Building a Full Stack App with Django and React'
+description: 'A deep dive into bridging the gap between isolated APIs, enforcing type safety across the stack, and finding the value in building robust architecture for small user bases.'
 date: '2026-03-06'
 tags: ['web-development', 'software-architecture', 'react', 'django']
-published: false
+published: true
 ---
 
 If I tell you I made a full-stack app with [React 19](https://react.dev/blog/2024/12/05/react-19) (+ [Compiler](https://react.dev/learn/react-compiler)), [Tanstack Router](https://tanstack.com/router/latest), [tailwindcss](https://tailwindcss.com/), [Base UI](https://base-ui.com/), and [pnpm](https://pnpm.io/), you would probably expect a [Hono backend](https://hono.dev/) or Tanstack Start [Server functions](https://tanstack.com/start/latest/docs/framework/react/guide/server-functions) with [Drizzle](https://orm.drizzle.team/), or at least some cutting-edge TS solution. Well, I've built a [Django](https://www.django-rest-framework.org/) backend, and it works pretty well!
@@ -25,21 +25,20 @@ If you’ve read my previous blog posts, you know I’ve fallen in love with the
 For the UI, I finally got to use TailwindCSS and shadcn/ui at work, freeing myself from plain CSS and the horrors of `styled-components`. I really love the pattern of creating headless, reusable components:
 
 ```tsx
-function PageHeader({
+export function PageHeader({
   className,
-  render,
+  children,
   ...props
-}: useRender.ComponentProps<'header'>) {
-  const defaultProps = {
-    className: cn('grid auto-rows-min items-start gap-2', className),
-    'data-slot': 'page-header',
-  }
-
-  return useRender({
-    defaultTagName: 'header',
-    props: mergeProps<'header'>(defaultProps, props),
-    render,
-  })
+}: React.HTMLAttributes<HTMLElement>) {
+  return (
+    <header
+      className={cn('grid auto-rows-min items-start gap-2', className)}
+      data-slot="page-header"
+      {...props}
+    >
+      {children}
+    </header>
+  )
 }
 ```
 
@@ -64,7 +63,7 @@ I then pass the key to the backend during API calls, where Django verifies it us
 
 I love type safety. Coming from TypeScript, and having played with C and Dart in school, dynamic typing gives me hives.
 
-Out of the box, Python feels a bit like the Wild West. It doesn't have a modern, standardized package manager (storing dependencies in a `.txt` file? Really?), and linting/formatting are entirely optional. I think Python is way too "free" to be considered a serious production-grade language _unless_ developers put in a massive amount of work to enforce a strong Developer Experience. Code quality can turn down so fast.
+Out of the box, Python can feel a bit like the Wild West compared to a strict TypeScript setup. With standard dependencies often living in a simple `.txt` file and optional linting, it gives you a lot of freedom. But that freedom means you have to actively put in the work to enforce a strong Developer Experience, otherwise code quality can slip quickly.
 
 However, having a Python backend and a TypeScript frontend doesn't mean you have to sacrifice end-to-end type safety. Here is how I forced the two to play nice:
 
@@ -74,7 +73,7 @@ However, having a Python backend and a TypeScript frontend doesn't mean you have
 - [Orval](https://orval.dev/) generates TS types and query hooks from those specs.
 - The frontend consumes the [Tanstack Query Hooks](https://tanstack.com/query/latest) to fetch data.
 
-TADAAA: End-to-end type safety. You know exactly what the endpoint needs, and exactly what it's going to return. When you make a change in a model, you get the feedback all the way to your frontend component.
+And just like that... End-to-end type safety. You know exactly what the endpoint needs, and exactly what it's going to return. When you make a change in a model, you get the feedback all the way to your frontend component.
 
 ---
 
@@ -82,7 +81,7 @@ TADAAA: End-to-end type safety. You know exactly what the endpoint needs, and ex
 
 After the users, my top priority is the developers (and code quality). Because of the strict constraints, I got to tear my hair out properly learning Docker. Setting up multiple services, ensuring they communicate, and managing deployment across two environments in a server full of existing apps was a massive headache.
 
-But once it works, Docker is magic. Starting the project takes one command. You get fully reproducible environments between local dev and production. So you can now use the "But it works on my machine" excuse more confidently.
+But once it works, Docker is magic. Starting the project takes one command. You get fully reproducible environments between local dev and production. So now you can use the "But it works on my machine" excuse more confidently.
 
 I also spent some time creating [Make commands](https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html). These docker commands are quite long and spending 5 minutes going up in the terminal history trying to find the specific command to run the tests can be quite annoying. So I wrote a `Makefile`. Now, a simple `make codegen` spins up the OpenAPI specs and frontend types:
 
@@ -101,7 +100,6 @@ schema: ## Generate Open API schema from Backend
 .PHONY: types
 types: ## Generate TypeScript types from Open API schema
     $(COMPOSE) exec frontend pnpm run generate-types
-
 ```
 
 I also built a strong CI pipeline. It handles backend linting and formatting, 800+ Django tests, migration checks, OpenAPI schema validation, Frontend Schema Types validation, frontend type checking, frontend build, and finally Playwright tests.
@@ -112,7 +110,7 @@ It sounds heavy, but it only takes ~7 minutes if _all_ steps run, thanks to aggr
 
 ## Boring isn't bad
 
-Django is not the most exciting tech, but it’s great for a CRUD app exposing APIs to Postgres. Yes, I still have to handle some complexity: RBAC, Redis caching, querying a Clickhouse DB with raw SQL, and WebSockets for live notifications, but I’m not building for millions of users.
+Django is not the most exciting tech, but it’s great for a CRUD app exposing APIs to Postgres. Yes, I still have to handle some complexity: RBAC, Redis caching, querying a Clickhouse DB with raw SQL, and WebSockets for live notifications, but I’m not building a crazy app for millions of users.
 
 Django is simple, predictable, and LLMs understand it perfectly. Need a cache layer? Two lines of code. It’s fast enough that running 800+ tests (including DB writes) takes 10 seconds.
 I still have some issues with it, like if there is an internal server error, an endpoint will return some html by default. So you need a custom middleware to formalize all kind of errors. And of course it has to be in Python. But overall: it just works.
@@ -125,13 +123,11 @@ Now, for a bit of a reality check regarding backend development.
 
 In theory, backend engineers handle incredibly important tasks: complex business logic, rock-solid security, scaling, and database optimizations. This should put to shame frontend engineers like me who spend 2 hours changing the color of a button.
 
-But in my 1.75 years of corporate experience (to be precise), my reality has been quite different. I have mostly encountered messy codebases, weak RBAC, major security oversights, and poor performance. More importantly, I’ve encountered the "Silo Problem."
+But in my early years of corporate experience, my reality has been quite different. I have only encountered codebases where basic software engineering practices, like mandatory PR reviews, automated testing, or even basic linting, just weren't part of the culture. When teams don't put effort into those foundations, you quickly end up with messy codebases, weak RBAC, major security oversights, and poor performance. More importantly, I’ve encountered the "Silo Problem."
 
-Here’s a story from a past internship. We were building an AI Chat app. I was the solo frontend dev, working with a UI/UX designer, a handful of backend devs, and some AI engineers.
+Here’s a story from a past job. We were building an AI Chat app. I was the solo frontend dev, working with a UI/UX designer, a handful of backend devs, and some AI engineers.
 
-The backend team held their planning meetings in a total bubble. Without consulting the frontend or the UI designer, they started designing the database relations and endpoints. The result made zero sense for the actual application. They added data models for UI themes using variables that didn't match the design system. They created endpoints that required six workarounds just to render a basic view.
-
-I was forced to rewrite the frontend logic three separate times to match OpenAPI specs that essentially waterfalled down from a meeting I wasn't invited to. (And naturally, the documented specs never actually matched the live responses).
+The backend team held their planning meetings without bringing in the frontend or the UI designer. Because of that disconnect, the database relations and endpoints were designed without the actual client application in mind. The result made zero sense for the UI: they added data models for UI themes using variables that completely clashed with the design system, and created endpoints structured in a way that required six separate workarounds on the client just to render a basic view. I ended up rewriting the frontend logic three separate times to keep up with OpenAPI specs that were handed down after the fact (which, naturally, rarely matched the live responses). It was an incredibly frustrating but valuable lesson in why API design has to be collaborative.
 
 If you are a backend developer adding a new endpoint, you aren't doing it for fun. You are doing it because the user interface needs that data. Designing APIs without consulting the client-side needs is like building a steering wheel without checking what kind of car it's going into.
 
@@ -145,10 +141,10 @@ And I did get that freedom. I spent hours refining small details, optimizing DX,
 
 But as the months go by, a weird realization has set in:
 
-1. We have no users. And looking at the company's history, this app will likely never have more than 8 concurrent users.
-2. Projects here seem to die early.
-3. There is no incentives to build great things. It's the business world, the goal is to [sell things](https://youtu.be/9UspZGJ-TrI?si=lR9YbOBx5J-1_hMs).
+1. This app will likely never have more than 8 concurrent users.
+2. Looking at the history of internal projects over the years, business priorities pivot fast, and apps are often abandoned or replaced after a year or two.
+3. The business goal is to ship a solution, not to build a lasting technical marvel.
 
-What’s the point of writing perfectly scalable code if it will never need to scale? I’ve put so much effort into the craftsmanship of this app, but in the B2B corporate world, the reward isn't praise for great architecture or great UX. I only received Jira tickets, not even a "good job".
+What’s the point of writing perfectly scalable code if it might just gather dust in 12 months? I’ve put so much effort into the craftsmanship of this app, but I'm learning that in the corporate world, you don't always get a 'good job' for a flawless architecture. You just get the next Jira ticket.
 
 But in life, you make compromises. I’m getting paid to learn, I built an architecture I’m proud of, and at the end of the day, I get to log off and live in one of the [most beautiful places in the world](https://www.google.com/search?q=tromsø+aurora&tbm=isch).
