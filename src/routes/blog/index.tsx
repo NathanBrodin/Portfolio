@@ -123,7 +123,7 @@ function RouteComponent() {
               <RssIcon />
             </div>
             <div className="flex-1 space-y-1">
-              <h3 className="mb-1 line-clamp-2 leading-snug font-medium text-balance">
+              <h3 className="mb-1 line-clamp-1 leading-snug font-medium text-balance">
                 {post.title}
               </h3>
               <div className="text-muted-foreground flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
@@ -140,7 +140,7 @@ function RouteComponent() {
                   orientation="vertical"
                 />
                 {post.tags.length > 0 && (
-                  <div className="flex flex-nowrap gap-1.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                  <div className="flex max-w-66 flex-nowrap gap-1.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     {post.tags.map((tag) => (
                       <div key={tag} className="shrink-0">
                         <Tag>{tag}</Tag>

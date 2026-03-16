@@ -1,8 +1,7 @@
 import { allBlogPosts } from 'content-collections'
-import { ArrowLeftIcon } from 'lucide-react'
 import type { BlogPosting, WithContext } from 'schema-dts'
 
-import { createFileRoute, Link, notFound } from '@tanstack/react-router'
+import { createFileRoute, notFound } from '@tanstack/react-router'
 
 import { Markdown } from '@/components/markdown'
 import { NotFound } from '@/components/not-found'
@@ -13,10 +12,15 @@ import {
   PageTitle,
 } from '@/components/ui/page'
 import { Section } from '@/components/ui/section'
-import { SectionDivider } from '@/components/ui/section-divider'
+import {
+  SectionDivider,
+  SubSectionDivider,
+} from '@/components/ui/section-divider'
 import { Prose } from '@/components/ui/typography'
 import { siteConfig } from '@/config/site'
 import { formatFullDate } from '@/lib/date'
+
+import { BlogNavigation } from './-components/blog-navigation'
 
 function findPost(slug: string) {
   return allBlogPosts.find((post) => post.slug === slug && post.published)
@@ -108,14 +112,9 @@ function RouteComponent() {
 
   return (
     <Page>
+      <BlogNavigation />
+      <SubSectionDivider />
       <PageHeader>
-        <Link
-          to="/blog"
-          className="text-muted-foreground hover:text-foreground absolute top-4 left-4 inline-flex items-center gap-1.5 font-mono text-sm transition-colors"
-        >
-          <ArrowLeftIcon className="size-3.5" />
-          Back to blog
-        </Link>
         <PageTitle>{post.title}</PageTitle>
         <PageDescription>
           <time

@@ -10,6 +10,7 @@ import {
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { NotFound } from '@/components/not-found'
+import { AnchoredToastProvider, ToastProvider } from '@/components/ui/toast'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { siteConfig, siteJsonLd } from '@/config/site'
 import { AnalyticsProvider } from '@/providers/analytics'
@@ -99,10 +100,14 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body>
         <AnalyticsProvider>
           <ThemeProvider disableTransitionOnChange>
-            <TooltipProvider>
-              <Header />
-              {children}
-              <Footer />
+            <TooltipProvider delay={0}>
+              <ToastProvider>
+                <AnchoredToastProvider>
+                  <Header />
+                  {children}
+                  <Footer />
+                </AnchoredToastProvider>
+              </ToastProvider>
             </TooltipProvider>
           </ThemeProvider>
         </AnalyticsProvider>
