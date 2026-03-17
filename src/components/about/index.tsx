@@ -110,6 +110,7 @@ export function About() {
           {LEGEND_ITEMS.map((item) => (
             <li
               key={item.label}
+              tabIndex={0}
               className={`flex cursor-pointer items-start gap-2 rounded-sm px-1 py-0.5 transition-colors duration-150 ${
                 hoveredLabel === item.label
                   ? 'bg-primary/10'
@@ -117,6 +118,8 @@ export function About() {
               }`}
               onMouseEnter={() => setHoveredLabel(item.label)}
               onMouseLeave={() => setHoveredLabel(null)}
+              onFocus={() => setHoveredLabel(item.label)}
+              onBlur={() => setHoveredLabel(null)}
             >
               <LegendDot animated={item.animated} />
               <span className="text-muted-foreground text-xs leading-tight">
@@ -130,11 +133,14 @@ export function About() {
           ))}
           {isLocation ? (
             <li
+              tabIndex={0}
               className={`flex cursor-pointer items-start gap-2 rounded-sm px-1 py-0.5 transition-colors duration-150 ${
                 hoveredLabel === 'You' ? 'bg-primary/10' : 'hover:bg-muted/50'
               }`}
               onMouseEnter={() => setHoveredLabel('You')}
               onMouseLeave={() => setHoveredLabel(null)}
+              onFocus={() => setHoveredLabel('You')}
+              onBlur={() => setHoveredLabel(null)}
             >
               <LegendDot animated />
               <span className="text-muted-foreground text-xs leading-tight">
