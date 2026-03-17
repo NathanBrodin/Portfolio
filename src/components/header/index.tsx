@@ -1,27 +1,45 @@
-import { Link } from '@tanstack/react-router'
+import { allBlogPosts } from 'content-collections'
+import { TextAlignStartIcon } from 'lucide-react'
 
 import { GitHubStars } from '@/components/github-stars'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { Diamond } from '@/components/ui/diamond'
+import type { MenuItem } from '@/config'
+import { OTHER_LINKS, PORTFOLIO_LINKS } from '@/config/portfolio-links'
+import { SOCIAL_LINKS } from '@/config/social-links'
 
-import { Button } from '../ui/button'
-import { Diamond } from '../ui/diamond'
-import { Logo } from '../ui/icons/logo'
 import { CommandMenu } from './command-menu'
 import { Nav } from './nav'
 
+export interface Group {
+  value: string
+  items: MenuItem[]
+}
+
 export function Header() {
+  const posts = allBlogPosts
+    .filter((post) => post.published)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+  const items: Group[] = [
+    { items: PORTFOLIO_LINKS, value: 'Menu' },
+    { items: SOCIAL_LINKS, value: 'Social Links' },
+    {
+      value: 'Blog posts',
+      items: posts.map((post) => ({
+        value: `/blog/${post.slug}`,
+        label: post.title,
+        icon: TextAlignStartIcon,
+      })),
+    },
+    { items: OTHER_LINKS, value: 'Others' },
+  ]
   return (
     <header className="bg-background item-center sticky top-0 z-50 flex justify-center border-b px-4">
       <div className="item-center relative flex w-full max-w-5xl justify-between border-x px-4 py-1">
-        <div className="flex items-center">
-          <Button size="icon" variant="ghost" render={<Link to="/" />}>
-            <span className="sr-only">Go to home</span>
-            <Logo className="text-primary mr-2" size={16} />
-          </Button>
-          <Nav />
-        </div>
+        <Nav items={items} />
         <div className="relative flex items-center *:first:mr-4">
-          <CommandMenu />
+          <CommandMenu items={items} />
           <GitHubStars repo="NathanBrodin/Portfolio" />
           <span className="bg-border mx-2 flex h-4 w-px" />
           <ThemeToggle />
