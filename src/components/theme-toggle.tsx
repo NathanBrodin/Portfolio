@@ -22,7 +22,7 @@ export function ThemeToggle() {
     playSound(switch005Sound)
   }, [resolvedTheme, setTheme])
 
-  useHotkeys('d', switchTheme)
+  useHotkeys('t', switchTheme)
 
   return (
     <Tooltip>
@@ -36,11 +36,9 @@ export function ThemeToggle() {
         <span className="sr-only">Theme Toggle</span>
       </TooltipTrigger>
 
-      <TooltipContent className="">
-        <div className="flex items-center gap-2">
-          Toggle Mode
-          <Kbd>D</Kbd>
-        </div>
+      <TooltipContent>
+        Toggle Theme
+        <Kbd className="ml-1">T</Kbd>
       </TooltipContent>
     </Tooltip>
   )
