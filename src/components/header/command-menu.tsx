@@ -146,7 +146,9 @@ export function CommandMenu() {
                           ) : (
                             <Icon className="mr-2 h-4 w-4 opacity-80" />
                           )}
-                          <span className="flex-1">{item.label}</span>
+                          <span className="line-clamp-1 flex-1">
+                            {item.label}
+                          </span>
                           {isExternal && (
                             <ExternalLinkIcon className="size-4" />
                           )}
