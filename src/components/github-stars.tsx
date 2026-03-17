@@ -55,7 +55,7 @@ export function GitHubStars({ repo }: GitHubStarsProps) {
           {count}
         </span>
       </TooltipTrigger>
-      <TooltipContent className="font-sans">{count} stars</TooltipContent>
+      <TooltipContent className="py-0.5">{count} Github stars</TooltipContent>
     </Tooltip>
   )
 }
