@@ -3,7 +3,7 @@ import { Fragment, useState } from 'react'
 
 import { Link } from '@tanstack/react-router'
 
-import { Group } from '.'
+import type { Group } from '.'
 import { Button } from '../ui/button'
 import { Logo } from '../ui/icons/logo'
 import { Sheet, SheetPopup, SheetTrigger } from '../ui/sheet'

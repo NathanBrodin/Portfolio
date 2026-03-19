@@ -31,7 +31,7 @@ import type { MenuItem } from '@/config'
 import { OTHER_LINKS } from '@/config/portfolio-links'
 import { useIsMac } from '@/hooks/use-is-mac'
 
-import { Group } from '.'
+import type { Group } from '.'
 
 export function CommandMenu({ items }: { items: Group[] }) {
   const isMac = useIsMac()
