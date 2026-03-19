@@ -88,6 +88,7 @@ export function CommandMenu({ items }: { items: Group[] }) {
                             isOther || isExternal ? (
                               <a
                                 href={item.value}
+                                {...externalLinkOptions}
                                 onClick={() => {
                                   setOpen(false)
                                 }}
