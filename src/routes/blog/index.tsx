@@ -123,8 +123,8 @@ function RouteComponent() {
               >
                 <RssIcon />
               </div>
-              <div className="flex-1 space-y-1">
-                <h3 className="mb-1 line-clamp-1 leading-snug font-medium text-balance">
+              <div className="min-w-0 flex-1 space-y-1">
+                <h3 className="mb-1 line-clamp-2 leading-snug font-medium">
                   {post.title}
                 </h3>
                 <div className="text-muted-foreground flex flex-nowrap items-center gap-x-2 gap-y-1 text-sm">
