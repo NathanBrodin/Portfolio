@@ -1,4 +1,4 @@
-import { toString } from 'hast-util-to-string'
+import rehypeShiki from '@shikijs/rehype'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeRaw from 'rehype-raw'
 import rehypeSlug from 'rehype-slug'
@@ -7,7 +7,6 @@ import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
-import { visit } from 'unist-util-visit'
 
 export type MarkdownHeading = {
   id: string
@@ -28,6 +27,14 @@ export async function renderMarkdown(content: string): Promise<MarkdownResult> {
     .use(remarkGfm) // Support GitHub Flavored Markdown
     .use(remarkRehype, { allowDangerousHtml: true }) // Convert to HTML AST
     .use(rehypeRaw) // Process raw HTML in markdown
+    .use(rehypeShiki, {
+      themes: {
+        light: 'min-light',
+        dark: 'min-dark',
+      },
+      defaultColor: false,
+      fallbackLanguage: 'text',
+    })
     .use(rehypeSlug) // Add IDs to headings
     .use(rehypeAutolinkHeadings, {
       behavior: 'wrap',

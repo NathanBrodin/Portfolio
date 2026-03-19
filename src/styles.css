@@ -289,3 +289,28 @@
     @slot;
   }
 }
+
+/* Shiki syntax highlighting — dual-theme via CSS variables */
+.shiki {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  padding: 1rem 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.shiki span {
+  color: var(--shiki-light);
+}
+
+.dark .shiki {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}
+
+.dark .shiki span {
+  color: var(--shiki-dark);
+}

@@ -127,7 +127,7 @@ function RouteComponent() {
       </PageHeader>
       <SectionDivider />
       <Section className="bg-background p-4">
-        <article>
+        <article className="w-full min-w-0">
           <Prose>
             <Markdown content={post.markup} />
           </Prose>
