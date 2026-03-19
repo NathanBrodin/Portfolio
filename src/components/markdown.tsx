@@ -17,7 +17,7 @@ const options: HTMLReactParserOptions = {
     if (domNode instanceof Element) {
       if (domNode.name === 'a') {
         const href = domNode.attribs.href
-        if (href.startsWith('/')) {
+        if (href.startsWith('/') || href.startsWith('#')) {
           return (
             <Link to={href}>
               {domToReact(domNode.children as DOMNode[], options)}
