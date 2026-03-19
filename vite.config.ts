@@ -1,17 +1,18 @@
 import { fileURLToPath, URL } from 'node:url'
 
 import contentCollections from '@content-collections/vite'
+import babel from '@rolldown/plugin-babel'
 import tailwindcss from '@tailwindcss/vite'
-import viteReact from '@vitejs/plugin-react'
+import viteReact, { reactCompilerPreset } from '@vitejs/plugin-react'
 import { nitro } from 'nitro/vite'
 import { defineConfig } from 'vite'
-import viteTsConfigPaths from 'vite-tsconfig-paths'
 
 import { devtools } from '@tanstack/devtools-vite'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 
 const config = defineConfig({
   resolve: {
+    tsconfigPaths: true,
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
@@ -20,9 +21,6 @@ const config = defineConfig({
     contentCollections(),
     devtools(),
     nitro(),
-    viteTsConfigPaths({
-      projects: ['./tsconfig.json'],
-    }),
     tailwindcss(),
     tanstackStart({
       prerender: {
@@ -30,10 +28,9 @@ const config = defineConfig({
         crawlLinks: true,
       },
     }),
-    viteReact({
-      babel: {
-        plugins: ['babel-plugin-react-compiler'],
-      },
+    viteReact(),
+    babel({
+      presets: [reactCompilerPreset()],
     }),
   ],
   optimizeDeps: {

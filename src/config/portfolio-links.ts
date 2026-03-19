@@ -1,8 +1,5 @@
-import { URLSearchParams } from 'url'
-
 import {
   BoxIcon,
-  BrainIcon,
   BriefcaseBusinessIcon,
   CircleCheckBigIcon,
   FileTextIcon,

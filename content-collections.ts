@@ -112,5 +112,5 @@ const blogPosts = defineCollection({
 })
 
 export default defineConfig({
-  collections: [experiences, projects, certifications, blogPosts],
+  content: [experiences, projects, certifications, blogPosts],
 })
