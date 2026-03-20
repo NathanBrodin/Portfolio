@@ -29,7 +29,7 @@
     "format": "vp fmt .",
     "check": "vp fmt . && oxlint --fix",
     "knip": "knip --config knip.json",
-    "lh": "pnpm dlx unlighthouse --no-cache",
+    "lh": "vpx unlighthouse --no-cache",
     "generate:og": "tsx scripts/generate-og.ts",
     "generate:map": "tsx scripts/generate-map-data.ts",
     "generate:resume": "tsx scripts/generate-resume.ts",

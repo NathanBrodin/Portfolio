@@ -288,6 +288,20 @@ type ContributionGraphBlockProps = HTMLAttributes<SVGRectElement> & {
   weekIndex: number
 }
 
+export const ContributionGraphGlowFilter = () => (
+  <defs>
+    <filter id="block-glow" x="-50%" y="-50%" width="200%" height="200%">
+      {/* Blur the source graphic to create the halo */}
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
+      <feMerge>
+        {/* Layer the blur behind the original sharp shape */}
+        <feMergeNode in="coloredBlur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+)
+
 export const ContributionGraphBlock = ({
   activity,
   dayIndex,
@@ -303,19 +317,22 @@ export const ContributionGraphBlock = ({
     )
   }
 
+  const glowFilter = activity.level >= 1 ? 'url(#block-glow)' : undefined
+
   return (
     <rect
       className={cn(
         'data-[level="0"]:fill-muted',
-        'data-[level="1"]:fill-muted-foreground/20',
-        'data-[level="2"]:fill-muted-foreground/40',
-        'data-[level="3"]:fill-muted-foreground/60',
-        'data-[level="4"]:fill-muted-foreground/80',
+        'data-[level="1"]:fill-primary/30 dark:data-[level="1"]:fill-primary/10',
+        'data-[level="2"]:fill-primary/50 dark:data-[level="2"]:fill-primary/30',
+        'data-[level="3"]:fill-primary/80 dark:data-[level="3"]:fill-primary/60',
+        'data-[level="4"]:fill-primary dark:data-[level="4"]:fill-primary',
         className,
       )}
       data-count={activity.count}
       data-date={activity.date}
       data-level={activity.level}
+      filter={glowFilter}
       height={blockSize}
       rx={blockRadius}
       ry={blockRadius}
@@ -378,6 +395,7 @@ export const ContributionGraphCalendar = ({
             )
           }),
         )}
+        <ContributionGraphGlowFilter />
       </svg>
     </div>
   )
@@ -439,10 +457,10 @@ export const ContributionGraphLegend = ({
               className={cn(
                 'stroke-border stroke-[1px]',
                 'data-[level="0"]:fill-muted',
-                'data-[level="1"]:fill-muted-foreground/20',
-                'data-[level="2"]:fill-muted-foreground/40',
-                'data-[level="3"]:fill-muted-foreground/60',
-                'data-[level="4"]:fill-muted-foreground/80',
+                'data-[level="1"]:fill-primary/30 dark:data-[level="1"]:fill-primary/10',
+                'data-[level="2"]:fill-primary/50 dark:data-[level="2"]:fill-primary/30',
+                'data-[level="3"]:fill-primary/80 dark:data-[level="3"]:fill-primary/60',
+                'data-[level="4"]:fill-primary dark:data-[level="4"]:fill-primary',
               )}
               data-level={level}
               height={blockSize}
