@@ -4,10 +4,13 @@ My Portfolio, to showcase my work as a Frontend Engineer.
 
 → Check out the live site: [brodin.dev](https://brodin.dev)
 
+![OG Image](public/og.png)
+
 ## Overview
 
 ### Stack
 
+- [Vite+](https://viteplus.dev/)
 - [React 19 + React Compiler](https://react.dev)
 - [Tanstack Start](https://tanstack.com/start/latest)
 - [Tailwind CSS](https://tailwindcss.com)
@@ -31,48 +34,65 @@ My Portfolio is inspired by:
 - Perfect Lighthouse Score
 - Blog Section
 - llms.txt
+- RSS Feed
 - Sound design
+- OG Image generation
 
-## Prerequisites
+## Getting Started
 
-Ensure you have the following installed:
+### Prerequisites
 
-- [Node.js](https://nodejs.org/)
-- [pnpm](https://pnpm.io/)
-- [Git](https://git-scm.com/)
+Ensure you have the following installed on your local machine:
 
-## Setup
+- **[Node.js](https://nodejs.org/)**
+- **[Git](https://git-scm.com/)**
+- **[pnpm](https://pnpm.io/)**
+- **[Vite+ CLI](https://viteplus.dev/guide/)** _(Note: Vite+ acts as the package manager for this project)._
 
-### 1. Clone the repository
+### Installation & Setup
+
+**1. Clone the repository**
 
 ```bash
-git clone https://github.com/NathanBrodin/Portfolio.git
+git clone [https://github.com/NathanBrodin/Portfolio.git](https://github.com/NathanBrodin/Portfolio.git)
 cd Portfolio
 ```
 
-### 2. Install dependencies
+**2. Set up environment variables**
+To fetch your GitHub data, you'll need a personal access token.
 
-```bash
-pnpm i
+- Go to [GitHub Token Settings](https://github.com/settings/tokens/new) and generate a new token with the `public_repo` scope.
+- Create an `.env.local` file in the root of the project and add your token:
+
+```env
+GITHUB_API_TOKEN="YOUR_TOKEN"
 ```
 
-### 3. Configure Environment Variables
-
-Create a `.env.local` file based on `.env.example`:
+**3. Install dependencies and run**
 
 ```bash
-cp .env.example .env.local
+vp install
+vp dev
 ```
 
-Then, update the necessary environment variables inside `.env.local`.
+> The application should now be running at [http://localhost:3000](http://localhost:3000)
 
-### 4. Run the development server
+---
 
-```bash
-pnpm dev
-```
+## Development Commands
 
-The application should now be available at http://localhost:3000
+This project uses **Vite+**, a unified toolchain built on top of Vite, Rolldown, Vitest, tsdown, Oxlint, Oxfmt, and Vite Task.
+
+| Command           | Action                                        |
+| :---------------- | :-------------------------------------------- |
+| `vp dev`          | Starts the local development server           |
+| `vp build`        | Builds the application for production         |
+| `vp preview`      | Previews the local production build           |
+| `vp check`        | Runs format, lint, and TypeScript type checks |
+| `vp test`         | Runs the test suite                           |
+| `vp add <pkg>`    | Adds a package to dependencies                |
+| `vp remove <pkg>` | Removes a package from dependencies           |
+| `vp update`       | Updates packages to their latest versions     |
 
 ## Star History
 
