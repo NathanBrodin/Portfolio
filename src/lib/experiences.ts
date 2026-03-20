@@ -1,5 +1,3 @@
-import type { Experience as ContentExperience } from 'content-collections'
-
 import { allExperiences } from 'content-collections'
 
 export type ExperiencePositionIcon = 'code' | 'design' | 'education' | 'business' | 'idea'
@@ -30,7 +28,7 @@ export type Experience = {
 
 type ExperienceCategory = 'work' | 'education'
 
-export function getExperiencesByCategory(category: ExperienceCategory): Experience[] {
+function getExperiencesByCategory(category: ExperienceCategory): Experience[] {
   const filtered = allExperiences
     .filter((exp) => exp.category === category)
     .sort((a, b) => a.order - b.order)
@@ -75,5 +73,3 @@ export function getWorkExperiences(): Experience[] {
 export function getEducation(): Experience[] {
   return getExperiencesByCategory('education')
 }
-
-export type { ContentExperience }

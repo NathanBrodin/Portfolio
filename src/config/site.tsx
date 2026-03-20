@@ -90,5 +90,3 @@ export const siteJsonLd: Graph = {
     },
   ],
 }
-
-export type SiteConfig = typeof siteConfig

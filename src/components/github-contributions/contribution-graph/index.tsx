@@ -31,7 +31,7 @@ export type Activity = {
 
 type Week = Array<Activity | undefined>
 
-export type Labels = {
+type Labels = {
   months?: string[]
   weekdays?: string[]
   totalCount?: string
@@ -204,7 +204,7 @@ const getMonthLabels = (
     })
 }
 
-export type ContributionGraphProps = HTMLAttributes<HTMLDivElement> & {
+type ContributionGraphProps = HTMLAttributes<HTMLDivElement> & {
   data: Activity[]
   blockMargin?: number
   blockRadius?: number
@@ -282,7 +282,7 @@ export const ContributionGraph = ({
   )
 }
 
-export type ContributionGraphBlockProps = HTMLAttributes<SVGRectElement> & {
+type ContributionGraphBlockProps = HTMLAttributes<SVGRectElement> & {
   activity: Activity
   dayIndex: number
   weekIndex: number
@@ -327,7 +327,7 @@ export const ContributionGraphBlock = ({
   )
 }
 
-export type ContributionGraphCalendarProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
+type ContributionGraphCalendarProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
   hideMonthLabels?: boolean
   className?: string
   children: (props: { activity: Activity; dayIndex: number; weekIndex: number }) => ReactNode
@@ -383,13 +383,13 @@ export const ContributionGraphCalendar = ({
   )
 }
 
-export type ContributionGraphFooterProps = HTMLAttributes<HTMLDivElement>
+type ContributionGraphFooterProps = HTMLAttributes<HTMLDivElement>
 
 export const ContributionGraphFooter = ({ className, ...props }: ContributionGraphFooterProps) => (
   <div className={cn('flex flex-wrap gap-1 whitespace-nowrap sm:gap-x-4', className)} {...props} />
 )
 
-export type ContributionGraphTotalCountProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
+type ContributionGraphTotalCountProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
   children?: (props: { totalCount: number; year: number }) => ReactNode
 }
 
@@ -415,7 +415,7 @@ export const ContributionGraphTotalCount = ({
   )
 }
 
-export type ContributionGraphLegendProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
+type ContributionGraphLegendProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
   children?: (props: { level: number }) => ReactNode
 }
 
