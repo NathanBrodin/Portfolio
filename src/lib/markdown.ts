@@ -8,13 +8,13 @@ import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
 
-export type MarkdownHeading = {
+type MarkdownHeading = {
   id: string
   text: string
   level: number
 }
 
-export type MarkdownResult = {
+type MarkdownResult = {
   markup: string
   headings: Array<MarkdownHeading>
 }

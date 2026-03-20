@@ -1,5 +1,7 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
   "tags": ["-lintignore"],
-  "ignore": ["src/components/ui/**"]
+  "ignore": ["src/components/ui/**"],
+  "entry": ["content-collections.ts"],
+  "project": ["src/**/*.{ts,tsx,css,md,js,jsx}"]
 }
