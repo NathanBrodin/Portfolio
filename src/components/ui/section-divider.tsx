@@ -3,10 +3,7 @@ import { cn } from '@/lib/utils'
 import { Lines } from './backgrounds/lines'
 import { Diamond } from './diamond'
 
-export function SectionDivider({
-  className,
-  ...props
-}: React.ComponentProps<'section'>) {
+export function SectionDivider({ className, ...props }: React.ComponentProps<'section'>) {
   return (
     <section
       className={cn(
@@ -25,10 +22,7 @@ export function SectionDivider({
   )
 }
 
-export function SubSectionDivider({
-  className,
-  ...props
-}: React.ComponentProps<'section'>) {
+export function SubSectionDivider({ className, ...props }: React.ComponentProps<'section'>) {
   return (
     <section
       className={cn(

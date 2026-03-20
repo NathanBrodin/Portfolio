@@ -14,11 +14,6 @@ const ComboboxContext = React.createContext<{
   multiple: false,
 })
 
-type ComboboxRootProps<
-  TItemValue,
-  TMultiple extends boolean | undefined,
-> = Parameters<typeof ComboboxPrimitive.Root<TItemValue, TMultiple>>[0]
-
 function Combobox<TItemValue, TMultiple extends boolean | undefined = false>(
   props: ComboboxPrimitive.Root.Props<TItemValue, TMultiple>,
 ) {
@@ -66,7 +61,7 @@ function ComboboxInput({
 
   // single mode
   return (
-    <div className="text-foreground relative w-full not-has-[>*.w-full]:w-fit has-disabled:opacity-64">
+    <div className="relative w-full text-foreground not-has-[>*.w-full]:w-fit has-disabled:opacity-64">
       {startAddon && (
         <div
           aria-hidden="true"
@@ -86,13 +81,7 @@ function ComboboxInput({
           className,
         )}
         data-slot="combobox-input"
-        render={
-          <Input
-            className="has-disabled:opacity-100"
-            nativeInput
-            size={sizeValue}
-          />
-        }
+        render={<Input className="has-disabled:opacity-100" nativeInput size={sizeValue} />}
         {...props}
       />
       {showTrigger && (
@@ -119,17 +108,8 @@ function ComboboxInput({
   )
 }
 
-function ComboboxTrigger({
-  className,
-  ...props
-}: ComboboxPrimitive.Trigger.Props) {
-  return (
-    <ComboboxPrimitive.Trigger
-      className={className}
-      data-slot="combobox-trigger"
-      {...props}
-    />
-  )
+function ComboboxTrigger({ className, ...props }: ComboboxPrimitive.Trigger.Props) {
+  return <ComboboxPrimitive.Trigger className={className} data-slot="combobox-trigger" {...props} />
 }
 
 function ComboboxPopup({
@@ -157,7 +137,7 @@ function ComboboxPopup({
           )}
         >
           <ComboboxPrimitive.Popup
-            className="text-foreground flex max-h-[min(var(--available-height),23rem)] w-(--anchor-width) max-w-(--available-width) flex-col"
+            className="flex max-h-[min(var(--available-height),23rem)] w-(--anchor-width) max-w-(--available-width) flex-col text-foreground"
             data-slot="combobox-popup"
             {...props}
           >
@@ -169,11 +149,7 @@ function ComboboxPopup({
   )
 }
 
-function ComboboxItem({
-  className,
-  children,
-  ...props
-}: ComboboxPrimitive.Item.Props) {
+function ComboboxItem({ className, children, ...props }: ComboboxPrimitive.Item.Props) {
   return (
     <ComboboxPrimitive.Item
       className={cn(
@@ -203,10 +179,7 @@ function ComboboxItem({
   )
 }
 
-function ComboboxSeparator({
-  className,
-  ...props
-}: ComboboxPrimitive.Separator.Props) {
+function ComboboxSeparator({ className, ...props }: ComboboxPrimitive.Separator.Props) {
   return (
     <ComboboxPrimitive.Separator
       className={cn('bg-border mx-2 my-1 h-px last:hidden', className)}
@@ -226,16 +199,10 @@ function ComboboxGroup({ className, ...props }: ComboboxPrimitive.Group.Props) {
   )
 }
 
-function ComboboxGroupLabel({
-  className,
-  ...props
-}: ComboboxPrimitive.GroupLabel.Props) {
+function ComboboxGroupLabel({ className, ...props }: ComboboxPrimitive.GroupLabel.Props) {
   return (
     <ComboboxPrimitive.GroupLabel
-      className={cn(
-        'text-muted-foreground px-2 py-1.5 text-xs font-medium',
-        className,
-      )}
+      className={cn('text-muted-foreground px-2 py-1.5 text-xs font-medium', className)}
       data-slot="combobox-group-label"
       {...props}
     />
@@ -256,13 +223,7 @@ function ComboboxEmpty({ className, ...props }: ComboboxPrimitive.Empty.Props) {
 }
 
 function ComboboxRow({ className, ...props }: ComboboxPrimitive.Row.Props) {
-  return (
-    <ComboboxPrimitive.Row
-      className={className}
-      data-slot="combobox-row"
-      {...props}
-    />
-  )
+  return <ComboboxPrimitive.Row className={className} data-slot="combobox-row" {...props} />
 }
 
 function ComboboxValue({ ...props }: ComboboxPrimitive.Value.Props) {
@@ -285,19 +246,10 @@ function ComboboxList({ className, ...props }: ComboboxPrimitive.List.Props) {
 }
 
 function ComboboxClear({ className, ...props }: ComboboxPrimitive.Clear.Props) {
-  return (
-    <ComboboxPrimitive.Clear
-      className={className}
-      data-slot="combobox-clear"
-      {...props}
-    />
-  )
+  return <ComboboxPrimitive.Clear className={className} data-slot="combobox-clear" {...props} />
 }
 
-function ComboboxStatus({
-  className,
-  ...props
-}: ComboboxPrimitive.Status.Props) {
+function ComboboxStatus({ className, ...props }: ComboboxPrimitive.Status.Props) {
   return (
     <ComboboxPrimitive.Status
       className={cn(
@@ -311,9 +263,7 @@ function ComboboxStatus({
 }
 
 function ComboboxCollection(props: ComboboxPrimitive.Collection.Props) {
-  return (
-    <ComboboxPrimitive.Collection data-slot="combobox-collection" {...props} />
-  )
+  return <ComboboxPrimitive.Collection data-slot="combobox-collection" {...props} />
 }
 
 function ComboboxChips({
@@ -338,8 +288,7 @@ function ComboboxChips({
         const isChip = target.closest('[data-slot="combobox-chip"]')
         if (isChip || !chipsRef?.current) return
         e.preventDefault()
-        const input: HTMLInputElement | null =
-          chipsRef.current.querySelector('input')
+        const input: HTMLInputElement | null = chipsRef.current.querySelector('input')
         if (input && !chipsRef.current.querySelector('input:focus')) {
           input.focus()
         }
@@ -364,7 +313,7 @@ function ComboboxChips({
 function ComboboxChip({ children, ...props }: ComboboxPrimitive.Chip.Props) {
   return (
     <ComboboxPrimitive.Chip
-      className="bg-accent text-accent-foreground flex items-center rounded-[calc(var(--radius-md)-1px)] ps-2 text-sm font-medium outline-none sm:text-xs/(--text-xs--line-height) [&_svg:not([class*='size-'])]:size-4 sm:[&_svg:not([class*='size-'])]:size-3.5"
+      className="flex items-center rounded-[calc(var(--radius-md)-1px)] bg-accent ps-2 text-sm font-medium text-accent-foreground outline-none sm:text-xs/(--text-xs--line-height) [&_svg:not([class*='size-'])]:size-4 sm:[&_svg:not([class*='size-'])]:size-3.5"
       data-slot="combobox-chip"
       {...props}
     >

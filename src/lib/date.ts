@@ -76,10 +76,7 @@ function monthsDiff(start: Date, end: Date): number {
  * calculateEmploymentDuration('01.2023', '06.2023'); // Returns '6 months'
  * calculateEmploymentDuration('01.2020', '01.2022'); // Returns '2 years'
  */
-export function calculateEmploymentDuration(
-  start: string,
-  end?: string,
-): string {
+export function calculateEmploymentDuration(start: string, end?: string): string {
   const startDate = parseDate(start)
   const endDate = end ? parseDate(end) : new Date()
   const totalMonths = monthsDiff(startDate, endDate)

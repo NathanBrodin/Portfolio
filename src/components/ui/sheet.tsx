@@ -48,6 +48,7 @@ function SheetViewport({
         side === 'left' && 'flex justify-start',
         side === 'right' && 'flex justify-end',
         variant === 'inset' && 'sm:p-4',
+        className,
       )}
       data-slot="sheet-viewport"
       {...props}
@@ -143,20 +144,14 @@ function SheetFooter({
 function SheetTitle({ className, ...props }: SheetPrimitive.Title.Props) {
   return (
     <SheetPrimitive.Title
-      className={cn(
-        'font-heading text-xl leading-none font-semibold',
-        className,
-      )}
+      className={cn('font-heading text-xl leading-none font-semibold', className)}
       data-slot="sheet-title"
       {...props}
     />
   )
 }
 
-function SheetDescription({
-  className,
-  ...props
-}: SheetPrimitive.Description.Props) {
+function SheetDescription({ className, ...props }: SheetPrimitive.Description.Props) {
   return (
     <SheetPrimitive.Description
       className={cn('text-muted-foreground text-sm', className)}

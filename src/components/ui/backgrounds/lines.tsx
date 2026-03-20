@@ -20,14 +20,7 @@ export function Lines({ className, ...props }: React.ComponentProps<'svg'>) {
           patternUnits="userSpaceOnUse"
           patternTransform="rotate(45)"
         >
-          <line
-            x1="0"
-            y1="0"
-            x2="0"
-            y2="4"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          ></line>
+          <line x1="0" y1="0" x2="0" y2="4" stroke="currentColor" strokeWidth="1.5"></line>
         </pattern>
       </defs>
       <rect width="100%" height="100%" fill={`url(#${patternId})`}></rect>

@@ -1,6 +1,5 @@
-import { allBlogPosts } from 'content-collections'
-
 import { createFileRoute } from '@tanstack/react-router'
+import { allBlogPosts } from 'content-collections'
 
 import { siteConfig } from '@/config/site'
 
@@ -10,18 +9,14 @@ export const Route = createFileRoute('/sitemap.xml')({
       GET: () => {
         const publishedPosts = allBlogPosts
           .filter((post) => post.published)
-          .sort(
-            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-          )
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
         const formatDate = (date: string | Date) => {
           return new Date(date).toISOString().split('T')[0]
         }
 
         const latestPostDate =
-          publishedPosts.length > 0
-            ? formatDate(publishedPosts[0].date)
-            : undefined
+          publishedPosts.length > 0 ? formatDate(publishedPosts[0].date) : undefined
 
         const staticPages = [
           {
@@ -68,8 +63,7 @@ ${allPages
         return new Response(sitemap, {
           headers: {
             'Content-Type': 'application/xml; charset=utf-8',
-            'Cache-Control':
-              'public, s-maxage=86400, stale-while-revalidate=604800',
+            'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=604800',
           },
         })
       },

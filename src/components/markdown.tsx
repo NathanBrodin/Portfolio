@@ -1,11 +1,10 @@
+import { Link } from '@tanstack/react-router'
 import parse, {
   domToReact,
   Element,
   type DOMNode,
   type HTMLReactParserOptions,
 } from 'html-react-parser'
-
-import { Link } from '@tanstack/react-router'
 
 type MarkdownProps = {
   content: string
@@ -18,11 +17,7 @@ const options: HTMLReactParserOptions = {
       if (domNode.name === 'a') {
         const href = domNode.attribs.href
         if (href.startsWith('/') || href.startsWith('#')) {
-          return (
-            <Link to={href}>
-              {domToReact(domNode.children as DOMNode[], options)}
-            </Link>
-          )
+          return <Link to={href}>{domToReact(domNode.children as DOMNode[], options)}</Link>
         }
 
         return (
@@ -33,13 +28,7 @@ const options: HTMLReactParserOptions = {
       }
 
       if (domNode.name === 'img') {
-        return (
-          <img
-            {...domNode.attribs}
-            loading="lazy"
-            className="rounded-lg shadow-md"
-          />
-        )
+        return <img {...domNode.attribs} loading="lazy" className="rounded-lg shadow-md" />
       }
     }
   },

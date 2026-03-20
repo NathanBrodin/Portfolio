@@ -20,9 +20,7 @@ const experiences = defineCollection({
     startDate: z.string(),
     endDate: z.string().optional(),
     employmentType: z.string().optional(),
-    icon: z
-      .enum(['code', 'design', 'education', 'business', 'idea'])
-      .optional(),
+    icon: z.enum(['code', 'design', 'education', 'business', 'idea']).optional(),
     skills: z.array(z.string()).default([]),
     isExpanded: z.boolean().default(false),
     content: z.string(),
@@ -32,9 +30,7 @@ const experiences = defineCollection({
     const { markup } = await renderMarkdown(doc.content)
     return {
       ...doc,
-      category: doc._meta.path.startsWith('work/')
-        ? ('work' as const)
-        : ('education' as const),
+      category: doc._meta.path.startsWith('work/') ? ('work' as const) : ('education' as const),
       markup,
     }
   },

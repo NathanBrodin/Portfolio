@@ -1,10 +1,11 @@
 import { allBlogPosts } from 'content-collections'
 import { TextAlignStartIcon } from 'lucide-react'
 
+import type { MenuItem } from '@/config'
+
 import { GitHubStars } from '@/components/github-stars'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Diamond } from '@/components/ui/diamond'
-import type { MenuItem } from '@/config'
 import { OTHER_LINKS, PORTFOLIO_LINKS } from '@/config/portfolio-links'
 import { SOCIAL_LINKS } from '@/config/social-links'
 
@@ -35,13 +36,13 @@ export function Header() {
     { items: OTHER_LINKS, value: 'Others' },
   ]
   return (
-    <header className="bg-background item-center sticky top-0 z-50 flex justify-center border-b px-4">
+    <header className="item-center sticky top-0 z-50 flex justify-center border-b bg-background px-4">
       <div className="item-center relative flex w-full max-w-5xl justify-between border-x px-4 py-1">
         <Nav items={items} />
         <div className="relative flex items-center *:first:mr-4">
           <CommandMenu items={items} />
           <GitHubStars repo="NathanBrodin/Portfolio" />
-          <span className="bg-border mx-2 flex h-4 w-px" />
+          <span className="mx-2 flex h-4 w-px bg-border" />
           <ThemeToggle />
         </div>
         <Diamond bottom left />

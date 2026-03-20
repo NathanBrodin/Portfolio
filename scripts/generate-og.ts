@@ -1,6 +1,5 @@
 import fs from 'node:fs'
 import path from 'node:path'
-
 import puppeteer, { type Browser, type Page } from 'puppeteer'
 
 const BASE_URL = 'http://localhost:3000'
@@ -21,9 +20,7 @@ async function captureOg(page: Page, url: string, outputPath: string) {
   const stats = fs.statSync(outputPath)
   const fileSizeMB = (stats.size / (1024 * 1024)).toFixed(2)
   if (stats.size > MAX_FILE_SIZE) {
-    throw new Error(
-      `OG file size (${fileSizeMB}MB) exceeds 8MB limit: ${outputPath}`,
-    )
+    throw new Error(`OG file size (${fileSizeMB}MB) exceeds 8MB limit: ${outputPath}`)
   }
 
   console.log(`  ${outputPath} (${fileSizeMB}MB)`)
@@ -51,11 +48,7 @@ async function generateOg() {
     await captureOg(page, `${BASE_URL}/og`, path.join(PUBLIC_DIR, 'og.png'))
 
     console.log('Generating blog OG image...')
-    await captureOg(
-      page,
-      `${BASE_URL}/blog/og`,
-      path.join(PUBLIC_DIR, 'og', 'blog.png'),
-    )
+    await captureOg(page, `${BASE_URL}/blog/og`, path.join(PUBLIC_DIR, 'og', 'blog.png'))
 
     // Blog post OG images
     const slugs = getBlogSlugs()

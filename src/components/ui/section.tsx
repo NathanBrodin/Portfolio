@@ -2,10 +2,7 @@ import React from 'react'
 
 import { cn } from '@/lib/utils'
 
-export function Section({
-  className,
-  ...props
-}: React.ComponentProps<'section'>) {
+export function Section({ className, ...props }: React.ComponentProps<'section'>) {
   return (
     <section
       className={cn(
@@ -18,10 +15,7 @@ export function Section({
   )
 }
 
-export function SectionTitle({
-  className,
-  ...props
-}: React.ComponentProps<'h2'>) {
+export function SectionTitle({ className, ...props }: React.ComponentProps<'h2'>) {
   return (
     <h2
       className={cn(

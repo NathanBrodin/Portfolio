@@ -1,7 +1,6 @@
-import { useState } from 'react'
-
 import { useQuery } from '@tanstack/react-query'
 import { useServerFn } from '@tanstack/react-start'
+import { useState } from 'react'
 
 import { getUsersLocation as getServerUsersLocation } from '@/lib/functions'
 
@@ -66,14 +65,14 @@ function LegendDot({ animated }: { animated: boolean }) {
     return (
       <span className="relative mt-0.5 flex size-2 shrink-0">
         <span
-          className="bg-primary absolute inline-flex size-full animate-ping rounded-full opacity-75"
+          className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-75"
           style={{ animationDuration: '2s' }}
         />
-        <span className="bg-primary relative inline-flex size-2 rounded-full" />
+        <span className="relative inline-flex size-2 rounded-full bg-primary" />
       </span>
     )
   }
-  return <span className="bg-primary mt-0.5 size-2 shrink-0 rounded-full" />
+  return <span className="mt-0.5 size-2 shrink-0 rounded-full bg-primary" />
 }
 
 export function About() {
@@ -89,21 +88,18 @@ export function About() {
   const isLocation = location?.lat != null
 
   return (
-    <Section
-      id="about"
-      className="bg-background/50 grid w-full grid-cols-1 md:grid-cols-3"
-    >
+    <Section id="about" className="grid w-full grid-cols-1 bg-background/50 md:grid-cols-3">
       <div className="flex flex-col gap-4 p-4 md:p-6">
-        <h2 className="font-display text-primary font-medium">About</h2>
-        <div className="text-muted-foreground flex flex-col gap-3 text-sm">
+        <h2 className="font-display font-medium text-primary">About</h2>
+        <div className="flex flex-col gap-3 text-sm text-muted-foreground">
           <p>
-            Originally from the west of France, I&apos;ve been moving north ever
-            since: interning in Oslo, exchanging in Finland and Sweden, and
-            somehow ending up north of the Arctic Circle in Tromsø, Norway.
+            Originally from the west of France, I&apos;ve been moving north ever since: interning in
+            Oslo, exchanging in Finland and Sweden, and somehow ending up north of the Arctic Circle
+            in Tromsø, Norway.
           </p>
           <p>
-            I build things for the web, mostly on the frontend, and I care way
-            too much about how buttons feel when you click them.
+            I build things for the web, mostly on the frontend, and I care way too much about how
+            buttons feel when you click them.
           </p>
         </div>
         <ul className="flex flex-col gap-1.5">
@@ -112,9 +108,7 @@ export function About() {
               key={item.label}
               tabIndex={0}
               className={`flex cursor-pointer items-start gap-2 rounded-sm px-1 py-0.5 transition-colors duration-150 ${
-                hoveredLabel === item.label
-                  ? 'bg-primary/10'
-                  : 'hover:bg-muted/50'
+                hoveredLabel === item.label ? 'bg-primary/10' : 'hover:bg-muted/50'
               }`}
               onMouseEnter={() => setHoveredLabel(item.label)}
               onMouseLeave={() => setHoveredLabel(null)}
@@ -122,10 +116,8 @@ export function About() {
               onBlur={() => setHoveredLabel(null)}
             >
               <LegendDot animated={item.animated} />
-              <span className="text-muted-foreground text-xs leading-tight">
-                <span className="text-foreground font-medium">
-                  {item.label}
-                </span>
+              <span className="text-xs leading-tight text-muted-foreground">
+                <span className="font-medium text-foreground">{item.label}</span>
                 {' — '}
                 {item.description}
               </span>
@@ -143,8 +135,8 @@ export function About() {
               onBlur={() => setHoveredLabel(null)}
             >
               <LegendDot animated />
-              <span className="text-muted-foreground text-xs leading-tight">
-                <span className="text-foreground font-medium">You</span>
+              <span className="text-xs leading-tight text-muted-foreground">
+                <span className="font-medium text-foreground">You</span>
                 {' — '}
                 That&apos;s where you are
               </span>
@@ -157,7 +149,7 @@ export function About() {
 
       <div className="relative col-span-2 flex h-full w-full items-center border-t md:border-t-0 md:border-l">
         <Lines className="opacity-10 select-none dark:opacity-5" />
-        <div className="bg-background h-fit w-full border-y py-2">
+        <div className="h-fit w-full border-y bg-background py-2">
           <DottedMap
             markers={[
               TROMSO,
@@ -177,11 +169,7 @@ export function About() {
                   ]
                 : []),
             ]}
-            paths={
-              isLocation
-                ? [{ start: 'Tromsø', end: 'You', animated: true }]
-                : []
-            }
+            paths={isLocation ? [{ start: 'Tromsø', end: 'You', animated: true }] : []}
             markerColor="var(--primary)"
             lineColor="var(--primary)"
             highlightedLabel={hoveredLabel}

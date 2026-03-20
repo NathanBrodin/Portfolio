@@ -41,13 +41,7 @@ export const siteJsonLd: Graph = {
         'https://medium.com/@nathan-brodin',
         'https://dev.to/nathan-brodin',
       ],
-      knowsAbout: [
-        'TypeScript',
-        'React',
-        'Next.js',
-        'TanStack',
-        'Tailwind CSS',
-      ],
+      knowsAbout: ['TypeScript', 'React', 'Next.js', 'TanStack', 'Tailwind CSS'],
       alumniOf: {
         '@type': 'EducationalOrganization',
         name: 'ESIEA Graduate School of Engineering',

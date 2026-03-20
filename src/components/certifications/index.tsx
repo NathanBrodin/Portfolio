@@ -5,9 +5,7 @@ import { Section, SectionTitle } from '../ui/section'
 import { CertificationItem } from './item'
 
 export function Certifications() {
-  const certifications = [...allCertifications].sort(
-    (a, b) => a.order - b.order,
-  )
+  const certifications = [...allCertifications].sort((a, b) => a.order - b.order)
 
   return (
     <Section id="certifications" className="flex flex-col">

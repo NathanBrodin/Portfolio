@@ -1,6 +1,7 @@
 import { siteConfig } from '@/config/site'
 
 import type { Activity } from './contribution-graph'
+
 import {
   ContributionGraph,
   ContributionGraphBlock,
@@ -25,16 +26,9 @@ export function GitHubContributionGraph({
       blockMargin={3}
       blockRadius={0}
     >
-      <ContributionGraphCalendar
-        className="no-scrollbar px-2"
-        title="GitHub Contributions"
-      >
+      <ContributionGraphCalendar className="no-scrollbar px-2" title="GitHub Contributions">
         {({ activity, dayIndex, weekIndex }) => (
-          <ContributionGraphBlock
-            activity={activity}
-            dayIndex={dayIndex}
-            weekIndex={weekIndex}
-          />
+          <ContributionGraphBlock activity={activity} dayIndex={dayIndex} weekIndex={weekIndex} />
         )}
       </ContributionGraphCalendar>
 

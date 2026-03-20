@@ -1,6 +1,5 @@
-import { ArrowRightIcon } from 'lucide-react'
-
 import { Link } from '@tanstack/react-router'
+import { ArrowRightIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
@@ -13,9 +12,7 @@ export function NotFound() {
       <Noise />
       <Section className="relative h-full w-full flex-1 p-4 py-8 sm:p-16">
         <div className="flex w-full flex-col items-center justify-center">
-          <h1 className="my-6 text-8xl font-medium tracking-tighter tabular-nums">
-            404
-          </h1>
+          <h1 className="my-6 text-8xl font-medium tracking-tighter tabular-nums">404</h1>
 
           <Button variant="default" render={<Link to="/" />}>
             Go to Home

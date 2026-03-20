@@ -1,6 +1,5 @@
-import { allBlogPosts } from 'content-collections'
-
 import { createFileRoute } from '@tanstack/react-router'
+import { allBlogPosts } from 'content-collections'
 
 import { siteConfig } from '@/config/site'
 
@@ -23,9 +22,7 @@ export const Route = createFileRoute('/blog/rss')({
       GET: () => {
         const publishedPosts = allBlogPosts
           .filter((post) => post.published)
-          .sort(
-            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-          )
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
         const feedUrl = `${siteConfig.url}/blog/rss`
         const blogUrl = `${siteConfig.url}/blog`
@@ -68,8 +65,7 @@ ${items}
         return new Response(rss, {
           headers: {
             'Content-Type': 'application/rss+xml; charset=utf-8',
-            'Cache-Control':
-              'public, s-maxage=86400, stale-while-revalidate=604800',
+            'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=604800',
           },
         })
       },

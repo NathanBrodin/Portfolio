@@ -1,7 +1,8 @@
+import type * as React from 'react'
+
 import { mergeProps } from '@base-ui/react/merge-props'
 import { useRender } from '@base-ui/react/use-render'
 import { cva, type VariantProps } from 'class-variance-authority'
-import type * as React from 'react'
 
 import { playSound } from '@/lib/play-sound'
 import { cn } from '@/lib/utils'
@@ -54,16 +55,10 @@ interface ButtonProps extends useRender.ComponentProps<'button'> {
   size?: VariantProps<typeof buttonVariants>['size']
 }
 
-function Button({
-  className,
-  noSound,
-  variant,
-  size,
-  render,
-  ...props
-}: ButtonProps) {
-  const typeValue: React.ButtonHTMLAttributes<HTMLButtonElement>['type'] =
-    render ? undefined : 'button'
+function Button({ className, noSound, variant, size, render, ...props }: ButtonProps) {
+  const typeValue: React.ButtonHTMLAttributes<HTMLButtonElement>['type'] = render
+    ? undefined
+    : 'button'
 
   const defaultProps = {
     className: cn(buttonVariants({ className, size, variant })),

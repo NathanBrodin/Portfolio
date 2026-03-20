@@ -1,6 +1,5 @@
 import { useTheme } from '@lonik/themer'
 import { Dithering } from '@paper-design/shaders-react'
-
 import { createFileRoute } from '@tanstack/react-router'
 
 import { Grid } from '@/components/ui/backgrounds/grid'
@@ -14,14 +13,7 @@ export const Route = createFileRoute('/og/')({
 function RouteComponent() {
   const { resolvedTheme } = useTheme()
 
-  const keys = [
-    'typescript',
-    'react',
-    'tailwindcss',
-    'shadcn-ui',
-    'tanstack',
-    'nextjs2',
-  ] as const
+  const keys = ['typescript', 'react', 'tailwindcss', 'shadcn-ui', 'tanstack', 'nextjs2'] as const
 
   const stack = keys.flatMap((key) => {
     const tech = TECH_STACK.find((t) => t.key === key)
@@ -39,8 +31,7 @@ function RouteComponent() {
         <div className="flex flex-col gap-2">
           <PageTitle className="text-9xl">Nathan Brodin</PageTitle>
           <PageDescription className="max-w-3xl text-2xl">
-            A software engineer with a passion for web development, design, and
-            user experience.
+            A software engineer with a passion for web development, design, and user experience.
           </PageDescription>
         </div>
         <div>

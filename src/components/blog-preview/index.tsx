@@ -1,7 +1,6 @@
+import { Link } from '@tanstack/react-router'
 import { allBlogPosts } from 'content-collections'
 import { ArrowRightIcon } from 'lucide-react'
-
-import { Link } from '@tanstack/react-router'
 
 import { Button } from '../ui/button'
 import { Section, SectionTitle } from '../ui/section'

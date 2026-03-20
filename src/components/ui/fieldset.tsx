@@ -11,10 +11,7 @@ function Fieldset({ className, ...props }: FieldsetPrimitive.Root.Props) {
     />
   )
 }
-function FieldsetLegend({
-  className,
-  ...props
-}: FieldsetPrimitive.Legend.Props) {
+function FieldsetLegend({ className, ...props }: FieldsetPrimitive.Legend.Props) {
   return (
     <FieldsetPrimitive.Legend
       className={cn('text-foreground font-semibold', className)}

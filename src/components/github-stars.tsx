@@ -2,11 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useServerFn } from '@tanstack/react-start'
 
 import { Button } from '@/components/ui/button'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { getStargazersCount as getServerStargazersCount } from '@/lib/functions'
 
 type GitHubStarsProps = {
@@ -36,11 +32,7 @@ export function GitHubStars({ repo }: GitHubStarsProps) {
             className="gap-1.5 pr-1.5 pl-2"
             variant="ghost"
             render={
-              <a
-                href={`https://github.com/${repo}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              />
+              <a href={`https://github.com/${repo}`} target="_blank" rel="noopener noreferrer" />
             }
           />
         }
@@ -51,9 +43,7 @@ export function GitHubStars({ repo }: GitHubStarsProps) {
             fill="currentColor"
           />
         </svg>
-        <span className="text-muted-foreground text-[13px] tabular-nums">
-          {count}
-        </span>
+        <span className="text-[13px] text-muted-foreground tabular-nums">{count}</span>
       </TooltipTrigger>
       <TooltipContent className="py-0.5">{count} Github stars</TooltipContent>
     </Tooltip>

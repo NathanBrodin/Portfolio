@@ -9,12 +9,7 @@ import { Projects } from '@/components/projects'
 import { SocialLinks } from '@/components/social-links'
 import { TechStack } from '@/components/tech-stack'
 import { Dither } from '@/components/ui/backgrounds/dither'
-import {
-  Page,
-  PageDescription,
-  PageHeader,
-  PageTitle,
-} from '@/components/ui/page'
+import { Page, PageDescription, PageHeader, PageTitle } from '@/components/ui/page'
 import { Section } from '@/components/ui/section'
 import { SectionDivider } from '@/components/ui/section-divider'
 import { siteConfig } from '@/config/site'

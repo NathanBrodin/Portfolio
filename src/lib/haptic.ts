@@ -1,7 +1,5 @@
 export const supportsHaptic =
-  typeof window !== 'undefined'
-    ? window.matchMedia('(pointer: coarse)').matches
-    : false
+  typeof window !== 'undefined' ? window.matchMedia('(pointer: coarse)').matches : false
 
 /**
  * Type guard to check if navigator supports vibrate API

@@ -1,4 +1,5 @@
 import type { LucideProps } from 'lucide-react'
+
 import {
   BriefcaseBusinessIcon,
   CodeXmlIcon,
@@ -9,10 +10,7 @@ import {
 
 import type { ExperiencePositionIcon } from '@/lib/experiences'
 
-const iconMap: Record<
-  ExperiencePositionIcon,
-  React.ComponentType<LucideProps>
-> = {
+const iconMap: Record<ExperiencePositionIcon, React.ComponentType<LucideProps>> = {
   code: CodeXmlIcon,
   design: DraftingCompassIcon,
   education: GraduationCapIcon,

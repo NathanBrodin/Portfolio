@@ -1,14 +1,10 @@
 import { ArrowUpRightIcon } from 'lucide-react'
 
 import type { LinkItem } from '@/config'
+
 import { cn } from '@/lib/utils'
 
-export function SocialLinkItem({
-  iconImage,
-  label,
-  description,
-  value,
-}: LinkItem) {
+export function SocialLinkItem({ iconImage, label, description, value }: LinkItem) {
   return (
     <a
       className={cn(
@@ -24,14 +20,14 @@ export function SocialLinkItem({
     >
       <div className="relative size-12 shrink-0">
         <img
-          className="corner-squircle rounded-xl select-none supports-corner-shape:rounded-[50%]"
+          className="rounded-xl select-none corner-squircle supports-corner-shape:rounded-[50%]"
           src={iconImage}
           alt={label}
           width={48}
           height={48}
           loading="lazy"
         />
-        <div className="corner-squircle pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 ring-inset supports-corner-shape:rounded-[50%] dark:ring-white/15" />
+        <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 corner-squircle ring-inset dark:ring-white/15 supports-corner-shape:rounded-[50%]" />
       </div>
 
       <div className="flex-1">
@@ -39,12 +35,10 @@ export function SocialLinkItem({
           {label}
         </h3>
 
-        {description && (
-          <p className="text-muted-foreground text-sm">{description}</p>
-        )}
+        {description && <p className="text-sm text-muted-foreground">{description}</p>}
       </div>
 
-      <ArrowUpRightIcon className="text-muted-foreground size-4 transition-[rotate] duration-300 group-hover:rotate-45" />
+      <ArrowUpRightIcon className="size-4 text-muted-foreground transition-[rotate] duration-300 group-hover:rotate-45" />
     </a>
   )
 }

@@ -6,7 +6,6 @@
  * Run: pnpm generate-map
  */
 import { writeFileSync } from 'node:fs'
-
 import { createMap } from 'svg-dotted-map'
 
 const WIDTH = 150
@@ -22,8 +21,7 @@ const mapData = createMap({
 
 // Compute stagger data
 const sorted = [...mapData.points].sort(
-  (a: { x: number; y: number }, b: { x: number; y: number }) =>
-    a.y - b.y || a.x - b.x,
+  (a: { x: number; y: number }, b: { x: number; y: number }) => a.y - b.y || a.x - b.x,
 )
 const rowMap = new Map<number, number>()
 let step = 0
@@ -52,9 +50,7 @@ for (const point of mapData.points) {
   const offsetX = rowIndex % 2 === 1 ? xStep / 2 : 0
   const cx = point.x + offsetX
   const cy = point.y
-  parts.push(
-    `M${cx - r},${cy}a${r},${r} 0 1,0 ${r * 2},0a${r},${r} 0 1,0 -${r * 2},0`,
-  )
+  parts.push(`M${cx - r},${cy}a${r},${r} 0 1,0 ${r * 2},0a${r},${r} 0 1,0 -${r * 2},0`)
 }
 const dotsPath = parts.join('')
 

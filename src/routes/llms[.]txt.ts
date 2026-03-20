@@ -1,14 +1,10 @@
-import {
-  allBlogPosts,
-  allCertifications,
-  allProjects,
-} from 'content-collections'
-
 import { createFileRoute } from '@tanstack/react-router'
+import { allBlogPosts, allCertifications, allProjects } from 'content-collections'
+
+import type { TechStack } from '@/config/tech-stack'
 
 import { siteConfig } from '@/config/site'
 import { SOCIAL_LINKS } from '@/config/social-links'
-import type { TechStack } from '@/config/tech-stack'
 import { TECH_STACK } from '@/config/tech-stack'
 import { getEducation, getWorkExperiences } from '@/lib/experiences'
 
@@ -26,9 +22,7 @@ function generateTechStackMarkdown(stack: TechStack[]): string {
   const sortedCategories = Object.keys(groupedStack).sort()
 
   const markdownLines = sortedCategories.map((category) => {
-    const techItems = groupedStack[category]
-      .map((tech) => tech.title)
-      .join(', ')
+    const techItems = groupedStack[category].map((tech) => tech.title).join(', ')
 
     return `- **${category}**: ${techItems}`
   })
@@ -90,9 +84,7 @@ function generateExperiencesMarkdown(): string {
 }
 
 function generateProjectsMarkdown(): string {
-  const projects = [...allProjects].sort((a, b) =>
-    b.startDate.localeCompare(a.startDate),
-  )
+  const projects = [...allProjects].sort((a, b) => b.startDate.localeCompare(a.startDate))
 
   const lines: string[] = []
 
@@ -193,8 +185,7 @@ ${generateBlogMarkdown()}
         return new Response(content, {
           headers: {
             'Content-Type': 'text/markdown; charset=utf-8',
-            'Cache-Control':
-              'public, s-maxage=86400, stale-while-revalidate=604800',
+            'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=604800',
           },
         })
       },

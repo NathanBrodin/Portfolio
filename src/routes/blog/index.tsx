@@ -1,15 +1,10 @@
-import { allBlogPosts } from 'content-collections'
-import { ArrowUpRightIcon, RssIcon } from 'lucide-react'
 import type { Blog, WithContext } from 'schema-dts'
 
 import { createFileRoute, Link } from '@tanstack/react-router'
+import { allBlogPosts } from 'content-collections'
+import { ArrowUpRightIcon, RssIcon } from 'lucide-react'
 
-import {
-  Page,
-  PageDescription,
-  PageHeader,
-  PageTitle,
-} from '@/components/ui/page'
+import { Page, PageDescription, PageHeader, PageTitle } from '@/components/ui/page'
 import { Section } from '@/components/ui/section'
 import { SectionDivider } from '@/components/ui/section-divider'
 import { Separator } from '@/components/ui/separator'
@@ -25,8 +20,7 @@ const publishedPosts = allBlogPosts
 export const Route = createFileRoute('/blog/')({
   head: () => {
     const url = `${siteConfig.url}/blog`
-    const blogDescription =
-      'Articles on development, design and ideas by Nathan Brodin.'
+    const blogDescription = 'Articles on development, design and ideas by Nathan Brodin.'
 
     const jsonLd: WithContext<Blog> = {
       '@context': 'https://schema.org',
@@ -99,9 +93,7 @@ function RouteComponent() {
     <Page>
       <PageHeader>
         <PageTitle>Blog</PageTitle>
-        <PageDescription>
-          Articles on development, design and ideas.
-        </PageDescription>
+        <PageDescription>Articles on development, design and ideas.</PageDescription>
       </PageHeader>
       <SectionDivider />
       <Section className="min-h-max flex-1 items-start">
@@ -111,7 +103,7 @@ function RouteComponent() {
               key={post.slug}
               to="/blog/$slug"
               params={{ slug: post.slug }}
-              className="group hover:bg-muted/50 flex w-full items-center gap-3 border-b p-2 sm:p-3"
+              className="group flex w-full items-center gap-3 border-b p-2 hover:bg-muted/50 sm:p-3"
             >
               <div
                 className={cn(
@@ -124,22 +116,15 @@ function RouteComponent() {
                 <RssIcon />
               </div>
               <div className="min-w-0 flex-1 space-y-1">
-                <h3 className="mb-1 line-clamp-2 leading-snug font-medium">
-                  {post.title}
-                </h3>
-                <div className="text-muted-foreground flex flex-nowrap items-center gap-x-2 gap-y-1 text-sm">
+                <h3 className="mb-1 line-clamp-2 leading-snug font-medium">{post.title}</h3>
+                <div className="flex flex-nowrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
                   <dl className="shrink-0">
                     <dt className="sr-only">Published</dt>
                     <dd>
-                      <time dateTime={post.date}>
-                        {formatFullDate(post.date)}
-                      </time>
+                      <time dateTime={post.date}>{formatFullDate(post.date)}</time>
                     </dd>
                   </dl>
-                  <Separator
-                    className="data-[orientation=vertical]:h-4"
-                    orientation="vertical"
-                  />
+                  <Separator className="data-[orientation=vertical]:h-4" orientation="vertical" />
                   {post.tags.length > 0 && (
                     <div className="flex flex-nowrap gap-1.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                       {post.tags.map((tag) => (
@@ -152,7 +137,7 @@ function RouteComponent() {
                 </div>
               </div>
               <ArrowUpRightIcon
-                className="text-muted-foreground size-4 transition-[rotate] duration-300 group-hover:rotate-45"
+                className="size-4 text-muted-foreground transition-[rotate] duration-300 group-hover:rotate-45"
                 aria-hidden
               />
             </Link>

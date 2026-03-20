@@ -1,8 +1,7 @@
 import { useTheme } from '@lonik/themer'
 import { Dithering } from '@paper-design/shaders-react'
-import { allBlogPosts } from 'content-collections'
-
 import { createFileRoute, notFound } from '@tanstack/react-router'
+import { allBlogPosts } from 'content-collections'
 
 import { Grid } from '@/components/ui/backgrounds/grid'
 import { Page, PageDescription, PageTitle } from '@/components/ui/page'
@@ -43,16 +42,16 @@ function RouteComponent() {
         style={{ width: 1200, height: 630 }}
       >
         <div className="flex w-full justify-between">
-          <span className="text-muted-foreground font-display text-4xl font-medium text-balance">
+          <span className="font-display text-4xl font-medium text-balance text-muted-foreground">
             Nathan Brodin
           </span>
-          <span className="text-muted-foreground font-display text-4xl font-medium text-balance">
+          <span className="font-display text-4xl font-medium text-balance text-muted-foreground">
             brodin.dev
           </span>
         </div>
         <div className="flex flex-col gap-2">
           <PageTitle className="text-7xl">{post.title}</PageTitle>
-          <PageDescription className="text-muted-foreground mt-2 font-mono text-xl">
+          <PageDescription className="mt-2 font-mono text-xl text-muted-foreground">
             {formatDate(post.date)}
           </PageDescription>
         </div>

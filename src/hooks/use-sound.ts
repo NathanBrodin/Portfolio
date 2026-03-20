@@ -1,10 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import type {
-  SoundAsset,
-  UseSoundOptions,
-  UseSoundReturn,
-} from '@/lib/sound-types'
+import type { SoundAsset, UseSoundOptions, UseSoundReturn } from '@/lib/sound-types'
 
 let audioContext: AudioContext | null = null
 
@@ -34,10 +30,7 @@ async function decodeAudioData(dataUri: string): Promise<AudioBuffer> {
   return audioBuffer
 }
 
-export function useSound(
-  sound: SoundAsset,
-  options: UseSoundOptions = {},
-): UseSoundReturn {
+export function useSound(sound: SoundAsset, options: UseSoundOptions = {}): UseSoundReturn {
   const {
     volume = 0.5,
     playbackRate = 1,

@@ -14,27 +14,22 @@ export function Footer() {
   return (
     <footer className="item-center flex justify-center border-t px-4">
       <div className="item-center relative flex w-full max-w-5xl flex-col justify-between border-x px-4 sm:flex-row">
-        <p className="text-muted-foreground py-2 text-sm">
+        <p className="py-2 text-sm text-muted-foreground">
           Built by{' '}
-          <a
-            className="link"
-            href="https://brodin.dev"
-            target="_blank"
-            rel="noopener"
-          >
+          <a className="link" href="https://brodin.dev" target="_blank" rel="noopener">
             Nathan Brodin
           </a>
         </p>
-        <div className="bg-background mx-auto flex items-center justify-center gap-3 border-x px-4">
+        <div className="mx-auto flex items-center justify-center gap-3 border-x bg-background px-4">
           <a
-            className="text-muted-foreground hover:text-foreground flex items-center font-mono text-xs transition-colors"
+            className="flex items-center font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
             href="/llms.txt"
           >
             llms.txt
           </a>
           <Separator orientation="vertical" />
           <a
-            className="text-muted-foreground hover:text-foreground flex items-center transition-colors"
+            className="flex items-center text-muted-foreground transition-colors hover:text-foreground"
             href={twitterLink?.value}
             target="_blank"
             rel="noopener noreferrer"
@@ -44,7 +39,7 @@ export function Footer() {
           </a>
           <Separator orientation="vertical" />
           <a
-            className="text-muted-foreground hover:text-foreground flex items-center transition-colors"
+            className="flex items-center text-muted-foreground transition-colors hover:text-foreground"
             href={githubLink?.value}
             target="_blank"
             rel="noopener noreferrer"
@@ -54,7 +49,7 @@ export function Footer() {
           </a>
           <Separator orientation="vertical" />
           <a
-            className="text-muted-foreground hover:text-foreground flex items-center transition-colors"
+            className="flex items-center text-muted-foreground transition-colors hover:text-foreground"
             href={linkedinLink?.value}
             target="_blank"
             rel="noopener noreferrer"
@@ -64,30 +59,20 @@ export function Footer() {
           </a>
           <Separator orientation="vertical" />
           <a
-            className="text-muted-foreground hover:text-foreground flex items-center transition-colors"
+            className="flex items-center text-muted-foreground transition-colors hover:text-foreground"
             href="/blog/rss"
           >
             <RssIcon className="size-4" />
             <span className="sr-only">RSS Feed</span>
           </a>
         </div>
-        <p className="text-muted-foreground py-2 text-sm">
+        <p className="py-2 text-sm text-muted-foreground">
           Inspired by{' '}
-          <a
-            className="link"
-            href="https://chanhdai.com/"
-            target="_blank"
-            rel="noopener"
-          >
+          <a className="link" href="https://chanhdai.com/" target="_blank" rel="noopener">
             Chanhdai
           </a>{' '}
           and{' '}
-          <a
-            className="link"
-            href="https://zed.dev/"
-            target="_blank"
-            rel="noopener"
-          >
+          <a className="link" href="https://zed.dev/" target="_blank" rel="noopener">
             Zed
           </a>
         </p>

@@ -49,10 +49,7 @@ type ProcessedMarker = {
   size?: number
 }
 
-function createCurvedPath(
-  start: { x: number; y: number },
-  end: { x: number; y: number },
-) {
+function createCurvedPath(start: { x: number; y: number }, end: { x: number; y: number }) {
   const midX = (start.x + end.x) / 2
   const midY = Math.min(start.y, end.y) - 8
   return `M ${start.x} ${start.y} Q ${midX} ${midY} ${end.x} ${end.y}`
@@ -110,8 +107,7 @@ export function DottedMap({
   const { width, height } = MAP_DIMENSIONS
   const containerRef = React.useRef<HTMLDivElement>(null)
   const tooltipRef = React.useRef<HTMLDivElement>(null)
-  const [hoveredMarker, setHoveredMarker] =
-    React.useState<ProcessedMarker | null>(null)
+  const [hoveredMarker, setHoveredMarker] = React.useState<ProcessedMarker | null>(null)
 
   const processedMarkers = markers.map(projectMarker)
 
@@ -142,10 +138,7 @@ export function DottedMap({
 
   const hoverTimeoutRef = React.useRef<NodeJS.Timeout | null>(null)
 
-  const handleMarkerHover = (
-    marker: ProcessedMarker,
-    event: React.MouseEvent,
-  ) => {
+  const handleMarkerHover = (marker: ProcessedMarker, event: React.MouseEvent) => {
     if (!marker.label) return
 
     if (hoverTimeoutRef.current) {
@@ -174,11 +167,7 @@ export function DottedMap({
   }
 
   return (
-    <div
-      ref={containerRef}
-      className="relative"
-      style={{ width: '100%', height: '100%' }}
-    >
+    <div ref={containerRef} className="relative" style={{ width: '100%', height: '100%' }}>
       <svg
         viewBox={`0 0 ${width} ${height}`}
         className={cn('text-gray-500 dark:text-gray-500', className)}
@@ -190,13 +179,7 @@ export function DottedMap({
         {/* Curved paths */}
         {resolvedPaths.length > 0 && (
           <defs>
-            <linearGradient
-              id="path-gradient"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="0%"
-            >
+            <linearGradient id="path-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="white" stopOpacity="0" />
               <stop offset="5%" stopColor={lineColor} stopOpacity="1" />
               <stop offset="95%" stopColor={lineColor} stopOpacity="1" />
@@ -237,13 +220,9 @@ export function DottedMap({
           const offsetX = getMarkerOffset(marker)
           const cx = marker.x + offsetX
           const cy = marker.y
-          const isHighlighted =
-            highlightedLabel != null && marker.label === highlightedLabel
+          const isHighlighted = highlightedLabel != null && marker.label === highlightedLabel
           return (
-            <g
-              key={`marker-${marker.x}-${marker.y}-${index}`}
-              className="group cursor-pointer"
-            >
+            <g key={`marker-${marker.x}-${marker.y}-${index}`} className="group cursor-pointer">
               <circle
                 cx={cx}
                 cy={cy}
@@ -313,9 +292,7 @@ export function DottedMap({
           <>
             <p className="font-medium">{hoveredMarker.label}</p>
             {hoveredMarker.description && (
-              <p className="text-muted-foreground text-xs">
-                {hoveredMarker.description}
-              </p>
+              <p className="text-xs text-muted-foreground">{hoveredMarker.description}</p>
             )}
           </>
         )}

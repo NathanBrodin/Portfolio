@@ -13,7 +13,7 @@ export function TechStack() {
         <Lines className="opacity-5 select-none dark:opacity-2" />
         <Diamond top left />
         <Diamond top right />
-        <ul className="bg-background flex max-w-4xl flex-wrap items-center justify-center gap-4 border-x px-2 py-4 select-none">
+        <ul className="flex max-w-4xl flex-wrap items-center justify-center gap-4 border-x bg-background px-2 py-4 select-none">
           {TECH_STACK.map((tech) => {
             return (
               <li key={tech.key} className="flex">

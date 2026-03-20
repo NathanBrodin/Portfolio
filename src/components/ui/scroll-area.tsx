@@ -13,17 +13,13 @@ function ScrollArea({
   scrollbarGutter?: boolean
 }) {
   return (
-    <ScrollAreaPrimitive.Root
-      className={cn('size-full min-h-0', className)}
-      {...props}
-    >
+    <ScrollAreaPrimitive.Root className={cn('size-full min-h-0', className)} {...props}>
       <ScrollAreaPrimitive.Viewport
         className={cn(
           'transition-shadows focus-visible:ring-ring focus-visible:ring-offset-background h-full rounded-[inherit] outline-none focus-visible:ring-2 focus-visible:ring-offset-1 data-has-overflow-x:overscroll-x-contain',
           scrollFade &&
             'mask-t-from-[calc(100%-min(var(--fade-size),var(--scroll-area-overflow-y-start)))] mask-r-from-[calc(100%-min(var(--fade-size),var(--scroll-area-overflow-x-end)))] mask-b-from-[calc(100%-min(var(--fade-size),var(--scroll-area-overflow-y-end)))] mask-l-from-[calc(100%-min(var(--fade-size),var(--scroll-area-overflow-x-start)))] [--fade-size:1.5rem]',
-          scrollbarGutter &&
-            'data-has-overflow-x:pb-2.5 data-has-overflow-y:pe-2.5',
+          scrollbarGutter && 'data-has-overflow-x:pb-2.5 data-has-overflow-y:pe-2.5',
         )}
         data-slot="scroll-area-viewport"
       >
@@ -52,7 +48,7 @@ function ScrollBar({
       {...props}
     >
       <ScrollAreaPrimitive.Thumb
-        className="bg-foreground/20 relative flex-1 rounded-full"
+        className="relative flex-1 rounded-full bg-foreground/20"
         data-slot="scroll-area-thumb"
       />
     </ScrollAreaPrimitive.Scrollbar>

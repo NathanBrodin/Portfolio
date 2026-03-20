@@ -3,11 +3,7 @@ import { useRender } from '@base-ui/react/use-render'
 
 import { cn } from '@/lib/utils'
 
-function Prose({
-  className,
-  render,
-  ...props
-}: useRender.ComponentProps<'div'>) {
+function Prose({ className, render, ...props }: useRender.ComponentProps<'div'>) {
   const defaultProps = {
     className: cn(
       'prose prose-zinc prose-sm sm:prose-base dark:prose-invert max-w-none',
@@ -33,15 +29,9 @@ function Prose({
   })
 }
 
-function ProseMono({
-  className,
-  ...props
-}: React.ComponentProps<typeof Prose>) {
+function ProseMono({ className, ...props }: React.ComponentProps<typeof Prose>) {
   return (
-    <Prose
-      className={cn('prose-xs text-foreground font-mono text-sm', className)}
-      {...props}
-    />
+    <Prose className={cn('prose-xs text-foreground font-mono text-sm', className)} {...props} />
   )
 }
 

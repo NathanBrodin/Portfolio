@@ -1,24 +1,12 @@
-import { allBlogPosts } from 'content-collections'
-import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  LinkIcon,
-  ShareIcon,
-} from 'lucide-react'
-import { useHotkeys } from 'react-hotkeys-hook'
-
 import { Link, useNavigate, useParams } from '@tanstack/react-router'
+import { allBlogPosts } from 'content-collections'
+import { ArrowLeftIcon, ArrowRightIcon, LinkIcon, ShareIcon } from 'lucide-react'
+import { useHotkeys } from 'react-hotkeys-hook'
 
 import { Button } from '@/components/ui/button'
 import { Icons } from '@/components/ui/icons'
 import { Kbd } from '@/components/ui/kbd'
-import {
-  Menu,
-  MenuItem,
-  MenuPopup,
-  MenuSeparator,
-  MenuTrigger,
-} from '@/components/ui/menu'
+import { Menu, MenuItem, MenuPopup, MenuSeparator, MenuTrigger } from '@/components/ui/menu'
 import { Section } from '@/components/ui/section'
 import { toastManager } from '@/components/ui/toast'
 import { Tooltip, TooltipPopup, TooltipTrigger } from '@/components/ui/tooltip'
@@ -34,10 +22,8 @@ export function BlogNavigation() {
 
   const currentIndex = publishedPosts.findIndex((post) => post.slug === slug)
 
-  const previousPost =
-    currentIndex >= 0 ? publishedPosts[currentIndex + 1] : undefined
-  const nextPost =
-    currentIndex >= 0 ? publishedPosts[currentIndex - 1] : undefined
+  const previousPost = currentIndex >= 0 ? publishedPosts[currentIndex + 1] : undefined
+  const nextPost = currentIndex >= 0 ? publishedPosts[currentIndex - 1] : undefined
 
   const currentUrl = `${siteConfig.url}/blog/${slug}`
   const urlEncoded = encodeURIComponent(currentUrl)
@@ -57,35 +43,32 @@ export function BlogNavigation() {
     }
   }
 
-  useHotkeys('left', (e) => {
+  useHotkeys('left', async (e) => {
     e.preventDefault()
     if (previousPost) {
-      navigate({ to: '/blog/$slug', params: { slug: previousPost.slug } })
+      await navigate({ to: '/blog/$slug', params: { slug: previousPost.slug } })
     }
   })
 
-  useHotkeys('right', (e) => {
+  useHotkeys('right', async (e) => {
     e.preventDefault()
     if (nextPost) {
-      navigate({ to: '/blog/$slug', params: { slug: nextPost.slug } })
+      await navigate({ to: '/blog/$slug', params: { slug: nextPost.slug } })
     }
   })
 
   return (
-    <Section className="bg-background justify-between p-2">
+    <Section className="justify-between bg-background p-2">
       <Link
         to="/blog"
-        className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 font-mono text-sm transition-colors"
+        className="inline-flex items-center gap-1.5 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
         <ArrowLeftIcon className="size-3.5" />
         Back to blog
       </Link>
       <div className="flex gap-2">
         <Menu>
-          <MenuTrigger
-            openOnHover
-            render={<Button variant="secondary" size="sm" />}
-          >
+          <MenuTrigger openOnHover render={<Button variant="secondary" size="sm" />}>
             <ShareIcon className="size-3.5" />
             Share
           </MenuTrigger>
@@ -135,12 +118,7 @@ export function BlogNavigation() {
                   <Button
                     variant="secondary"
                     size="icon-sm"
-                    render={
-                      <Link
-                        to="/blog/$slug"
-                        params={{ slug: previousPost.slug }}
-                      />
-                    }
+                    render={<Link to="/blog/$slug" params={{ slug: previousPost.slug }} />}
                   />
                 }
               >
@@ -163,9 +141,7 @@ export function BlogNavigation() {
                   <Button
                     variant="secondary"
                     size="icon-sm"
-                    render={
-                      <Link to="/blog/$slug" params={{ slug: nextPost.slug }} />
-                    }
+                    render={<Link to="/blog/$slug" params={{ slug: nextPost.slug }} />}
                   />
                 }
               >

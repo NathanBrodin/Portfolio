@@ -1,5 +1,7 @@
 import { InfinityIcon } from 'lucide-react'
 
+import type { ExperiencePosition } from '@/lib/experiences'
+
 import {
   CollapsibleChevronsIcon,
   CollapsibleContent,
@@ -7,12 +9,7 @@ import {
   CollapsibleWithContext,
 } from '@/components/ui/collapsible'
 import { Separator } from '@/components/ui/separator'
-import {
-  calculateEmploymentDuration,
-  formatDate,
-  formatEmploymentDuration,
-} from '@/lib/date'
-import type { ExperiencePosition } from '@/lib/experiences'
+import { calculateEmploymentDuration, formatDate, formatEmploymentDuration } from '@/lib/date'
 import { cn } from '@/lib/utils'
 
 import { Markdown } from '../markdown'
@@ -20,11 +17,7 @@ import { Tag } from '../ui/tag'
 import { ProseMono } from '../ui/typography'
 import { ExperienceIcon } from './position-icon'
 
-export function ExperiencePositionItem({
-  position,
-}: {
-  position: ExperiencePosition
-}) {
+export function ExperiencePositionItem({ position }: { position: ExperiencePosition }) {
   const { start, end } = position.employmentPeriod
   const isOngoing = !end
 
@@ -32,7 +25,7 @@ export function ExperiencePositionItem({
     <CollapsibleWithContext
       defaultOpen={position.isExpanded}
       render={
-        <div className="last:before:bg-background relative last:before:absolute last:before:left-3 last:before:h-full last:before:w-px" />
+        <div className="relative last:before:absolute last:before:left-3 last:before:h-full last:before:w-px last:before:bg-background" />
       }
     >
       <CollapsibleTrigger
@@ -55,15 +48,12 @@ export function ExperiencePositionItem({
 
           <h4 className="flex-1 font-medium text-balance">{position.title}</h4>
 
-          <div
-            className="text-muted-foreground shrink-0 [&_svg]:size-4"
-            aria-hidden
-          >
+          <div className="shrink-0 text-muted-foreground [&_svg]:size-4" aria-hidden>
             <CollapsibleChevronsIcon />
           </div>
         </div>
 
-        <div className="text-muted-foreground flex items-center gap-2 pl-9 text-sm">
+        <div className="flex items-center gap-2 pl-9 text-sm text-muted-foreground">
           {position.employmentType && (
             <>
               <dl>
@@ -71,10 +61,7 @@ export function ExperiencePositionItem({
                 <dd>{position.employmentType}</dd>
               </dl>
 
-              <Separator
-                className="data-[orientation=vertical]:h-4"
-                orientation="vertical"
-              />
+              <Separator className="data-[orientation=vertical]:h-4" orientation="vertical" />
             </>
           )}
 
@@ -85,10 +72,7 @@ export function ExperiencePositionItem({
               <span className="font-mono">—</span>
               {isOngoing ? (
                 <>
-                  <InfinityIcon
-                    className="size-4.5 translate-y-[0.5px]"
-                    aria-hidden
-                  />
+                  <InfinityIcon className="size-4.5 translate-y-[0.5px]" aria-hidden />
                   <span className="sr-only">Present</span>
                 </>
               ) : (

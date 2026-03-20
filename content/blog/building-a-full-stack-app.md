@@ -25,11 +25,7 @@ If you’ve read my previous blog posts, you know I’ve fallen in love with the
 For the UI, I finally got to use TailwindCSS and shadcn/ui at work, freeing myself from plain CSS and the horrors of `styled-components`. I really love the pattern of creating headless, reusable components:
 
 ```tsx
-export function PageHeader({
-  className,
-  children,
-  ...props
-}: React.HTMLAttributes<HTMLElement>) {
+export function PageHeader({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) {
   return (
     <header
       className={cn('grid auto-rows-min items-start gap-2', className)}

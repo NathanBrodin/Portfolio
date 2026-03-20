@@ -1,15 +1,9 @@
 import { Collapsible as CollapsiblePrimitive } from '@base-ui/react/collapsible'
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'
+
+import type { ChevronsDownUpIconHandle } from '@/components/ui/icons/chevrons-down-up-icon'
 
 import { ChevronsDownUpIcon } from '@/components/ui/icons/chevrons-down-up-icon'
-import type { ChevronsDownUpIconHandle } from '@/components/ui/icons/chevrons-down-up-icon'
 import { playSound } from '@/lib/play-sound'
 import { cn } from '@/lib/utils'
 import { switchOffSound } from '@/sounds/switch-off'
@@ -19,10 +13,7 @@ function Collapsible({ ...props }: CollapsiblePrimitive.Root.Props) {
   return <CollapsiblePrimitive.Root data-slot="collapsible" {...props} />
 }
 
-function CollapsibleTrigger({
-  className,
-  ...props
-}: CollapsiblePrimitive.Trigger.Props) {
+function CollapsibleTrigger({ className, ...props }: CollapsiblePrimitive.Trigger.Props) {
   return (
     <CollapsiblePrimitive.Trigger
       className={cn('cursor-pointer', className)}
@@ -32,10 +23,7 @@ function CollapsibleTrigger({
   )
 }
 
-function CollapsiblePanel({
-  className,
-  ...props
-}: CollapsiblePrimitive.Panel.Props) {
+function CollapsiblePanel({ className, ...props }: CollapsiblePrimitive.Panel.Props) {
   return (
     <CollapsiblePrimitive.Panel
       className={cn(
@@ -58,9 +46,7 @@ const useCollapsible = () => {
   const context = useContext(CollapsibleContext)
 
   if (!context) {
-    throw new Error(
-      'Collapsible components must be used within a CollapsibleWithContext',
-    )
+    throw new Error('Collapsible components must be used within a CollapsibleWithContext')
   }
 
   return context

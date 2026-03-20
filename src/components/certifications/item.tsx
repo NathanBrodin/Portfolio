@@ -1,4 +1,5 @@
 import type { Certification } from 'content-collections'
+
 import { ArrowUpRightIcon, CircleCheckBigIcon } from 'lucide-react'
 
 import { Separator } from '@/components/ui/separator'
@@ -16,10 +17,7 @@ export function CertificationItem({
 }) {
   return (
     <a
-      className={cn(
-        'group hover:bg-muted/50 flex items-center gap-2 p-2',
-        className,
-      )}
+      className={cn('group hover:bg-muted/50 flex items-center gap-2 p-2', className)}
       href={certification.credentialUrl}
       target="_blank"
       rel="noopener"
@@ -36,11 +34,9 @@ export function CertificationItem({
       </div>
 
       <div className="flex-1 space-y-1">
-        <h3 className="mb-1 leading-snug font-medium text-balance">
-          {certification.title}
-        </h3>
+        <h3 className="mb-1 leading-snug font-medium text-balance">{certification.title}</h3>
 
-        <div className="text-muted-foreground flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
           <dl>
             <dt className="sr-only">Issued by</dt>
             <dd>
@@ -49,17 +45,12 @@ export function CertificationItem({
             </dd>
           </dl>
 
-          <Separator
-            className="data-[orientation=vertical]:h-4"
-            orientation="vertical"
-          />
+          <Separator className="data-[orientation=vertical]:h-4" orientation="vertical" />
 
           <dl>
             <dt className="sr-only">Issued on</dt>
             <dd>
-              <time dateTime={certification.issueDate}>
-                {formatDate(certification.issueDate)}
-              </time>
+              <time dateTime={certification.issueDate}>{formatDate(certification.issueDate)}</time>
             </dd>
           </dl>
         </div>
@@ -67,7 +58,7 @@ export function CertificationItem({
 
       {certification.credentialUrl && (
         <ArrowUpRightIcon
-          className="text-muted-foreground size-4 transition-[rotate] duration-300 group-hover:rotate-45"
+          className="size-4 text-muted-foreground transition-[rotate] duration-300 group-hover:rotate-45"
           aria-hidden
         />
       )}

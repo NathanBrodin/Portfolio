@@ -1,11 +1,7 @@
-import { ThemeProvider } from '@lonik/themer'
-
 import type { QueryClient } from '@tanstack/react-query'
-import {
-  createRootRouteWithContext,
-  HeadContent,
-  Scripts,
-} from '@tanstack/react-router'
+
+import { ThemeProvider } from '@lonik/themer'
+import { createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/react-router'
 
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
@@ -17,79 +13,77 @@ import { AnalyticsProvider } from '@/providers/analytics'
 
 import appCss from '../styles.css?url'
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
-  {
-    head: () => ({
-      meta: [
-        { charSet: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { title: siteConfig.title },
-        { name: 'author', content: siteConfig.name },
-        { name: 'keywords', content: siteConfig.keywords.join(', ') },
-        { name: 'description', content: siteConfig.description },
-        { name: 'robots', content: 'index, follow' },
-        { name: 'theme-color', content: '#000000' },
-        // Open Graph
-        { property: 'og:type', content: 'website' },
-        { property: 'og:url', content: siteConfig.url },
-        { property: 'og:site_name', content: siteConfig.name },
-        { property: 'og:title', content: siteConfig.title },
-        { property: 'og:description', content: siteConfig.description },
-        { property: 'og:image', content: siteConfig.og },
-        { property: 'og:locale', content: 'en_US' },
-        // Twitter Card
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:site', content: siteConfig.twitterHandle },
-        { name: 'twitter:creator', content: siteConfig.twitterHandle },
-        { name: 'twitter:title', content: siteConfig.title },
-        { name: 'twitter:description', content: siteConfig.description },
-        { name: 'twitter:image', content: siteConfig.og },
-      ],
-      links: [
-        { rel: 'stylesheet', href: appCss },
-        {
-          rel: 'preload',
-          href: '/fonts/iAWriterQuattroV.woff2',
-          as: 'font',
-          type: 'font/woff2',
-          crossOrigin: 'anonymous',
-        },
-        {
-          rel: 'preload',
-          href: '/fonts/Lora-latin.woff2',
-          as: 'font',
-          type: 'font/woff2',
-          crossOrigin: 'anonymous',
-        },
-        {
-          rel: 'preload',
-          href: '/fonts/iAWriterMonoV.woff2',
-          as: 'font',
-          type: 'font/woff2',
-          crossOrigin: 'anonymous',
-        },
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'manifest', href: '/manifest.json' },
-        {
-          rel: 'alternate',
-          type: 'application/rss+xml',
-          title: 'Blog | Nathan Brodin',
-          href: `${siteConfig.url}/blog/rss`,
-        },
-      ],
-      scripts: [
-        {
-          type: 'application/ld+json',
-          children: JSON.stringify(siteJsonLd),
-        },
-      ],
-    }),
-    shellComponent: RootDocument,
-    notFoundComponent: () => {
-      return <NotFound />
-    },
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  head: () => ({
+    meta: [
+      { charSet: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { title: siteConfig.title },
+      { name: 'author', content: siteConfig.name },
+      { name: 'keywords', content: siteConfig.keywords.join(', ') },
+      { name: 'description', content: siteConfig.description },
+      { name: 'robots', content: 'index, follow' },
+      { name: 'theme-color', content: '#000000' },
+      // Open Graph
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: siteConfig.url },
+      { property: 'og:site_name', content: siteConfig.name },
+      { property: 'og:title', content: siteConfig.title },
+      { property: 'og:description', content: siteConfig.description },
+      { property: 'og:image', content: siteConfig.og },
+      { property: 'og:locale', content: 'en_US' },
+      // Twitter Card
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: siteConfig.twitterHandle },
+      { name: 'twitter:creator', content: siteConfig.twitterHandle },
+      { name: 'twitter:title', content: siteConfig.title },
+      { name: 'twitter:description', content: siteConfig.description },
+      { name: 'twitter:image', content: siteConfig.og },
+    ],
+    links: [
+      { rel: 'stylesheet', href: appCss },
+      {
+        rel: 'preload',
+        href: '/fonts/iAWriterQuattroV.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossOrigin: 'anonymous',
+      },
+      {
+        rel: 'preload',
+        href: '/fonts/Lora-latin.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossOrigin: 'anonymous',
+      },
+      {
+        rel: 'preload',
+        href: '/fonts/iAWriterMonoV.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossOrigin: 'anonymous',
+      },
+      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+      { rel: 'manifest', href: '/manifest.json' },
+      {
+        rel: 'alternate',
+        type: 'application/rss+xml',
+        title: 'Blog | Nathan Brodin',
+        href: `${siteConfig.url}/blog/rss`,
+      },
+    ],
+    scripts: [
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify(siteJsonLd),
+      },
+    ],
+  }),
+  shellComponent: RootDocument,
+  notFoundComponent: () => {
+    return <NotFound />
   },
-)
+})
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (

@@ -2,11 +2,7 @@ import { ChevronDownIcon } from 'lucide-react'
 import React from 'react'
 
 import { Button } from '@/components/ui/button'
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible'
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 
 export function CollapsibleList<T>({
   items,
@@ -37,11 +33,7 @@ export function CollapsibleList<T>({
       <CollapsibleContent>
         {items.slice(max).map((award, index) => (
           <div
-            key={
-              typeof keyExtractor === 'function'
-                ? keyExtractor(award)
-                : max + index
-            }
+            key={typeof keyExtractor === 'function' ? keyExtractor(award) : max + index}
             className="border-edge border-b"
           >
             {renderItem(award)}
@@ -52,12 +44,7 @@ export function CollapsibleList<T>({
       {items.length > max && (
         <div className="flex h-12 items-center justify-center pb-px">
           <CollapsibleTrigger
-            render={
-              <Button
-                className="group/collapsible-trigger flex px-3"
-                variant="secondary"
-              />
-            }
+            render={<Button className="group/collapsible-trigger flex px-3" variant="secondary" />}
           >
             <span className={open ? 'hidden' : ''}>Show More</span>
             <span className={open ? '' : 'hidden'}>Show Less</span>

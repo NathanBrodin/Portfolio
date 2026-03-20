@@ -1,3 +1,4 @@
+import { Link } from '@tanstack/react-router'
 import {
   ArrowDownIcon,
   ArrowUpIcon,
@@ -8,7 +9,7 @@ import {
 import { Fragment, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 
-import { Link } from '@tanstack/react-router'
+import type { MenuItem } from '@/config'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -27,7 +28,6 @@ import {
   CommandPanel,
 } from '@/components/ui/command'
 import { Kbd, KbdGroup } from '@/components/ui/kbd'
-import type { MenuItem } from '@/config'
 import { OTHER_LINKS } from '@/config/portfolio-links'
 import { useIsMac } from '@/hooks/use-is-mac'
 
@@ -47,9 +47,7 @@ export function CommandMenu({ items }: { items: Group[] }) {
 
   return (
     <CommandDialog onOpenChange={setOpen} open={open}>
-      <CommandDialogTrigger
-        render={<Button variant="outline" className="hidden sm:flex" />}
-      >
+      <CommandDialogTrigger render={<Button variant="outline" className="hidden sm:flex" />}>
         <SearchIcon />
         <span className="sr-only">Open Command Palette</span>
         <KbdGroup className="hidden sm:flex">
@@ -71,11 +69,8 @@ export function CommandMenu({ items }: { items: Group[] }) {
                       const Icon = item.icon ?? Fragment
 
                       const isExternal =
-                        item.value.startsWith('http') ||
-                        item.value.startsWith('mailto')
-                      const isOther = OTHER_LINKS.some(
-                        (link) => link.value === item.value,
-                      )
+                        item.value.startsWith('http') || item.value.startsWith('mailto')
+                      const isOther = OTHER_LINKS.some((link) => link.value === item.value)
                       const externalLinkOptions = isExternal
                         ? { target: '_blank', rel: 'noopener noreferrer' }
                         : {}
@@ -111,17 +106,13 @@ export function CommandMenu({ items }: { items: Group[] }) {
                               width={16}
                               height={16}
                               loading="lazy"
-                              className="corner-squircle mr-2 rounded-sm supports-corner-shape:rounded-[50%]"
+                              className="mr-2 rounded-sm corner-squircle supports-corner-shape:rounded-[50%]"
                             />
                           ) : (
                             <Icon className="mr-2 h-4 w-4 opacity-80" />
                           )}
-                          <span className="line-clamp-1 flex-1">
-                            {item.label}
-                          </span>
-                          {isExternal && (
-                            <ExternalLinkIcon className="size-4" />
-                          )}
+                          <span className="line-clamp-1 flex-1">{item.label}</span>
+                          {isExternal && <ExternalLinkIcon className="size-4" />}
                         </CommandItem>
                       )
                     }}

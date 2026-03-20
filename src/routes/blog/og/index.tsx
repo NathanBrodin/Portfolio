@@ -1,6 +1,5 @@
 import { useTheme } from '@lonik/themer'
 import { Dithering } from '@paper-design/shaders-react'
-
 import { createFileRoute } from '@tanstack/react-router'
 
 import { Grid } from '@/components/ui/backgrounds/grid'

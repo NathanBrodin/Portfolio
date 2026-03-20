@@ -1,21 +1,13 @@
-import { allBlogPosts } from 'content-collections'
 import type { BlogPosting, WithContext } from 'schema-dts'
 
 import { createFileRoute, notFound } from '@tanstack/react-router'
+import { allBlogPosts } from 'content-collections'
 
 import { Markdown } from '@/components/markdown'
 import { NotFound } from '@/components/not-found'
-import {
-  Page,
-  PageDescription,
-  PageHeader,
-  PageTitle,
-} from '@/components/ui/page'
+import { Page, PageDescription, PageHeader, PageTitle } from '@/components/ui/page'
 import { Section } from '@/components/ui/section'
-import {
-  SectionDivider,
-  SubSectionDivider,
-} from '@/components/ui/section-divider'
+import { SectionDivider, SubSectionDivider } from '@/components/ui/section-divider'
 import { Prose } from '@/components/ui/typography'
 import { siteConfig } from '@/config/site'
 import { formatFullDate } from '@/lib/date'
@@ -117,10 +109,7 @@ function RouteComponent() {
       <PageHeader>
         <PageTitle>{post.title}</PageTitle>
         <PageDescription>
-          <time
-            dateTime={post.date}
-            className="text-muted-foreground font-mono text-sm"
-          >
+          <time dateTime={post.date} className="font-mono text-sm text-muted-foreground">
             {formatFullDate(post.date)}
           </time>
         </PageDescription>
