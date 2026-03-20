@@ -54,7 +54,7 @@ Ensure you have the following installed on your local machine:
 **1. Clone the repository**
 
 ```bash
-git clone [https://github.com/NathanBrodin/Portfolio.git](https://github.com/NathanBrodin/Portfolio.git)
+git clone https://github.com/NathanBrodin/Portfolio.git
 cd Portfolio
 ```
 
