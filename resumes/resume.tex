@@ -1,95 +1,153 @@
-%-------------------------
-% Resume — Nathan Brodin — Software Engineer
-%-------------------------
+%------------------------------------------------------
+%  Resume - Nathan Brodin
+%  Last updated: March 2026
+%------------------------------------------------------
+\documentclass[a4paper,10pt]{article}
 
-\input{shared}
+% --- Packages ---
+\usepackage[margin=0.45in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{parskip}
 
-\renewcommand{\resumeVariantTitle}{Software Engineer}
+% --- Colors ---
+\definecolor{linkblue}{HTML}{1a5276}
+\definecolor{rulecolor}{HTML}{cccccc}
+
+% --- Hyperlinks ---
+\hypersetup{
+    colorlinks=true,
+    urlcolor=linkblue,
+    pdfauthor={Nathan Brodin},
+    pdftitle={Nathan Brodin - Resume},
+}
+
+% --- Section formatting ---
+\titleformat{\section}
+    {\large\bfseries}
+    {}{0em}{\MakeUppercase}
+    [\vspace{-6pt}{\color{rulecolor}\rule{\textwidth}{0.4pt}}]
+\titlespacing*{\section}{0pt}{4pt}{4pt}
+
+% --- List formatting ---
+\setlist[itemize]{
+    nosep,
+    left=0pt,
+    label=\textbullet,
+    itemsep=1.5pt,
+    parsep=0pt,
+    topsep=2pt,
+}
+
+% --- Custom commands ---
+\newcommand{\entry}[4]{%
+    \noindent\textbf{#1} \hfill \textit{#2} \\
+    \textit{#3} \hfill #4
+    \vspace{1pt}
+}
+
+\newcommand{\projectline}[3]{%
+    \noindent\href{#2}{\textbf{#1}} -- #3
+}
+
+% --- No page numbers ---
+\pagestyle{empty}
 
 \begin{document}
 
-\resumeHeader
+%------------------------------------------------------
+%  HEADER
+%------------------------------------------------------
+\begin{center}
+    {\LARGE\bfseries Nathan Brodin} \\[4pt]
+    Tromsø, Norway \enspace$\cdot$\enspace
+    \href{mailto:nathan@brodin.dev}{nathan@brodin.dev} \enspace$\cdot$\enspace
+    \href{https://brodin.dev}{brodin.dev} \enspace$\cdot$\enspace
+    \href{https://linkedin.com/in/nathan-brodin}{LinkedIn} \enspace$\cdot$\enspace
+    \href{https://github.com/NathanBrodin}{GitHub}
+\end{center}
 
-% ==================== EXPERIENCE ====================
+\vspace{-0.5em}
+
+%------------------------------------------------------
+%  TECHNICAL SKILLS
+%------------------------------------------------------
+\section{Technical Skills}
+
+\noindent
+\textbf{Languages:} TypeScript, JavaScript, Python, HTML, CSS \\
+\textbf{Frameworks \& Libraries:} React\,19 (+ Compiler), TanStack (Router, Query, Table, Form), Next.js, Django REST Framework, Tailwind\,CSS, Base\,UI, shadcn/ui \\
+\textbf{Tools \& Infrastructure:} Docker, NGINX, PostgreSQL, Redis, Playwright, Storybook, GitHub Actions CI/CD, Vite, Keycloak \\
+\textbf{Practices:} OpenAPI\,/\,REST API design, WebSocket integration, end-to-end type safety, RBAC, responsive \& cross-browser development, i18n
+
+%------------------------------------------------------
+%  EXPERIENCE
+%------------------------------------------------------
 \section{Experience}
 
-\resumeSubheading
-  {Capia AS}{Troms\o{}, Norway}
-  {Full Stack Engineer}{Aug 2025 -- Present}
+\entry{Full Stack Engineer}{Aug 2025 -- Present}{Capia AS}{Tromsø, Norway}
 \begin{itemize}
-  \item Built a production-grade web application from scratch: React 19 frontend with TanStack Router/Query, Django REST Framework backend with PostgreSQL, Redis, and ClickHouse, deployed via Docker and NGINX on self-managed servers.
-  \item Implemented full end-to-end type safety using OpenAPI schema generation and auto-generated TanStack Query hooks, along with RBAC, admin tooling, and resource management features.
-  \item Set up CI pipelines covering linting, builds, schema generation, and automated testing (\textasciitilde700 backend tests, \textasciitilde100 Playwright E2E tests) with caching and sharding. Wrote full documentation, DX tooling, and database seeding.
+    \item Architected and shipped a production SaaS app from scratch: React\,19 frontend, Django REST backend, Docker/NGINX on self-managed servers.
+    \item Implemented end-to-end type safety across Python and TypeScript using OpenAPI schema generation (drf-spectacular) and auto-generated TanStack Query hooks (Orval).
+    \item Designed the full UI with Tailwind\,CSS, Base\,UI, and shadcn/ui, with strong attention to design consistency.
+    \item Built CI pipeline covering linting, schema validation, \textasciitilde900 backend tests, and \textasciitilde100 Playwright E2E tests. Runs under 7\,min with caching and sharding.
+    \item Implemented RBAC, WebSocket-based live notifications, Redis caching, and ClickHouse integration.
+    \item Wrote full documentation, DX tooling, database seeding, and Makefile commands so the entire project sets up in minutes.
 \end{itemize}
 
-\vspace{4pt}
+\vspace{2pt}
 
-\resumeSubheading
-  {DNB}{Oslo, Norway}
-  {Frontend Engineer Intern}{Feb 2025 -- Jul 2025}
+\entry{Frontend Engineer Intern}{Feb 2025 -- Jul 2025}{DNB}{Oslo, Norway}
 \begin{itemize}
-  \item Shipped 15+ features to production across 3 frontend applications serving AI products used by 100k+ users. End-of-studies internship graded 92/100.
-  \item Migrated a production application from Gatsby to Vite, cutting build times by 60\%.
-  \item Built a full E2E test suite with Playwright: 350+ tests across browsers, CI running under 90 seconds with caching and sharding.
+    \item Delivered 15+ major features across 3 frontend applications serving 100k+ users.
+    \item Migrated a production application from Gatsby to Vite, cutting build times by 60\%.
+    \item Built a full Playwright E2E test suite (350+ tests across browsers) with CI running under 90\,seconds.
+    \item Six-month Master's thesis internship; graded 92/100.
 \end{itemize}
 
-\vspace{4pt}
+\vspace{2pt}
 
-\resumeSubheading
-  {DNB}{Oslo, Norway}
-  {Frontend Engineer Intern}{Apr 2024 -- Aug 2024}
+\entry{Frontend Engineer Intern}{Apr 2024 -- Aug 2024}{DNB}{Oslo, Norway}
 \begin{itemize}
-  \item Built the frontend of a GenAI chatbot platform used by 100+ users, from blank repository to well-tested application with 92\% test coverage and documented architecture.
-  \item Established developer experience standards including Storybook component documentation, consistent styling conventions, and a comprehensive testing setup.
+    \item Built the frontend of a GenAI chatbot platform from blank repo to production with 92\% test coverage.
+    \item Established testing infrastructure with Storybook, documented architecture, and consistent styling standards.
 \end{itemize}
 
-\vspace{4pt}
+\vspace{2pt}
 
-\resumeSubheading
-  {DNB}{Oslo, Norway}
-  {Frontend Engineer Intern}{Jul 2023 -- Aug 2023}
+\entry{Frontend Engineer Intern}{Jul 2023 -- Aug 2023}{DNB}{Oslo, Norway}
 \begin{itemize}
-  \item Shipped an internal admin panel from scratch based on Figma designs, used by 10+ users. Handled end-to-end ownership: UI implementation, API integration, authentication, and deployment.
+    \item Shipped an internal admin panel from scratch: UI implementation from Figma designs, REST API integration, auth, and deployment.
 \end{itemize}
 
-% ==================== EDUCATION ====================
+%------------------------------------------------------
+%  EDUCATION
+%------------------------------------------------------
 \section{Education}
 
-\resumeSubheading
-  {ESIEA Graduate School of Engineering}{Laval, France}
-  {Master of Engineering in Software Engineering --- Graduated 92/100}{Sep 2020 -- Jul 2025}
-\begin{itemize}
-  \item Coursework in algorithms, systems programming, distributed systems, and full stack development. Completed 3 internships (1 year of professional experience) during the program.
-  \item Exchange semesters at Mid Sweden University (Sundsvall, Sweden) and Centria University of Applied Sciences (Kokkola, Finland).
-\end{itemize}
+\entry{Master of Engineering, Software Engineering}{2020 -- 2025}{ESIEA Graduate School of Engineering}{France}
 
-% ==================== PROJECTS ====================
-\section{Projects}
+\vspace{-2pt}
+\noindent Graduated 92/100. Coursework in algorithms, distributed systems, systems programming, application design. \\
+Exchange semesters at Mid Sweden University (Sweden) and Centria University (Finland).
 
-\resumeProjectHeading
-  {\href{https://chat.brodin.dev}{Chat}}{AI-powered conversational portfolio using React Server Components with streaming. Built with Next.js, Vercel AI SDK, Tailwind CSS, and Drizzle.}
+%------------------------------------------------------
+%  SELECTED PROJECTS
+%------------------------------------------------------
+\section{Selected Projects}
 
-\vspace{2pt}
+\projectline{Chat}{https://chat.brodin.dev}{AI-powered conversational portfolio built with React Server Components and the Vercel AI SDK.}
 
-\resumeProjectHeading
-  {\href{https://zed.dev/extensions?query=vercel}{Zed Vercel Theme}}{A theme for the Zed Editor inspired by Vercel's design language. Top 15 most downloaded with 52k+ downloads.}
+\vspace{0pt}
 
-\vspace{2pt}
+\projectline{Portfolio}{https://brodin.dev}{React\,19 + TanStack Start with static prerendering, JSON-LD structured data, sitemap generation, OG generation, and dependency pre-bundling.}
 
-\resumeProjectHeading
-  {\href{https://brodin.dev}{Portfolio}}{Personal website built with React 19, TanStack Start, and Tailwind CSS. SSR, SEO-optimized, perfect Lighthouse score.}
+\vspace{0pt}
 
-\vspace{2pt}
-
-\resumeProjectHeading
-  {\href{https://write.brodin.dev}{Write}}{Notion-style markdown editor with real-time preview and PDF export. Built with Next.js, Tailwind CSS, and Convex.}
-
-% ==================== SKILLS ====================
-\section{Skills}
-
-\noindent\textbf{Languages:} TypeScript, JavaScript, Python, C \\
-\textbf{Frameworks \& Libraries:} React, Next.js, Django, TanStack, Tailwind CSS, Redux, shadcn/ui, Base UI, Playwright \\
-\textbf{Tools \& Infrastructure:} Docker, NGINX, Git, Linux, Vercel, Figma \\
-\textbf{Databases:} PostgreSQL, Redis
+\projectline{Zed Vercel Theme}{https://zed.dev/extensions?query=vercel}{Top-15 most downloaded Zed editor theme with 52k+ downloads.}
 
 \end{document}
