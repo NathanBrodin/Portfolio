@@ -1,7 +1,7 @@
+import { useHotkey } from '@tanstack/react-hotkeys'
 import { Link, useNavigate, useParams } from '@tanstack/react-router'
 import { allBlogPosts } from 'content-collections'
 import { ArrowLeftIcon, ArrowRightIcon, LinkIcon, ShareIcon } from 'lucide-react'
-import { useHotkeys } from 'react-hotkeys-hook'
 
 import { Button } from '@/components/ui/button'
 import { Icons } from '@/components/ui/icons'
@@ -43,15 +43,13 @@ export function BlogNavigation() {
     }
   }
 
-  useHotkeys('left', async (e) => {
-    e.preventDefault()
+  useHotkey('ArrowLeft', async () => {
     if (previousPost) {
       await navigate({ to: '/blog/$slug', params: { slug: previousPost.slug } })
     }
   })
 
-  useHotkeys('right', async (e) => {
-    e.preventDefault()
+  useHotkey('ArrowRight', async () => {
     if (nextPost) {
       await navigate({ to: '/blog/$slug', params: { slug: nextPost.slug } })
     }

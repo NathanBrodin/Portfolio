@@ -1,6 +1,6 @@
 import { useTheme } from '@lonik/themer'
+import { useHotkey } from '@tanstack/react-hotkeys'
 import { useCallback } from 'react'
-import { useHotkeys } from 'react-hotkeys-hook'
 
 import { Button } from '@/components/ui/button'
 import { MoonIcon } from '@/components/ui/icons/moon'
@@ -18,7 +18,7 @@ export function ThemeToggle() {
     playSound(switch005Sound)
   }, [resolvedTheme, setTheme])
 
-  useHotkeys('t', switchTheme)
+  useHotkey('T', switchTheme)
 
   return (
     <Tooltip>

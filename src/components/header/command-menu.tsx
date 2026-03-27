@@ -1,3 +1,4 @@
+import { useHotkey } from '@tanstack/react-hotkeys'
 import { Link } from '@tanstack/react-router'
 import {
   ArrowDownIcon,
@@ -7,7 +8,6 @@ import {
   SearchIcon,
 } from 'lucide-react'
 import { Fragment, useState } from 'react'
-import { useHotkeys } from 'react-hotkeys-hook'
 
 import type { MenuItem } from '@/config'
 
@@ -37,9 +37,7 @@ export function CommandMenu({ items }: { items: Group[] }) {
   const isMac = useIsMac()
   const [open, setOpen] = useState(false)
 
-  useHotkeys('mod+k, slash', (e) => {
-    e.preventDefault()
-
+  useHotkey('Mod+K', () => {
     setOpen((open) => {
       return !open
     })
