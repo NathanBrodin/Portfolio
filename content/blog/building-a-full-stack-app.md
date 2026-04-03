@@ -79,7 +79,7 @@ After the users, my top priority is the developers (and code quality). Because o
 
 But once it works, Docker is magic. Starting the project takes one command. You get fully reproducible environments between local dev and production. So now you can use the "But it works on my machine" excuse more confidently.
 
-I also spent some time creating [Make commands](https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html). These docker commands are quite long and spending 5 minutes going up in the terminal history trying to find the specific command to run the tests can be quite annoying. So I wrote a `Makefile`. Now, a simple `make codegen` spins up the OpenAPI specs and frontend types:
+I also spent some time creating [Make commands](https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html). These Docker commands are quite long and spending 5 minutes going up in the terminal history trying to find the specific command to run the tests can be quite annoying. So I wrote a `Makefile`. Now, a simple `make codegen` spins up the OpenAPI specs and frontend types:
 
 ```makefile
 COMPOSE_FILE := docker-compose.dev.yml
@@ -109,7 +109,7 @@ It sounds heavy, but it only takes ~7 minutes if _all_ steps run, thanks to aggr
 Django is not the most exciting tech, but it’s great for a CRUD app exposing APIs to Postgres. Yes, I still have to handle some complexity: RBAC, Redis caching, querying a Clickhouse DB with raw SQL, and WebSockets for live notifications, but I’m not building a crazy app for millions of users.
 
 Django is simple, predictable, and LLMs understand it perfectly. Need a cache layer? Two lines of code. It’s fast enough that running 800+ tests (including DB writes) takes 10 seconds.
-I still have some issues with it, like if there is an internal server error, an endpoint will return some html by default. So you need a custom middleware to formalize all kind of errors. And of course it has to be in Python. But overall: it just works.
+I still have some issues with it, like if there is an internal server error, an endpoint will return some html by default. So you need a custom middleware to formalize all kinds of errors. And of course, it has to be in Python. But overall: it just works.
 
 ---
 

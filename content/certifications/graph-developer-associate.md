@@ -7,4 +7,4 @@ credentialUrl: https://www.apollographql.com/tutorials/certifications/7d67206d-3
 order: 3
 ---
 
-I forgot everything, but in theory I can work with GraphQL
+I forgot everything, but in theory I can work with GraphQL.

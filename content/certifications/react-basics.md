@@ -8,4 +8,4 @@ issuerIconName: 'meta'
 order: 2
 ---
 
-Completed the Official React Course from Meta.
+Meta's official React course. Solid foundations, nothing too wild.

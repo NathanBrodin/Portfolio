@@ -26,12 +26,16 @@
     pdftitle={Nathan Brodin - Resume},
 }
 
+
 % --- Section formatting ---
 \titleformat{\section}
-    {\large\bfseries}
-    {}{0em}{\MakeUppercase}
-    [\vspace{-6pt}{\color{rulecolor}\rule{\textwidth}{0.4pt}}]
-\titlespacing*{\section}{0pt}{4pt}{4pt}
+    {\bfseries\large\scshape}   % bold, large, small caps
+    {}{0pt}{}
+    [\vspace{-14pt}\textcolor{rulecolor}{\rule{\textwidth}{0.4pt}}]
+\titlespacing*{\section}
+    {0pt}                        % left margin
+    {10pt}                       % space before
+    {4pt}                        % space after
 
 % --- List formatting ---
 \setlist[itemize]{

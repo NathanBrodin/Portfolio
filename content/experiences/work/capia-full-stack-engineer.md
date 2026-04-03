@@ -23,7 +23,7 @@ skills:
 order: 1
 ---
 
-I'm building a production grade web application from scratch: frontend, backend and infrastructure.
+I'm building a production-grade web application from scratch: frontend, backend and infrastructure.
 
 - Frontend with [React 19](https://react.dev/) + [Compiler](https://react.dev/learn/react-compiler), [Vite](https://vite.dev/), [TanStack Router](https://tanstack.com/router/latest)/[Query](https://tanstack.com/query/latest)/[Table](https://tanstack.com/table/latest)/[Pacer](https://tanstack.com/pacer/latest), [Tailwind](https://tailwindcss.com/), [Base UI](https://base-ui.com/), [shadcn/ui](https://ui.shadcn.com/) (and [coss ui](https://coss.com/ui/docs))
 - Backend with [Django REST Framework](https://www.django-rest-framework.org/) with [Redis](https://redis.io/) for caching, [ClickHouse](https://clickhouse.com/) integration, and [PostgreSQL](https://www.postgresql.org/)

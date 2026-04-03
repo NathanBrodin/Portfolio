@@ -8,4 +8,4 @@ issuerIconName: 'coursera'
 order: 4
 ---
 
-Please don't give me leatcode questions.
+Please don't give me leetcode questions.

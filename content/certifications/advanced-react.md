@@ -8,4 +8,4 @@ issuerIconName: 'meta'
 order: 1
 ---
 
-Completed the Official React Course from Meta.
+The advanced version of Meta's React course. This one actually had good stuff on render optimization and custom hooks.

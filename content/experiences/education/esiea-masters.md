@@ -20,6 +20,6 @@ skills:
 order: 1
 ---
 
-I completed my Master's degree in Software Engineering at [ESIEA](https://esiea.fr), the 7th best graduate Engineering school in France. Graduated with 92/100.
+My Master's in Software Engineering, from [ESIEA](https://esiea.fr), the 7th best graduate engineering school in France. Graduated with 92/100.
 
-The first few years relied heavily on mathematics, algorithms, physics and electronics, moving toward programming and broader software development and software engineering practices at the end. Coupled with 3 internships for a year of real work experience as I graduated, and 2 exchange semesters.
+The first few years relied heavily on mathematics, algorithms, physics and electronics, moving toward programming and broader software development and software engineering practices at the end. Plus 3 internships (a full year of real work experience by graduation) and 2 exchange semesters.
