@@ -40,6 +40,8 @@ export const siteJsonLd: Graph = {
         'https://twitter.com/nathan_brodin',
         'https://medium.com/@nathan-brodin',
         'https://dev.to/nathan-brodin',
+        'https://peerlist.io/brodin',
+        'https://www.figma.com/@nathanbrodin',
       ],
       knowsAbout: ['TypeScript', 'React', 'Next.js', 'TanStack', 'Tailwind CSS'],
       alumniOf: {
