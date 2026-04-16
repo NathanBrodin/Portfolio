@@ -3,12 +3,12 @@ title: 'A Totally Legitimate Way to Look More Productive on GitHub'
 description: 'A tutorial on how to fake your GitHub contribution graph.'
 date: '17.04.2026'
 tags: ['github', 'programming']
-published: false
+published: true
 ---
 
 Yes, I have a repo whose sole purpose is to make my GitHub profile look busier than it is. No, I'm not ashamed. And here's how you can do it too.
 
-[Insert picture of my contribution graph here]
+![My Github Contribution Graph](https://brodin.dev/assets/github-contributions.webp)
 
 > It's quite easy to spot when I started it.
 
