@@ -14,6 +14,7 @@ import { Prose } from '@/components/ui/typography'
 import { formatDate } from '@/lib/date'
 
 import { Button } from '../ui/button'
+import { Tooltip, TooltipPopup, TooltipTrigger } from '../ui/tooltip'
 
 export function ProjectItem({ className, project }: { className?: string; project: Project }) {
   const isOngoing = !project.endDate
@@ -64,14 +65,21 @@ export function ProjectItem({ className, project }: { className?: string; projec
             </dd>
           </dl>
         </div>
-        <Button
-          variant="ghost"
-          size="icon"
-          render={<a href={project.link} target="_blank" rel="noopener" />}
-        >
-          <LinkIcon className="size-4" />
-          <span className="sr-only">Open Project Link</span>
-        </Button>
+        <Tooltip>
+          <TooltipTrigger
+            render={
+              <Button
+                variant="ghost"
+                size="icon"
+                render={<a href={project.link} target="_blank" rel="noopener" />}
+              />
+            }
+          >
+            <LinkIcon className="size-4" />
+            <span className="sr-only">Open Project Link</span>
+          </TooltipTrigger>
+          <TooltipPopup>Visit Project</TooltipPopup>
+        </Tooltip>
         <div className="mr-2 shrink-0 text-muted-foreground [&_svg]:size-4" aria-hidden>
           <CollapsibleChevronsIcon />
         </div>
