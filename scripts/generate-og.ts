@@ -8,7 +8,8 @@ const CONTENT_BLOG_DIR = path.resolve(import.meta.dirname, '../content/blog')
 const MAX_FILE_SIZE = 8 * 1024 * 1024 // 8MB
 
 async function captureOg(page: Page, url: string, outputPath: string) {
-  await page.goto(url, { waitUntil: 'networkidle0' })
+  await page.goto(url, { waitUntil: 'domcontentloaded' })
+  await page.waitForSelector('#og', { timeout: 30_000 })
   const og = await page.$('#og')
   if (!og) {
     throw new Error(`OG element (#og) not found at ${url}`)

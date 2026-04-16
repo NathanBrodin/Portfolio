@@ -1,7 +1,7 @@
 ---
 title: 'A Totally Legitimate Way to Look More Productive on GitHub'
 description: 'A tutorial on how to fake your GitHub contribution graph.'
-date: '17.04.2026'
+date: '2026-04-17'
 tags: ['github', 'programming']
 published: true
 ---
@@ -18,12 +18,14 @@ Github's contribution graph tracks commits across all your repos, public and pri
 
 The plan is simple: a private repo, a scheduled GitHub Action as the engine, and a Python script to make it look human.
 
-## Github Workflow
+## GitHub Workflow
 
-With a free Github Account, you have access to 2,000 minutes of free actions compute every month, so let's use that to run a 25s action.
-A Github Workflow also allows to define cron jobs, so we can simply define one to run every day.
+With a free GitHub Account, you have access to 2,000 minutes of free actions compute every month, so let's use that to run a 25s action.
+A GitHub Workflow also allows you to define cron jobs, so we can simply define one to run every day.
 
-1. Define a cron job to run everyday
+Create a file at `.github/workflows/contributor.yml`:
+
+1. First, define the trigger with a cron job:
 
 ```yml
 on:
@@ -32,7 +34,7 @@ on:
     - cron: '0 8 * * *'
 ```
 
-2. Give it permission to push commits
+2. Define the job and give it permission to push commits:
 
 ```yml
 jobs:
@@ -42,77 +44,64 @@ jobs:
       contents: write # Grants permission to push commits
 ```
 
-3. Configure git. Make sure to use the same email address as your github account, else contributions will not be counted.
+3. Add the steps. First, checkout the repo:
 
 ```yml
-steps:
-  ...
-  - name: Configure Git
-    run: |
-      git config --global user.name "Nathan Brodin"
-      git config --global user.email "nathan@brodin.dev"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 ```
 
-4. Finally, commit and push
+4. Set up Python and install dependencies:
 
 ```yml
-- name: Write and commit
-  run: |
-    echo "Commit made at $(date)" >> activity_log.txt
-    git add activity_log.txt
-    git commit -m "Update activity log: $(date)"
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
 
-- name: Push changes
-  run: git push
+      - name: Install dependencies
+        run: pip install holidays
+```
+
+5. Configure git. Make sure to use the same email address as your GitHub account, else contributions will not be counted:
+
+```yml
+      - name: Configure Git
+        run: |
+          git config --global user.name "Nathan Brodin"
+          git config --global user.email "nathan@brodin.dev"
+```
+
+6. Run the auto-commit script:
+
+```yml
+      - name: Run Auto-Commit Script
+        run: python autocommit.py
+```
+
+7. Finally, push changes:
+
+```yml
+      - name: Push changes
+        run: git push
 ```
 
 ## A Tiny Script To Make It Look Realistic
 
-If you would make the exact same amount of commits, monday to sunday, even on Christmas day, you would easily be flagged as a faker. So to make it look natural, we'll write a tiny Python script to handle that.
+If you would make the exact same amount of commits, monday to sunday, even on Christmas day, you would easily be flagged as a faker. So to make it look natural, we'll write a tiny Python script to handle that. Create a file called `autocommit.py`:
 
-1. You only commit on weekdays, because you should have a life outside of work:
-
-```py
-today = datetime.date.today()
-
-if today.weekday() >= 5:
-    print("Today is a weekend. Skipping.")
-    return
-```
-
-2. You also skip public holidays, using the `holidays` package
+1. First, add the imports:
 
 ```py
-country_holidays = holidays.country_holidays('NO') # Replace your country code here, e.g. 'US'
-if today in country_holidays:
-    print(f"Today is a holiday ({country_holidays.get(today)}). Skipping.")
-    return
+import os
+import random
+import subprocess
+import datetime
+import holidays
 ```
 
-3. Remove days where you shouldn't be working (birthday, grandma's funeral...)
-
-```py
-quiet_days = {
-    datetime.date(2026, 1, 1),
-}
-if today in quiet_days:
-    print("Today is a quiet day. Skipping.")
-    return
-```
-
-4. Randomize the count of commits, and weight them to make it more natural. Make sure the sum sums up to 100.
-
-```py
-# Randomize Commits: 0 commits has a 32% chance, max capped at 9
-num_commits = random.choices(
-    range(10),
-    weights=[32, 10, 8, 8, 8, 7, 8, 8, 6, 5],
-    k=1
-)[0]
-print(f"Scheduled for {num_commits} commits today.")
-```
-
-5. Finally, commit
+2. Define the `git_commit` function (must come before `main()`):
 
 ```py
 def git_commit(timestamp):
@@ -123,10 +112,62 @@ def git_commit(timestamp):
 
     message = f"Update activity log: {timestamp}"
     subprocess.run(["git", "commit", "-m", message])
+```
 
-for i in range(num_commits):
-    current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    git_commit(current_time)
+3. Create the `main()` function. First, get today's date and check for weekends:
+
+```py
+def main():
+    today = datetime.date.today()
+
+    if today.weekday() >= 5:
+        print("Today is a weekend. Skipping.")
+        return
+```
+
+4. You also skip public holidays, using the `holidays` package:
+
+```py
+    country_code = "NO"  # Replace with your country code
+    country_holidays = holidays.country_holidays(country_code)
+    if today in country_holidays:
+        print(f"Today is a holiday ({country_holidays.get(today)}). Skipping.")
+        return
+```
+
+5. Remove days where you shouldn't be working (birthday, grandma's funeral...):
+
+```py
+    quiet_days = {
+        datetime.date(2026, 1, 1),
+    }
+    if today in quiet_days:
+        print("Today is a quiet day. Skipping.")
+        return
+```
+
+6. Randomize the count of commits, and weight them to make it more natural. Make sure the sum sums up to 100.
+
+```py
+    # Randomize Commits: 0 commits has a 32% chance, max capped at 9
+    num_commits = random.choices(
+        range(10),
+        weights=[32, 10, 8, 8, 8, 7, 8, 8, 6, 5],
+        k=1
+    )[0]
+    print(f"Scheduled for {num_commits} commits today.")
+```
+
+7. Finally, call the commit function in a loop:
+
+```py
+    for i in range(num_commits):
+        current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        git_commit(current_time)
+
+
+if __name__ == "__main__":
+    main()
 ```
 
 Good job, You're now officially a 10x engineer (with a healthy work/life balance), at least visually.
@@ -212,8 +253,7 @@ def main():
 
     # Quiet Days Check
     quiet_days = {
-        datetime.date(2026, 7, 7),
-        datetime.date(2027, 7, 7),
+        datetime.date(2026, 1, 1),
     }
     if today in quiet_days:
         print("Today is a quiet day. Skipping.")
