@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils'
 
 import { Markdown } from '../markdown'
 import { Tag } from '../ui/tag'
-import { ProseMono } from '../ui/typography'
+import { Prose } from '../ui/typography'
 import { ExperienceIcon } from './position-icon'
 
 export function ExperiencePositionItem({ position }: { position: ExperiencePosition }) {
@@ -92,9 +92,9 @@ export function ExperiencePositionItem({ position }: { position: ExperiencePosit
 
       <CollapsibleContent hiddenUntilFound>
         {position.description && (
-          <ProseMono className="pt-2 pl-9">
+          <Prose className="pt-2 pl-9 sm:prose-sm">
             <Markdown content={position.description} />
-          </ProseMono>
+          </Prose>
         )}
       </CollapsibleContent>
 

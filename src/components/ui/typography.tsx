@@ -29,10 +29,4 @@ function Prose({ className, render, ...props }: useRender.ComponentProps<'div'>)
   })
 }
 
-function ProseMono({ className, ...props }: React.ComponentProps<typeof Prose>) {
-  return (
-    <Prose className={cn('prose-xs text-foreground font-mono text-sm', className)} {...props} />
-  )
-}
-
-export { Prose, ProseMono }
+export { Prose }

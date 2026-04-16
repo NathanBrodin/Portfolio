@@ -8,10 +8,9 @@ import { GithubContributions } from '@/components/github-contributions'
 import { Projects } from '@/components/projects'
 import { SocialLinks } from '@/components/social-links'
 import { TechStack } from '@/components/tech-stack'
-import { Dither } from '@/components/ui/backgrounds/dither'
 import { Page, PageDescription, PageHeader, PageTitle } from '@/components/ui/page'
 import { Section } from '@/components/ui/section'
-import { SectionDivider } from '@/components/ui/section-divider'
+import { FancySectionDivider, SectionDivider } from '@/components/ui/section-divider'
 import { siteConfig } from '@/config/site'
 import { getGithubContributions, getStargazersCount } from '@/lib/functions'
 
@@ -52,23 +51,11 @@ function App() {
       <TechStack />
       <SectionDivider />
       <Experiences />
-      <SectionDivider />
-      <Section className="h-25">
-        <Dither offset={0.4} />
-      </Section>
-      <SectionDivider />
+      <FancySectionDivider offset={0.4} />
       <Projects />
-      <SectionDivider />
-      <Section className="h-25">
-        <Dither offset={-0.3} />
-      </Section>
-      <SectionDivider />
+      <FancySectionDivider offset={-0.3} />
       <Certifications />
-      <SectionDivider />
-      <Section className="h-25">
-        <Dither offset={-0.3} />
-      </Section>
-      <SectionDivider />
+      <FancySectionDivider offset={0.5} />
       <BlogPreview />
       <SectionDivider />
       <Section className="h-16" />

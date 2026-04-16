@@ -10,7 +10,7 @@ import {
   CollapsibleWithContext,
 } from '@/components/ui/collapsible'
 import { Tag } from '@/components/ui/tag'
-import { ProseMono } from '@/components/ui/typography'
+import { Prose } from '@/components/ui/typography'
 import { formatDate } from '@/lib/date'
 
 import { Button } from '../ui/button'
@@ -79,9 +79,9 @@ export function ProjectItem({ className, project }: { className?: string; projec
       <CollapsibleContent hiddenUntilFound>
         <div className="space-y-2 px-4 py-2">
           {project.markup && (
-            <ProseMono>
+            <Prose className="sm:prose-sm">
               <Markdown content={project.markup} />
-            </ProseMono>
+            </Prose>
           )}
 
           {project.skills.length > 0 && (

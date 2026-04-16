@@ -1,7 +1,9 @@
 import { cn } from '@/lib/utils'
 
+import { Dither } from './backgrounds/dither'
 import { Lines } from './backgrounds/lines'
 import { Diamond } from './diamond'
+import { Section } from './section'
 
 export function SectionDivider({ className, ...props }: React.ComponentProps<'section'>) {
   return (
@@ -38,5 +40,17 @@ export function SubSectionDivider({ className, ...props }: React.ComponentProps<
       <Diamond bottom right />
       <Lines />
     </section>
+  )
+}
+
+export function FancySectionDivider({ offset }: { offset?: number }) {
+  return (
+    <>
+      <SectionDivider />
+      <Section className="h-25">
+        <Dither offset={offset} />
+      </Section>
+      <SectionDivider />
+    </>
   )
 }
