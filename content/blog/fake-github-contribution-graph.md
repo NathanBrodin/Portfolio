@@ -47,44 +47,44 @@ jobs:
 3. Add the steps. First, checkout the repo:
 
 ```yml
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+steps:
+  - name: Checkout repository
+    uses: actions/checkout@v3
 ```
 
 4. Set up Python and install dependencies:
 
 ```yml
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
+- name: Set up Python
+  uses: actions/setup-python@v4
+  with:
+    python-version: '3.9'
 
-      - name: Install dependencies
-        run: pip install holidays
+- name: Install dependencies
+  run: pip install holidays
 ```
 
 5. Configure git. Make sure to use the same email address as your GitHub account, else contributions will not be counted:
 
 ```yml
-      - name: Configure Git
-        run: |
-          git config --global user.name "Nathan Brodin"
-          git config --global user.email "nathan@brodin.dev"
+- name: Configure Git
+  run: |
+    git config --global user.name "Nathan Brodin"
+    git config --global user.email "nathan@brodin.dev"
 ```
 
 6. Run the auto-commit script:
 
 ```yml
-      - name: Run Auto-Commit Script
-        run: python autocommit.py
+- name: Run Auto-Commit Script
+  run: python autocommit.py
 ```
 
 7. Finally, push changes:
 
 ```yml
-      - name: Push changes
-        run: git push
+- name: Push changes
+  run: git push
 ```
 
 ## A Tiny Script To Make It Look Realistic
@@ -94,7 +94,6 @@ If you would make the exact same amount of commits, monday to sunday, even on Ch
 1. First, add the imports:
 
 ```py
-import os
 import random
 import subprocess
 import datetime
@@ -221,7 +220,6 @@ jobs:
 ```py
 # autocommit.py
 
-import os
 import random
 import subprocess
 import datetime

@@ -121,26 +121,18 @@ In theory, backend engineers handle incredibly important tasks: complex business
 
 But in my early years of corporate experience, my reality has been quite different. I have only encountered codebases where basic software engineering practices, like mandatory PR reviews, automated testing, or even basic linting, just weren't part of the culture. When teams don't put effort into those foundations, you quickly end up with messy codebases, weak RBAC, major security oversights, and poor performance. More importantly, I’ve encountered the "Silo Problem."
 
-Here’s a story from a past job. We were building an AI Chat app. I was the solo frontend dev, working with a UI/UX designer, a handful of backend devs, and some AI engineers.
-
-The backend team held their planning meetings without bringing in the frontend or the UI designer. Because of that disconnect, the database relations and endpoints were designed without the actual client application in mind. The result made zero sense for the UI: they added data models for UI themes using variables that completely clashed with the design system, and created endpoints structured in a way that required six separate workarounds on the client just to render a basic view. I ended up rewriting the frontend logic three separate times to keep up with OpenAPI specs that were handed down after the fact (which, naturally, rarely matched the live responses). It was an incredibly frustrating but valuable lesson in why API design has to be collaborative.
-
+It goes like this: the backend team designs their database models and endpoints in isolation, without involving the frontend or the designer. The result never maps to what the UI actually needs, data models that clash with the design system, endpoints structured in a way that require several workarounds on the client just to render a basic view, and OpenAPI specs handed down after the fact that rarely match the live responses. I've seen it more than once, and it never stops being painful.
 If you are a backend developer adding a new endpoint, you aren't doing it for fun. You are doing it because the user interface needs that data. Designing APIs without consulting the client-side needs is like building a steering wheel without checking what kind of car it's going into.
 
 Thankfully, on my current project, I am the frontend, backend, and DevOps engineer. Everything communicates nicely, because I actually talk to myself.
 
 ## The Corporate Reality
 
-I started this new grad job in mid-2025 at a small non-tech company. I turned down a crazy offer at a massive corporation specifically because I wanted the freedom to build good products and care about software architecture, things that weren't possible there.
-
+I started this new grad job in mid-2025 at a small non-tech company, specifically because I wanted the freedom to build good products and actually care about software architecture.
 And I did get that freedom. I spent hours refining small details, optimizing DX, and over-engineering the type safety.
 
-But as the months go by, a weird realization has set in:
+But as the months go by, a weird realization has set in. This app will never scale to the hundreds of thousands of users I was used to handling in previous roles. Projects like this one are inherently temporary, business priorities shift, tools get replaced, and what matters today might be irrelevant in two years. The business goal is to ship a working solution, not to build a lasting technical marvel.
 
-1. This app will likely never have more than 8 concurrent users.
-2. Looking at the history of internal projects over the years, business priorities pivot fast, and apps are often abandoned or replaced after a year or two.
-3. The business goal is to ship a solution, not to build a lasting technical marvel.
+It's a strange feeling. You pour real craft into something and the honest answer is: it probably didn't need to be this good. But I think that's okay. The craftsmanship wasn't wasted: I learned a lot building it this way, and I'd rather over-engineer once and learn than ship something I'm not proud of.
 
-What’s the point of writing perfectly scalable code if it might just gather dust in 12 months? I’ve put so much effort into the craftsmanship of this app, but I'm learning that in the corporate world, you don't always get a 'good job' for a flawless architecture. You just get the next Jira ticket.
-
-But in life, you make compromises. I’m getting paid to learn, I built an architecture I’m proud of, and at the end of the day, I get to log off and live in one of the [most beautiful places in the world](https://www.google.com/search?q=tromsø+aurora&tbm=isch).
+And at the end of the day, I get to log off and live in one of [the most beautiful places in the world](https://www.google.com/search?q=tromsø+aurora&tbm=isch). That counts for something.
