@@ -35,7 +35,7 @@ async function decodeAudioData(dataUri: string): Promise<AudioBuffer> {
  * Lazily decodes the audio buffer on first call, then uses the cached buffer.
  * This avoids per-component useEffect overhead for every Button instance.
  */
-export function playSound(sound: SoundAsset, volume = 0.5): void {
+export function playSound(sound: SoundAsset, volume = 0.02): void {
   const ctx = getAudioContext()
 
   if (ctx.state === 'suspended') {
