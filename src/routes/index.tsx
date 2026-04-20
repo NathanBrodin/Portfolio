@@ -49,13 +49,13 @@ function App() {
       <GithubContributions contributions={contributions} />
       <SectionDivider />
       <TechStack />
-      <SectionDivider />
+      <FancySectionDivider offset={-0.8} />
       <Experiences />
       <FancySectionDivider offset={0.4} />
       <Projects />
       <FancySectionDivider offset={-0.3} />
       <Certifications />
-      <FancySectionDivider offset={0.5} />
+      <FancySectionDivider offset={1.2} />
       <BlogPreview />
       <SectionDivider />
       <Section className="h-16" />
