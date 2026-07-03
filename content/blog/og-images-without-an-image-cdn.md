@@ -1,7 +1,7 @@
 ---
 title: 'OG Images Without an Image CDN'
 description: 'I render Open Graph previews as real React routes and screenshot them with Puppeteer in a build script, so my link previews reuse the same components as the site.'
-date: '2026-07-03'
+date: '2026-07-10'
 tags: ['web-development', 'react', 'seo']
 published: false
 ---

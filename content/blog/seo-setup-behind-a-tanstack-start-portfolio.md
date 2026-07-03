@@ -1,7 +1,7 @@
 ---
 title: 'The SEO Setup Behind a TanStack Start Portfolio'
 description: "The exact set of SEO things I actually ship on brodin.dev: per-route meta via TanStack Router's head(), three layers of JSON-LD, a sitemap and RSS feed served as live route handlers, and an llms.txt for the LLM crawlers."
-date: '2026-07-03'
+date: '2026-07-17'
 tags: ['web-development', 'seo', 'tanstack']
 published: false
 ---

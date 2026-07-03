@@ -3,7 +3,7 @@ title: 'Every Optimization Behind a Perfect Lighthouse Score'
 description: "The 100 on Lighthouse isn't luck or a clean stack. Here is every optimization I actually shipped to get brodin.dev to 100 locally and 100 in Vercel Real Experience Score."
 date: '2026-07-03'
 tags: ['web-development', 'performance', 'tanstack']
-published: false
+published: true
 ---
 
 I run Lighthouse on [brodin.dev](https://brodin.dev) the way some people refresh their GitHub contribution graph. It currently lands at **100 on every local run**, and **100 in Vercel's Real Experience Score**. These performances don't come from a "performance checklist", but rather from moving work from the browser to the build, in places where every generic guide tells you to just "lazy-load it."
