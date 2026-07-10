@@ -3,7 +3,7 @@ title: 'OG Images Without an Image CDN'
 description: 'I render Open Graph previews as real React routes and screenshot them with Puppeteer in a build script, so my link previews reuse the same components as the site.'
 date: '2026-07-10'
 tags: ['web-development', 'react', 'seo']
-published: false
+published: true
 ---
 
 Link previews are the first thing anyone sees of a blog post. They're also the last thing most people think about. The usual answers are a Figma file you forget to update, or `@vercel/og`, or an image-CDN pipeline you stand up once and never touch again.
