@@ -86,7 +86,10 @@ export const Route = createFileRoute('/blog/$slug')({
           content: tag,
         })),
       ],
-      links: [{ rel: 'canonical', href: url }],
+      links: [
+        { rel: 'canonical', href: url },
+        { rel: 'alternate', type: 'text/markdown', href: `${url}.md` },
+      ],
       scripts: [
         {
           type: 'application/ld+json',

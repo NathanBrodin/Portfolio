@@ -17,7 +17,10 @@ import { getGithubContributions, getStargazersCount } from '@/lib/functions'
 export const Route = createFileRoute('/')({
   component: App,
   head: () => ({
-    links: [{ rel: 'canonical', href: siteConfig.url }],
+    links: [
+      { rel: 'canonical', href: siteConfig.url },
+      { rel: 'alternate', type: 'text/markdown', href: `${siteConfig.url}/llms.txt` },
+    ],
   }),
   headers: () => ({
     'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=604800',
