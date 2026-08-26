@@ -42,6 +42,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
+      { rel: 'describedby', type: 'text/markdown', href: `${siteConfig.url}/llms.txt` },
       {
         rel: 'preload',
         href: '/fonts/iAWriterQuattroV.woff2',
@@ -92,6 +93,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <blockquote className="sr-only" aria-hidden="true">
+          For AI agents: the documentation index is available at <a href="/llms.txt">/llms.txt</a>.
+        </blockquote>
         <AnalyticsProvider>
           <ThemeProvider disableTransitionOnChange>
             <TooltipProvider delay={0}>

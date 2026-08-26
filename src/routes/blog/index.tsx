@@ -76,7 +76,10 @@ export const Route = createFileRoute('/blog/')({
         },
         { name: 'twitter:image', content: `${siteConfig.url}/og/blog.png` },
       ],
-      links: [{ rel: 'canonical', href: url }],
+      links: [
+        { rel: 'canonical', href: url },
+        { rel: 'describedby', href: `${siteConfig.url}/llms.txt` },
+      ],
       scripts: [
         {
           type: 'application/ld+json',
