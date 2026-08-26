@@ -18,7 +18,7 @@ function findPost(slug: string) {
   return allBlogPosts.find((post) => post.slug === slug && post.published)
 }
 
-export const Route = createFileRoute('/blog/$slug/')({
+export const Route = createFileRoute('/blog/$slug')({
   loader: ({ params }) => {
     const post = findPost(params.slug)
     if (!post) {

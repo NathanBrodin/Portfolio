@@ -1,7 +1,7 @@
 import { createFileRoute, notFound } from '@tanstack/react-router'
 import { allBlogPosts } from 'content-collections'
 
-export const Route = createFileRoute('/blog/$slug/post.md')({
+export const Route = createFileRoute('/blog/{$slug}.md')({
   server: {
     handlers: {
       GET: ({ params }) => {

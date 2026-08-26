@@ -132,7 +132,7 @@ function generateBlogMarkdown(): string {
 
   for (const post of posts) {
     lines.push(
-      `- [${post.title}](${siteConfig.url}/blog/${post.slug}/post.md) - ${post.description} | ${post.date}`,
+      `- [${post.title}](${siteConfig.url}/blog/${post.slug}.md) - ${post.description} | ${post.date}`,
     )
   }
 

@@ -17,7 +17,7 @@ const publishedPosts = allBlogPosts
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
 export function BlogNavigation() {
-  const { slug } = useParams({ from: '/blog/$slug/' })
+  const { slug } = useParams({ from: '/blog/$slug' })
   const navigate = useNavigate()
 
   const currentIndex = publishedPosts.findIndex((post) => post.slug === slug)
@@ -66,7 +66,7 @@ export function BlogNavigation() {
       </Link>
       <div className="flex gap-2">
         <Menu>
-          <MenuTrigger openOnHover render={<Button variant="secondary" size="sm" />}>
+          <MenuTrigger openOnHover delay={0} render={<Button variant="secondary" size="sm" />}>
             <ShareIcon className="size-3.5" />
             Share
           </MenuTrigger>
@@ -101,7 +101,7 @@ export function BlogNavigation() {
               Share on Linkedin
             </MenuItem>
             <MenuSeparator />
-            <MenuItem render={<a href={`/blog/${slug}/post.md`} />}>
+            <MenuItem render={<a href={`/blog/${slug}.md`} />}>
               <Icons.markdown />
               View as Markdown
             </MenuItem>

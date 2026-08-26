@@ -14,10 +14,10 @@ import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OgIndexRouteImport } from './routes/og/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as BlogChar123slugChar125DotmdRouteImport } from './routes/blog/{$slug}[.]md'
+import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as BlogRssRouteRouteImport } from './routes/blog/rss/route'
 import { Route as BlogOgIndexRouteImport } from './routes/blog/og/index'
-import { Route as BlogSlugIndexRouteImport } from './routes/blog/$slug/index'
-import { Route as BlogSlugPostDotmdRouteRouteImport } from './routes/blog/$slug/post[.md]/route'
 import { Route as BlogSlugOgIndexRouteImport } from './routes/blog/$slug/og/index'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -45,6 +45,17 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogChar123slugChar125DotmdRoute =
+  BlogChar123slugChar125DotmdRouteImport.update({
+    id: '/blog/{$slug}.md',
+    path: '/blog/{$slug}.md',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogRssRouteRoute = BlogRssRouteRouteImport.update({
   id: '/blog/rss',
   path: '/blog/rss',
@@ -55,20 +66,10 @@ const BlogOgIndexRoute = BlogOgIndexRouteImport.update({
   path: '/blog/og/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogSlugIndexRoute = BlogSlugIndexRouteImport.update({
-  id: '/blog/$slug/',
-  path: '/blog/$slug/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BlogSlugPostDotmdRouteRoute = BlogSlugPostDotmdRouteRouteImport.update({
-  id: '/blog/$slug/post.md',
-  path: '/blog/$slug/post.md',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const BlogSlugOgIndexRoute = BlogSlugOgIndexRouteImport.update({
-  id: '/blog/$slug/og/',
-  path: '/blog/$slug/og/',
-  getParentRoute: () => rootRouteImport,
+  id: '/og/',
+  path: '/og/',
+  getParentRoute: () => BlogSlugRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -76,10 +77,10 @@ export interface FileRoutesByFullPath {
   '/llms.txt': typeof LlmsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/rss': typeof BlogRssRouteRoute
+  '/blog/$slug': typeof BlogSlugRouteWithChildren
+  '/blog/{$slug}.md': typeof BlogChar123slugChar125DotmdRoute
   '/blog/': typeof BlogIndexRoute
   '/og/': typeof OgIndexRoute
-  '/blog/$slug/post.md': typeof BlogSlugPostDotmdRouteRoute
-  '/blog/$slug/': typeof BlogSlugIndexRoute
   '/blog/og/': typeof BlogOgIndexRoute
   '/blog/$slug/og/': typeof BlogSlugOgIndexRoute
 }
@@ -88,10 +89,10 @@ export interface FileRoutesByTo {
   '/llms.txt': typeof LlmsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/rss': typeof BlogRssRouteRoute
+  '/blog/$slug': typeof BlogSlugRouteWithChildren
+  '/blog/{$slug}.md': typeof BlogChar123slugChar125DotmdRoute
   '/blog': typeof BlogIndexRoute
   '/og': typeof OgIndexRoute
-  '/blog/$slug/post.md': typeof BlogSlugPostDotmdRouteRoute
-  '/blog/$slug': typeof BlogSlugIndexRoute
   '/blog/og': typeof BlogOgIndexRoute
   '/blog/$slug/og': typeof BlogSlugOgIndexRoute
 }
@@ -101,10 +102,10 @@ export interface FileRoutesById {
   '/llms.txt': typeof LlmsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/rss': typeof BlogRssRouteRoute
+  '/blog/$slug': typeof BlogSlugRouteWithChildren
+  '/blog/{$slug}.md': typeof BlogChar123slugChar125DotmdRoute
   '/blog/': typeof BlogIndexRoute
   '/og/': typeof OgIndexRoute
-  '/blog/$slug/post.md': typeof BlogSlugPostDotmdRouteRoute
-  '/blog/$slug/': typeof BlogSlugIndexRoute
   '/blog/og/': typeof BlogOgIndexRoute
   '/blog/$slug/og/': typeof BlogSlugOgIndexRoute
 }
@@ -115,10 +116,10 @@ export interface FileRouteTypes {
     | '/llms.txt'
     | '/sitemap.xml'
     | '/blog/rss'
+    | '/blog/$slug'
+    | '/blog/{$slug}.md'
     | '/blog/'
     | '/og/'
-    | '/blog/$slug/post.md'
-    | '/blog/$slug/'
     | '/blog/og/'
     | '/blog/$slug/og/'
   fileRoutesByTo: FileRoutesByTo
@@ -127,10 +128,10 @@ export interface FileRouteTypes {
     | '/llms.txt'
     | '/sitemap.xml'
     | '/blog/rss'
+    | '/blog/$slug'
+    | '/blog/{$slug}.md'
     | '/blog'
     | '/og'
-    | '/blog/$slug/post.md'
-    | '/blog/$slug'
     | '/blog/og'
     | '/blog/$slug/og'
   id:
@@ -139,10 +140,10 @@ export interface FileRouteTypes {
     | '/llms.txt'
     | '/sitemap.xml'
     | '/blog/rss'
+    | '/blog/$slug'
+    | '/blog/{$slug}.md'
     | '/blog/'
     | '/og/'
-    | '/blog/$slug/post.md'
-    | '/blog/$slug/'
     | '/blog/og/'
     | '/blog/$slug/og/'
   fileRoutesById: FileRoutesById
@@ -152,12 +153,11 @@ export interface RootRouteChildren {
   LlmsDottxtRoute: typeof LlmsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   BlogRssRouteRoute: typeof BlogRssRouteRoute
+  BlogSlugRoute: typeof BlogSlugRouteWithChildren
+  BlogChar123slugChar125DotmdRoute: typeof BlogChar123slugChar125DotmdRoute
   BlogIndexRoute: typeof BlogIndexRoute
   OgIndexRoute: typeof OgIndexRoute
-  BlogSlugPostDotmdRouteRoute: typeof BlogSlugPostDotmdRouteRoute
-  BlogSlugIndexRoute: typeof BlogSlugIndexRoute
   BlogOgIndexRoute: typeof BlogOgIndexRoute
-  BlogSlugOgIndexRoute: typeof BlogSlugOgIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -197,6 +197,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/{$slug}.md': {
+      id: '/blog/{$slug}.md'
+      path: '/blog/{$slug}.md'
+      fullPath: '/blog/{$slug}.md'
+      preLoaderRoute: typeof BlogChar123slugChar125DotmdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/rss': {
       id: '/blog/rss'
       path: '/blog/rss'
@@ -211,41 +225,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogOgIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog/$slug/': {
-      id: '/blog/$slug/'
-      path: '/blog/$slug'
-      fullPath: '/blog/$slug/'
-      preLoaderRoute: typeof BlogSlugIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blog/$slug/post.md': {
-      id: '/blog/$slug/post.md'
-      path: '/blog/$slug/post.md'
-      fullPath: '/blog/$slug/post.md'
-      preLoaderRoute: typeof BlogSlugPostDotmdRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/blog/$slug/og/': {
       id: '/blog/$slug/og/'
-      path: '/blog/$slug/og'
+      path: '/og'
       fullPath: '/blog/$slug/og/'
       preLoaderRoute: typeof BlogSlugOgIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof BlogSlugRoute
     }
   }
 }
+
+interface BlogSlugRouteChildren {
+  BlogSlugOgIndexRoute: typeof BlogSlugOgIndexRoute
+}
+
+const BlogSlugRouteChildren: BlogSlugRouteChildren = {
+  BlogSlugOgIndexRoute: BlogSlugOgIndexRoute,
+}
+
+const BlogSlugRouteWithChildren = BlogSlugRoute._addFileChildren(
+  BlogSlugRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   BlogRssRouteRoute: BlogRssRouteRoute,
+  BlogSlugRoute: BlogSlugRouteWithChildren,
+  BlogChar123slugChar125DotmdRoute: BlogChar123slugChar125DotmdRoute,
   BlogIndexRoute: BlogIndexRoute,
   OgIndexRoute: OgIndexRoute,
-  BlogSlugPostDotmdRouteRoute: BlogSlugPostDotmdRouteRoute,
-  BlogSlugIndexRoute: BlogSlugIndexRoute,
   BlogOgIndexRoute: BlogOgIndexRoute,
-  BlogSlugOgIndexRoute: BlogSlugOgIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
