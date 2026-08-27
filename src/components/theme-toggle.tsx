@@ -14,8 +14,13 @@ export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme()
 
   const switchTheme = useCallback(() => {
-    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
-    playSound(switch005Sound)
+    if (!document.startViewTransition) {
+      setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+      playSound(switch005Sound)
+      return
+    }
+
+    document.startViewTransition(() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark'))
   }, [resolvedTheme, setTheme])
 
   useHotkey('T', switchTheme)
