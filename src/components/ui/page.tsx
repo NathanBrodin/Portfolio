@@ -40,7 +40,7 @@ export function PageHeader({ className, children, ...props }: React.ComponentPro
 export function PageTitle({ className, ...props }: React.ComponentProps<'h1'>) {
   return (
     <h1
-      className={cn('font-display text-primary scroll-mt-24 font-normal', className)}
+      className={cn('font-display font-medium text-primary scroll-mt-24', className)}
       {...props}
       data-slot="page-title"
     />
