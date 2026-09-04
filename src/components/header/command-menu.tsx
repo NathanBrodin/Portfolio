@@ -45,7 +45,9 @@ export function CommandMenu({ items }: { items: Group[] }) {
 
   return (
     <CommandDialog onOpenChange={setOpen} open={open}>
-      <CommandDialogTrigger render={<Button variant="outline" className="hidden sm:flex" />}>
+      <CommandDialogTrigger
+        render={<Button variant="secondary" size="sm" className="hidden sm:flex" />}
+      >
         <SearchIcon />
         <span className="sr-only">Open Command Palette</span>
         <KbdGroup className="hidden sm:flex">
