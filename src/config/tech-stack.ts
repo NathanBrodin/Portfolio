@@ -52,12 +52,6 @@ export const TECH_STACK: TechStack[] = [
     category: 'Backend',
   },
   {
-    key: 'bun',
-    title: 'Bun',
-    href: 'https://bun.sh/',
-    category: 'Backend',
-  },
-  {
     key: 'react',
     title: 'React',
     href: 'https://react.dev/',
@@ -117,11 +111,10 @@ export const TECH_STACK: TechStack[] = [
     category: 'Frontend',
   },
   {
-    key: 'react-router',
-    title: 'React Router',
-    href: 'https://reactrouter.com/',
+    key: 'recharts',
+    title: 'Recharts',
+    href: 'https://recharts.github.io/',
     category: 'Frontend',
-    theme: true,
   },
   {
     key: 'playwright',
@@ -134,6 +127,13 @@ export const TECH_STACK: TechStack[] = [
     title: 'Git',
     href: 'https://git-scm.com/',
     category: 'Tools',
+  },
+  {
+    key: 'github',
+    title: 'GitHub',
+    href: 'https://github.com/',
+    category: 'Tools',
+    theme: true,
   },
   {
     key: 'docker',
@@ -167,6 +167,12 @@ export const TECH_STACK: TechStack[] = [
     category: 'Database',
   },
   {
+    key: 'clickhouse',
+    title: 'ClickHouse',
+    href: 'https://clickhouse.com/',
+    category: 'Database',
+  },
+  {
     key: 'figma',
     title: 'Figma',
     href: 'https://www.figma.com/',
@@ -176,6 +182,12 @@ export const TECH_STACK: TechStack[] = [
     key: 'vim',
     title: 'I use VIM btw',
     href: 'https://vim.org/',
+    category: 'Tools',
+  },
+  {
+    key: 'zed',
+    title: 'Zed',
+    href: 'https://zed.dev/',
     category: 'Tools',
   },
   {

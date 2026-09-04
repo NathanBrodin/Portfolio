@@ -19,9 +19,9 @@ function generateTechStackMarkdown(stack: TechStack[]): string {
     {} as Record<string, TechStack[]>,
   )
 
-  const sortedCategories = Object.keys(groupedStack).sort()
+  const orderedCategories = Object.keys(groupedStack)
 
-  const markdownLines = sortedCategories.map((category) => {
+  const markdownLines = orderedCategories.map((category) => {
     const techItems = groupedStack[category].map((tech) => tech.title).join(', ')
 
     return `- **${category}**: ${techItems}`

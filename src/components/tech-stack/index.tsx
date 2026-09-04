@@ -1,72 +1,109 @@
-import { TECH_STACK } from '@/config/tech-stack'
+import { TECH_STACK, type TechStack as TechStackItem } from '@/config/tech-stack'
 
-import { Lines } from '../ui/backgrounds/lines'
-import { Diamond } from '../ui/diamond'
 import { Section, SectionTitle } from '../ui/section'
-import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
+
+const ID = 'tech-stack'
 
 export function TechStack() {
   return (
-    <Section id="tech-stack" className="flex flex-col">
+    <Section id={ID} className="flex flex-col">
       <SectionTitle>Tech Stack</SectionTitle>
-      <div className="relative flex w-full items-center justify-center border-t px-4">
-        <Lines className="opacity-5 select-none dark:opacity-2" />
-        <Diamond top left />
-        <Diamond top right />
-        <ul className="flex max-w-4xl flex-wrap items-center justify-center gap-4 border-x bg-background px-2 py-4 select-none">
-          {TECH_STACK.map((tech) => {
-            return (
-              <li key={tech.key} className="flex">
-                <Tooltip>
-                  <TooltipTrigger
-                    delay={0}
-                    render={
+
+      <div className="relative border-t [--badge-height:--spacing(6)] [--col-left-width:--spacing(48)]">
+        <div
+          className="pointer-events-none absolute inset-y-0 left-(--col-left-width) -z-1 w-px border-r border-dashed border-border max-sm:hidden"
+          aria-hidden
+        />
+
+        {Object.entries(groupByCategory(TECH_STACK)).map(([category, items], index) => {
+          const categoryId = `${ID}-${category
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)/g, '')}`
+
+          return (
+            <div
+              key={category}
+              className="grid items-start gap-y-2 border-b border-border py-4 last:border-none sm:grid-cols-[var(--col-left-width)_1fr]"
+            >
+              <div id={categoryId} className="pl-4 text-sm/(--badge-height)">
+                <span className="mr-1.5 font-mono text-muted-foreground/80 select-none" aria-hidden>
+                  {(index + 1).toString().padStart(2, '0')}
+                </span>
+                {category}
+              </div>
+
+              <ul aria-labelledby={categoryId} className="flex flex-wrap gap-1.5 px-4">
+                {items.map((item) => {
+                  return (
+                    <li key={item.key} className="flex">
                       <a
-                        href={tech.href}
+                        href={item.href}
                         target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={tech.title}
-                      />
-                    }
-                  >
-                    {tech.theme ? (
-                      <>
-                        <img
-                          src={`/tech-stack-icons/${tech.key}-light.svg`}
-                          alt={`${tech.title} light icon`}
-                          width={32}
-                          height={32}
-                          className="block dark:hidden"
-                          loading="lazy"
-                        />
-                        <img
-                          src={`/tech-stack-icons/${tech.key}-dark.svg`}
-                          alt={`${tech.title} dark icon`}
-                          width={32}
-                          height={32}
-                          className="hidden dark:block"
-                          loading="lazy"
-                        />
-                      </>
-                    ) : (
-                      <img
-                        src={`/tech-stack-icons/${tech.key}.svg`}
-                        alt={`${tech.title} icon`}
-                        width={32}
-                        height={32}
-                        loading="lazy"
-                      />
-                    )}
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{tech.title}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </li>
-            )
-          })}
-        </ul>
+                        rel="noopener"
+                        className="flex h-(--badge-height) items-center justify-center gap-1.25 rounded-full bg-zinc-50/80 px-2 font-mono text-xs text-foreground inset-ring-1 inset-ring-border dark:bg-zinc-900/80 [&_img]:pointer-events-none [&_img]:size-3.5 [&_img]:shrink-0 [&_svg]:pointer-events-none [&_svg]:size-3.5 [&_svg]:shrink-0 [&_svg]:text-muted-foreground/80"
+                      >
+                        <TechIcon tech={item} />
+                        {item.title}
+                      </a>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          )
+        })}
       </div>
     </Section>
   )
+}
+
+function TechIcon({ tech }: { tech: TechStackItem }) {
+  if (tech.theme) {
+    return (
+      <>
+        <img
+          src={`/tech-stack-icons/${tech.key}-light.svg`}
+          alt=""
+          aria-hidden
+          width={14}
+          height={14}
+          loading="lazy"
+          className="block dark:hidden"
+        />
+        <img
+          src={`/tech-stack-icons/${tech.key}-dark.svg`}
+          alt=""
+          aria-hidden
+          width={14}
+          height={14}
+          loading="lazy"
+          className="hidden dark:block"
+        />
+      </>
+    )
+  }
+
+  return (
+    <img
+      src={`/tech-stack-icons/${tech.key}.svg`}
+      alt=""
+      aria-hidden
+      width={14}
+      height={14}
+      loading="lazy"
+    />
+  )
+}
+
+function groupByCategory(items: TechStackItem[]): Record<string, TechStackItem[]> {
+  return items.reduce<Record<string, TechStackItem[]>>((acc, item) => {
+    const categories = (item as TechStackItem & { categories?: string[] }).categories ?? [
+      item.category,
+    ]
+    for (const category of categories) {
+      ;(acc[category] ??= []).push(item)
+    }
+    return acc
+  }, {})
 }
