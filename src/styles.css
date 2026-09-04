@@ -242,6 +242,10 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+
   h1 {
     letter-spacing: -0.02em;
     line-height: 1.2;
