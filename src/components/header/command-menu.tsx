@@ -1,5 +1,5 @@
 import { useHotkey } from '@tanstack/react-hotkeys'
-import { Link } from '@tanstack/react-router'
+import { Link, ScriptOnce } from '@tanstack/react-router'
 import {
   ArrowDownIcon,
   ArrowUpIcon,
@@ -29,7 +29,7 @@ import {
 } from '@/components/ui/command'
 import { Kbd, KbdGroup } from '@/components/ui/kbd'
 import { OTHER_LINKS } from '@/config/portfolio-links'
-import { useIsMac } from '@/hooks/use-is-mac'
+import { IS_MAC_SCRIPT, useIsMac } from '@/hooks/use-is-mac'
 
 import type { Group } from '.'
 
@@ -51,9 +51,12 @@ export function CommandMenu({ items }: { items: Group[] }) {
         <SearchIcon />
         <span className="sr-only">Open Command Palette</span>
         <KbdGroup className="hidden sm:flex">
-          <Kbd>{isMac ? '⌘' : 'Ctrl'}</Kbd>
+          <Kbd data-platform-key suppressHydrationWarning>
+            {isMac ? '⌘' : 'Ctrl'}
+          </Kbd>
           <Kbd>K</Kbd>
         </KbdGroup>
+        <ScriptOnce>{IS_MAC_SCRIPT}</ScriptOnce>
       </CommandDialogTrigger>
       <CommandDialogPopup>
         <Command items={items}>

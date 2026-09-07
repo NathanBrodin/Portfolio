@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { ScriptOnce } from '@tanstack/react-router'
 import { useServerFn } from '@tanstack/react-start'
 import { useState } from 'react'
 
@@ -75,7 +76,26 @@ function LegendDot({ animated }: { animated: boolean }) {
   return <span className="mt-0.5 size-2 shrink-0 rounded-full bg-primary" />
 }
 
+function getGreeting(hour: number) {
+  if (hour < 12) return 'Good morning'
+  if (hour < 18) return 'Good afternoon'
+  return 'Good evening'
+}
+
+// Runs during HTML parsing, before first paint, so the prerendered "About"
+// fallback is swapped before the user ever sees it. Self-removes after running
+// (via ScriptOnce), so hydration sees the same DOM the client renders.
+const GREETING_SCRIPT = `try{var h=new Date().getHours();var g=h<12?'Good morning':h<18?'Good afternoon':'Good evening';var el=document.getElementById('about-greeting');if(el)el.textContent=g;}catch(e){}`
+
+function getInitialGreeting() {
+  if (typeof window === 'undefined') return 'About'
+  return getGreeting(new Date().getHours())
+}
+
 export function About() {
+  // Read synchronously (like ThemeProvider does) instead of in useEffect, so
+  // the first client render already matches the script-patched DOM: no swap flash.
+  const [greeting] = useState(getInitialGreeting)
   const getUsersLocation = useServerFn(getServerUsersLocation)
 
   const { data: location } = useQuery({
@@ -90,7 +110,14 @@ export function About() {
   return (
     <Section id="about" className="grid w-full grid-cols-1 bg-background/50 md:grid-cols-3">
       <div className="flex flex-col gap-4 p-4 md:p-6">
-        <h2 className="font-display font-medium text-primary">About</h2>
+        <h2
+          id="about-greeting"
+          suppressHydrationWarning
+          className="font-display font-medium text-primary italic"
+        >
+          {greeting}
+        </h2>
+        <ScriptOnce>{GREETING_SCRIPT}</ScriptOnce>
         <div className="flex flex-col gap-3 text-sm text-foreground">
           <p>
             Originally from the west of France, I&apos;ve been moving north ever since: interning in
