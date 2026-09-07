@@ -50,7 +50,7 @@ export function PageTitle({ className, ...props }: React.ComponentProps<'h1'>) {
 export function PageDescription({ className, ...props }: React.ComponentProps<'p'>) {
   return (
     <p
-      className={cn('text-muted-foreground max-w-md text-sm', className)}
+      className={cn('text-foreground max-w-md text-sm', className)}
       {...props}
       data-slot="page-description"
     />

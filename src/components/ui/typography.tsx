@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 function Prose({ className, render, ...props }: useRender.ComponentProps<'div'>) {
   const defaultProps = {
     className: cn(
-      'prose prose-zinc prose-sm sm:prose-base dark:prose-invert max-w-none',
+      'prose prose-neutral prose-sm sm:prose-base dark:prose-invert max-w-none',
       'prose-headings:text-balance prose-headings:font-display prose-headings:text-primary prose-headings:font-normal',
       'prose-headings:[&_a]:text-inherit prose-headings:[&_a]:no-underline prose-headings:[&_a:hover]:underline prose-headings:[&_a:hover]:underline-offset-4 prose-headings:[&_a:hover]:decoration-muted-foreground/50',
       'prose-a:wrap-break-word prose-a:text-primary  prose-a:underline prose-a:underline-offset-4 prose-a:decoration-muted-foreground/50 prose-a:transition-colors [&_a:hover]:decoration-foreground',

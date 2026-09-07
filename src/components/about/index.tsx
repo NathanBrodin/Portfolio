@@ -91,7 +91,7 @@ export function About() {
     <Section id="about" className="grid w-full grid-cols-1 bg-background/50 md:grid-cols-3">
       <div className="flex flex-col gap-4 p-4 md:p-6">
         <h2 className="font-display font-medium text-primary">About</h2>
-        <div className="flex flex-col gap-3 text-sm text-muted-foreground">
+        <div className="flex flex-col gap-3 text-sm text-foreground">
           <p>
             Originally from the west of France, I&apos;ve been moving north ever since: interning in
             Oslo, exchanging in Finland and Sweden, and somehow ending up north of the Arctic Circle
