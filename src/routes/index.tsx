@@ -12,7 +12,7 @@ import { Page, PageDescription, PageHeader, PageTitle } from '@/components/ui/pa
 import { Section } from '@/components/ui/section'
 import { FancySectionDivider, SectionDivider } from '@/components/ui/section-divider'
 import { siteConfig } from '@/config/site'
-import { getGithubContributions, getStargazersCount } from '@/lib/functions'
+import { getGithubContributions } from '@/lib/functions'
 
 export const Route = createFileRoute('/')({
   component: App,
@@ -26,11 +26,10 @@ export const Route = createFileRoute('/')({
     'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=604800',
   }),
   loader: async () => {
-    const [contributions, stargazersCount] = await Promise.all([
-      getGithubContributions({ data: { user: siteConfig.githubHandle } }),
-      getStargazersCount({ data: { repo: 'NathanBrodin/Portfolio' } }),
-    ])
-    return { contributions, stargazersCount }
+    const contributions = await getGithubContributions({
+      data: { user: siteConfig.githubHandle },
+    })
+    return { contributions }
   },
   staleTime: 60_000,
 })

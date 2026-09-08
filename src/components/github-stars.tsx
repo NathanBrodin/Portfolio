@@ -1,21 +1,15 @@
 import { useQuery } from '@tanstack/react-query'
-import { useServerFn } from '@tanstack/react-start'
 
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-import { getStargazersCount as getServerStargazersCount } from '@/lib/functions'
+import { githubStarsQueryOptions } from '@/lib/queries'
 
 type GitHubStarsProps = {
   repo: string
 }
 
 export function GitHubStars({ repo }: GitHubStarsProps) {
-  const getStargazersCount = useServerFn(getServerStargazersCount)
-
-  const { data: stargazersCount } = useQuery({
-    queryKey: [repo],
-    queryFn: () => getStargazersCount({ data: { repo } }),
-  })
+  const { data: stargazersCount } = useQuery(githubStarsQueryOptions(repo))
 
   const count = new Intl.NumberFormat('en-US', {
     notation: 'compact',

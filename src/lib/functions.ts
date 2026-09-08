@@ -1,5 +1,6 @@
 import { createServerFn } from '@tanstack/react-start'
 import { getRequestHeader } from '@tanstack/react-start/server'
+import { staticFunctionMiddleware } from '@tanstack/start-static-server-functions'
 
 import { Activity } from '@/components/github-contributions/contribution-graph'
 import { env } from '@/env'
@@ -10,6 +11,10 @@ type GitHubContributionsResponse = {
 
 export const getStargazersCount = createServerFn({ method: 'GET' })
   .inputValidator((data: { repo: string }) => data)
+  .middleware([
+    // @ts-expect-error types currently mismatch between start-static-server-functions and react-start
+    staticFunctionMiddleware,
+  ])
   .handler(async ({ data }) => {
     try {
       const response = await fetch(`https://api.github.com/repos/${data.repo}`, {

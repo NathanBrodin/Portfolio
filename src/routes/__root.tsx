@@ -9,11 +9,15 @@ import { NotFound } from '@/components/not-found'
 import { ToastProvider } from '@/components/ui/toast'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { siteConfig, siteJsonLd } from '@/config/site'
+import { githubStarsQueryOptions } from '@/lib/queries'
 import { AnalyticsProvider } from '@/providers/analytics'
 
 import appCss from '../styles.css?url'
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  loader: ({ context }) => {
+    return context.queryClient.ensureQueryData(githubStarsQueryOptions('NathanBrodin/Portfolio'))
+  },
   head: () => ({
     meta: [
       { charSet: 'utf-8' },
