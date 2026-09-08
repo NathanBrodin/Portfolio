@@ -48,6 +48,7 @@ export function Dither({
     >
       <Suspense>
         <LazyDithering
+          className="animate-in duration-1000 fade-in"
           width={isMobile ? 640 : 1280}
           height={isMobile ? 200 : 400}
           colorBack={resolvedTheme === 'dark' ? '#000000' : '#FFFFFF'}

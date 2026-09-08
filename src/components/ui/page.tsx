@@ -26,7 +26,7 @@ export function Page({ className, children, ...props }: React.ComponentProps<'ma
 export function PageHeader({ className, children, ...props }: React.ComponentProps<'section'>) {
   return (
     <Section
-      className={cn('relative p-4 py-8 sm:p-24', className)}
+      className={cn('relative p-4 py-16 sm:p-24', className)}
       {...props}
       data-slot="page-header"
     >
