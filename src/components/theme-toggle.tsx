@@ -1,12 +1,13 @@
 import { useTheme } from '@lonik/themer'
 import { useHotkey } from '@tanstack/react-hotkeys'
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { MoonIcon } from '@/components/ui/icons/moon'
 import { SunMediumIcon } from '@/components/ui/icons/sun-medium'
 import { Kbd } from '@/components/ui/kbd'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { META_THEME_COLORS } from '@/config/site'
 import { playSound } from '@/lib/play-sound'
 import { switch005Sound } from '@/sounds/switch-005'
 
@@ -14,6 +15,12 @@ export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme()
 
   const isDark = resolvedTheme === 'dark'
+
+  useEffect(() => {
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', isDark ? META_THEME_COLORS.dark : META_THEME_COLORS.light)
+  }, [isDark])
 
   const switchTheme = useCallback(() => {
     if (!document.startViewTransition) {

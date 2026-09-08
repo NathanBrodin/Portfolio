@@ -36,7 +36,7 @@ export function Header() {
     { items: OTHER_LINKS, value: 'Others' },
   ]
   return (
-    <header className="item-center sticky top-0 z-50 flex justify-center border-b bg-background px-4">
+    <header className="item-center sticky top-0 z-50 flex justify-center border-b bg-background px-4 pt-[env(safe-area-inset-top)]">
       <div className="item-center relative flex w-full max-w-5xl justify-between border-x px-4 py-1">
         <Nav items={items} />
         <div className="relative flex items-center *:first:mr-4">

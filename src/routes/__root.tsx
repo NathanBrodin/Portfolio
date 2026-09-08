@@ -8,7 +8,7 @@ import { Header } from '@/components/header'
 import { NotFound } from '@/components/not-found'
 import { ToastProvider } from '@/components/ui/toast'
 import { TooltipProvider } from '@/components/ui/tooltip'
-import { siteConfig, siteJsonLd } from '@/config/site'
+import { META_THEME_COLORS, siteConfig, siteJsonLd } from '@/config/site'
 import { githubStarsQueryOptions } from '@/lib/queries'
 import { AnalyticsProvider } from '@/providers/analytics'
 
@@ -21,13 +21,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
       { title: siteConfig.title },
       { name: 'author', content: siteConfig.name },
       { name: 'keywords', content: siteConfig.keywords.join(', ') },
       { name: 'description', content: siteConfig.description },
       { name: 'robots', content: 'index, follow' },
-      { name: 'theme-color', content: '#000000' },
+      { name: 'theme-color', content: META_THEME_COLORS.light },
+      { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
       // Open Graph
       { property: 'og:type', content: 'website' },
       { property: 'og:url', content: siteConfig.url },
@@ -90,11 +91,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   },
 })
 
+const THEME_COLOR_SCRIPT = `try{if(localStorage.theme==='dark'||((!('theme' in localStorage)||localStorage.theme==='system')&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.querySelector('meta[name="theme-color"]').setAttribute('content','${META_THEME_COLORS.dark}')}}catch(_){}`
+
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
+        <script dangerouslySetInnerHTML={{ __html: THEME_COLOR_SCRIPT }} />
       </head>
       <body>
         <blockquote className="sr-only" aria-hidden="true">
