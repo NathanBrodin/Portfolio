@@ -11,6 +11,7 @@ type DiamondProps = {
 export function Diamond({ top, right, bottom, left, className }: DiamondProps) {
   return (
     <div
+      aria-hidden="true"
       className={cn(
         'border-grid absolute z-10 size-2 rotate-45 rounded-[1px] border bg-white dark:bg-black',
         top && 'top-[-4.5px]',

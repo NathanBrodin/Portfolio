@@ -47,6 +47,14 @@ export function formatFullDate(dateStr: string): string {
   })
 }
 
+export function formatMonthYear(dateStr: string): string {
+  const date = parseDate(dateStr)
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+  })
+}
+
 /**
  * Calculates the inclusive difference in months between two dates.
  *

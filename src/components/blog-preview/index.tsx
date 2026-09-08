@@ -35,9 +35,13 @@ export function BlogPreview() {
                   height={630}
                   fetchPriority="low"
                   loading="lazy"
-                  alt={post.title}
+                  alt=""
+                  aria-hidden="true"
                 />
-                <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 ring-inset dark:ring-white/10" />
+                <div
+                  className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 ring-inset dark:ring-white/10"
+                  aria-hidden="true"
+                />
               </div>
               <Diamond top left />
               <Diamond top right />

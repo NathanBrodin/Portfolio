@@ -17,17 +17,22 @@ export function SocialLinkItem({ iconImage, label, description, value }: LinkIte
       href={value}
       target="_blank"
       rel="noopener"
+      aria-label={description ? `${label}: ${description}` : label}
     >
       <div className="relative size-12 shrink-0">
         <img
           className="rounded-xl select-none corner-squircle supports-corner-shape:rounded-[50%]"
           src={iconImage}
-          alt={label}
+          alt=""
+          aria-hidden="true"
           width={48}
           height={48}
           loading="lazy"
         />
-        <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 corner-squircle ring-inset dark:ring-white/15 supports-corner-shape:rounded-[50%]" />
+        <div
+          className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 corner-squircle ring-inset dark:ring-white/15 supports-corner-shape:rounded-[50%]"
+          aria-hidden="true"
+        />
       </div>
 
       <div className="flex-1">
@@ -38,7 +43,10 @@ export function SocialLinkItem({ iconImage, label, description, value }: LinkIte
         {description && <p className="text-sm text-muted-foreground">{description}</p>}
       </div>
 
-      <ArrowUpRightIcon className="size-4 text-muted-foreground transition-[rotate] duration-300 group-hover:rotate-45" />
+      <ArrowUpRightIcon
+        className="size-4 text-muted-foreground transition-[rotate] duration-300 group-hover:rotate-45"
+        aria-hidden="true"
+      />
     </a>
   )
 }

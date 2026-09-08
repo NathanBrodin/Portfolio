@@ -64,7 +64,7 @@ const LEGEND_ITEMS = [
 function LegendDot({ animated }: { animated: boolean }) {
   if (animated) {
     return (
-      <span className="relative mt-0.5 flex size-2 shrink-0">
+      <span className="relative mt-0.5 flex size-2 shrink-0" aria-hidden="true">
         <span
           className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-75"
           style={{ animationDuration: '2s' }}
@@ -73,7 +73,7 @@ function LegendDot({ animated }: { animated: boolean }) {
       </span>
     )
   }
-  return <span className="mt-0.5 size-2 shrink-0 rounded-full bg-primary" />
+  return <span className="mt-0.5 size-2 shrink-0 rounded-full bg-primary" aria-hidden="true" />
 }
 
 function getGreeting(hour: number) {

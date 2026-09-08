@@ -22,68 +22,76 @@ export function ProjectItem({ className, project }: { className?: string; projec
 
   return (
     <CollapsibleWithContext defaultOpen={project.isExpanded} render={<div className={className} />}>
-      <CollapsibleTrigger className="flex w-full items-center gap-2 p-2 text-left hover:bg-muted/50">
-        {project.logo ? (
-          <img
-            src={project.logo}
-            alt={project.title}
-            width={32}
-            height={32}
-            className="mx-4 flex size-6 shrink-0 select-none dark:grayscale"
-            aria-hidden="true"
-          />
-        ) : (
-          <div
-            className="ring-edge mx-4 flex size-6 shrink-0 items-center justify-center rounded-lg border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-offset-1 ring-offset-background select-none"
-            aria-hidden="true"
-          >
-            <BoxIcon className="size-4" />
-          </div>
-        )}
-        <div className="flex-1">
-          <h3 className="mb-1 leading-snug font-medium text-balance">{project.title}</h3>
+      <div className="flex w-full items-center gap-2 p-2 hover:bg-muted/50">
+        <CollapsibleTrigger className="flex flex-1 items-center gap-2 text-left">
+          {project.logo ? (
+            <img
+              src={project.logo}
+              alt=""
+              width={32}
+              height={32}
+              className="mx-4 flex size-6 shrink-0 select-none dark:grayscale"
+              aria-hidden="true"
+            />
+          ) : (
+            <div
+              className="ring-edge mx-4 flex size-6 shrink-0 items-center justify-center rounded-lg border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-offset-1 ring-offset-background select-none"
+              aria-hidden="true"
+            >
+              <BoxIcon className="size-4" />
+            </div>
+          )}
+          <div className="flex-1">
+            <h3 className="mb-1 leading-snug font-medium text-balance">{project.title}</h3>
 
-          <dl className="text-sm text-muted-foreground">
-            <dt className="sr-only">Period</dt>
-            <dd className="flex items-center gap-0.5">
-              <time dateTime={project.startDate}>{formatDate(project.startDate)}</time>
-              {!isSinglePeriod && (
-                <>
-                  <span className="font-mono">—</span>
-                  {isOngoing ? (
-                    <>
-                      <InfinityIcon className="size-4.5 translate-y-[0.5px]" aria-hidden />
-                      <span className="sr-only">Present</span>
-                    </>
-                  ) : (
-                    <time dateTime={project.endDate}>
-                      {project.endDate && formatDate(project.endDate)}
-                    </time>
-                  )}
-                </>
-              )}
-            </dd>
-          </dl>
-        </div>
+            <dl className="text-sm text-muted-foreground">
+              <dt className="sr-only" aria-hidden="true">
+                Period
+              </dt>
+              <dd className="flex items-center gap-0.5">
+                <time dateTime={project.startDate}>{formatDate(project.startDate)}</time>
+                {!isSinglePeriod && (
+                  <>
+                    <span className="font-mono" aria-hidden="true">
+                      —
+                    </span>
+                    <span className="sr-only"> to </span>
+                    {isOngoing ? (
+                      <>
+                        <InfinityIcon className="size-4.5 translate-y-[0.5px]" aria-hidden />
+                        <span className="sr-only">Present</span>
+                      </>
+                    ) : (
+                      <time dateTime={project.endDate}>
+                        {project.endDate && formatDate(project.endDate)}
+                      </time>
+                    )}
+                  </>
+                )}
+              </dd>
+            </dl>
+          </div>
+          <div className="mr-2 shrink-0 text-muted-foreground [&_svg]:size-4" aria-hidden>
+            <CollapsibleChevronsIcon />
+          </div>
+        </CollapsibleTrigger>
         <Tooltip>
           <TooltipTrigger
             render={
               <Button
                 variant="ghost"
                 size="icon"
+                aria-label={`Visit ${project.title}`}
                 render={<a href={project.link} target="_blank" rel="noopener" />}
               />
             }
           >
             <LinkIcon className="size-4" />
-            <span className="sr-only">Open Project Link</span>
+            <span className="sr-only">Visit {project.title}</span>
           </TooltipTrigger>
           <TooltipPopup>Visit Project</TooltipPopup>
         </Tooltip>
-        <div className="mr-2 shrink-0 text-muted-foreground [&_svg]:size-4" aria-hidden>
-          <CollapsibleChevronsIcon />
-        </div>
-      </CollapsibleTrigger>
+      </div>
       <CollapsibleContent hiddenUntilFound>
         <div className="space-y-2 px-4 py-2">
           {project.markup && (

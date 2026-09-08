@@ -13,6 +13,8 @@ import { switch005Sound } from '@/sounds/switch-005'
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme()
 
+  const isDark = resolvedTheme === 'dark'
+
   const switchTheme = useCallback(() => {
     if (!document.startViewTransition) {
       setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
@@ -27,10 +29,27 @@ export function ThemeToggle() {
 
   return (
     <Tooltip>
-      <TooltipTrigger render={<Button variant="ghost" noSound size="icon" onClick={switchTheme} />}>
-        <MoonIcon className="relative hidden after:absolute after:-inset-2 dark:block" />
-        <SunMediumIcon className="relative hidden not-dark:block after:absolute after:-inset-2" />
-        <span className="sr-only">Theme Toggle</span>
+      <TooltipTrigger
+        render={
+          <Button
+            variant="ghost"
+            noSound
+            size="icon"
+            onClick={switchTheme}
+            aria-pressed={isDark}
+            aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+          />
+        }
+      >
+        <MoonIcon
+          className="relative hidden after:absolute after:-inset-2 dark:block"
+          aria-hidden="true"
+        />
+        <SunMediumIcon
+          className="relative hidden not-dark:block after:absolute after:-inset-2"
+          aria-hidden="true"
+        />
+        <span className="sr-only">{isDark ? 'Switch to light theme' : 'Switch to dark theme'}</span>
       </TooltipTrigger>
 
       <TooltipContent>

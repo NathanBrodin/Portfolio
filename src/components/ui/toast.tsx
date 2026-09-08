@@ -46,6 +46,10 @@ function Toasts({ position = 'bottom-right' }: { position: ToastPosition }) {
   const { toasts } = Toast.useToastManager()
   const isTop = position.startsWith('top')
 
+  if (toasts.length === 0) {
+    return null
+  }
+
   return (
     <Toast.Portal data-slot="toast-portal">
       <Toast.Viewport
@@ -164,10 +168,16 @@ function AnchoredToastProvider({ children, ...props }: Toast.Provider.Props) {
 function AnchoredToasts() {
   const { toasts } = Toast.useToastManager()
 
+  const visibleToasts = toasts.filter((toast) => toast.positionerProps?.anchor)
+
+  if (visibleToasts.length === 0) {
+    return null
+  }
+
   return (
     <Toast.Portal data-slot="toast-portal-anchored">
       <Toast.Viewport className="outline-none" data-slot="toast-viewport-anchored">
-        {toasts.map((toast) => {
+        {visibleToasts.map((toast) => {
           const Icon = toast.type ? TOAST_ICONS[toast.type as keyof typeof TOAST_ICONS] : null
           const tooltipStyle =
             (toast.data as { tooltipStyle?: boolean } | undefined)?.tooltipStyle ?? false

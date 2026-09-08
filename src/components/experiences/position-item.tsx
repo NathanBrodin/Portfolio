@@ -9,7 +9,12 @@ import {
   CollapsibleWithContext,
 } from '@/components/ui/collapsible'
 import { Separator } from '@/components/ui/separator'
-import { calculateEmploymentDuration, formatDate, formatEmploymentDuration } from '@/lib/date'
+import {
+  calculateEmploymentDuration,
+  formatDate,
+  formatEmploymentDuration,
+  formatMonthYear,
+} from '@/lib/date'
 import { cn } from '@/lib/utils'
 
 import { Markdown } from '../markdown'
@@ -17,9 +22,22 @@ import { Tag } from '../ui/tag'
 import { Prose } from '../ui/typography'
 import { ExperienceIcon } from './position-icon'
 
-export function ExperiencePositionItem({ position }: { position: ExperiencePosition }) {
+export function ExperiencePositionItem({
+  position,
+  companyName,
+}: {
+  position: ExperiencePosition
+  companyName?: string
+}) {
   const { start, end } = position.employmentPeriod
   const isOngoing = !end
+
+  const periodLabel = isOngoing
+    ? `${formatMonthYear(start)} to present`
+    : `${formatMonthYear(start)} to ${end ? formatMonthYear(end) : 'present'}`
+  const accessibleLabel = companyName
+    ? `${position.title}, ${companyName}, ${periodLabel}`
+    : `${position.title}, ${periodLabel}`
 
   return (
     <CollapsibleWithContext
@@ -29,6 +47,7 @@ export function ExperiencePositionItem({ position }: { position: ExperiencePosit
       }
     >
       <CollapsibleTrigger
+        aria-label={accessibleLabel}
         className={cn(
           'block w-full text-left',
           'hover:before:bg-muted/50 relative before:absolute before:-top-1 before:-right-1 before:-bottom-1.5 before:left-7 before:-z-1 before:rounded-lg before:transition-[background-color] before:ease-out',
@@ -57,7 +76,9 @@ export function ExperiencePositionItem({ position }: { position: ExperiencePosit
           {position.employmentType && (
             <>
               <dl>
-                <dt className="sr-only">Employment Type</dt>
+                <dt className="sr-only" aria-hidden="true">
+                  Employment Type
+                </dt>
                 <dd>{position.employmentType}</dd>
               </dl>
 
@@ -66,10 +87,15 @@ export function ExperiencePositionItem({ position }: { position: ExperiencePosit
           )}
 
           <dl>
-            <dt className="sr-only">Employment Period</dt>
+            <dt className="sr-only" aria-hidden="true">
+              Employment Period
+            </dt>
             <dd className="flex items-center gap-0.5">
               <time dateTime={start}>{formatDate(start)}</time>
-              <span className="font-mono">—</span>
+              <span className="font-mono" aria-hidden="true">
+                —
+              </span>
+              <span className="sr-only"> to </span>
               {isOngoing ? (
                 <>
                   <InfinityIcon className="size-4.5 translate-y-[0.5px]" aria-hidden />

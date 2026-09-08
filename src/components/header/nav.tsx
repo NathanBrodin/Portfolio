@@ -49,7 +49,8 @@ export function Nav({ items }: { items: Group[] }) {
                         {item.iconImage ? (
                           <img
                             src={item.iconImage}
-                            alt={item.label}
+                            alt=""
+                            aria-hidden="true"
                             width={16}
                             height={16}
                             loading="lazy"
@@ -60,7 +61,10 @@ export function Nav({ items }: { items: Group[] }) {
                         )}
                         <span className="line-clamp-1 flex-1">{item.label}</span>
                         {isExternal && (
-                          <ExternalLinkIcon className="size-4 text-muted-foreground" />
+                          <ExternalLinkIcon
+                            className="size-4 text-muted-foreground"
+                            aria-hidden="true"
+                          />
                         )}
                       </a>
                     )

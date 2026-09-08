@@ -46,16 +46,20 @@ export function CommandMenu({ items }: { items: Group[] }) {
   return (
     <CommandDialog onOpenChange={setOpen} open={open}>
       <CommandDialogTrigger
+        aria-label="Open Command Palette"
+        aria-keyshortcuts="Control+K Meta+K"
         render={<Button variant="secondary" size="sm" className="hidden sm:flex" />}
       >
-        <SearchIcon />
+        <SearchIcon aria-hidden="true" />
         <span className="sr-only">Open Command Palette</span>
-        <KbdGroup className="hidden sm:flex">
-          <Kbd data-platform-key suppressHydrationWarning>
-            {isMac ? '⌘' : 'Ctrl'}
-          </Kbd>
-          <Kbd>K</Kbd>
-        </KbdGroup>
+        <span aria-hidden="true" className="hidden sm:flex">
+          <KbdGroup className="hidden sm:flex">
+            <Kbd data-platform-key suppressHydrationWarning>
+              {isMac ? '⌘' : 'Ctrl'}
+            </Kbd>
+            <Kbd>K</Kbd>
+          </KbdGroup>
+        </span>
         <ScriptOnce>{IS_MAC_SCRIPT}</ScriptOnce>
       </CommandDialogTrigger>
       <CommandDialogPopup>
@@ -105,17 +109,18 @@ export function CommandMenu({ items }: { items: Group[] }) {
                           {item.iconImage ? (
                             <img
                               src={item.iconImage}
-                              alt={item.label}
+                              alt=""
+                              aria-hidden="true"
                               width={16}
                               height={16}
                               loading="lazy"
                               className="mr-2 rounded-sm corner-squircle supports-corner-shape:rounded-[50%]"
                             />
                           ) : (
-                            <Icon className="mr-2 h-4 w-4 opacity-80" />
+                            <Icon className="mr-2 h-4 w-4 opacity-80" aria-hidden="true" />
                           )}
                           <span className="line-clamp-1 flex-1">{item.label}</span>
-                          {isExternal && <ExternalLinkIcon className="size-4" />}
+                          {isExternal && <ExternalLinkIcon className="size-4" aria-hidden="true" />}
                         </CommandItem>
                       )
                     }}

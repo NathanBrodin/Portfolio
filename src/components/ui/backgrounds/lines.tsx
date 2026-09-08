@@ -6,6 +6,7 @@ export function Lines({ className, ...props }: React.ComponentProps<'svg'>) {
   const patternId = useId()
   return (
     <svg
+      aria-hidden="true"
       className={cn(
         'text-primary pointer-events-none absolute inset-0 -z-1 size-full py-px opacity-10 select-none dark:opacity-5',
         className,

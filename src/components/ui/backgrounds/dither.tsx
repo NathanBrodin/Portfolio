@@ -43,6 +43,7 @@ export function Dither({
         'pointer-events-none absolute inset-0 -z-1 h-full w-full overflow-hidden opacity-10',
         className,
       )}
+      aria-hidden="true"
       {...props}
     >
       <Suspense>

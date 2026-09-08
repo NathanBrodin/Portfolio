@@ -8,6 +8,7 @@ export function Noise({ className, ...props }: React.ComponentProps<'div'>) {
         className,
       )}
       style={{ backgroundImage: 'url(/backgrounds/noise.webp)' }}
+      aria-hidden="true"
       {...props}
     />
   )

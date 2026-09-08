@@ -15,14 +15,17 @@ export function ExperienceItem({ experience }: { experience: Experience }) {
           {experience.companyLogo ? (
             <img
               src={experience.companyLogo}
-              alt={`${experience.companyName} logo`}
+              alt=""
               width={24}
               height={24}
               className="rounded-full"
-              aria-hidden
+              aria-hidden="true"
             />
           ) : (
-            <span className="flex size-2 rounded-full bg-zinc-300 dark:bg-zinc-600" />
+            <span
+              className="flex size-2 rounded-full bg-zinc-300 dark:bg-zinc-600"
+              aria-hidden="true"
+            />
           )}
         </div>
 
@@ -43,8 +46,11 @@ export function ExperienceItem({ experience }: { experience: Experience }) {
 
         {experience.isCurrentEmployer && (
           <span className="relative flex items-center justify-center">
-            <span className="absolute inline-flex size-3 animate-ping rounded-full bg-info opacity-50" />
-            <span className="relative inline-flex size-2 rounded-full bg-info" />
+            <span
+              className="absolute inline-flex size-3 animate-ping rounded-full bg-info opacity-50"
+              aria-hidden="true"
+            />
+            <span className="relative inline-flex size-2 rounded-full bg-info" aria-hidden="true" />
             <span className="sr-only">Current Employer</span>
           </span>
         )}
@@ -53,7 +59,7 @@ export function ExperienceItem({ experience }: { experience: Experience }) {
       <div className="relative space-y-4 before:absolute before:left-3 before:h-full before:w-px before:bg-border">
         {experience.positions.map((position) => (
           <Fragment key={position.id}>
-            <ExperiencePositionItem position={position} />
+            <ExperiencePositionItem position={position} companyName={experience.companyName} />
           </Fragment>
         ))}
       </div>

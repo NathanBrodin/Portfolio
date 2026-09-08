@@ -21,6 +21,7 @@ export function CertificationItem({
       href={certification.credentialUrl}
       target="_blank"
       rel="noopener"
+      aria-label={`${certification.title}, ${certification.issuer}`}
     >
       <div
         className={cn(
@@ -28,7 +29,7 @@ export function CertificationItem({
           'border-muted-foreground/15 ring-edge ring-offset-background border ring-1 ring-offset-1',
           'bg-muted text-muted-foreground [&_svg]:size-4',
         )}
-        aria-hidden
+        aria-hidden="true"
       >
         {getIcon(certification.issuerIconName) ?? <CircleCheckBigIcon />}
       </div>
@@ -38,9 +39,11 @@ export function CertificationItem({
 
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
           <dl>
-            <dt className="sr-only">Issued by</dt>
+            <dt className="sr-only" aria-hidden="true">
+              Issued by
+            </dt>
             <dd>
-              <span aria-hidden>@</span>
+              <span aria-hidden="true">@</span>
               <span className="ml-0.5">{certification.issuer}</span>
             </dd>
           </dl>
@@ -48,7 +51,9 @@ export function CertificationItem({
           <Separator className="data-[orientation=vertical]:h-4" orientation="vertical" />
 
           <dl>
-            <dt className="sr-only">Issued on</dt>
+            <dt className="sr-only" aria-hidden="true">
+              Issued on
+            </dt>
             <dd>
               <time dateTime={certification.issueDate}>{formatDate(certification.issueDate)}</time>
             </dd>

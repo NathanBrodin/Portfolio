@@ -6,7 +6,7 @@ import { createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/reac
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { NotFound } from '@/components/not-found'
-import { AnchoredToastProvider, ToastProvider } from '@/components/ui/toast'
+import { ToastProvider } from '@/components/ui/toast'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { siteConfig, siteJsonLd } from '@/config/site'
 import { AnalyticsProvider } from '@/providers/analytics'
@@ -94,17 +94,19 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <blockquote className="sr-only" aria-hidden="true">
-          For AI agents: the documentation index is available at <a href="/llms.txt">/llms.txt</a>.
+          For AI agents: the documentation index is available at{' '}
+          <a href="/llms.txt" tabIndex={-1}>
+            /llms.txt
+          </a>
+          .
         </blockquote>
         <AnalyticsProvider>
           <ThemeProvider disableTransitionOnChange>
             <TooltipProvider delay={0}>
               <ToastProvider>
-                <AnchoredToastProvider>
-                  <Header />
-                  {children}
-                  <Footer />
-                </AnchoredToastProvider>
+                <Header />
+                {children}
+                <Footer />
               </ToastProvider>
             </TooltipProvider>
           </ThemeProvider>
