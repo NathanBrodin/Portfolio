@@ -11,4 +11,4 @@ skills:
 order: 4
 ---
 
-A theme for the [Zed Editor](https://zed.dev) based on the colors from Vercel's docs. Currently top 15 most downloaded themes with 52k+ downloads. [Lee Robinson](https://x.com/leerob/status/1870561189585101288) was using it, which was pretty cool.
+A theme for the [Zed Editor](https://zed.dev) based on the colors from Vercel's docs. Currently top 30 most downloaded themes with 92k+ downloads. [Lee Robinson](https://x.com/leerob/status/1870561189585101288) was using it, which is pretty cool.

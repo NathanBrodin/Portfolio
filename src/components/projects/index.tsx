@@ -12,7 +12,7 @@ export function Projects() {
       <SectionTitle>Projects</SectionTitle>
       <CollapsibleList
         items={projects}
-        max={4}
+        max={5}
         renderItem={(item) => <ProjectItem project={item} />}
       />
     </Section>

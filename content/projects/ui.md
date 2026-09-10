@@ -10,7 +10,7 @@ skills:
   - Tailwind CSS
   - shadcn/ui
 
-order: 6
+order: 7
 ---
 
 My own component library. It was created before shadcn released a tool to [create themes directly](https://ui.shadcn.com/create), and before the migration to [Base UI](https://base-ui.com/), so I abandoned it.
