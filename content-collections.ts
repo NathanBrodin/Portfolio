@@ -64,6 +64,7 @@ const projects = defineCollection({
     title: z.string(),
     link: z.url().optional(),
     logo: z.string().optional(),
+    icon: z.string().optional(),
     startDate: z.string().optional(),
     endDate: z.string().optional(),
     skills: z.array(z.string()).default([]),

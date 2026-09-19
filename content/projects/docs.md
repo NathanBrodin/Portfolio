@@ -1,6 +1,7 @@
 ---
 id: docs
 title: docs.nathanbrodin.com
+icon: book-open
 link: https://github.com/NathanBrodin/docs.nathanbrodin.com
 type: personal
 startDate: '2023-03'

@@ -1,6 +1,7 @@
 ---
 id: ui
 title: UI
+icon: component
 link: https://ui.brodin.dev
 type: personal
 startDate: '2025-06'

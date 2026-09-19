@@ -1,6 +1,7 @@
 ---
 id: mail
 title: Mail
+icon: mail
 link: https://github.com/NathanBrodin/Mail
 type: personal
 startDate: '2024-02'

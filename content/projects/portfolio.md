@@ -1,6 +1,7 @@
 ---
 id: portfolio
 title: Portfolio
+icon: user
 link: https://brodin.dev
 type: personal
 startDate: '2026-02'

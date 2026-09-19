@@ -1,6 +1,7 @@
 ---
 id: portfolio-v3
 title: Portfolio V3
+icon: sparkles
 link: https://github.com/NathanBrodin/nathanbrodin.com
 type: personal
 startDate: '2023-07'

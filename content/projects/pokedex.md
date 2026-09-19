@@ -1,6 +1,7 @@
 ---
 id: pokedex
 title: Pokedex
+icon: gamepad-2
 link: https://gitlab.esiea.fr/brodin/pokedex
 type: school
 startDate: '2023-05'

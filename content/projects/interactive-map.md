@@ -1,6 +1,7 @@
 ---
 id: interactive-map
 title: Interactive map
+icon: map
 link: https://gitlab.esiea.fr/brodin/interactive-map
 type: school
 startDate: '2024-01'

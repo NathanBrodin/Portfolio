@@ -1,6 +1,7 @@
 ---
 id: iot
 title: IoT
+icon: cpu
 link: https://github.com/NathanBrodin/IoT
 type: school
 startDate: '2024-11'

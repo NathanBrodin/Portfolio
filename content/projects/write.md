@@ -1,6 +1,7 @@
 ---
 id: write
 title: Write
+icon: pen-line
 link: https://write.brodin.dev
 type: personal
 startDate: '2024-02'

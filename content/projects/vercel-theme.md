@@ -1,6 +1,7 @@
 ---
 id: vercel-theme
 title: Zed Vercel Theme
+icon: palette
 link: https://zed.dev/extensions?query=vercel
 type: personal
 startDate: '2024-10'

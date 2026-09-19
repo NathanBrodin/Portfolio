@@ -1,6 +1,7 @@
 ---
 id: templates
 title: Templates
+icon: layout-template
 link: https://github.com/NathanBrodin/template
 type: personal
 startDate: '2026-04'

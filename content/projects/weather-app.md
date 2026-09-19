@@ -1,6 +1,7 @@
 ---
 id: weather-app
 title: Weather App
+icon: cloud-sun
 link: https://github.com/NathanBrodin/Weather-app
 type: school
 startDate: '2023-03'

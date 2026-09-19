@@ -1,6 +1,7 @@
 ---
 id: portfolio-v1
 title: Portfolio V1
+icon: code-xml
 link: https://github.com/NathanBrodin/nathanbrodin.github.io
 type: personal
 startDate: '2022-03'

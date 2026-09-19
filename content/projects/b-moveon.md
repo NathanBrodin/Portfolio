@@ -1,6 +1,7 @@
 ---
 id: b-moveon
 title: B-moveOn
+icon: bike
 link: https://gitlab.esiea.fr/brodin/B-moveOn
 type: school
 startDate: '2023-09'

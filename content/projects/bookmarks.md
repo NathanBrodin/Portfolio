@@ -1,6 +1,7 @@
 ---
 id: bookmarks
 title: Bookmarks
+icon: bookmark
 link: https://bookmarks.brodin.dev
 type: personal
 startDate: '2025-09'

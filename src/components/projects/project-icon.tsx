@@ -1,0 +1,72 @@
+import type { Project } from 'content-collections'
+import type { LucideProps } from 'lucide-react'
+
+import {
+  BikeIcon,
+  BookmarkIcon,
+  BookOpenIcon,
+  BotIcon,
+  BoxIcon,
+  BoxesIcon,
+  ClapperboardIcon,
+  CloudSunIcon,
+  CodeXmlIcon,
+  ComponentIcon,
+  CpuIcon,
+  FolderGit2Icon,
+  Gamepad2Icon,
+  GitPullRequestIcon,
+  GlobeIcon,
+  KeyRoundIcon,
+  LayoutTemplateIcon,
+  MailIcon,
+  MapIcon,
+  MessagesSquareIcon,
+  MessageSquareIcon,
+  PaletteIcon,
+  PenLineIcon,
+  SnowflakeIcon,
+  SparklesIcon,
+  SpellCheckIcon,
+  SproutIcon,
+  TrendingUpIcon,
+  UserIcon,
+  WholeWordIcon,
+} from 'lucide-react'
+
+const iconMap: Record<string, React.ComponentType<LucideProps>> = {
+  bike: BikeIcon,
+  bookmark: BookmarkIcon,
+  'book-open': BookOpenIcon,
+  bot: BotIcon,
+  boxes: BoxesIcon,
+  clapperboard: ClapperboardIcon,
+  'cloud-sun': CloudSunIcon,
+  'code-xml': CodeXmlIcon,
+  component: ComponentIcon,
+  cpu: CpuIcon,
+  'folder-git-2': FolderGit2Icon,
+  'gamepad-2': Gamepad2Icon,
+  'git-pull-request': GitPullRequestIcon,
+  globe: GlobeIcon,
+  'key-round': KeyRoundIcon,
+  'layout-template': LayoutTemplateIcon,
+  mail: MailIcon,
+  map: MapIcon,
+  'message-square': MessageSquareIcon,
+  'messages-square': MessagesSquareIcon,
+  palette: PaletteIcon,
+  'pen-line': PenLineIcon,
+  snowflake: SnowflakeIcon,
+  sparkles: SparklesIcon,
+  'spell-check': SpellCheckIcon,
+  sprout: SproutIcon,
+  'trending-up': TrendingUpIcon,
+  user: UserIcon,
+  'whole-word': WholeWordIcon,
+}
+
+export function ProjectIcon({ icon, ...props }: { icon: Project['icon'] } & LucideProps) {
+  const IconComponent = (icon && iconMap[icon]) || BoxIcon
+  return <IconComponent {...props} />
+}

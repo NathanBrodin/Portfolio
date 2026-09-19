@@ -1,6 +1,7 @@
 ---
 id: grammar-checker
 title: Grammar Checker
+icon: spell-check
 link: https://github.com/NathanBrodin/grammar-checker
 type: personal
 startDate: '2022-10'

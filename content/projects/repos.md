@@ -1,6 +1,7 @@
 ---
 id: repos
 title: Repos
+icon: folder-git-2
 link: https://github.com/NathanBrodin/repos
 type: personal
 startDate: '2025-04'

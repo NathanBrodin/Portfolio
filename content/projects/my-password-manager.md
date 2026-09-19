@@ -1,6 +1,7 @@
 ---
 id: my-password-manager
 title: MyPasswordManager
+icon: key-round
 link: https://github.com/NathanBrodin/MyPasswordManager
 type: personal
 startDate: '2022-06'

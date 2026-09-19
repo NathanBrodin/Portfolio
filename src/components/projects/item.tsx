@@ -1,6 +1,6 @@
 import type { Project } from 'content-collections'
 
-import { BoxIcon, InfinityIcon, LinkIcon } from 'lucide-react'
+import { GraduationCapIcon, InfinityIcon, LinkIcon } from 'lucide-react'
 
 import { Markdown } from '@/components/markdown'
 import {
@@ -15,6 +15,7 @@ import { formatDate } from '@/lib/date'
 
 import { Button } from '../ui/button'
 import { Tooltip, TooltipPopup, TooltipTrigger } from '../ui/tooltip'
+import { ProjectIcon } from './project-icon'
 
 export function ProjectItem({ className, project }: { className?: string; project: Project }) {
   const isOngoing = !project.endDate
@@ -39,7 +40,7 @@ export function ProjectItem({ className, project }: { className?: string; projec
               className="ring-edge mx-4 flex size-6 shrink-0 items-center justify-center rounded-lg border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-offset-1 ring-offset-background select-none"
               aria-hidden="true"
             >
-              <BoxIcon className="size-4" />
+              <ProjectIcon icon={project.icon} className="size-4" />
             </div>
           )}
           <div className="flex-1">
@@ -69,6 +70,19 @@ export function ProjectItem({ className, project }: { className?: string; projec
                         </time>
                       )}
                     </>
+                  )}
+                  {project.type === 'school' && (
+                    <Tooltip>
+                      <TooltipTrigger
+                        render={
+                          <span className="ml-1 inline-flex cursor-help items-center text-muted-foreground/60" />
+                        }
+                      >
+                        <GraduationCapIcon className="size-3.5" aria-hidden />
+                        <span className="sr-only">School project</span>
+                      </TooltipTrigger>
+                      <TooltipPopup>School project</TooltipPopup>
+                    </Tooltip>
                   )}
                 </dd>
               )}

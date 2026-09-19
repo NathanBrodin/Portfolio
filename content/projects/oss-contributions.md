@@ -1,6 +1,7 @@
 ---
 id: oss-contributions
 title: Open Source Contributions
+icon: git-pull-request
 link: https://github.com/search?q=is%3Apr+author%3ANathanBrodin+is%3Apublic+-user%3ANathanBrodin+-repo%3Azed-industries%2Fextensions&type=pullrequests
 type: personal
 startDate: '2022-08'

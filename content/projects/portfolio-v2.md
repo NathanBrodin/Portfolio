@@ -1,6 +1,7 @@
 ---
 id: portfolio-v2
 title: Portfolio V2
+icon: globe
 link: https://github.com/NathanBrodin/nathanbrodin.com
 type: personal
 startDate: '2022-09'

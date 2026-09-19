@@ -1,6 +1,7 @@
 ---
 id: ice-calendar
 title: Ice Calendar
+icon: snowflake
 link: https://github.com/NathanBrodin/ice-cal
 type: personal
 startDate: '2024-11'

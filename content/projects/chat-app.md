@@ -1,6 +1,7 @@
 ---
 id: chat-app
 title: Chat App
+icon: message-square
 link: https://gitlab.esiea.fr/brodin/chat-app
 type: school
 startDate: '2023-05'

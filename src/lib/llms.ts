@@ -97,7 +97,8 @@ function generateProjectsMarkdown(full: boolean): string {
 
   for (const project of projects) {
     const title = project.link ? `[${project.title}](${project.link})` : project.title
-    lines.push(`### ${title} | ${formatDateRange(project.startDate, project.endDate)}`)
+    const type = project.type === 'school' ? ' · School project' : ''
+    lines.push(`### ${title} | ${formatDateRange(project.startDate, project.endDate)}${type}`)
     lines.push('')
     lines.push(full ? fullContent(project.excerpt, project.detail) : project.excerpt)
 

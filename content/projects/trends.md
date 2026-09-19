@@ -1,6 +1,7 @@
 ---
 id: trends
 title: Trends
+icon: trending-up
 link: https://github.com/NathanBrodin/trends
 type: personal
 startDate: '2026-06'

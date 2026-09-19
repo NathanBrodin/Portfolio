@@ -1,6 +1,7 @@
 ---
 id: sokoban
 title: Sokoban
+icon: boxes
 link: https://gitlab.esiea.fr/brodin/sokoban
 type: school
 startDate: '2023-05'

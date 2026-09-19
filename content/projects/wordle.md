@@ -1,6 +1,7 @@
 ---
 id: wordle
 title: Wordle
+icon: whole-word
 link: https://gitlab.esiea.fr/brodin/wordle
 type: school
 startDate: '2023-03'

@@ -1,6 +1,7 @@
 ---
 id: films
 title: Films
+icon: clapperboard
 link: https://github.com/NathanBrodin/films
 type: personal
 startDate: '2025-09'

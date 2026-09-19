@@ -1,6 +1,7 @@
 ---
 id: chat
 title: Chat
+icon: messages-square
 link: https://chat.brodin.dev
 type: personal
 startDate: '2024-07'

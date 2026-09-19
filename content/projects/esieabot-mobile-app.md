@@ -1,6 +1,7 @@
 ---
 id: esieabot-mobile-app
 title: ESIEABOT Mobile App
+icon: bot
 link: https://github.com/NathanBrodin/Esieabot-Mobile-App
 type: school
 startDate: '2021-10'

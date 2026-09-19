@@ -1,6 +1,7 @@
 ---
 id: eco-friendly-watering
 title: Eco-friendly watering
+icon: sprout
 link: https://gitlab.esiea.fr/brodin/arrosage-eco
 type: school
 startDate: '2023-04'
