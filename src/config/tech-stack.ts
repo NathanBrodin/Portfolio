@@ -180,7 +180,7 @@ export const TECH_STACK: TechStack[] = [
   },
   {
     key: 'vim',
-    title: 'I use VIM btw',
+    title: 'VIM',
     href: 'https://vim.org/',
     category: 'Tools',
   },

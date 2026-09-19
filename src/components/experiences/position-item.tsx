@@ -38,6 +38,8 @@ export function ExperiencePositionItem({
   const accessibleLabel = companyName
     ? `${position.title}, ${companyName}, ${periodLabel}`
     : `${position.title}, ${periodLabel}`
+  const hasSkills = Array.isArray(position.skills) && position.skills.length > 0
+  const moreContent = position.hasDetail ? position.detailDescription : undefined
 
   return (
     <CollapsibleWithContext
@@ -124,14 +126,37 @@ export function ExperiencePositionItem({
         )}
       </CollapsibleContent>
 
-      {Array.isArray(position.skills) && position.skills.length > 0 && (
-        <ul className="flex flex-wrap gap-1.5 pt-3 pl-9">
-          {position.skills.map((skill, index) => (
-            <li key={index} className="flex">
-              <Tag>{skill}</Tag>
-            </li>
-          ))}
-        </ul>
+      {(hasSkills || moreContent) && (
+        <CollapsibleWithContext render={<div className="contents" />}>
+          <ul className="flex flex-wrap items-center gap-1.5 pt-3 pl-9">
+            {hasSkills &&
+              position.skills.map((skill, index) => (
+                <li key={index} className="flex">
+                  <Tag>{skill}</Tag>
+                </li>
+              ))}
+            {moreContent && (
+              <li className="flex">
+                <CollapsibleTrigger
+                  aria-label={`Learn more about ${position.title}`}
+                  title="Learn more"
+                  className="inline-flex size-6 items-center justify-center rounded-md text-transparent! transition-colors hover:bg-muted hover:text-foreground! [&_svg]:size-4"
+                >
+                  <span aria-hidden>
+                    <CollapsibleChevronsIcon />
+                  </span>
+                </CollapsibleTrigger>
+              </li>
+            )}
+          </ul>
+          {moreContent && (
+            <CollapsibleContent hiddenUntilFound>
+              <Prose className="pt-2 pl-9 sm:prose-sm">
+                <Markdown content={moreContent} />
+              </Prose>
+            </CollapsibleContent>
+          )}
+        </CollapsibleWithContext>
       )}
     </CollapsibleWithContext>
   )

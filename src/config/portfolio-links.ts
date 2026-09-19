@@ -2,6 +2,7 @@ import {
   BoxIcon,
   BriefcaseBusinessIcon,
   CircleCheckBigIcon,
+  FilesIcon,
   FileTextIcon,
   LayersIcon,
   NewspaperIcon,
@@ -48,6 +49,7 @@ export const PORTFOLIO_LINKS: LinkItem[] = [
 
 export const OTHER_LINKS: LinkItem[] = [
   { label: 'llms.txt', value: '/llms.txt', icon: FileTextIcon },
+  { label: 'llms-full.txt', value: '/llms-full.txt', icon: FilesIcon },
   { label: 'RSS Feed', value: '/blog/rss', icon: RssIcon },
   {
     label: 'Open in Claude',

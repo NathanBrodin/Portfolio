@@ -3,6 +3,19 @@ import { z } from 'zod'
 
 import { renderMarkdown } from './src/lib/markdown'
 
+const MORE_SEPARATOR = '<!-- more -->'
+
+function splitContent(content: string): { excerpt: string; detail: string } {
+  const index = content.indexOf(MORE_SEPARATOR)
+  if (index === -1) {
+    return { excerpt: content, detail: '' }
+  }
+  return {
+    excerpt: content.slice(0, index).trim(),
+    detail: content.slice(index + MORE_SEPARATOR.length).trim(),
+  }
+}
+
 const experiences = defineCollection({
   name: 'experiences',
   directory: 'content/experiences',
@@ -27,11 +40,17 @@ const experiences = defineCollection({
     order: z.number(),
   }),
   transform: async (doc) => {
-    const { markup } = await renderMarkdown(doc.content)
+    const { excerpt, detail } = splitContent(doc.content)
+    const { markup } = await renderMarkdown(excerpt)
+    const { markup: detailMarkup } = await renderMarkdown(detail)
     return {
       ...doc,
       category: doc._meta.path.startsWith('work/') ? ('work' as const) : ('education' as const),
+      excerpt,
+      detail,
+      hasDetail: detail.length > 0,
       markup,
+      detailMarkup,
     }
   },
 })
@@ -45,18 +64,26 @@ const projects = defineCollection({
     title: z.string(),
     link: z.url().optional(),
     logo: z.string().optional(),
-    startDate: z.string(),
+    startDate: z.string().optional(),
     endDate: z.string().optional(),
     skills: z.array(z.string()).default([]),
     isExpanded: z.boolean().default(false),
-    order: z.number(),
+    order: z.number().optional(),
+    display: z.boolean().default(true),
+    type: z.enum(['personal', 'school']).optional(),
     content: z.string(),
   }),
   transform: async (doc) => {
-    const { markup } = await renderMarkdown(doc.content)
+    const { excerpt, detail } = splitContent(doc.content)
+    const { markup } = await renderMarkdown(excerpt)
+    const { markup: detailMarkup } = await renderMarkdown(detail)
     return {
       ...doc,
+      excerpt,
+      detail,
+      hasDetail: detail.length > 0,
       markup,
+      detailMarkup,
     }
   },
 })

@@ -1,11 +1,11 @@
-import { allProjects } from 'content-collections'
+import { getSortedProjects } from '@/lib/projects'
 
 import { CollapsibleList } from '../ui/collapsible-list'
 import { Section, SectionTitle } from '../ui/section'
 import { ProjectItem } from './item'
 
 export function Projects() {
-  const projects = [...allProjects].sort((a, b) => a.order - b.order)
+  const projects = getSortedProjects().filter((p) => p.display !== false)
 
   return (
     <Section id="projects" className="flex flex-col">
