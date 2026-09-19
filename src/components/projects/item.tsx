@@ -12,6 +12,7 @@ import {
 import { Tag } from '@/components/ui/tag'
 import { Prose } from '@/components/ui/typography'
 import { formatDate } from '@/lib/date'
+import { cn } from '@/lib/utils'
 
 import { Button } from '../ui/button'
 import { Tooltip, TooltipPopup, TooltipTrigger } from '../ui/tooltip'
@@ -37,7 +38,12 @@ export function ProjectItem({ className, project }: { className?: string; projec
             />
           ) : (
             <div
-              className="ring-edge mx-4 flex size-6 shrink-0 items-center justify-center rounded-lg border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-offset-1 ring-offset-background select-none"
+              className={cn(
+                'mx-4',
+                'flex size-6 shrink-0 items-center justify-center rounded-lg',
+                'bg-muted text-muted-foreground',
+                'border-muted-foreground/15 ring-border ring-offset-background border ring-1 ring-offset-1',
+              )}
               aria-hidden="true"
             >
               <ProjectIcon icon={project.icon} className="size-4" />

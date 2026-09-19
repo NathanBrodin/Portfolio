@@ -25,9 +25,10 @@ export function CertificationItem({
     >
       <div
         className={cn(
-          'mx-4 flex size-6 shrink-0 items-center justify-center rounded-lg select-none',
-          'border-muted-foreground/15 ring-edge ring-offset-background border ring-1 ring-offset-1',
-          'bg-muted text-muted-foreground [&_svg]:size-4',
+          'mx-4 [&_svg]:size-4',
+          'flex size-6 shrink-0 items-center justify-center rounded-lg',
+          'bg-muted text-muted-foreground',
+          'border-muted-foreground/15 ring-border ring-offset-background border ring-1 ring-offset-1',
         )}
         aria-hidden="true"
       >
