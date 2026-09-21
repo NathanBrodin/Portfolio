@@ -11,12 +11,12 @@ employmentType: Full-time
 icon: code
 skills:
   - TypeScript
-  - React.js
+  - React
+  - TanStack
   - Tailwind CSS
-  - Tanstack
   - Django
   - Docker
-  - NGINX
+  - Nginx
   - UI/UX Design
   - Design System
 

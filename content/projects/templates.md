@@ -8,9 +8,10 @@ startDate: '2026-04'
 endDate: '2026-06'
 skills:
   - TypeScript
-  - Tanstack Start
-  - Convex
+  - React
+  - TanStack Start
   - Tailwind CSS
+  - Convex
   - Better Auth
 ---
 

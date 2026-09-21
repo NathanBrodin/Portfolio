@@ -8,7 +8,7 @@ startDate: '2022-06'
 endDate: '2022-09'
 skills:
   - JavaScript
-  - React.js
+  - React
   - Firebase
   - Chrome Extension
 ---

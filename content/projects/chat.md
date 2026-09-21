@@ -8,7 +8,7 @@ startDate: '2024-07'
 endDate: '2025-03'
 skills:
   - TypeScript
-  - React.js
+  - React
   - Next.js
   - Tailwind CSS
   - AI SDK

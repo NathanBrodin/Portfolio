@@ -7,7 +7,7 @@ type: personal
 startDate: '2022-08'
 skills:
   - TypeScript
-  - React.js
+  - React
   - GitHub
 
 order: 5

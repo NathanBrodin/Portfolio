@@ -8,9 +8,9 @@ startDate: '2023-04'
 endDate: '2023-06'
 skills:
   - C
-  - STM32
-  - Flutter
   - Dart
+  - Flutter
+  - STM32
   - Figma
 ---
 

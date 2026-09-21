@@ -11,9 +11,9 @@ employmentType: Internship
 icon: code
 skills:
   - JavaScript
-  - React.js
-  - CSS
+  - React
   - Redux
+  - CSS
 
 order: 4
 ---

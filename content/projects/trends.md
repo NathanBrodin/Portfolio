@@ -7,10 +7,11 @@ type: personal
 startDate: '2026-06'
 skills:
   - TypeScript
-  - Tanstack Start
-  - Convex
+  - React
+  - TanStack Start
   - Tailwind CSS
   - shadcn/ui
+  - Convex
 ---
 
 <!-- more -->

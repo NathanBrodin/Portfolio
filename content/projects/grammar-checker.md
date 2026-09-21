@@ -8,6 +8,7 @@ startDate: '2022-10'
 endDate: '2022-10'
 skills:
   - JavaScript
+  - React
   - Next.js
   - Tailwind CSS
   - OpenAI

@@ -11,10 +11,10 @@ employmentType: Internship
 icon: code
 skills:
   - TypeScript
-  - React.js
+  - React
+  - Redux
   - CSS
   - Playwright
-  - Redux
 
 order: 2
 ---

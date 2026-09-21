@@ -10,9 +10,9 @@ icon: education
 skills:
   - Python
   - C#
-  - Object-Oriented Modeling
-  - OS
   - SQL
+  - Operating Systems
+  - Object-Oriented Modeling
 
 order: 3
 ---

@@ -7,8 +7,8 @@ type: personal
 startDate: '2026-02'
 skills:
   - TypeScript
-  - React.js
-  - Tanstack Start
+  - React
+  - TanStack Start
   - Tailwind CSS
 ---
 

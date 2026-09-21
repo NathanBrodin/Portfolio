@@ -8,7 +8,7 @@ startDate: '2025-04'
 endDate: '2025-04'
 skills:
   - TypeScript
-  - React.js
+  - React
   - Redux Toolkit
   - Tailwind CSS
   - shadcn/ui

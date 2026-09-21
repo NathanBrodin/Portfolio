@@ -7,8 +7,8 @@ type: school
 startDate: '2023-05'
 endDate: '2023-06'
 skills:
-  - Flutter
   - Dart
+  - Flutter
 ---
 
 <!-- more -->

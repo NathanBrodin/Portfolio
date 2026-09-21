@@ -8,6 +8,7 @@ startDate: '2024-11'
 endDate: '2024-11'
 skills:
   - TypeScript
+  - React
   - Next.js
   - Tailwind CSS
 ---

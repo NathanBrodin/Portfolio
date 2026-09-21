@@ -7,8 +7,8 @@ type: school
 startDate: '2023-03'
 endDate: '2023-03'
 skills:
-  - Flutter
   - Dart
+  - Flutter
   - OpenWeatherMap
   - Midjourney
 ---

@@ -8,6 +8,7 @@ startDate: '2024-01'
 endDate: '2024-02'
 skills:
   - TypeScript
+  - React
   - Next.js
   - C#
   - ASP.NET

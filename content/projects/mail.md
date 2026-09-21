@@ -8,10 +8,11 @@ startDate: '2024-02'
 endDate: '2024-02'
 skills:
   - TypeScript
+  - React
   - Next.js
   - Tailwind CSS
   - shadcn/ui
-  - NextAuth
+  - NextAuth.js
   - PostHog
   - Cypress
 ---

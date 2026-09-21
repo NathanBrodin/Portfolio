@@ -7,10 +7,10 @@ type: school
 startDate: '2023-09'
 endDate: '2024-04'
 skills:
-  - Flutter
   - Dart
-  - Supabase
+  - Flutter
   - Riverpod
+  - Supabase
   - OpenStreetMap
   - Fastlane
   - Figma
