@@ -22,7 +22,7 @@ Shipped an internal admin panel from scratch used by 10+ users, based on Figma d
 
 <!-- more -->
 
-# DNB
+---
 
 I joined DNB for the first time as part of the summer internship cohort of 2023, with the "Emerging Technologies" team, and did 2 other internships in the same team later on.
 

@@ -21,6 +21,8 @@ It was more project based, with real implementation of distributed systems and I
 
 <!-- more -->
 
+---
+
 Five courses over the semester, graded on the Swedish scale from A (excellent) to F (fail).
 
 | Code             | Course                                           | Coeff | Class Avg | Student Grade | ECTS     |

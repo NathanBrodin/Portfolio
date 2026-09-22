@@ -13,6 +13,6 @@ skills:
 
 <!-- more -->
 
-## Wordle
+---
 
 For school, made a Wordle app with Flutter, as a practical work assignment. https://gitlab.esiea.fr/brodin/wordle

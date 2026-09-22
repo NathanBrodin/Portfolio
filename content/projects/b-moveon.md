@@ -18,7 +18,7 @@ skills:
 
 <!-- more -->
 
-## B-moveOn
+---
 
 https://gitlab.esiea.fr/brodin/B-moveOn
 

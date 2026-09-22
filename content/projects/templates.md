@@ -17,8 +17,8 @@ skills:
 
 <!-- more -->
 
-## Templates
+---
 
 I made a mono-repo template with Tanstack Start for the web, Convex for the backend, a UI package, and table and form packages using the new Tanstack composable patterns, better-auth, marketing and legal pages being pre-rendered, i18n, Polar. I wanted to make that as every time I started a new project, I had to re-setup everything, re-handle auth, and stuff.
 
-So it comes with email/password and Google/GitHub OAuth, email verification, password reset, a full account settings section (avatar upload with cropping, link/unlink social accounts, password change, account deletion), app-wide i18n with localized routes, landing/FAQ/pricing pages, localized markdown-driven legal documents (privacy, terms, cookies), and the full SEO package: per-page metadata, JSON-LD, dynamic OG image generation, sitemap. Everything before the product, done once, done right. Live at [template.brodin.dev](https://template.brodin.dev).
+So it comes with email/password and Google/GitHub OAuth, email verification, password reset, a full account settings section (avatar upload with cropping, link/unlink social accounts, password change, account deletion), app-wide i18n with localized routes, landing/FAQ/pricing pages, localized markdown-driven legal documents (privacy, terms, cookies), and the full SEO package: per-page metadata, JSON-LD, dynamic OG image generation, sitemap. Everything before the product, done once, done right.

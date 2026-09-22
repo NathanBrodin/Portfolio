@@ -117,7 +117,7 @@ export function ProjectItem({ className, project }: { className?: string; projec
           </Tooltip>
         )}
       </div>
-      <CollapsibleContent hiddenUntilFound>
+      <CollapsibleContent hiddenUntilFound className="relative">
         <div className="space-y-2 px-4 py-2">
           {project.markup && (
             <Prose className="sm:prose-sm">
@@ -125,36 +125,38 @@ export function ProjectItem({ className, project }: { className?: string; projec
             </Prose>
           )}
 
-          {(project.skills.length > 0 || (project.hasDetail && project.detailMarkup)) && (
+          {project.hasDetail && project.detailMarkup && (
             <CollapsibleWithContext render={<div className="contents" />}>
-              <ul className="flex flex-wrap items-center gap-1.5">
-                {project.skills.map((skill, index) => (
-                  <li key={index} className="flex">
-                    <Tag>{skill}</Tag>
-                  </li>
-                ))}
-                {project.hasDetail && project.detailMarkup && (
-                  <li className="flex">
-                    <CollapsibleTrigger
-                      aria-label={`Learn more about ${project.title}`}
-                      title="Learn more"
-                      className="inline-flex size-6 items-center justify-center rounded-md text-transparent transition-colors hover:bg-muted hover:text-foreground [&_svg]:size-4"
-                    >
-                      <span aria-hidden>
-                        <CollapsibleChevronsIcon />
-                      </span>
-                    </CollapsibleTrigger>
-                  </li>
-                )}
-              </ul>
-              {project.hasDetail && project.detailMarkup && (
-                <CollapsibleContent hiddenUntilFound>
-                  <Prose className="pt-2 sm:prose-sm">
-                    <Markdown content={project.detailMarkup} />
-                  </Prose>
-                </CollapsibleContent>
-              )}
+              <div className="pl-6">
+                <CollapsibleTrigger
+                  render={
+                    <Button
+                      variant="link"
+                      size="xs"
+                      className="absolute right-0 bottom-8 text-transparent transition-colors duration-300 hover:text-muted-foreground"
+                    />
+                  }
+                >
+                  Learn more
+                  <CollapsibleChevronsIcon />
+                </CollapsibleTrigger>
+              </div>
+              <CollapsibleContent hiddenUntilFound>
+                <Prose className="sm:prose-sm">
+                  <Markdown content={project.detailMarkup} />
+                </Prose>
+              </CollapsibleContent>
             </CollapsibleWithContext>
+          )}
+
+          {project.skills.length > 0 && (
+            <ul className="flex flex-wrap items-center gap-1.5 pt-3 ">
+              {project.skills.map((skill, index) => (
+                <li key={index} className="flex">
+                  <Tag>{skill}</Tag>
+                </li>
+              ))}
+            </ul>
           )}
         </div>
       </CollapsibleContent>

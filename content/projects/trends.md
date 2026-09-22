@@ -16,7 +16,7 @@ skills:
 
 <!-- more -->
 
-## Trends
+---
 
 That's a project that has been going on and off for years, with no output still. So I wanted to create my own personal finance application, which is focused on the future, so by using the current and past income/expenses, see how my finances will evolve in the future.
 

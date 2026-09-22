@@ -19,7 +19,7 @@ skills:
 
 <!-- more -->
 
-## Interactive map
+---
 
 During my 4th year, made a full stack app for my software engineering class. https://gitlab.esiea.fr/brodin/interactive-map
 

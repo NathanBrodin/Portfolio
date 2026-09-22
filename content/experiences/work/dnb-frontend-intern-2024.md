@@ -24,7 +24,7 @@ Built the frontend of a GenAI chatbot platform used by 100+ users. From blank re
 
 <!-- more -->
 
-## Second Internship
+---
 
 From April to August 2024, I returned to the same team at DNB. I got to see my previous project live in production, with ~10 users, and developers that had built on top of it without issues!
 

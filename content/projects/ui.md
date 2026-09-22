@@ -17,6 +17,6 @@ My own component library. It was created before shadcn released a tool to [creat
 
 <!-- more -->
 
-## UI
+---
 
 After bookmarks, I realized that making my own shadcn registry would help me in my other projects, with it looking like Zed. So that's what I did. This was very early for shadcn registries, so I forked shadcn/ui to build my own documentation site and adapt everything to my likings. So a Next.js app once again.

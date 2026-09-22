@@ -16,7 +16,7 @@ skills:
 
 <!-- more -->
 
-## ESIEABOT Mobile App
+---
 
 An Android mobile app to control remotely the ESIEABOT. I made a tiny Raspberry Pi image to put on the bot, which listens to Bluetooth, can receive directions, and sends the video feedback. And I made the mobile app (in Kotlin) to send the controls, and see the video feedback. I made a nice UI, nice features to control and connect to the robot. This was lots of work, but very good work.
 

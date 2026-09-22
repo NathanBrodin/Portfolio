@@ -21,6 +21,6 @@ A Notion-style markdown editor. Write and preview markdown in real-time, export 
 
 <!-- more -->
 
-## Write
+---
 
 Built an online markdown editor. I initially followed a Youtube tutorial from the famous Code With Antonio to build a Notion clone with NextJS, Convex, shadcn/ui, Clerk. I then adapted it to be more focused on raw markdown for the editor part, with a separate preview. This was my first real polished application, with great UI, great features like real-time DB, soft delete with recovery, publish your documents to the web, file upload, export to PDF, lots of small UX details, landing page...

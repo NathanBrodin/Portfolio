@@ -13,7 +13,7 @@ skills:
 
 <!-- more -->
 
-## Sokoban
+---
 
 For school, made the Sokoban game, in Flutter, with the same classmate as the chat app. https://gitlab.esiea.fr/brodin/sokoban
 

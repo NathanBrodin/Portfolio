@@ -20,7 +20,7 @@ A place where I save links to UI libraries, shadcn registries, and websites that
 
 <!-- more -->
 
-## Bookmarks
+---
 
 A tiny website where I store my bookmarks which contains some libraries, websites for inspiration, tooling... and an admin page to add/edit/remove them: I just have to paste the link and it fetches the favicon, name, author... Bookmarks are organized by categories, each with its own color scheme.
 NextJS, Tailwind, shadcn/ui themed to look like zed.dev, Drizzle and better-auth to manage the data.

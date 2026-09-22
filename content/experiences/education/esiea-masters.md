@@ -26,6 +26,8 @@ The first few years relied heavily on mathematics, algorithms, physics and elect
 
 <!-- more -->
 
+---
+
 Five years, ten semesters, 300 ECTS.
 
 Each semester is split into blocks of courses, and each course has a coefficient: its weight in the block average. To pass a semester, you need at least 10/20 in every block, and no course under 6/20. Pass both semesters and you pass the year. But a single course under 6/20, or a single block under 10/20, and you re-take the entire year. Not just the course on the side of your next year, not just the semester: the entire year.

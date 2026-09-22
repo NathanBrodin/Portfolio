@@ -28,7 +28,7 @@ Worked across multiple AI products used by 100k+ users. It was my end of studies
 
 <!-- more -->
 
-## End of Studies Internship
+---
 
 From February to July 2025, I completed my end of studies internship, once again, in the same team at DNB. My previous project was in production, with ~100 users active users and ~2000 potential users, just for an internal tool.
 

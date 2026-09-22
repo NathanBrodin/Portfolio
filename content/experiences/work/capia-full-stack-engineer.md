@@ -35,7 +35,7 @@ I'm building a production-grade web application from scratch: frontend, backend 
 
 <!-- more -->
 
-# Capia
+---
 
 I joined a small Norwegian data analytics company on the 4th of August 2025 as a full-stack engineer. The company builds analytical products for Norwegian industries. Everything is self-hosted with Docker behind a global nginx reverse proxy . Every project below involved the same shared plumbing: internal Docker networks, the proxy, and centralized environment configurations.
 
