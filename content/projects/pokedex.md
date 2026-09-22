@@ -14,8 +14,4 @@ skills:
   - CSS
 ---
 
-<!-- more -->
-
----
-
-Small Node.js server (Express) and web app to display pokemons, for school. https://gitlab.esiea.fr/brodin/pokedex
+Small Node.js server (Express) and web app to display pokemons, for school.

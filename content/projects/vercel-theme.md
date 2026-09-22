@@ -17,6 +17,4 @@ A theme for the [Zed Editor](https://zed.dev) based on the colors from Vercel's 
 
 <!-- more -->
 
----
-
 I've used Zed as my primary editor since the start now, I love it. So back then I converted the VSCode theme of Vercel to Zed using their theme importer, tweaked a few colors, and published it. That's my most popular repo, and I have 3 contributors that help me to refine it. And it has 93k downloads.

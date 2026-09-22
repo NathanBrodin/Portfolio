@@ -11,8 +11,4 @@ skills:
   - Flutter
 ---
 
-<!-- more -->
-
----
-
-For school, made a Wordle app with Flutter, as a practical work assignment. https://gitlab.esiea.fr/brodin/wordle
+We had to make a Wordle app with Flutter for the Mobile programming course. Quite simple and fits the teacher's requirements.

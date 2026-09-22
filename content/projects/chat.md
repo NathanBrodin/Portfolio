@@ -20,9 +20,12 @@ A chatbot that knows everything about me: my experiences, projects, career, all 
 
 <!-- more -->
 
----
+That's one of my best projects, even if it's a bit old and I could do it much better now with the tech that came out since, but for that time, I've built a chat app where I give the system prompt the full context about me, and the LLM could answer users any questions about my career.
 
-That's one of my best projects, even if it's a bit old and I could do it much better now with the tech that came out since, but for that time, I've built a chat app where I give the system prompt the full context about me, and the LLM could answer users any questions about my career. So I basically dumped my portfolio into an LLM that users can query. No login, but I store all conversations with Drizzle. I also use Vercel geo to give it to the LLM, so it can provide personalized answers.
+So I basically dumped my portfolio into an LLM that users can query. No login, but I store all conversations with Drizzle. I also use Vercel geo to give it to the LLM, so it can provide personalized answers.
+
 I used the AI SDK, with RSC instead of UI, which is now deprecated because they couldn't make it work well, but I still did. They had some issues with flickering and stuff, but I found some ways and other tutorials, so everything runs on the server.
 
 Full documentation for people to make it their own. Very nice UI, animations...
+
+2 years after this project, I still haven't seen anyone build something similar. I'm trully a visionnary.

@@ -21,8 +21,6 @@ It was more project based, with real implementation of distributed systems and I
 
 <!-- more -->
 
----
-
 Five courses over the semester, graded on the Swedish scale from A (excellent) to F (fail).
 
 | Code             | Course                                           | Coeff | Class Avg | Student Grade | ECTS     |
@@ -34,4 +32,6 @@ Five courses over the semester, graded on the Swedish scale from A (excellent) t
 | —                | Implementing Internet of Things Protocols        | N/A   | N/A       | B             | 6,0      |
 | **Final Result** | **Erasmus Exchange – Mid Sweden University**     | —     | —         | —             | **31,5** |
 
-The pattern says a lot about me: an A in the hands-on distributed systems course, and the grade dropping as the theory density increases, bottoming out at D for distributed algorithms (for my own defense, we were 4 students and everyone got terrible grades). And Swedish: B. Jag kan talar lite svenska nu.
+The pattern says a lot about me: an A in the hands-on distributed systems course, and the grade dropping as the theory density increases, bottoming out at D for distributed algorithms (for my own defense, we were 4 students and everyone got terrible grades).
+
+And Swedish: B. Jag kan talar lite svenska nu.

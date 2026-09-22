@@ -13,8 +13,6 @@ skills:
   - Figma
 ---
 
-<!-- more -->
+After we had a workshop at school to create our CV and LinkedIn, the teacher mentionned portfolios, so I was interested to make mine. This was also after I started to work on the ESIEABOT mobile app, so I discovered that I liked building UIs (even if I already loved making fancy powerpoints and other designs).
 
----
-
-After doing some UI for a mobile app, I wanted to create my first website. So I first designed it on Figma, then wrote my first lines of HTML, CSS and a little of JS for some small interactions, and deployed it on GitHub Pages. This came after we had a workshop at school to create our CV and LinkedIn, so I heard about portfolios and made mine.
+So I first designed it on Figma, then wrote my first lines of HTML, CSS and a little of JS for some small interactions, and deployed it on GitHub Pages.

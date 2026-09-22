@@ -17,10 +17,10 @@ skills:
   - Cypress
 ---
 
+"Redefining Your Inbox Experience" is a mail client to rethink how you manage messages, prioritizing and responding with intuitive simplicity (that's what the README says at least).
+
+Next.js, TypeScript, Tailwind with shadcn/ui, auth with NextAuth via GitHub, a discover page and a proper new-user experience, full i18n in English and French, theme customization, PostHog for analytics, Sentry for error tracking, and Cypress E2E tests running in CI, with a stub login so the tests could get past the auth.
+
 <!-- more -->
 
----
-
-"Redefining Your Inbox Experience", a mail client to rethink how you manage messages, prioritizing and responding with intuitive simplicity (that's what the README says at least). NextJS, TypeScript, Tailwind with shadcn/ui, auth with NextAuth via GitHub, a discover page and a proper new-user experience, full i18n in English and French, theme customization, PostHog for analytics, Sentry for error tracking, and Cypress E2E tests running in CI, with a stub login so the tests could get past the auth.
-
-It was live at mail.brodin.dev. I had just started the Gmail integration when I dropped it... and started Write the very next day.
+It was live at mail.brodin.dev. I had just started the Gmail integration when I dropped it... and started Write the very next day. So I built everything around the product but the product, lol.

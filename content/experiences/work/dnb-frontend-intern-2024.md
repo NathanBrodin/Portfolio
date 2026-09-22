@@ -24,8 +24,6 @@ Built the frontend of a GenAI chatbot platform used by 100+ users. From blank re
 
 <!-- more -->
 
----
-
 From April to August 2024, I returned to the same team at DNB. I got to see my previous project live in production, with ~10 users, and developers that had built on top of it without issues!
 
 Once again, I started right when they started a new project, so I got to build a brand new frontend mostly alone. This was a new chatbot application, but it's not sharing the same base as the other chatbots that I got to build the admin panel of, this one was an LLM RAG chatbot, built from the ground up. It's called the Smartdocs Platform: a multi-tenant chatbot that plugs into DNB's internal SharePoint sites so teams can ask questions over their own documents. First tenant was "AML Justina" for the Anti-Money Laundering team, who otherwise had to dig through hundreds of pages of docs.

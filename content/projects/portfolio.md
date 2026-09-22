@@ -16,6 +16,4 @@ The website you're looking at. I finally moved away from Next.js and went with [
 
 <!-- more -->
 
----
-
 My current portfolio, Tanstack Start with static pre-rendering, content-collections to store all info in Markdown. Full SEO (JSON-LD, sitemap, OG image generation, llms.txt, RSS feed), awesome style, sound design, lots of tiny details in the UI/UX and in the code as well.

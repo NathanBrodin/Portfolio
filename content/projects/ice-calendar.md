@@ -13,8 +13,6 @@ skills:
   - Tailwind CSS
 ---
 
-<!-- more -->
+I made a quick Next.js app to scrape the calendar of the public openings of Sundsvall's ice rink, as I would go ice skating 4 times a week. So it gets the raw HTML from the old website, formats it in cal format, and allows you to set it up, and choose what kind of openings you're interested in using URL search params.
 
----
-
-I made a quick NextJS app to scrape the calendar of the public openings of Sundsvall's ice rink, as I would go ice skating 4 times a week. So it gets the raw HTML from the old website, formats it in cal format, and allows you to set it up, and choose what kind of openings you're interested in using URL search params. Nice and simple UI, with an aurora effect.
+Nice and simple UI, with an aurora effect.

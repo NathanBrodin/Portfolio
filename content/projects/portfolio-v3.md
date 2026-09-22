@@ -13,8 +13,6 @@ skills:
   - Tailwind CSS
 ---
 
-<!-- more -->
+I rebuilt my portfolio once again, as I got heavily inspired by Chronark's portfolio. But it wasn't a fork, I rebuilt everything to follow my code style, updated the UI to match my style as well.
 
----
-
-I rebuilt my portfolio, NextJS, Tailwind, and got heavily inspired by Chronark's portfolio, but it wasn't a fork, I rebuilt everything to follow my code style, updated the UI to match my style as well. I also spent a lot of time fighting performance issues, lazy loading components and dynamic imports until the Lighthouse score made me happy, and plugged in Vercel Speed Insights to keep an eye on it.
+I also spent a lot of time fighting performance issues, lazy loading components and dynamic imports until the Lighthouse score made me happy, and plugged in Vercel Speed Insights to keep an eye on it.
