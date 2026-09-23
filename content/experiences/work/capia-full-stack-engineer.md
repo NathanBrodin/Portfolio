@@ -23,19 +23,20 @@ skills:
 order: 1
 ---
 
-I'm building a production-grade web application from scratch: frontend, backend and infrastructure.
+Full-stack engineer at a small Norwegian data analytics company, where I'm effectively the entire engineering function.
 
-- Frontend with [React 19](https://react.dev/) + [Compiler](https://react.dev/learn/react-compiler), [Vite](https://vite.dev/), [TanStack Router](https://tanstack.com/router/latest)/[Query](https://tanstack.com/query/latest)/[Table](https://tanstack.com/table/latest)/[Pacer](https://tanstack.com/pacer/latest), [Tailwind](https://tailwindcss.com/), [Base UI](https://base-ui.com/), [shadcn/ui](https://ui.shadcn.com/) (and [coss ui](https://coss.com/ui/docs))
-- Backend with [Django REST Framework](https://www.django-rest-framework.org/) with [Redis](https://redis.io/) for caching, [ClickHouse](https://clickhouse.com/) integration, and [PostgreSQL](https://www.postgresql.org/)
-- Infrastructure with [Docker](https://www.docker.com/), deployed via [NGINX](https://nginx.org/) on [self-managed servers](https://www.hetzner.com/)
-- I've set up full end-to-end type safety with [drf-spectacular](https://drf-spectacular.readthedocs.io/en/latest/) (OpenAPI schema generation) and [Orval-generated](https://orval.dev/) TanStack Query hooks
-- Implemented [RBAC](https://en.wikipedia.org/wiki/Role-based_access_control), admin tooling, and resource management
-- Made the [CI](https://github.com/features/actions) cover linting, builds, schema generation, and automated testing (~700 backend tests, ~100 [Playwright](https://playwright.dev/) E2E tests) with caching and sharding
-- Wrote full docs, DX tooling, DB seeding, and [Makefile commands](https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html) so the whole project sets up in a few commands
+I've built two production apps from empty repo to deployed systems (a multi-tenant organization-data platform and a traffic dashboard), owning everything end to end: architecture, design, frontend, backend, infrastructure, CI/CD, and docs. I am also involved in consulting work and other collaborative projects.
+
+I focus on:
+
+- DX: type safety end to end (all-in on TanStack, frontend types generated from the backend OpenAPI schema, CI fails on drift), deliberate library choices, docs and one-command setup, ~1,500 tests with Playwright E2E and checks on every PR
+- UI/UX: polished interfaces where every state is designed, refined through tight feedback loops with users
+- Observability: OpenTelemetry across 8 repos into self-hosted SigNoz, so traces, errors, and usage back every claim, from the frontend API call down to the DB query
+- Ownership: turning one-line briefs into systems ("build a chatbot" became a workspace-scoped analytics agent), and proposing solutions to silent problems nobody flagged: self-hosted runners, observability
 
 <!-- more -->
 
-I joined a small Norwegian data analytics company on the 4th of August 2025 as a full-stack engineer. The company builds analytical products for Norwegian industries. Everything is self-hosted with Docker behind a global nginx reverse proxy . Every project below involved the same shared plumbing: internal Docker networks, the proxy, and centralized environment configurations.
+I joined a small Norwegian data analytics company on the 4th of August 2025 as a full-stack engineer. The company builds analytical products for Norwegian industries. Everything is self-hosted with Docker behind a global nginx reverse proxy. Every project below involved the same shared plumbing: internal Docker networks, the proxy, and centralized environment configurations.
 
 There is no engineering function around me that reviews code, sets standards, or enforces them. On CapREG and Traffic Dashboard I got tasks and ideas, not a spec, and made every technical and design choice from there.
 
@@ -204,10 +205,6 @@ I made around 223 out of ~1,325 commits in the repo.
 
 I formally audited the codebase and found significant architectural and security gaps, which I documented and escalated to the team. Beyond that, it was a complex legacy codebase with a ticket process that heavily rewarded one-to-five-line PRs over system architecture. The fixes that were authorized were often symptoms; the foundational code remained chaotic.
 
-##### Observability
-
-After noticing that we only get feedback on errors, outages and bugs when some people or myself discover it and mention it, I've pitched the idea that we should set up observability across all of our apps.
-
 ##### Self Hosted Runners
 
 The company was hitting the GitHub Actions usage limits, and a large part of that was me: my CIs run lint, tests, schema/type checks and builds on every push and PR (CapREG, the client project, later Traffic Dashboard). Paying GitHub for minutes we could get from our own server didn't make sense, and the limits were starting to block work. So I set up self-hosted runners on a company server.
@@ -217,3 +214,17 @@ I deployed GitHub Actions self-hosted runners with Docker Compose: 12 containers
 - A GitHub Actions workflow deploys over SSH with a runner-count input (default 12). It reads configuration from the server, scales the compose service to that many containers, and prints the result.
 - Runners are ephemeral, auto-update is disabled, names get random suffixes, and container logs are capped.
 - A cleanup script plus a daily scheduled workflow deletes _offline_ runner registrations. This one was learned the hard way: when a container dies hard, GitHub keeps the registration forever. Without cleanup the list grows until it hits GitHub's 10,000-runner limit and then no new runner can register. The script skips offline-but-busy runners so in-flight jobs are never cancelled.
+
+##### Observability
+
+In September 2026 I pitched the idea of implementing Observability at Capia as I saw that we had two painpoints that could be resolved with OTel:
+
+1. The client project was falling apart, with slow queries and errors coming from all places, and it would only be reported to us with screenshot of the error toast saying "Server error". We had to look through the raw Docker logs to try to understand what was going on.
+2. Management started giving away accesses to the different services we've been building, but we didn't knew if they actually used them, what they were using, if everything was working...
+
+So I proposed the idea of OTel, and received great feedback that it could be very useful.
+
+I spent a week setting up the OpenTelemetry SDK across the 8 repos of the company which all have a different tech stack, so trying to have the same implementation, and sending the same logs and traces to our collector.
+I've setup a self hosted Signoz on the server to collect and view all data, and setup the MCP server so I can have my LLMs build dashboard and inspect logs.
+
+Now we have traces going from the frontend API calls all the way to the individual DB calls, we have error alerts, analytics for users... We finally know what's going on at Capia.
