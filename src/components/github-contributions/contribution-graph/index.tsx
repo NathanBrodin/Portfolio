@@ -225,10 +225,10 @@ export const ContributionGraph = ({
   blockRadius = 2,
   blockSize = 12,
   fontSize = 14,
-  labels: labelsProp = undefined,
+  labels: labelsProp,
   maxLevel: maxLevelProp = 4,
   style = {},
-  totalCount: totalCountProp = undefined,
+  totalCount: totalCountProp,
   weekStart = 0,
   className,
   ...props

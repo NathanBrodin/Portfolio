@@ -90,7 +90,7 @@ function Command({
 
 function CommandInput({
   className,
-  placeholder = undefined,
+  placeholder,
   ...props
 }: React.ComponentProps<typeof AutocompleteInput>) {
   return (
