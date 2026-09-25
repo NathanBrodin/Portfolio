@@ -34,4 +34,4 @@ Five courses over the semester, graded on the Swedish scale from A (excellent) t
 
 The pattern says a lot about me: an A in the hands-on distributed systems course, and the grade dropping as the theory density increases, bottoming out at D for distributed algorithms (for my own defense, we were 4 students and everyone got terrible grades).
 
-And Swedish: B. Jag kan talar lite svenska nu.
+And Swedish: B. Jag kan tala lite svenska nu.

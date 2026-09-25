@@ -28,4 +28,4 @@ I used the AI SDK, with RSC instead of UI, which is now deprecated because they 
 
 Full documentation for people to make it their own. Very nice UI, animations...
 
-2 years after this project, I still haven't seen anyone build something similar. I'm trully a visionnary.
+2 years after this project, I still haven't seen anyone build something similar. I'm truly a visionary.
