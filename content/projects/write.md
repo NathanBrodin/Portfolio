@@ -17,7 +17,7 @@ skills:
 order: 3
 ---
 
-A Notion-style markdown editor. Write and preview markdown in real-time, export to PDF. Started as a Notion clone from a tutorial, and then adapted to my needs for raw markdown edtingg. Built with [Next.js](https://nextjs.org/), [Tailwind](https://tailwindcss.com/) and [Convex](https://www.convex.dev/).
+A Notion-style markdown editor. Write and preview markdown in real-time, export to PDF. Started as a Notion clone from a tutorial, and then adapted to my needs for raw markdown edtingg. Built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/) and [Convex](https://www.convex.dev/).
 
 <!-- more -->
 

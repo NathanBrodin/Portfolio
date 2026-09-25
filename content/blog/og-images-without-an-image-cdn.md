@@ -114,7 +114,7 @@ After every capture, the script stats the output file and throws if it exceeds 8
 
 ## Theme-aware icons, for free
 
-The site-wide OG includes my tech-stack icons. Each one has light and dark variants, swapped with Tailwind's `dark:` variants:
+The site-wide OG includes my tech-stack icons. Each one has light and dark variants, swapped with Tailwind CSS `dark:` variants:
 
 ```tsx
 <img

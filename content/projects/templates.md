@@ -15,7 +15,7 @@ skills:
   - Better Auth
 ---
 
-I made a mono-repo template with Tanstack Start for the web, Convex for the backend, a UI package, and table and form packages using the new Tanstack composable patterns, better-auth, marketing and legal pages being pre-rendered, i18n, Polar.
+I made a mono-repo template with TanStack Start for the web, Convex for the backend, a UI package, and table and form packages using the new TanStack composable patterns, better-auth, marketing and legal pages being pre-rendered, i18n, Polar.
 I wanted to make that as every time I started a new project, I had to re-setup everything, re-handle auth, and stuff.
 
 <!-- more -->

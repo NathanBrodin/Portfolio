@@ -50,8 +50,8 @@ So I made every technical, architectural, and design choice myself, organized my
 
 ###### Stack
 
-- **Backend**: Django + DRF, drf-spectacular for the OpenAPI schema, Postgres for the app, Redis for caching, the external ClickHouse for organization data, Ruff + Pytest.
-- **Frontend**: React 19 + Vite + TypeScript, TanStack Router (file-based, type-safe routes), TanStack Form/Table, Tailwind 4 + shadcn/ui, Paraglide for EN/NO translations, T3 Env for typed environment variables, Orval to generate the entire API client and React Query hooks from the backend schema.
+- **Backend**: Django + DRF, drf-spectacular for the OpenAPI schema, PostgreSQL for the app, Redis for caching, the external ClickHouse for organization data, Ruff + Pytest.
+- **Frontend**: React 19 + Vite + TypeScript, TanStack Router (file-based, type-safe routes), TanStack Form/Table, Tailwind CSS v4 + shadcn/ui, Paraglide for EN/NO translations, T3 Env for typed environment variables, Orval to generate the entire API client and React Query hooks from the backend schema.
 - **Contract**: the OpenAPI schema is committed and generated from the code; the frontend's types are generated from the schema. CI fails if either is out of date. Backend and frontend can't silently drift.
 - **Auth**: Keycloak JWT validation on the backend, redirect to the company's Keycloak on the frontend, separate clients per environment.
 - **Deployment**: Docker, staging and production environments on the same server, containers on a shared Docker network behind the central reverse proxy.
@@ -62,7 +62,7 @@ Why: type safety end to end, one schema instead of hand-written API types and ha
 
 About 1,090 commits in total, 929 non-merge, nearly all mine; 229 release tags so far.
 
-- **Oct 2025** — the repo: environment management that fails the build when not configured, pnpm enforcement, TanStack Router setup, Docker/nginx, Keycloak login, i18n, theme and shadcn, header, overview skeleton.
+- **Oct 2025** — the repo: environment management that fails the build when not configured, pnpm enforcement, TanStack Router setup, Docker/nginx, Keycloak login, i18n, theme and shadcn/ui, header, overview skeleton.
 - **Nov 2025** — frontend and backend talking; ClickHouse connection; the organizations endpoint with filtering, sorting, search, pagination; the data table, sidebar filters, CSV export. The core query design landed here: one SQL statement does the workspace scope + filters + full-text search + parent/contact inheritance + sorting + pagination + aggregate metadata (total, employees, ...).
 - **Dec 2025 – Jan 2026** — organization profile (header, information, structure tree of parent/subunits, activity, charts and metrics), RBAC on the manage pages, workspace breadcrumbs, seed-data commands (DX), Redis cache, a 10x improvement of the organizations query, session persistence, frontend caching.
 - **Feb – Jun 2026** — notifications inbox and preferences, saved views, the analysis pages (financial, municipalities, value creation, registrations and bankruptcies, per-organization charts), a second-generation organizations query (a pre-computed ClickHouse table, frontend prefetching, query timing and logging, auth performance work), certificates, help page, and repeated rounds of content/translation changes from my manager's feedback.
@@ -100,7 +100,7 @@ It's the most technically interesting thing I've built here and it's working ext
 - Loading/error/empty states are app-level rather than reinvented per page. Chat adds its own empty state, streaming/tool-call states and a context-usage widget.
 - Dark/light/system theme through a small custom provider; components use semantic tokens rather than raw colors.
 - Accessibility is decent but not systematic: over 200 `aria-*`/`role=` attributes, real buttons and labels, keyboard behavior from Base UI, copy buttons via `navigator.clipboard`.
-- Fully responsive design: a `matchMedia`-based mobile hook drives the sidebar (a slide-over panel on mobile), hides hover tooltips on touch, and several tables/charts switch layout or axis density on small screens. A dev-only breakpoint indicator shows the active Tailwind breakpoint while building.
+- Fully responsive design: a `matchMedia`-based mobile hook drives the sidebar (a slide-over panel on mobile), hides hover tooltips on touch, and several tables/charts switch layout or axis density on small screens. A dev-only breakpoint indicator shows the active Tailwind CSS breakpoint while building.
 
 **Web standards and browser-native choices**
 
@@ -134,13 +134,13 @@ What I do know: I can take a domain I don't know, an empty repo, and a one-page 
 
 ##### Traffic Dashboard
 
-The Traffic Dashboard is a dashboard for Norwegian traffic: flights data and cruise ships data combined into one view. It reads from four databases: a local Postgres (auth/users), an internal Postgres (flights + taxonomies), an internal MariaDB (cruise voyages and ships), and an internal ClickHouse (occupancy data).
+The Traffic Dashboard is a dashboard for Norwegian traffic: flights data and cruise ships data combined into one view. It reads from four databases: a local PostgreSQL (auth/users), an internal PostgreSQL (flights + taxonomies), an internal MariaDB (cruise voyages and ships), and an internal ClickHouse (occupancy data).
 
 Before me, a student had built a very rough dashboard with flights only in 2 weeks. My task was one sentence: "Build the traffic dashboard for flights and cruises" with rough product specs. No stack discussion, no design. I chose the stack, the architecture, the design and everything else myself, and then refined it based on feedback. To this day, 1 external user has used the application.
 
 ###### Stack
 
-A full TypeScript Turborepo monorepo: pnpm workspaces + Turborepo; a web app (React 19, TanStack Router, Tailwind 4 + shadcn); a server app (Hono + oRPC, Drizzle ORM, Better-Auth); and shared packages.
+A full TypeScript Turborepo monorepo: pnpm workspaces + Turborepo; a web app (React 19, TanStack Router, Tailwind CSS v4 + shadcn/ui); a server app (Hono + oRPC, Drizzle ORM, Better-Auth); and shared packages.
 
 I built it this way to remove the headaches I had with CapREG:
 
@@ -156,8 +156,8 @@ Filters by destinations and origins, time range and months, transport mode, pass
 
 - Cross-database joins are impossible, so flights and cruises are fetched separately and merged in the API layer.
 - Hand-maintained Drizzle schemas for the read-only external databases; the app is never allowed to write to them (enforced by the ORM config by construction).
-- Keyset pagination per database: Postgres row-value comparison; MariaDB has no tuple comparison, so the keyset is expanded into OR/AND.
-- Occupancy is pre-computed into a lookup table refreshed from ClickHouse + Postgres, so the dashboard doesn't hit the raw data on every request.
+- Keyset pagination per database: PostgreSQL row-value comparison; MariaDB has no tuple comparison, so the keyset is expanded into OR/AND.
+- Occupancy is pre-computed into a lookup table refreshed from ClickHouse + PostgreSQL, so the dashboard doesn't hit the raw data on every request.
 
 ###### Technical craft
 

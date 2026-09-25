@@ -40,7 +40,7 @@ What I did:
 
 ##### Code Migration
 
-CUF was from 2018, still on React 15, deps not updated since, install failing, no valid docs, 30s+ startup with useless logs, TS/lint errors everywhere, one-line change reformatting whole files, inconsistent DEV/UAT/PROD configs and silent feature toggles. Components were the opposite of best practices: 500+ line files with 10+ `useEffect`s, dead code, unused branches, console.log spam.
+CUF was from 2018, still on React 15, deps not updated since, install failing, no valid docs, 30s+ startup with useless logs, TypeScript/lint errors everywhere, one-line change reformatting whole files, inconsistent DEV/UAT/PROD configs and silent feature toggles. Components were the opposite of best practices: 500+ line files with 10+ `useEffect`s, dead code, unused branches, console.log spam.
 An offshore consultant was migrating Gatsby to Vite and everything broke, with no tests or mocks to understand expected behavior (I discovered the chat could show image responses 3 months in because someone reported it broken). My first task was fixing bugs she couldn't fix, mostly by diffing HTML output old vs new to find the tiny detail breaking a feature.
 
 It also included Eufemia 9.x to 10.x upgrade: removed legacy `// Workaround to fix Eufemia issue` hacks, manual QA loops (testers report, we fix, repeat – works but leaky for subtle regressions). One Tooltip bug wasn't ours at all, it was in Eufemia itself. I reported it, saw their backlog being full, so I fixed it myself and made a PR, which was published in days, the team really like that.

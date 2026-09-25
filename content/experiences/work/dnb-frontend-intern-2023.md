@@ -18,7 +18,7 @@ skills:
 order: 4
 ---
 
-Shipped an internal admin panel from scratch used by 10+ users, based on Figma designs. Small project with basic tech (CRA + JS), but good foundations. I handled everything from UI, API integration, auth, and deployment. My first production app.
+Shipped an internal admin panel from scratch used by 10+ users, based on Figma designs. Small project with basic tech (CRA + JavaScript), but good foundations. I handled everything from UI, API integration, auth, and deployment. My first production app.
 
 <!-- more -->
 

@@ -13,7 +13,7 @@ skills:
   - Tailwind CSS
 ---
 
-Rebuilt my portfolio with Next.js and Tailwind. Better UI, better designs, but you can still see that I was a "beginner". I even made it fully available in French, and added Google Analytics to see if anyone was visiting (they were not).
+Rebuilt my portfolio with Next.js and Tailwind CSS. Better UI, better designs, but you can still see that I was a "beginner". I even made it fully available in French, and added Google Analytics to see if anyone was visiting (they were not).
 
 <!-- more -->
 

@@ -8,13 +8,13 @@ published: true
 
 Yes, I have a repo whose sole purpose is to make my GitHub profile look busier than it is. No, I'm not ashamed. And here's how you can do it too.
 
-![My Github Contribution Graph](https://brodin.dev/assets/github-contributions.webp)
+![My GitHub Contribution Graph](https://brodin.dev/assets/github-contributions.webp)
 
 > It's quite easy to spot when I started it.
 
 ## How It Works
 
-Github's contribution graph tracks commits across all your repos, public and private, as long as they're on the default branch and the commit email matches your account. The whole system is activity-based: it doesn't care what you committed, just that you did. Which means it's trivially gameable.
+GitHub's contribution graph tracks commits across all your repos, public and private, as long as they're on the default branch and the commit email matches your account. The whole system is activity-based: it doesn't care what you committed, just that you did. Which means it's trivially gameable.
 
 The plan is simple: a private repo, a scheduled GitHub Action as the engine, and a Python script to make it look human.
 

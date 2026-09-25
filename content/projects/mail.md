@@ -19,7 +19,7 @@ skills:
 
 "Redefining Your Inbox Experience" is a mail client to rethink how you manage messages, prioritizing and responding with intuitive simplicity (that's what the README says at least).
 
-Next.js, TypeScript, Tailwind with shadcn/ui, auth with NextAuth via GitHub, a discover page and a proper new-user experience, full i18n in English and French, theme customization, PostHog for analytics, Sentry for error tracking, and Cypress E2E tests running in CI, with a stub login so the tests could get past the auth.
+Next.js, TypeScript, Tailwind CSS with shadcn/ui, auth with NextAuth.js via GitHub, a discover page and a proper new-user experience, full i18n in English and French, theme customization, PostHog for analytics, Sentry for error tracking, and Cypress E2E tests running in CI, with a stub login so the tests could get past the auth.
 
 <!-- more -->
 

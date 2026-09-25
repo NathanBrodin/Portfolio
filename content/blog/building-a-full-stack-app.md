@@ -6,7 +6,7 @@ tags: ['web-development', 'software-architecture', 'react', 'django']
 published: true
 ---
 
-If I tell you I made a full-stack app with [React 19](https://react.dev/blog/2024/12/05/react-19) (+ [Compiler](https://react.dev/learn/react-compiler)), [Tanstack Router](https://tanstack.com/router/latest), [tailwindcss](https://tailwindcss.com/), [Base UI](https://base-ui.com/), and [pnpm](https://pnpm.io/), you would probably expect a [Hono backend](https://hono.dev/) or Tanstack Start [Server functions](https://tanstack.com/start/latest/docs/framework/react/guide/server-functions) with [Drizzle](https://orm.drizzle.team/), or at least some cutting-edge TS solution. Well, I've built a [Django](https://www.django-rest-framework.org/) backend, and it works pretty well!
+If I tell you I made a full-stack app with [React 19](https://react.dev/blog/2024/12/05/react-19) (+ [Compiler](https://react.dev/learn/react-compiler)), [TanStack Router](https://tanstack.com/router/latest), [Tailwind CSS](https://tailwindcss.com/), [Base UI](https://base-ui.com/), and [pnpm](https://pnpm.io/), you would probably expect a [Hono backend](https://hono.dev/) or TanStack Start [Server functions](https://tanstack.com/start/latest/docs/framework/react/guide/server-functions) with [Drizzle](https://orm.drizzle.team/), or at least some cutting-edge TypeScript solution. Well, I've built a [Django](https://www.django-rest-framework.org/) backend, and it works pretty well!
 
 ## The Constraints vs. The Freedom
 
@@ -20,9 +20,9 @@ Here are the constraints I was handed:
 
 The freedom? I got to decide absolutely everything else.
 
-If you’ve read my previous blog posts, you know I’ve fallen in love with the Tanstack ecosystem. I went with Tanstack Router, Query, Form, Table, and Pacer. Notice that I _didn't_ go with Tanstack Start. Given the actual goals of this app, I couldn't justify the SSR overhead, and I absolutely did not want to spend a single second fixing hydration issues (I still have nightmares about them).
+If you’ve read my previous blog posts, you know I’ve fallen in love with the TanStack ecosystem. I went with TanStack Router, Query, Form, Table, and Pacer. Notice that I _didn't_ go with TanStack Start. Given the actual goals of this app, I couldn't justify the SSR overhead, and I absolutely did not want to spend a single second fixing hydration issues (I still have nightmares about them).
 
-For the UI, I finally got to use TailwindCSS and shadcn/ui at work, freeing myself from plain CSS and the horrors of `styled-components`. I really love the pattern of creating headless, reusable components:
+For the UI, I finally got to use Tailwind CSS and shadcn/ui at work, freeing myself from plain CSS and the horrors of `styled-components`. I really love the pattern of creating headless, reusable components:
 
 ```tsx
 export function PageHeader({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) {
@@ -42,7 +42,7 @@ _(Yes, it kind of looks like styled-components in a way. Maybe time is a flat ci
 
 A quick shoutout to two other bangers in the frontend stack:
 
-- **[Paraglide JS](https://inlang.com/m/gerre34r/library-inlang-paraglideJs):** After fighting with `react-i18next` (lack of type safety, fetching all keys client-side), I switched to Paraglide JS on [Tanstack's recommendation](https://tanstack.com/router/latest/docs/guide/internationalization-i18n#tanstack-router--paraglide-client-only). Zero downsides so far.
+- **[Paraglide JS](https://inlang.com/m/gerre34r/library-inlang-paraglideJs):** After fighting with `react-i18next` (lack of type safety, fetching all keys client-side), I switched to Paraglide JS on [TanStack's recommendation](https://tanstack.com/router/latest/docs/guide/internationalization-i18n#tanstack-router--paraglide-client-only). Zero downsides so far.
 - **[Knip](https://knip.dev/):** Analyzes your codebase for unused files, exports, and dependencies. Even with the strictest ESLint/Prettier setup, you’ll have dead code. Knip is a godsend for cleanup.
 
 ---
@@ -53,7 +53,7 @@ Let's talk about the _weird_ authentication layer in the app, that I am not a bi
 
 The client authenticates with Keycloak. This means I need to check auth on the frontend (using `react-oidc-context` and `oidc-client-ts`, which have pretty bad documentation) and [store the auth context](https://tanstack.com/router/latest/docs/how-to/setup-authentication#2-configure-router).
 
-I then pass the key to the backend during API calls, where Django verifies it using `jwt.decode` against the public key. It doesn't sound that bad, except that Django has its own pre-built auth system with user tables, and Keycloak isn't designed to store app-specific user metadata. So, I had to build a weird, performant sync layer between the two (e.g., if a Keycloak email changes, reflecting it locally in the Postgres DB). It’s clunky, but it works.
+I then pass the key to the backend during API calls, where Django verifies it using `jwt.decode` against the public key. It doesn't sound that bad, except that Django has its own pre-built auth system with user tables, and Keycloak isn't designed to store app-specific user metadata. So, I had to build a weird, performant sync layer between the two (e.g., if a Keycloak email changes, reflecting it locally in the PostgreSQL DB). It’s clunky, but it works.
 
 ## Type Safety is still possible
 
@@ -66,8 +66,8 @@ However, having a Python backend and a TypeScript frontend doesn't mean you have
 - Django properly defines the models with strict types and comments.
 - Backend views have full documentation on response types using those models.
 - [drf-spectacular](https://drf-spectacular.readthedocs.io/en/latest/) generates the OpenAPI specs.
-- [Orval](https://orval.dev/) generates TS types and query hooks from those specs.
-- The frontend consumes the [Tanstack Query Hooks](https://tanstack.com/query/latest) to fetch data.
+- [Orval](https://orval.dev/) generates TypeScript types and query hooks from those specs.
+- The frontend consumes the [TanStack Query Hooks](https://tanstack.com/query/latest) to fetch data.
 
 And just like that... End-to-end type safety. You know exactly what the endpoint needs, and exactly what it's going to return. When you make a change in a model, you get the feedback all the way to your frontend component.
 
@@ -106,7 +106,7 @@ It sounds heavy, but it only takes ~7 minutes if _all_ steps run, thanks to aggr
 
 ## Boring isn't bad
 
-Django is not the most exciting tech, but it’s great for a CRUD app exposing APIs to Postgres. Yes, I still have to handle some complexity: RBAC, Redis caching, querying a Clickhouse DB with raw SQL, and WebSockets for live notifications, but I’m not building a crazy app for millions of users.
+Django is not the most exciting tech, but it’s great for a CRUD app exposing APIs to PostgreSQL. Yes, I still have to handle some complexity: RBAC, Redis caching, querying a Clickhouse DB with raw SQL, and WebSockets for live notifications, but I’m not building a crazy app for millions of users.
 
 Django is simple, predictable, and LLMs understand it perfectly. Need a cache layer? Two lines of code. It’s fast enough that running 800+ tests (including DB writes) takes 10 seconds.
 I still have some issues with it, like if there is an internal server error, an endpoint will return some html by default. So you need a custom middleware to formalize all kinds of errors. And of course, it has to be in Python. But overall: it just works.
