@@ -3,6 +3,7 @@ import { ScriptOnce } from '@tanstack/react-router'
 import { useServerFn } from '@tanstack/react-start'
 import { useState } from 'react'
 
+import { siteConfig } from '@/config/site'
 import { getUsersLocation as getServerUsersLocation } from '@/lib/functions'
 
 import { Lines } from '../ui/backgrounds/lines'
@@ -118,17 +119,7 @@ export function About() {
           {greeting}
         </h2>
         <ScriptOnce>{GREETING_SCRIPT}</ScriptOnce>
-        <div className="flex flex-col gap-3 text-sm text-foreground">
-          <p>
-            Originally from the west of France, I&apos;ve been moving north ever since: interning in
-            Oslo, exchanging in Finland and Sweden, and somehow ending up north of the Arctic Circle
-            in Tromsø, Norway.
-          </p>
-          <p>
-            I build things for the web, mostly on the frontend, and I care way too much about how
-            buttons feel when you click them.
-          </p>
-        </div>
+        <p className="text-sm whitespace-pre-line text-foreground">{siteConfig.about}</p>
         <ul className="flex flex-col gap-1.5">
           {LEGEND_ITEMS.map((item) => (
             <li

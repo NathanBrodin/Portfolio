@@ -157,6 +157,8 @@ export function buildLlmsContent(full: boolean): string {
 
 > ${siteConfig.description}
 
+${siteConfig.about}
+
 ---
 
 ## Social Links
