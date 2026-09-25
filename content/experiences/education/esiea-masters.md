@@ -128,7 +128,7 @@ Still a lot of math and physics, but computer science started taking real space.
 | Code             | Course                                  | Coeff  | Class Avg | Student   | ECTS  |
 | ---------------- | --------------------------------------- | ------ | --------- | --------- | ----- |
 | ES-INF2032       | Operational research algorithms         | 3,5    | 12,55     | 14,00     |       |
-| ES-INF2036       | (title as in source: ES-INF2036)        | 1,5    | 14,44     | 16,25     |       |
+| ES-INF2036       | Programming project                     | 1,5    | 14,44     | 16,25     |       |
 | ES-MAT2053       | Mathematics and Cryptography            | 3      | 13,15     | 16,00     |       |
 | ES-MAT2054       | Series, approximation and probabilities | 3      | 11,68     | 15,5      |       |
 | **Final Result** | **Mathematics and Computer Science**    | **11** | **12,73** | **15,26** | **B** |

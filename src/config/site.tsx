@@ -6,7 +6,7 @@ export const siteConfig = {
   description:
     'A frontend engineer with a passion for web development, design, and user experience.',
   about:
-    "I'm a frontend-leaning full-stack engineer.\nOriginally from the west of France, I've been moving north ever since: internships in Oslo, exchange semesters in Finland and Sweden, and now settled north of the Arctic Circle in Tromsø, Norway.\n\nI build things for the web that are fast, accessible, documented, and polished.",
+    "I'm a frontend-leaning full-stack engineer. Originally from the west of France, I've been moving north ever since: internships in Oslo, exchange semesters in Finland and Sweden, and now settled north of the Arctic Circle in Tromsø, Norway.\n\nI build things for the web that are fast, accessible, documented, and polished.",
   url: 'https://brodin.dev',
   og: 'https://brodin.dev/og.png',
   authorUrl: 'https://brodin.dev',
