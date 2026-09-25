@@ -78,6 +78,7 @@ export const Route = createFileRoute('/blog/')({
       ],
       links: [
         { rel: 'canonical', href: url },
+        { rel: 'alternate', type: 'text/markdown', href: `${url}.md` },
         { rel: 'describedby', href: `${siteConfig.url}/llms.txt` },
       ],
       scripts: [

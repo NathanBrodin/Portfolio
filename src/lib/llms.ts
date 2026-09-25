@@ -129,18 +129,24 @@ function generateCertificationsMarkdown(): string {
   return lines.join('\n')
 }
 
-function generateBlogMarkdown(): string {
+export function generateBlogMarkdown(full: boolean): string {
   const posts = allBlogPosts
     .filter((post) => post.published)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 4)
+    .slice(0, full ? undefined : 4)
 
   const lines: string[] = []
+
+  lines.push(`> Articles on development, design and ideas.\n`)
 
   for (const post of posts) {
     lines.push(
       `- [${post.title}](${siteConfig.url}/blog/${post.slug}.md) - ${post.description} | ${post.date}`,
     )
+  }
+
+  if (!full) {
+    lines.push(`\nFull list available at ${siteConfig.url}/blog.md`)
   }
 
   return lines.join('\n')
@@ -183,6 +189,6 @@ ${generateCertificationsMarkdown()}
 
 ## Blog
 
-${generateBlogMarkdown()}
+${generateBlogMarkdown(full)}
 `
 }
