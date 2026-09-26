@@ -6,7 +6,7 @@ tags: ['web-development', 'react', 'seo']
 published: true
 ---
 
-Link previews are the first thing anyone sees of a blog post. They're also the last thing most people think about. The usual answers are a Figma file you forget to update, or `@vercel/og`, or an image-CDN pipeline you stand up once and never touch again.
+Link previews are the first thing anyone sees of a blog post. They're also the last thing most people think about. The usual answers are a Figma file you forget to update, or `@vercel/og`, or an image CDN pipeline you stand up once and never touch again.
 
 I do something dumber and more fun: my OG images are just screenshots of my own React routes.
 
@@ -30,7 +30,7 @@ The component in each route is the same shape: a constrained `div` with `id="og"
   className="relative mt-2 flex h-full flex-col items-center justify-between overflow-hidden border p-14"
   style={{ width: 1200, height: 630 }}
 >
-  {/* ...PageTitle, PageDescription, tech-stack icons... */}
+  {/* ...PageTitle, PageDescription, tech stack icons... */}
   <div className="pointer-events-none absolute inset-0 -z-1 h-full w-full overflow-hidden opacity-10">
     <Dithering
       width={1200}
@@ -114,7 +114,7 @@ After every capture, the script stats the output file and throws if it exceeds 8
 
 ## Theme-aware icons, for free
 
-The site-wide OG includes my tech-stack icons. Each one has light and dark variants, swapped with Tailwind CSS `dark:` variants:
+The site-wide OG includes my tech stack icons. Each one has light and dark variants, swapped with Tailwind CSS `dark:` variants:
 
 ```tsx
 <img

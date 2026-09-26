@@ -20,7 +20,7 @@ The plan is simple: a private repo, a scheduled GitHub Action as the engine, and
 
 ## GitHub Workflow
 
-With a free GitHub Account, you have access to 2,000 minutes of free actions compute every month, so let's use that to run a 25s action.
+With a free GitHub account, you have access to 2,000 minutes of free actions compute every month, so let's use that to run a 25s action.
 A GitHub Workflow also allows you to define cron jobs, so we can simply define one to run every day.
 
 Create a file at `.github/workflows/contributor.yml`:
@@ -89,7 +89,7 @@ steps:
 
 ## A Tiny Script To Make It Look Realistic
 
-If you would make the exact same amount of commits, monday to sunday, even on Christmas day, you would easily be flagged as a faker. So to make it look natural, we'll write a tiny Python script to handle that. Create a file called `autocommit.py`:
+If you would make the exact same amount of commits, Monday to Sunday, even on Christmas Day, you would easily be flagged as a faker. So to make it look natural, we'll write a tiny Python script to handle that. Create a file called `autocommit.py`:
 
 1. First, add the imports:
 
@@ -169,7 +169,7 @@ if __name__ == "__main__":
     main()
 ```
 
-Good job, You're now officially a 10x engineer (with a healthy work/life balance), at least visually.
+Good job, you're now officially a 10x engineer (with a healthy work/life balance), at least visually.
 
 ---
 

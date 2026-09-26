@@ -6,7 +6,7 @@ tags: ['web-development', 'performance', 'tanstack']
 published: true
 ---
 
-I run Lighthouse on [brodin.dev](https://brodin.dev) the way some people refresh their GitHub contribution graph. It currently lands at **100 on every local run**, and **100 in Vercel's Real Experience Score**. These performances don't come from a "performance checklist", but rather from moving work from the browser to the build, in places where every generic guide tells you to just "lazy-load it."
+I run Lighthouse on [brodin.dev](https://brodin.dev) the way some people refresh their GitHub contribution graph. It currently lands at **100 on every local run**, and **100 in Vercel Real Experience Score**. These performances don't come from a "performance checklist", but rather from moving work from the browser to the build, in places where every generic guide tells you to just "lazy-load it."
 
 So here's the actual list: no `next/image` worship, no advice I didn't personally ship.
 
@@ -25,7 +25,7 @@ tanstackStart({
 
 `enabled: true` turns the whole site into static HTML at build time. `crawlLinks: true` means TanStack Start follows every internal link it finds and prerenders those routes too, so I never have a route that ships zero hydration cost "by accident" because I forgot to list it somewhere.
 
-The small tradeoff some could argue about would be slower build times. But dor a content site that deploys a few times a month, that's a non-issue. For an app that ships 30 times a day, I'd think harder. But the payoff is that there's almost no JavaScript execution between "user hits Enter" and "user sees a painted page": the HTML is already there.
+The small tradeoff some could argue about would be slower build times. But for a content site that deploys a few times a month, that's a non-issue. For an app that ships 30 times a day, I'd think harder. But the payoff is that there's almost no JavaScript execution between "user hits Enter" and "user sees a painted page": the HTML is already there.
 
 Next.js does offer the same feature, so modern React static apps can all benefit from it.
 
@@ -81,7 +81,7 @@ The rule I follow: animate things the user can _see_, animate them once, and let
 
 ## 6. Vector where vector works
 
-`favicon.svg`. Tech-stack icons as `.svg` with light/dark variants. The map dots are a single SVG path. The one raster I keep on the home page is the GitHub contribution screenshot, and that's `.webp`. Rasters are reserved for things that are genuinely photographic (a screenshot of an actual UI). If it's a logo or a shape, it's a vector. Less weight, infinitely scalable, no CLS from missing dimensions.
+`favicon.svg`. Tech stack icons as `.svg` with light/dark variants. The map dots are a single SVG path. The one raster I keep on the home page is the GitHub contribution screenshot, and that's `.webp`. Rasters are reserved for things that are genuinely photographic (a screenshot of an actual UI). If it's a logo or a shape, it's a vector. Less weight, infinitely scalable, no CLS from missing dimensions.
 
 ## 7. Build-time guardrails
 

@@ -30,7 +30,7 @@ Each solution is owned by different teams and product owners across the bank. Th
 
 When these product owners wanted to change something for their chat solution, they had to contact the team, wait for a developer to mess with AWS to find what to change, and wait for the feedback. So I developed, from scratch, the frontend of the "Chat Admin Panel", which is a web app to empower the product owners to do the changes to their chatbots by themselves, in an intuitive way (we're not giving them raw access to AWS of course lol).
 
-So I worked with the UX/UI designer of the team, that had all visuals of the application on Figma, and the backend engineer, that created the API to handle the data, and I was by myself on the frontend.
+So I worked with the UX designer of the team, that had all designs of the application on Figma, and the backend engineer, that created the API to handle the data, and I was by myself on the frontend.
 
 I started the project from scratch, with a bare CRA app in JavaScript, Emotion for styling, Redux for state, Axios for API calls. It was my first "real" React app, as I had only worked on a Chrome extension made with React before that, a simple "Password Manager".
 So this was quite a simple CRUD app, with basic React Router navigation. It was not meeting the high production standards and modern stack that I now master, but this was still a very good application which received very good feedback.

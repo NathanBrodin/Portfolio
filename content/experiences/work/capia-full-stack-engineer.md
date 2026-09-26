@@ -36,7 +36,7 @@ I focus on:
 
 <!-- more -->
 
-I joined a small Norwegian data analytics company on the 4th of August 2025 as a full-stack engineer. The company builds analytical products for Norwegian industries. Everything is self-hosted with Docker behind a global nginx reverse proxy. Every project below involved the same shared plumbing: internal Docker networks, the proxy, and centralized environment configurations.
+I joined a small Norwegian data analytics company on the 4th of August 2025 as a full-stack engineer. The company builds analytical products for Norwegian industries. Everything is self-hosted with Docker behind a global Nginx reverse proxy. Every project below involved the same shared plumbing: internal Docker networks, the proxy, and centralized environment configurations.
 
 There is no engineering function around me that reviews code, sets standards, or enforces them. On CapREG and Traffic Dashboard I got tasks and ideas, not a spec, and made every technical and design choice from there.
 
@@ -44,7 +44,7 @@ There is no engineering function around me that reviews code, sets standards, or
 
 CapREG is a multi-tenant platform for exploring Norwegian organization data, using raw data from Brønnøysundregistrene plus accounting and employee enrichment in-house, stored in ClickHouse. It follows a common Client/Projects setup, with full RBAC. It was the first project I got after the client project calmed down; I started building it in October 2025.
 
-The technical instruction I received were: build the backend with Django, the frontend with React, use Keycloak for authentication. I was given access to the two external ClickHouse sources with raw organization data. For the product itself, I got a drawing of the overview page and a Word document describing rough RBAC (client, project, access group) and the features needed. That's it. No requirements, no design system, no user research, no acceptance criteria.
+The technical instructions I received were: build the backend with Django, the frontend with React, use Keycloak for authentication. I was given access to the two external ClickHouse sources with raw organization data. For the product itself, I got a drawing of the overview page and a Word document describing rough RBAC (client, project, access group) and the features needed. That's it. No requirements, no design system, no user research, no acceptance criteria.
 
 So I made every technical, architectural, and design choice myself, organized my own work, and implemented it how I wanted. There is no one reviewing the architecture or enforcing standards. The quality of this codebase is a direct reflection of my will and nothing else.
 
@@ -53,7 +53,7 @@ So I made every technical, architectural, and design choice myself, organized my
 - **Backend**: Django + DRF, drf-spectacular for the OpenAPI schema, PostgreSQL for the app, Redis for caching, the external ClickHouse for organization data, Ruff + Pytest.
 - **Frontend**: React 19 + Vite + TypeScript, TanStack Router (file-based, type-safe routes), TanStack Form/Table, Tailwind CSS v4 + shadcn/ui, Paraglide for EN/NO translations, T3 Env for typed environment variables, Orval to generate the entire API client and React Query hooks from the backend schema.
 - **Contract**: the OpenAPI schema is committed and generated from the code; the frontend's types are generated from the schema. CI fails if either is out of date. Backend and frontend can't silently drift.
-- **Auth**: Keycloak JWT validation on the backend, redirect to the company's Keycloak on the frontend, separate clients per environment.
+- **Auth**: Keycloak JWT validation on the backend, redirect to the company's Keycloak on the frontend, separate Keycloak clients per environment.
 - **Deployment**: Docker, staging and production environments on the same server, containers on a shared Docker network behind the central reverse proxy.
 
 Why: type safety end to end, one schema instead of hand-written API types and hand-pasted tokens, and boring, well-supported tools. I wanted CI to catch the failure modes instead of users. I also made the most of libraries rather than custom implementations.
@@ -62,7 +62,7 @@ Why: type safety end to end, one schema instead of hand-written API types and ha
 
 About 1,090 commits in total, 929 non-merge, nearly all mine; 229 release tags so far.
 
-- **Oct 2025** — the repo: environment management that fails the build when not configured, pnpm enforcement, TanStack Router setup, Docker/nginx, Keycloak login, i18n, theme and shadcn/ui, header, overview skeleton.
+- **Oct 2025** — the repo: environment management that fails the build when not configured, pnpm enforcement, TanStack Router setup, Docker/Nginx, Keycloak login, i18n, theme and shadcn/ui, header, overview skeleton.
 - **Nov 2025** — frontend and backend talking; ClickHouse connection; the organizations endpoint with filtering, sorting, search, pagination; the data table, sidebar filters, CSV export. The core query design landed here: one SQL statement does the workspace scope + filters + full-text search + parent/contact inheritance + sorting + pagination + aggregate metadata (total, employees, ...).
 - **Dec 2025 – Jan 2026** — organization profile (header, information, structure tree of parent/subunits, activity, charts and metrics), RBAC on the manage pages, workspace breadcrumbs, seed-data commands (DX), Redis cache, a 10x improvement of the organizations query, session persistence, frontend caching.
 - **Feb – Jun 2026** — notifications inbox and preferences, saved views, the analysis pages (financial, municipalities, value creation, registrations and bankruptcies, per-organization charts), a second-generation organizations query (a pre-computed ClickHouse table, frontend prefetching, query timing and logging, auth performance work), certificates, help page, and repeated rounds of content/translation changes from my manager's feedback.
@@ -73,7 +73,7 @@ About 1,090 commits in total, 929 non-merge, nearly all mine; 229 release tags s
 My task was literally "build a chatbot". What I built is an analytics agent scoped to the user's current workspace:
 
 - An async streaming agent loop (tool-calling, SSE in the TanStack AI chunk format) against a self-hosted OpenAI-compatible model.
-- The system prompt is built per request from the user's actual workspace: tenant, register, access group, municipality codes, NACE business codes, snapshot date, and the years of history that exist. It teaches the model what the data means and what it doesn't.
+- The system prompt is built per request from the user's actual workspace: tenant, access group, register, municipality codes, NACE business codes, snapshot date, and the years of history that exist. It teaches the model what the data means and what it doesn't.
 - The toolset covers read-only SQL over the workspace-scoped relations and a multi-year variant, a column-semantics lookup, workspace headline figures, single-organization detail, organization search, value-creation series, and reference-code translation.
 - Safety: the agent's SQL is validated before it runs, single statement only, SELECT/WITH only, no DDL/DML/connection keywords, a table allow-list limited to the scoped relations plus the model's own CTEs, reserved CTEs can't be shadowed, comments and string literals are stripped before scanning, LIMITs are clamped, results are truncated, and raw ClickHouse errors are rewritten so the model doesn't receive the full expanded query and hosts. The query is wrapped in the same scoped CTEs the UI uses, so it **physically cannot read outside the user's workspace**.
 - Per-tenant feature flag, conversation persistence, reasoning display, tool-call UI, and Vega-Lite charts that the frontend themes.
@@ -92,7 +92,7 @@ It's the most technically interesting thing I've built here and it's working ext
 
 **Design and UX**
 
-- Feature-first layout: each route owns its page and a colocated components folder (overview table, filters, org profile sections, chat); shared UI primitives built on Base UI and reusable form fields live separately.
+- Feature-first layout: each route owns its page and a colocated components folder (overview table, filters, organization profile sections, chat); shared UI primitives built on Base UI and reusable form fields live separately.
 - One form system: TanStack Form is composed once into typed field components (input, select, combobox, switch, file upload, textarea, business codes, municipalities, registers, users) plus submit/cancel form components. Pages don't hand-roll forms; server errors get mapped back to fields centrally instead of a generic banner.
 - Two table layers: a generic table for management pages and an infinite-scrolling table for the organizations list. Table state (pagination, sorting, search) lives in URL search params; column visibility and order persist per table to localStorage with try/catch around parsing.
 - Filters are URL state, not component state: a filters hook reads and writes typed search params inside `useTransition`, resets pagination on change, and keeps the scroll position so the list doesn't jump. Multi-value filters are comma-separated strings with shared parse/format helpers; saved views and filter counts sit on top of that.
@@ -112,12 +112,12 @@ It's the most technically interesting thing I've built here and it's working ext
 
 **Caching and invalidation**
 
-- **Client (TanStack Query).** Defaults in the global query client, no query retry (mutations retry once). Per-endpoint overrides are declared centrally in the Orval configuration rather than scattered in components.
-- **Client invalidation.** Mutations invalidate by generated query key. Workspace switches invalidate through a predicate that clears everything under the tenant's API prefix. Notification preferences are written directly into the cache with `setQueryData` from the mutation response instead of refetching. There are no optimistic updates anywhere: I chose refetch-on-success over rollback complexity.
+- **Query client (TanStack Query).** Defaults in the global query client, no query retry (mutations retry once). Per-endpoint overrides are declared centrally in the Orval configuration rather than scattered in components.
+- **Query invalidation.** Mutations invalidate by generated query key. Workspace switches invalidate through a predicate that clears everything under the tenant's API prefix. Notification preferences are written directly into the cache with `setQueryData` from the mutation response instead of refetching. There are no optimistic updates anywhere: I chose refetch-on-success over rollback complexity.
 - **Server (Redis, with a real invalidation story).** The organization pages are cached through a custom decorator instead of Django's built-in page cache. Two things make it safe: (1) the workspace access check re-runs before the cache is consulted; (2) because cache keys are URL hashes that can't be enumerated on write, each tenant has a monotonically increasing "generation" counter folded into the key prefix. A write bumps the generation, which orphans every cached organization page for that tenant at once; old entries die by TTL.
 - **Auth caches.** Keycloak's public key is cached, decoded JWT payloads are cached per token until expiry, and the User object is cached per request path.
 - **Precomputed ClickHouse table.** A scheduled job rebuilds the current snapshot from the raw register + other sources tables. The API reads the precomputed table, so the heavy enrichment happens once a day instead of per request; this led to very good performance (~0.3s queries) even when reading 20 million rows with heavy filtering.
-- **HTTP/browser.** The frontend nginx caches hashed assets, gzips text, sets security headers and a CSP that whitelists Keycloak, and proxies WebSockets.
+- **HTTP/browser.** The frontend Nginx caches hashed assets, gzips text, sets security headers and a CSP that whitelists Keycloak, and proxies WebSockets.
 
 **Library usage**
 
@@ -197,19 +197,19 @@ I made around 223 out of ~1,325 commits in the repo.
 
 - **Main frontend ownership** — the biggest page in the product had grown into a single 1,635-line component. I split it into a container plus focused section components (151–535 lines each) so it was actually maintainable and could build upon it.
 - **Feature work across the UI** — built new pages from scratch, wired forms and tables to a changing backend API, fixed state and pagination bugs, and added exports.
-- **Auth and frontend infrastructure** — token refresh, user avatar, scoping by client, local development access and email handling.
-- **Ops** — raised the nginx and Django upload body limits, fixed file serving in prod, fixed the logging package, cache invalidation.
+- **Auth and frontend infrastructure** — token refresh, user avatar, scoping by customer, local development access and email handling.
+- **Ops** — raised the Nginx and Django upload body limits, fixed file serving in prod, fixed the logging package, cache invalidation.
 - **Quality** — lint/format cleanup and a code-quality GitHub workflow (Aug 2025). In Sep 2025 I added the first E2E workflow in CI with a Playwright journey suite covering real user journeys. I also added CTRF test reporting, and then spent a long tail keeping the suite passing as the API and pages kept changing.
 - **Backend/API when needed** — schema generation, settings, filtering and pagination on list endpoints, adapting forms to new API specs, and payload handling.
 - **My last push (Sep 2026)** — server-side pagination. I added search/ordering/pagination across the main list endpoints and the pages that use them, and removed the frontend's oversized fetch limits (24 occurrences across 16 files) in favor of paginated queries. The frontend was making insane calls, and the backend gathering insane joins, which would time out a six-minute fetch request just to display 10 rows of 5 columns.
 
 I formally audited the codebase and found significant architectural and security gaps, which I documented and escalated to the team. Beyond that, it was a complex legacy codebase with a ticket process that heavily rewarded one-to-five-line PRs over system architecture. The fixes that were authorized were often symptoms; the foundational code remained chaotic.
 
-##### Self Hosted Runners
+##### Self-Hosted Runners
 
-The company was hitting the GitHub Actions usage limits, and a large part of that was me: my CIs run lint, tests, schema/type checks and builds on every push and PR (CapREG, the client project, later Traffic Dashboard). Paying GitHub for minutes we could get from our own server didn't make sense, and the limits were starting to block work. So I set up self-hosted runners on a company server.
+The company was hitting the GitHub Actions usage limits, and a large part of that was me: my CI pipelines run lint, tests, schema/type checks and builds on every push and PR (CapREG, the client project, later Traffic Dashboard). Paying GitHub for minutes we could get from our own server didn't make sense, and the limits were starting to block work. So I set up self-hosted runners on a company server.
 
-I deployed GitHub Actions self-hosted runners with Docker Compose: 12 containers of `myoung34/github-runner`, registered at the organization level so every repo in the org can use them. Then I switched my pipelines from `runs-on: ubuntu-latest` to `runs-on: self-hosted` and shared the setup with the team.
+I deployed GitHub Actions self-hosted runners with Docker Compose: 12 containers of `myoung34/github-runner`, registered at the GitHub organization level so every repo in the GitHub org can use them. Then I switched my pipelines from `runs-on: ubuntu-latest` to `runs-on: self-hosted` and shared the setup with the team.
 
 - A GitHub Actions workflow deploys over SSH with a runner-count input (default 12). It reads configuration from the server, scales the compose service to that many containers, and prints the result.
 - Runners are ephemeral, auto-update is disabled, names get random suffixes, and container logs are capped.
@@ -217,14 +217,14 @@ I deployed GitHub Actions self-hosted runners with Docker Compose: 12 containers
 
 ##### Observability
 
-In September 2026 I pitched the idea of implementing Observability at Capia as I saw that we had two painpoints that could be resolved with OTel:
+In September 2026 I pitched the idea of implementing observability at Capia as I saw that we had two painpoints that could be resolved with OTel:
 
 1. The client project was falling apart, with slow queries and errors coming from all places, and it would only be reported to us with screenshot of the error toast saying "Server error". We had to look through the raw Docker logs to try to understand what was going on.
-2. Management started giving away accesses to the different services we've been building, but we didn't knew if they actually used them, what they were using, if everything was working...
+2. Management started giving away accesses to the different services we've been building, but we didn't know if they actually used them, what they were using, if everything was working...
 
 So I proposed the idea of OTel, and received great feedback that it could be very useful.
 
 I spent a week setting up the OpenTelemetry SDK across the 8 repos of the company which all have a different tech stack, so trying to have the same implementation, and sending the same logs and traces to our collector.
-I've setup a self hosted Signoz on the server to collect and view all data, and setup the MCP server so I can have my LLMs build dashboard and inspect logs.
+I've set up a self-hosted SigNoz on the server to collect and view all data, and set up the MCP server so I can have my LLMs build dashboard and inspect logs.
 
 Now we have traces going from the frontend API calls all the way to the individual DB calls, we have error alerts, analytics for users... We finally know what's going on at Capia.

@@ -16,7 +16,7 @@ skills:
   - Figma
 ---
 
-I built a mobile application in Flutter for delivery drivers on Cargo bike, allowing them to input all their delivery points, with the app calculating the fastest route.
+I built a mobile application in Flutter for delivery drivers on cargo bike, allowing them to input all their delivery points, with the app calculating the fastest route.
 
 <!-- more -->
 
@@ -36,4 +36,4 @@ The app was Flutter with Supabase as the backend and Riverpod for state manageme
 
 Also deployed on the [Play Store](https://play.google.com/store/apps/details?id=fr.esiea.bmoveon) and [App Store](https://apps.apple.com/us/app/b-moveon/id6471257425), with CI/CD pipelines (Fastlane) to build and push releases automatically. Huge documentation, even some integration tests running on an Android emulator in the pipeline.
 
-At the end of the year we had the project's fair, which we finished 2nd once again, but this time there were two prizes: Jury and Public, 2nd at both. But the local newspapers came to interview our project, and we got our own [article in the newspaper](https://www.ouest-france.fr/pays-de-la-loire/laval-53000/ces-etudiants-ingenieurs-de-laval-developpent-les-applications-du-quotidien-de-demain-7dc431b4-f281-11ee-bc38-55f66082c1a5)
+At the end of the year we had the project's fair, which we finished second once again, but this time there were two prizes: Jury and Public, second at both. But the local newspapers came to interview our project, and we got our own [article in the newspaper](https://www.ouest-france.fr/pays-de-la-loire/laval-53000/ces-etudiants-ingenieurs-de-laval-developpent-les-applications-du-quotidien-de-demain-7dc431b4-f281-11ee-bc38-55f66082c1a5)

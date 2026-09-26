@@ -10,11 +10,11 @@ skills:
   - JavaScript
   - Node.js
   - Express
-  - Socket.io
+  - Socket.IO
   - CSS
   - Figma
 ---
 
-For school we had to make a chat app with Node, as the end of semester project of our web class. I first made the UI on Figma, then built the server, and the HTML/CSS.
+For school we had to make a chat app with Node.js, as the end of semester project of our web class. I first made the UI on Figma, then built the server, and the HTML/CSS.
 
-The server is Express with Socket.io for the real-time messaging, bcrypt for password hashing, sessions to stay logged in, and multer to upload images. The app has a global room, private messages by clicking on a user in the sidebar, profile pictures, and image sending. It even prevents you from logging in twice with the same account.
+The server is Express with Socket.IO for the real-time messaging, bcrypt for password hashing, sessions to stay logged in, and multer to upload images. The app has a global room, private messages by clicking on a user in the sidebar, profile pictures, and image sending. It even prevents you from logging in twice with the same account.

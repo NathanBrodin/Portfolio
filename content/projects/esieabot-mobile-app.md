@@ -20,7 +20,7 @@ This was lots of work, but very good work.
 
 <!-- more -->
 
-It features control via 4 directional arrows, live camera view, a return-to-home function, ultrasonic sensor activation, a room scan function, a usage guide, automatic pairing with a new robot, and even configuring the robot's wifi directly from the app. I shipped releases on GitHub up to v1.4, with the APK and the OS image ready to flash.
+It features control via 4 directional arrows, live camera view, a return-to-home function, ultrasonic sensor activation, a room scan function, a usage guide, automatic pairing with a new robot, and even configuring the robot's Wi-Fi directly from the app. I shipped releases on GitHub up to v1.4, with the APK and the OS image ready to flash.
 
 This was the 6-month project we had to do during my second year of engineering school.
 

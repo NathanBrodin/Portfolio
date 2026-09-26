@@ -59,7 +59,7 @@ I then pass the key to the backend during API calls, where Django verifies it us
 
 I love type safety. Coming from TypeScript, and having played with C and Dart in school, dynamic typing gives me hives.
 
-Out of the box, Python can feel a bit like the Wild West compared to a strict TypeScript setup. With standard dependencies often living in a simple `.txt` file and optional linting, it gives you a lot of freedom. But that freedom means you have to actively put in the work to enforce a strong Developer Experience, otherwise code quality can slip quickly.
+Out of the box, Python can feel a bit like the Wild West compared to a strict TypeScript setup. With standard dependencies often living in a simple `.txt` file and optional linting, it gives you a lot of freedom. But that freedom means you have to actively put in the work to enforce a strong developer experience, otherwise code quality can slip quickly.
 
 However, having a Python backend and a TypeScript frontend doesn't mean you have to sacrifice end-to-end type safety. Here is how I forced the two to play nice:
 
@@ -90,11 +90,11 @@ COMPOSE      := docker compose -f $(COMPOSE_FILE) --env-file $(ENV_FILE)
 codegen: schema types ## Generate both Schema and Types
 
 .PHONY: schema
-schema: ## Generate Open API schema from Backend
+schema: ## Generate OpenAPI schema from Backend
     $(COMPOSE) exec backend python manage.py spectacular --file openapi.yml --validate
 
 .PHONY: types
-types: ## Generate TypeScript types from Open API schema
+types: ## Generate TypeScript types from OpenAPI schema
     $(COMPOSE) exec frontend pnpm run generate-types
 ```
 
@@ -106,10 +106,10 @@ It sounds heavy, but it only takes ~7 minutes if _all_ steps run, thanks to aggr
 
 ## Boring isn't bad
 
-Django is not the most exciting tech, but it’s great for a CRUD app exposing APIs to PostgreSQL. Yes, I still have to handle some complexity: RBAC, Redis caching, querying a Clickhouse DB with raw SQL, and WebSockets for live notifications, but I’m not building a crazy app for millions of users.
+Django is not the most exciting tech, but it’s great for a CRUD app exposing APIs to PostgreSQL. Yes, I still have to handle some complexity: RBAC, Redis caching, querying a ClickHouse DB with raw SQL, and WebSockets for live notifications, but I’m not building a crazy app for millions of users.
 
 Django is simple, predictable, and LLMs understand it perfectly. Need a cache layer? Two lines of code. It’s fast enough that running 800+ tests (including DB writes) takes 10 seconds.
-I still have some issues with it, like if there is an internal server error, an endpoint will return some html by default. So you need a custom middleware to formalize all kinds of errors. And of course, it has to be in Python. But overall: it just works.
+I still have some issues with it, like if there is an internal server error, an endpoint will return some HTML by default. So you need a custom middleware to formalize all kinds of errors. And of course, it has to be in Python. But overall: it just works.
 
 ---
 

@@ -166,10 +166,10 @@ The first semester was my exchange at Centria in Finland, 30 ECTS validated, det
 | ---------------- | ------------------------------------------------- | ------ | --------- | --------- | ----- |
 | ES-INF3032       | Python as an engineering tool                     | 2      | 12,54     | 17,25     |       |
 | ES-INF3040       | System administration & CyberSecurity             | 2      | 13,60     | 13,5      |       |
-| ES-INF3042       | WEB Programming                                   | 2      | 11,98     | 18,00     |       |
+| ES-INF3042       | Web Programming                                   | 2      | 11,98     | 18,00     |       |
 | ES-INF3043       | Algorithmics, computability and complexity theory | 2      | 13,35     | 14,00     |       |
 | ES-INF3044       | Mobile programming                                | 2      | 11,64     | 16,00     |       |
-| ES-INF3133       | Tools for Software development                    | 2      | 13,00     | 15,02     |       |
+| ES-INF3133       | Tools for Software Development                    | 2      | 13,00     | 15,02     |       |
 | **Final Result** | **Computer Science**                              | **12** | **12,68** | **15,63** | **B** |
 
 | Code             | Course                           | Coeff | Class Avg | Student   | ECTS  |
@@ -237,7 +237,7 @@ The software engineering major. The first semester was honestly rough: 9.44 in a
 | Code             | Course                            | Coeff | Class Avg | Student   | ECTS  |
 | ---------------- | --------------------------------- | ----- | --------- | --------- | ----- |
 | ES-INF4051       | Application architecture          | 3,5   | 12,17     | 16,3      |       |
-| ES-INF4063       | Software development using DevOps | 2,5   | 16,00     | 16,00     |       |
+| ES-INF4063       | Software Development using DevOps | 2,5   | 16,00     | 16,00     |       |
 | **Final Result** | **Software Engineering S8**       | **6** | **13,77** | **16,18** | **A** |
 
 | Code             | Course                                    | Coeff  | Class Avg | Student   | ECTS  |

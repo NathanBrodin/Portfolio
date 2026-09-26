@@ -104,11 +104,11 @@ The RSS feed is a sibling route handler in [`src/routes/blog/rss/route.tsx`](htt
 
 RSS readers are a tiny share of the audience but a _very_ specific one: the people who care enough about reading to install an RSS reader in 2026. Those are the readers I want. The route exists for them.
 
-## `llms.txt` and per-post markdown
+## `llms.txt` and per-post Markdown
 
-This is the forward-looking one. [`src/routes/llms[.]txt.ts`](https://github.com/NathanBrodin/Portfolio/blob/main/src/routes/llms[.]txt.ts) serves a markdown file describing me, my stack, my experiences, projects, certifications, and the latest four blog posts. It's at [brodin.dev/llms.txt](https://brodin.dev/llms.txt) if you want to see it.
+This is the forward-looking one. [`src/routes/llms[.]txt.ts`](https://github.com/NathanBrodin/Portfolio/blob/main/src/routes/llms[.]txt.ts) serves a Markdown file describing me, my stack, my experiences, projects, certifications, and the latest four blog posts. It's at [brodin.dev/llms.txt](https://brodin.dev/llms.txt) if you want to see it.
 
-Each blog post also has a markdown sibling at `/blog/<slug>/post.md` ([`src/routes/blog/$slug/post[.md]/route.tsx`](https://github.com/NathanBrodin/Portfolio/blob/main/src/routes/blog/$slug/post[.md]/route.tsx)). The `llms.txt` file links to those routes. So my blog is fully readable as plain markdown to any LLM crawler that respects the convention, resulting hopefully in no HTML scraping, no `<script>` noise, no main-tag heuristics.
+Each blog post also has a Markdown sibling at `/blog/<slug>/post.md` ([`src/routes/blog/$slug/post[.md]/route.tsx`](https://github.com/NathanBrodin/Portfolio/blob/main/src/routes/blog/$slug/post[.md]/route.tsx)). The `llms.txt` file links to those routes. So my blog is fully readable as plain Markdown to any LLM crawler that respects the convention, resulting hopefully in no HTML scraping, no `<script>` noise, no main-tag heuristics.
 
 The honest pitch: this is a bet. `llms.txt` is a young convention. It might become table stakes, it might be forgotten. I shipped it because I run a separate [Nathan's AI](https://chat.brodin.dev) project that consumes my own content, and serving clean markdown to LLMs (including future me) costs me nothing. Worst case, the route sits there unused.
 

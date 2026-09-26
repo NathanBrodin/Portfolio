@@ -19,7 +19,7 @@ skills:
 order: 2
 ---
 
-Worked across multiple AI products used by 100k+ users. It was my end of studies internship, of 6 months, that counted toward my Master's degree (graded 92/100).
+Worked across multiple AI products used by 100k+ users. It was my end-of-studies internship, of 6 months, that counted toward my Master's degree (graded 92/100).
 
 - Managed to push to production 15+ massive features across 3 frontend applications
 - Migrated a production app from Gatsby to Vite, cutting build times by 60%
@@ -28,7 +28,7 @@ Worked across multiple AI products used by 100k+ users. It was my end of studies
 
 <!-- more -->
 
-From February to July 2025, I completed my end of studies internship, once again, in the same team at DNB. My previous project was in production, with ~100 users active users and ~2000 potential users, just for an internal tool.
+From February to July 2025, I completed my end-of-studies internship, once again, in the same team at DNB. My previous project was in production, with ~100 active users and ~2000 potential users, just for an internal tool.
 
 This time, I had to work across the two previous projects I created, and an existing project of the team.
 
@@ -49,20 +49,20 @@ The migration shipped with zero functional change, so ironically my first contri
 
 ##### CAP History
 
-The new features added on top of my work I initially mentioned was having an history of the changes applied to the Chat Admin Panel. Like if someone updated a link, it should be preserved in the history.
+The new features added on top of my work I initially mentioned was having a history of the changes applied to the Chat Admin Panel. Like if someone updated a link, it should be preserved in the history.
 The data used to come from AWS Parameter Store (full config + history in one response), then team moved to AWS AppConfig which has no history, so backend had to fetch each old version separately.
 
-The proper fix belongs in backend, but I was available and renowned to be fast so raw unprocessed data got pushed to frontend for me to figure out. I built clean scoped history (each CAP page shows only its fields' history), demoed, then got told to show all history on every page because backend assumed scoped restore was impossible with AppConfig structure, so I ripped out my elegant filtering for a generic downgrade. Then endless back-and-forth with backend + QA with no clear spec, implement → partial feedback → revise. Still ended well: pagination, better UX, better than original, shipped to prod to ~10 internal users, stakeholders happy.
+The proper fix belongs in backend, but I was available and renowned to be fast so raw unprocessed data got pushed to frontend for me to figure out. I built clean scoped history (each CAP page shows only its fields' history), demoed, then got told to show all history on every page because backend assumed scoped restore was impossible with AppConfig structure, so I ripped out my elegant filtering for a generic downgrade. Then endless back-and-forth with backend + QA with no clear spec, implement → partial feedback → revise. Still ended well: pagination, better UX, better than original, shipped to production to ~10 internal users, stakeholders happy.
 
-One month in I already had 2 features in prod, vs 0 in my previous 7 months.
+One month in I already had 2 features in production, vs 0 in my previous 7 months.
 
 ##### Why people don't care about users?
 
-In Smartdocs, a small link-parsing function I wrote last year to make links clickable in an assistnant message broke when backend started sending Markdown (links already formatted). It was reported Dec 2 2024, I diagnosed + fixed + tested + committed in 3 minutes in March. Even a stranger to the codebase could have done it in minutes. So why did a user-visible bug sit for 3 months, while it was an actual issue reported by many?
+In Smartdocs, a small link-parsing function I wrote last year to make links clickable in an assistant message broke when backend started sending Markdown (links already formatted). It was reported Dec 2 2024, I diagnosed + fixed + tested + committed in 3 minutes in March. Even a stranger to the codebase could have done it in minutes. So why did a user-visible bug sit for 3 months, while it was an actual issue reported by many?
 
 ##### Dark mode
 
-My first customer-facing feature (Aino lives in the mobile bank app, 1.5M users): business wanted dark mode in chat. So I pitched two options: quick per-component manual recolor (fast, messy, tech debt) vs proper dark mode inside Eufemia then delete our custom styling (clean, consistent, but wait on Eufemia team + lose control). After lots of same-content meetings with different people, business chose quick now, proper later (Eufemia planned to support dark mode before summer). I had it working within a week in March, but launch was stuck for 2 months: backend theme API changes given to a new hire (normal he was slow, wrong task to rush on), and there was a backend perf crisis at that time so deploy freeze. Then all of the sudden they started intensive testing on Monday with planned deployment on Thursday in June, so I received ~10 edge bugs in 3 days that I had to fix fast (my fast reputation helped) and the issue with that I could not reproduce anything. Shipped June 5th.
+My first customer-facing feature (Aino lives in the mobile bank app, 1.5M users): business wanted dark mode in chat. So I pitched two options: quick per-component manual recolor (fast, messy, tech debt) vs proper dark mode inside Eufemia then delete our custom styling (clean, consistent, but wait on Eufemia team + lose control). After lots of same-content meetings with different people, business chose quick now, proper later (Eufemia planned to support dark mode before summer). I had it working within a week in March, but launch was stuck for 2 months: backend theme API changes given to a new hire (normal he was slow, wrong task to rush on), and there was a backend perf crisis at that time so deploy freeze. Then all of a sudden they started intensive testing on Monday with planned deployment on Thursday in June, so I received ~10 edge bugs in 3 days that I had to fix fast (my fast reputation helped) and the issue with that I could not reproduce anything. Shipped June 5th.
 
 Technical side, why it was tough: theme JSON naming makes not much sense (`secondary_background` with no `primary_background`, `secondary_text_in_chat`, etc.), there was lots of per-component overrides with `!important` for hover/active/disabled but forgetting focus or hover+active combos (light colors leaking in dark mode), mixing custom vars with hardcoded `var(--color-white)`, it was only for Aino so I had to make sure I was not breaking the 4 other bots, and ~30 hidden components only QA can trigger (that credit-card select again). Blindfold painting: QA finds broken component, I fix without seeing it, hope deploy looks right.
 
@@ -74,4 +74,4 @@ I always tried to make Smartdocs the best codebase possible: env setup was confu
 
 I also wrote new CUF docs: how it works, what to rework, links to lib docs and best-practice articles.
 
-Since this internship counted for my master degrees, as it replaced an entire semester, it got graded 92/100 for my work, presentation and report. Which for French schools is an extremely good grade.
+Since this internship counted for my Master's degree, as it replaced an entire semester, it got graded 92/100 for my work, presentation and report. Which for French schools is an extremely good grade.
