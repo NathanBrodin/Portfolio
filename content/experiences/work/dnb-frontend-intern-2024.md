@@ -30,7 +30,7 @@ Once again, I started right when they started a new project, so I got to build a
 
 Requirements for the frontend codebase got elevated a bit by my mentor, with TypeScript (Vite), and Redux with RTK Query for data fetching, Storybook to render components in isolation with mocks, and Playwright for E2E testing.
 
-Once again it was collaboration with the same UI/UX designer for the Figma sketches and the feedback, with the backend and AI engineers to make it work, and all the meetings that come around. We started 6-7 devs on the frontend splitting components, and ended up just 2 of us.
+Once again it was collaboration with the same UX designer for the Figma sketches and the feedback, with the backend and AI engineers to make it work, and all the meetings that come around. We started 6-7 devs on the frontend splitting components, and ended up just 2 of us.
 
 What I actually built there (257 out of 362 commits, top contributor):
 

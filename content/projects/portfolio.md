@@ -18,7 +18,7 @@ My newest portfolio, built with TanStack Start (static pre-rendering) and Conten
 
 I finally moved away from Next.js and went with [TanStack Start](https://tanstack.com/start/latest) instead. Also using [coss ui](https://coss.com/ui) over shadcn/ui, it looks so nice.
 
-Full SEO (JSON-LD, sitemap, OG image generation, llms.txt, RSS feed), sound design, and lots of tiny details in the UI/UX as well as in the code. I've spent a lot of time working on performance, accessibility and SEO.
+Full SEO (JSON-LD, sitemap, OG image generation, llms.txt, RSS feed), sound design, and lots of tiny details in the UX as well as in the code. I've spent a lot of time working on performance, accessibility and SEO.
 
 Accessibility means a 100 Lighthouse score, but also a fully cleaned accessibility tree which is entirely readable and free of decoration noise. Icon buttons with descriptive tooltips, contrasts, element focus, and everything else.
 
