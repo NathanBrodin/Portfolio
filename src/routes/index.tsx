@@ -45,7 +45,7 @@ function App() {
       </PageHeader>
       <SectionDivider />
       <About />
-      <SectionDivider />
+      <FancySectionDivider offset={2.4} />
       <SocialLinks />
       <SectionDivider />
       <GithubContributions contributions={contributions} />

@@ -6,61 +6,10 @@ import { useState } from 'react'
 import { siteConfig } from '@/config/site'
 import { getUsersLocation as getServerUsersLocation } from '@/lib/functions'
 
-import { Lines } from '../ui/backgrounds/lines'
-import { DottedMap } from '../ui/dotted-map'
+import { Diamond } from '../ui/diamond'
 import { Section } from '../ui/section'
-
-const TROMSO = {
-  lat: 69.649208,
-  lng: 18.955324,
-  label: 'Tromsø',
-  description: 'Where I currently live, north of the Arctic Circle',
-  animated: true,
-}
-
-const LAVAL = {
-  lat: 48.070469,
-  lng: -0.7736,
-  label: 'Laval',
-  description: 'Where it all started: my hometown in France',
-}
-
-const SUNDSVALL = {
-  lat: 62.390839,
-  lng: 17.306919,
-  label: 'Sundsvall',
-  description: 'Exchange semester in Sweden',
-}
-
-const OSLO = {
-  lat: 59.913868,
-  lng: 10.752245,
-  label: 'Oslo',
-  description: 'Spent 3 internships learning frontend engineering here',
-}
-
-const KOKKOLA = {
-  lat: 63.8391421,
-  lng: 23.1336845,
-  label: 'Kokkola',
-  description: 'My first exchange semester, under the Northern Lights',
-}
-
-const LEGEND_ITEMS = [
-  { label: 'Laval', description: 'Hometown', animated: false },
-  {
-    label: 'Kokkola',
-    description: 'Exchange semester, Finland',
-    animated: false,
-  },
-  { label: 'Oslo', description: '3 internships', animated: false },
-  {
-    label: 'Sundsvall',
-    description: 'Exchange semester, Sweden',
-    animated: false,
-  },
-  { label: 'Tromsø', description: 'Currently here', animated: true },
-]
+import { Globe } from './globe'
+import { PLACES, USER_MARKER, type UserLocation } from './locations'
 
 function LegendDot({ animated }: { animated: boolean }) {
   if (animated) {
@@ -104,13 +53,17 @@ export function About() {
     queryFn: () => getUsersLocation(),
   })
 
-  const [hoveredLabel, setHoveredLabel] = useState<string | null>(null)
+  const [hoveredId, setHoveredId] = useState<string | null>(null)
 
-  const isLocation = location?.lat != null
+  const userLocation: UserLocation | null =
+    location?.lat != null && location?.lng != null ? { lat: location.lat, lng: location.lng } : null
 
   return (
-    <Section id="about" className="grid w-full grid-cols-1 bg-background/50 md:grid-cols-3">
-      <div className="flex flex-col gap-4 p-4 md:p-6">
+    <Section id="about" className="grid w-full grid-cols-1 bg-background/50 md:grid-cols-2">
+      <div className="relative flex flex-col gap-4 p-4 md:p-6">
+        <Diamond top right />
+        <Diamond bottom right />
+        <Diamond bottom left />
         <h2
           id="about-greeting"
           suppressHydrationWarning
@@ -120,20 +73,20 @@ export function About() {
         </h2>
         <ScriptOnce>{GREETING_SCRIPT}</ScriptOnce>
         <p className="text-sm whitespace-pre-line text-foreground">{siteConfig.about}</p>
-        <ul className="flex flex-col gap-1.5">
-          {LEGEND_ITEMS.map((item) => (
+        <ul className="flex flex-col">
+          {PLACES.map((item) => (
             <li
-              key={item.label}
+              key={item.id}
               tabIndex={0}
-              className={`flex cursor-pointer items-start gap-2 rounded-sm px-1 py-0.5 transition-colors duration-150 ${
-                hoveredLabel === item.label ? 'bg-primary/10' : 'hover:bg-muted/50'
+              className={`flex cursor-pointer items-start gap-2 rounded-sm px-1 py-1.5 transition-colors duration-150 ${
+                hoveredId === item.id ? 'bg-primary/10' : 'hover:bg-muted/50'
               }`}
-              onMouseEnter={() => setHoveredLabel(item.label)}
-              onMouseLeave={() => setHoveredLabel(null)}
-              onFocus={() => setHoveredLabel(item.label)}
-              onBlur={() => setHoveredLabel(null)}
+              onMouseEnter={() => setHoveredId(item.id)}
+              onMouseLeave={() => setHoveredId(null)}
+              onFocus={() => setHoveredId(item.id)}
+              onBlur={() => setHoveredId(null)}
             >
-              <LegendDot animated={item.animated} />
+              <LegendDot animated={item.current ?? false} />
               <span className="text-xs leading-tight text-muted-foreground">
                 <span className="font-medium text-foreground">{item.label}</span>
                 {' — '}
@@ -141,22 +94,22 @@ export function About() {
               </span>
             </li>
           ))}
-          {isLocation ? (
+          {userLocation ? (
             <li
               tabIndex={0}
               className={`flex cursor-pointer items-start gap-2 rounded-sm px-1 py-0.5 transition-colors duration-150 ${
-                hoveredLabel === 'You' ? 'bg-primary/10' : 'hover:bg-muted/50'
+                hoveredId === USER_MARKER.id ? 'bg-primary/10' : 'hover:bg-muted/50'
               }`}
-              onMouseEnter={() => setHoveredLabel('You')}
-              onMouseLeave={() => setHoveredLabel(null)}
-              onFocus={() => setHoveredLabel('You')}
-              onBlur={() => setHoveredLabel(null)}
+              onMouseEnter={() => setHoveredId(USER_MARKER.id)}
+              onMouseLeave={() => setHoveredId(null)}
+              onFocus={() => setHoveredId(USER_MARKER.id)}
+              onBlur={() => setHoveredId(null)}
             >
               <LegendDot animated />
               <span className="text-xs leading-tight text-muted-foreground">
-                <span className="font-medium text-foreground">You</span>
+                <span className="font-medium text-foreground">{USER_MARKER.label}</span>
                 {' — '}
-                That&apos;s where you are
+                {USER_MARKER.description}
               </span>
             </li>
           ) : (
@@ -164,37 +117,7 @@ export function About() {
           )}
         </ul>
       </div>
-
-      <div className="relative col-span-2 flex h-full w-full items-center border-t md:border-t-0 md:border-l">
-        <Lines className="opacity-10 select-none dark:opacity-5" />
-        <div className="h-fit w-full border-y bg-background py-2">
-          <DottedMap
-            markers={[
-              TROMSO,
-              KOKKOLA,
-              OSLO,
-              LAVAL,
-              SUNDSVALL,
-              ...(isLocation
-                ? [
-                    {
-                      lat: location.lat,
-                      lng: location.lng,
-                      animated: true,
-                      label: 'You',
-                      description: "That's where you are",
-                    },
-                  ]
-                : []),
-            ]}
-            paths={isLocation ? [{ start: 'Tromsø', end: 'You', animated: true }] : []}
-            markerColor="var(--primary)"
-            lineColor="var(--primary)"
-            highlightedLabel={hoveredLabel}
-            onMarkerHover={setHoveredLabel}
-          />
-        </div>
-      </div>
+      <Globe userLocation={userLocation} highlightedId={hoveredId} />
     </Section>
   )
 }

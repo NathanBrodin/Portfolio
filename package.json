@@ -31,7 +31,6 @@
     "knip": "knip --config knip.json",
     "lh": "vpx unlighthouse --no-cache",
     "generate:og": "tsx scripts/generate-og.ts",
-    "generate:map": "tsx scripts/generate-map-data.ts",
     "generate:resume": "tsx scripts/generate-resume.ts",
     "prepare": "vp config"
   },
@@ -53,6 +52,7 @@
     "@vercel/speed-insights": "^2.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cobe": "^2.0.1",
     "date-fns": "^4.1.0",
     "html-react-parser": "^6.1.8",
     "lucide-react": "^0.577.0",
@@ -69,7 +69,6 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "schema-dts": "^2.0.0",
-    "svg-dotted-map": "^2.1.0",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.2.2",
     "unified": "^11.0.5"

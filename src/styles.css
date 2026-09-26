@@ -286,3 +286,21 @@
 .dark .shiki span {
   color: var(--shiki-dark);
 }
+
+@keyframes cobe-orbit-spin {
+  from {
+    transform: rotateX(62deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(62deg) rotateZ(-360deg);
+  }
+}
+
+@keyframes cobe-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
