@@ -11,11 +11,11 @@ skills:
   - Python
   - C#
   - SQL
+  - Databases
   - Operating Systems
-  - Object-Oriented Modeling
 
 order: 3
 ---
 
 Exchange Semester in Kokkola, Finland. Enjoyed the Northern Lights and the snow (and sometimes studied).
-Got an introduction to databases (`SELECT * FROM grades;`), operating systems (playing with Arch) and different programming languages to do the same things (calculator app in [Python](https://www.python.org/) and [C#](https://learn.microsoft.com/en-us/dotnet/csharp/)).
+Got an introduction to databases (`SELECT * FROM grades;`), operating systems (playing with Arch Linux) and different programming languages to do the same things (calculator app in [Python](https://www.python.org/) and [C#](https://learn.microsoft.com/en-us/dotnet/csharp/)).

@@ -12,6 +12,8 @@ skills:
   - Next.js
   - Tailwind CSS
   - Drizzle
+  - SQLite
+  - Turso
 
 order: 2
 ---

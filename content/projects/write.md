@@ -13,6 +13,7 @@ skills:
   - Tailwind CSS
   - Convex
   - Clerk
+  - Markdown
 
 order: 3
 ---

@@ -12,11 +12,16 @@ icon: code
 skills:
   - TypeScript
   - React
-  - Django
-  - Tailwind CSS
   - TanStack
-  - OpenTelemetry
+  - Tailwind CSS
+  - Recharts
+  - Django
+  - PostgreSQL
+  - ClickHouse
   - Docker
+  - Nginx
+  - Playwright
+  - OpenTelemetry
 
 order: 1
 ---
@@ -49,7 +54,7 @@ So I made every technical, architectural, and design choice myself, organized my
 ###### Stack
 
 - **Backend**: Django + DRF, drf-spectacular for the OpenAPI schema, [PostgreSQL](https://www.postgresql.org/) for the app, Redis for caching, the external ClickHouse for organization data, Ruff + Pytest.
-- **Frontend**: React 19 + Vite + [TypeScript](https://www.typescriptlang.org/), TanStack Router (file-based, type-safe routes), TanStack Form/Table, [Tailwind CSS](https://tailwindcss.com/) v4 + shadcn/ui, Paraglide for EN/NO translations, T3 Env for typed environment variables, Orval to generate the entire API client and React Query hooks from the backend schema.
+- **Frontend**: React 19 + Vite + [TypeScript](https://www.typescriptlang.org/), TanStack Router (file-based, type-safe routes), TanStack Form/Table, [Tailwind CSS](https://tailwindcss.com/) v4 + shadcn/ui, Recharts for charts, Paraglide for EN/NO translations, T3 Env for typed environment variables, Orval to generate the entire API client and React Query hooks from the backend schema.
 - **Contract**: the OpenAPI schema is committed and generated from the code; the frontend's types are generated from the schema. CI fails if either is out of date. Backend and frontend can't silently drift.
 - **Auth**: Keycloak JWT validation on the backend, redirect to the company's Keycloak on the frontend, separate Keycloak clients per environment.
 - **Deployment**: Docker, staging and production environments on the same server, containers on a shared Docker network behind the central reverse proxy.
@@ -138,7 +143,7 @@ Before me, a student had built a very rough dashboard with flights only in 2 wee
 
 ###### Stack
 
-A full TypeScript Turborepo monorepo: pnpm workspaces + Turborepo; a web app (React 19, TanStack Router, Tailwind CSS v4 + shadcn/ui); a server app (Hono + oRPC, Drizzle ORM, Better-Auth); and shared packages.
+A full TypeScript Turborepo monorepo: pnpm workspaces + Turborepo; a web app (React 19, TanStack Router, Tailwind CSS v4 + shadcn/ui, Recharts for charts, MapLibre for the routes map); a server app (Hono + oRPC, Drizzle ORM, Better-Auth); and shared packages.
 
 I built it this way to remove the headaches I had with CapREG:
 

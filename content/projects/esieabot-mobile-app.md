@@ -9,7 +9,6 @@ endDate: '2022-06'
 skills:
   - Kotlin
   - Android
-  - Python
   - Raspberry Pi
   - Bluetooth
 ---

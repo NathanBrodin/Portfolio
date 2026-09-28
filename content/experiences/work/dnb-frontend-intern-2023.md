@@ -14,6 +14,12 @@ skills:
   - React
   - Redux
   - CSS
+  - Emotion
+  - Eufemia
+  - Axios
+  - React Router
+  - Figma
+  - AWS
 
 order: 4
 ---

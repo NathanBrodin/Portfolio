@@ -14,8 +14,13 @@ skills:
   - React
   - Redux
   - CSS
+  - Eufemia
   - Storybook
+  - OpenAPI
+  - Figma
   - Playwright
+  - SSE
+  - GenAI
 
 order: 3
 ---

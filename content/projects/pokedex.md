@@ -8,10 +8,10 @@ startDate: '2023-05'
 endDate: '2023-05'
 skills:
   - JavaScript
-  - Node.js
-  - Express
   - HTML
   - CSS
+  - Node.js
+  - Express
 ---
 
 Small [Node.js](https://nodejs.org/) server ([Express](https://expressjs.com/)) and web app to display pokemons, for school.

@@ -9,9 +9,12 @@ skills:
   - TypeScript
   - React
   - TanStack Start
+  - Next.js
   - Tailwind CSS
-  - shadcn/ui
   - Convex
+  - Monorepo
+  - GoCardless
+  - Open Banking
 ---
 
 That's a project that has been going on and off for years, with no output still. I wanted to create my own personal finance application, which is focused on the future by using the current and past income/expenses to see how my finances will evolve in the future.

@@ -11,6 +11,8 @@ skills:
   - React
   - Next.js
   - Tailwind CSS
+  - Vercel
+  - Google Analytics
 ---
 
 Rebuilt my portfolio with [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/). Better UI, better designs, but you can still see that I was a "beginner". I even made it fully available in French, and added Google Analytics to see if anyone was visiting (they were not).

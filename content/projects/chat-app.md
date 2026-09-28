@@ -8,10 +8,11 @@ startDate: '2023-05'
 endDate: '2023-05'
 skills:
   - JavaScript
+  - HTML
+  - CSS
   - Node.js
   - Express
   - Socket.IO
-  - CSS
   - Figma
 ---
 

@@ -9,6 +9,9 @@ skills:
   - TypeScript
   - React
   - GitHub
+  - Eufemia
+  - Zed
+  - Supabase
 
 order: 5
 ---

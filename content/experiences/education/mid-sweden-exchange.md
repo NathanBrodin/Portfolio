@@ -10,8 +10,8 @@ icon: education
 skills:
   - Algorithms
   - Distributed Systems
-  - Advanced Networking
   - IoT
+  - Advanced Networking
 
 order: 2
 ---

@@ -13,6 +13,7 @@ skills:
   - Tailwind CSS
   - AI SDK
   - Drizzle
+  - Vercel
 order: 1
 ---
 

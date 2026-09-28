@@ -8,14 +8,15 @@ startDate: '2024-01'
 endDate: '2024-02'
 skills:
   - TypeScript
+  - C#
   - React
   - Next.js
   - Tailwind CSS
-  - C#
   - ASP.NET
   - PostgreSQL
   - Docker
   - Cypress
+  - OpenAPI
 ---
 
 For the Software Development using DevOps class, I made an app that lets you look for cities around you: you click on the map to search, change the search filters in a side panel, and click on a city to see more details about it.

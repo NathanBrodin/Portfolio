@@ -13,6 +13,9 @@ skills:
   - Tailwind CSS
   - Convex
   - Better Auth
+  - Polar
+  - i18n
+  - SEO
 ---
 
 I made a monorepo template with [TanStack Start](https://tanstack.com/start/latest) for the web, [Convex](https://www.convex.dev/) for the backend, a UI package, and table and form packages using the new TanStack composable patterns, [Better Auth](https://www.better-auth.com/), marketing and legal pages being pre-rendered, i18n, Polar.

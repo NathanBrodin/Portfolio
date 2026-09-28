@@ -9,6 +9,7 @@ endDate: '2025-03'
 skills:
   - Zed
   - VIM
+  - VS Code
 
 order: 4
 ---
