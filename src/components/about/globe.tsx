@@ -2,8 +2,6 @@ import { useTheme } from '@lonik/themer'
 import createGlobe, { type Globe as CobeGlobe } from 'cobe'
 import { useEffect, useRef, type CSSProperties } from 'react'
 
-import { useIsMobile } from '@/hooks/use-is-mobile'
-
 import { Dither } from '../ui/backgrounds/dither'
 import { CURRENT_PLACE_ID, PLACES, USER_MARKER, type UserLocation } from './locations'
 
@@ -118,12 +116,13 @@ function getThemePreset(theme: string | undefined) {
 
 export function Globe({ userLocation, highlightedId }: GlobeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const globeRef = useRef<CobeGlobe | null>(null)
   const phiRef = useRef(INITIAL_PHI)
   const thetaRef = useRef(DEFAULT_THETA)
   const targetRef = useRef<{ phi: number; theta: number } | null>(null)
+  const visibleRef = useRef(true)
   const { resolvedTheme } = useTheme()
-  const isMobile = useIsMobile()
 
   // Only the current home and the visitor are labeled by default. Hovering a
   // legend row reveals that place's label and rotates it into view, which
@@ -152,13 +151,19 @@ export function Globe({ userLocation, highlightedId }: GlobeProps) {
         ? 'dark'
         : 'light'
 
+    // Read viewport once at mount instead of subscribing to useIsMobile:
+    // the value is identical for sizing, but doesn't recreate the WebGL
+    // context when the media query flips (or hydrates false -> true).
+    const isSmallScreen = window.innerWidth < 640
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
     const globe = createGlobe(canvas, {
-      devicePixelRatio: Math.min(window.devicePixelRatio || 1, window.innerWidth < 640 ? 1.8 : 2),
+      devicePixelRatio: Math.min(window.devicePixelRatio || 1, isSmallScreen ? 1 : 2),
       width,
       height: width,
       phi: phiRef.current,
       theta: thetaRef.current,
-      mapSamples: isMobile ? 8000 : 16000,
+      mapSamples: isSmallScreen ? 4000 : 16000,
       markerElevation: 0.01,
       markers: buildMarkers(null, null).map((m) => ({
         location: m.location,
@@ -176,35 +181,70 @@ export function Globe({ userLocation, highlightedId }: GlobeProps) {
     globeRef.current = globe
 
     let animationId = 0
+    let revealed = false
+
+    function reveal() {
+      if (revealed) return
+      revealed = true
+      requestAnimationFrame(() => {
+        canvasRef.current?.style.setProperty('opacity', '1')
+      })
+    }
+
+    // Static frame: no rotation loop, no continuous GPU work.
+    if (prefersReducedMotion) {
+      globe.update({ phi: phiRef.current, theta: thetaRef.current })
+      reveal()
+      return () => {
+        globe.destroy()
+        globeRef.current = null
+      }
+    }
 
     function animate() {
-      const target = targetRef.current
-      if (target) {
-        const dPhi = shortestAngleDelta(target.phi, phiRef.current)
-        const dTheta = target.theta - thetaRef.current
-        phiRef.current += dPhi * FOCUS_EASE
-        thetaRef.current += dTheta * FOCUS_EASE
-        if (Math.abs(dPhi) < SNAP_THRESHOLD) phiRef.current = target.phi
-        if (Math.abs(dTheta) < SNAP_THRESHOLD) thetaRef.current = target.theta
-      } else {
-        phiRef.current += ROTATION_SPEED
-        thetaRef.current += (DEFAULT_THETA - thetaRef.current) * FOCUS_EASE
+      // Pause GPU work when offscreen or tab-hidden, but keep the rAF
+      // chain alive so it resumes automatically without re-creating
+      // the globe. The globe is above the fold, so this only saves
+      // work after scrolling away — which is the common mobile case.
+      if (!document.hidden && visibleRef.current) {
+        const target = targetRef.current
+        if (target) {
+          const dPhi = shortestAngleDelta(target.phi, phiRef.current)
+          const dTheta = target.theta - thetaRef.current
+          phiRef.current += dPhi * FOCUS_EASE
+          thetaRef.current += dTheta * FOCUS_EASE
+          if (Math.abs(dPhi) < SNAP_THRESHOLD) phiRef.current = target.phi
+          if (Math.abs(dTheta) < SNAP_THRESHOLD) thetaRef.current = target.theta
+        } else {
+          phiRef.current += ROTATION_SPEED
+          thetaRef.current += (DEFAULT_THETA - thetaRef.current) * FOCUS_EASE
+        }
+        globe.update({ phi: phiRef.current, theta: thetaRef.current })
+        reveal()
       }
-      globe.update({ phi: phiRef.current, theta: thetaRef.current })
       animationId = requestAnimationFrame(animate)
     }
     animate()
 
-    requestAnimationFrame(() => {
-      canvas.style.opacity = '1'
-    })
+    const container = containerRef.current
+    const observer =
+      typeof IntersectionObserver !== 'undefined' && container
+        ? new IntersectionObserver(
+            ([entry]) => {
+              visibleRef.current = entry.isIntersecting
+            },
+            { threshold: 0 },
+          )
+        : null
+    observer?.observe(container as Element)
 
     return () => {
       cancelAnimationFrame(animationId)
+      observer?.disconnect()
       globe.destroy()
       globeRef.current = null
     }
-  }, [isMobile])
+  }, [])
 
   // Push marker/arc changes (visitor location resolving, legend hover growing
   // a marker) into the live globe without recreating the canvas.
@@ -225,7 +265,10 @@ export function Globe({ userLocation, highlightedId }: GlobeProps) {
   }, [resolvedTheme])
 
   return (
-    <div className="relative flex h-full min-h-84 w-full flex-1 items-end justify-end border-t md:border-t-0 md:border-l">
+    <div
+      ref={containerRef}
+      className="relative flex h-full min-h-84 w-full flex-1 items-end justify-end border-t bg-[radial-gradient(circle_at_60%_45%,var(--primary)/12%,transparent_65%)] md:border-t-0 md:border-l"
+    >
       <Dither />
       <div className="relative aspect-square h-full overflow-hidden contain-[layout_style] select-none [--cobe-bg:var(--background)] [--cobe-ink:var(--primary)]">
         <canvas
