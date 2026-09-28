@@ -23,7 +23,7 @@ skills:
 order: 1
 ---
 
-Full-stack engineer at a small Norwegian data analytics company, where I'm effectively the entire engineering function.
+Full-stack engineer at a small Norwegian data analytics company.
 
 I've built two production apps from empty repo to deployed systems (a multi-tenant organization-data platform and a traffic dashboard), owning everything end to end: architecture, design, frontend, backend, infrastructure, CI/CD, and docs. I am also involved in consulting work and other collaborative projects.
 
@@ -32,7 +32,7 @@ I focus on:
 - DX: type safety end to end (all-in on TanStack, frontend types generated from the backend OpenAPI schema, CI fails on drift), deliberate library choices, docs and one-command setup, ~1,500 tests with Playwright E2E and checks on every PR
 - UX: polished interfaces where every state is designed, refined through tight feedback loops with users
 - Observability: OpenTelemetry across 8 repos into self-hosted SigNoz, so traces, errors, and usage back every claim, from the frontend API call down to the DB query
-- Ownership: turning one-line briefs into systems ("build a chatbot" became a workspace-scoped analytics agent), and proposing solutions to silent problems nobody flagged: self-hosted runners, observability
+- Ownership: turning one-line briefs into systems ("build a chatbot" became a workspace-scoped analytics agent), and proposing solutions to silent problems: self-hosted runners, observability
 
 <!-- more -->
 
