@@ -158,7 +158,7 @@ Final average for the year: 14.19/20.
 
 ##### Year 3 (2022–2023)
 
-The first semester was my exchange at Centria in Finland, 30 ECTS validated, detailed in its own entry. The second semester, back in Laval, was the first one almost entirely about computer science, and it shows: 18/20 in web programming, 17.25 in Python.
+The first semester was my exchange at Centria in Finland, 30 ECTS validated, detailed in its own entry. The second semester, back in Laval, was the first one almost entirely about computer science, and it shows: 18/20 in web programming, 17.25 in [Python](https://www.python.org/).
 
 **Semester 2** — average 14.43/20, 30/30 ECTS
 

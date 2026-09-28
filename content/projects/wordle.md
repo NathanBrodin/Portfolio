@@ -11,4 +11,4 @@ skills:
   - Flutter
 ---
 
-We had to make a Wordle app with Flutter for the Mobile programming course. Quite simple and fits the teacher's requirements.
+We had to make a Wordle app with [Flutter](https://flutter.dev/) for the Mobile programming course. Quite simple and fits the teacher's requirements.

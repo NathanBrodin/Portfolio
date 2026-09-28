@@ -12,13 +12,11 @@ icon: code
 skills:
   - TypeScript
   - React
-  - TanStack
-  - Tailwind CSS
   - Django
+  - Tailwind CSS
+  - TanStack
+  - OpenTelemetry
   - Docker
-  - Nginx
-  - UX Design
-  - Design System
 
 order: 1
 ---
@@ -29,29 +27,29 @@ I've built two production apps from empty repo to deployed systems (a multi-tena
 
 I focus on:
 
-- DX: type safety end to end (all-in on TanStack, frontend types generated from the backend OpenAPI schema, CI fails on drift), deliberate library choices, docs and one-command setup, ~1,500 tests with Playwright E2E and checks on every PR
+- DX: type safety end to end (all-in on [TanStack](https://tanstack.com/), frontend types generated from the backend OpenAPI schema, CI fails on drift), deliberate library choices, docs and one-command setup, ~1,500 tests with [Playwright](https://playwright.dev/) E2E and checks on every PR
 - UX: polished interfaces where every state is designed, refined through tight feedback loops with users
-- Observability: OpenTelemetry across 8 repos into self-hosted SigNoz, so traces, errors, and usage back every claim, from the frontend API call down to the DB query
+- Observability: [OpenTelemetry](https://opentelemetry.io/) across 8 repos into self-hosted [SigNoz](https://signoz.io/), so traces, errors, and usage back every claim, from the frontend API call down to the DB query
 - Ownership: turning one-line briefs into systems ("build a chatbot" became a workspace-scoped analytics agent), and proposing solutions to silent problems: self-hosted runners, observability
 
 <!-- more -->
 
-I joined a small Norwegian data analytics company on the 4th of August 2025 as a full-stack engineer. The company builds analytical products for Norwegian industries. Everything is self-hosted with Docker behind a global Nginx reverse proxy. Every project below involved the same shared plumbing: internal Docker networks, the proxy, and centralized environment configurations.
+I joined a small Norwegian data analytics company on the 4th of August 2025 as a full-stack engineer. The company builds analytical products for Norwegian industries. Everything is self-hosted with [Docker](https://www.docker.com/) behind a global Nginx reverse proxy. Every project below involved the same shared plumbing: internal Docker networks, the proxy, and centralized environment configurations.
 
 There is no engineering function around me that reviews code, sets standards, or enforces them. On CapREG and Traffic Dashboard I got tasks and ideas, not a spec, and made every technical and design choice from there.
 
 ##### CapREG
 
-CapREG is a multi-tenant platform for exploring Norwegian organization data, using raw data from Brønnøysundregistrene plus accounting and employee enrichment in-house, stored in ClickHouse. It follows a common Client/Projects setup, with full RBAC. It was the first project I got after the client project calmed down; I started building it in October 2025.
+CapREG is a multi-tenant platform for exploring Norwegian organization data, using raw data from Brønnøysundregistrene plus accounting and employee enrichment in-house, stored in [ClickHouse](https://clickhouse.com/). It follows a common Client/Projects setup, with full RBAC. It was the first project I got after the client project calmed down; I started building it in October 2025.
 
-The technical instructions I received were: build the backend with Django, the frontend with React, use Keycloak for authentication. I was given access to the two external ClickHouse sources with raw organization data. For the product itself, I got a drawing of the overview page and a Word document describing rough RBAC (client, project, access group) and the features needed. That's it. No requirements, no design system, no user research, no acceptance criteria.
+The technical instructions I received were: build the backend with [Django](https://www.djangoproject.com/), the frontend with [React](https://react.dev/), use [Keycloak](https://www.keycloak.org/) for authentication. I was given access to the two external ClickHouse sources with raw organization data. For the product itself, I got a drawing of the overview page and a Word document describing rough RBAC (client, project, access group) and the features needed. That's it. No requirements, no design system, no user research, no acceptance criteria.
 
 So I made every technical, architectural, and design choice myself, organized my own work, and implemented it how I wanted. There is no one reviewing the architecture or enforcing standards. The quality of this codebase is a direct reflection of my will and nothing else.
 
 ###### Stack
 
-- **Backend**: Django + DRF, drf-spectacular for the OpenAPI schema, PostgreSQL for the app, Redis for caching, the external ClickHouse for organization data, Ruff + Pytest.
-- **Frontend**: React 19 + Vite + TypeScript, TanStack Router (file-based, type-safe routes), TanStack Form/Table, Tailwind CSS v4 + shadcn/ui, Paraglide for EN/NO translations, T3 Env for typed environment variables, Orval to generate the entire API client and React Query hooks from the backend schema.
+- **Backend**: Django + DRF, drf-spectacular for the OpenAPI schema, [PostgreSQL](https://www.postgresql.org/) for the app, Redis for caching, the external ClickHouse for organization data, Ruff + Pytest.
+- **Frontend**: React 19 + Vite + [TypeScript](https://www.typescriptlang.org/), TanStack Router (file-based, type-safe routes), TanStack Form/Table, [Tailwind CSS](https://tailwindcss.com/) v4 + shadcn/ui, Paraglide for EN/NO translations, T3 Env for typed environment variables, Orval to generate the entire API client and React Query hooks from the backend schema.
 - **Contract**: the OpenAPI schema is committed and generated from the code; the frontend's types are generated from the schema. CI fails if either is out of date. Backend and frontend can't silently drift.
 - **Auth**: Keycloak JWT validation on the backend, redirect to the company's Keycloak on the frontend, separate Keycloak clients per environment.
 - **Deployment**: Docker, staging and production environments on the same server, containers on a shared Docker network behind the central reverse proxy.

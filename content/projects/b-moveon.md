@@ -16,7 +16,7 @@ skills:
   - Figma
 ---
 
-I built a mobile application in Flutter for delivery drivers on cargo bike, allowing them to input all their delivery points, with the app calculating the fastest route.
+I built a mobile application in [Flutter](https://flutter.dev/) for delivery drivers on cargo bike, allowing them to input all their delivery points, with the app calculating the fastest route.
 
 <!-- more -->
 
@@ -32,8 +32,8 @@ The project started already the year before, and we were given the codebase of t
 
 So for the non-technical part of project development, this was a very valuable time, as I got an excerpt into the real corporate world.
 
-The app was Flutter with Supabase as the backend and Riverpod for state management. I started with the Google Maps API to trace the journey and calculate paths, but switched to OpenStreetMap during development. I also added a weather widget for the ride, and made the app available in French, English and Spanish (the CEO is Spanish after all). Made the UI first in Figma, looking really nice as always, and implemented it. The logo, it was a bike wheel, but with the colors of the maps journey, with the maps arrow, so it was a combination of the map and a wheel, genius.
+The app was Flutter with [Supabase](https://supabase.com/) as the backend and [Riverpod](https://riverpod.dev/) for state management. I started with the Google Maps API to trace the journey and calculate paths, but switched to [OpenStreetMap](https://www.openstreetmap.org/) during development. I also added a weather widget for the ride, and made the app available in French, English and Spanish (the CEO is Spanish after all). Made the UI first in [Figma](https://www.figma.com/), looking really nice as always, and implemented it. The logo, it was a bike wheel, but with the colors of the maps journey, with the maps arrow, so it was a combination of the map and a wheel, genius.
 
-Also deployed on the [Play Store](https://play.google.com/store/apps/details?id=fr.esiea.bmoveon) and [App Store](https://apps.apple.com/us/app/b-moveon/id6471257425), with CI/CD pipelines (Fastlane) to build and push releases automatically. Huge documentation, even some integration tests running on an Android emulator in the pipeline.
+Also deployed on the [Play Store](https://play.google.com/store/apps/details?id=fr.esiea.bmoveon) and [App Store](https://apps.apple.com/us/app/b-moveon/id6471257425), with CI/CD pipelines ([Fastlane](https://fastlane.tools/)) to build and push releases automatically. Huge documentation, even some integration tests running on an Android emulator in the pipeline.
 
 At the end of the year we had the project's fair, which we finished second once again, but this time there were two prizes: Jury and Public, second at both. But the local newspapers came to interview our project, and we got our own [article in the newspaper](https://www.ouest-france.fr/pays-de-la-loire/laval-53000/ces-etudiants-ingenieurs-de-laval-developpent-les-applications-du-quotidien-de-demain-7dc431b4-f281-11ee-bc38-55f66082c1a5)

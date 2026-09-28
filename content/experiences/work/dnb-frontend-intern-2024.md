@@ -20,7 +20,7 @@ skills:
 order: 3
 ---
 
-Built the frontend of a GenAI chatbot platform used by 100+ users. From blank repo to well-tested app (92% coverage, Storybook, documented architecture). Focused on developer experience: clean code, consistent styling, and full test setup.
+Built the frontend of a GenAI chatbot platform used by 100+ users. From blank repo to well-tested app (92% coverage, [Storybook](https://storybook.js.org/), documented architecture). Focused on developer experience: clean code, consistent styling, and full test setup.
 
 <!-- more -->
 
@@ -28,7 +28,7 @@ From April to August 2024, I returned to the same team at DNB. I got to see my p
 
 Once again, I started right when they started a new project, so I got to build a brand new frontend mostly alone. This was a new chatbot application, but it's not sharing the same base as the other chatbots that I got to build the admin panel of, this one was an LLM RAG chatbot, built from the ground up. It's called the Smartdocs Platform: a multi-tenant chatbot that plugs into DNB's internal SharePoint sites so teams can ask questions over their own documents. First tenant was "AML Justina" for the Anti-Money Laundering team, who otherwise had to dig through hundreds of pages of docs.
 
-Requirements for the frontend codebase got elevated a bit by my mentor, with TypeScript (Vite), and Redux with RTK Query for data fetching, Storybook to render components in isolation with mocks, and Playwright for E2E testing.
+Requirements for the frontend codebase got elevated a bit by my mentor, with [TypeScript](https://www.typescriptlang.org/) (Vite), and [Redux](https://redux.js.org/) with RTK Query for data fetching, Storybook to render components in isolation with mocks, and [Playwright](https://playwright.dev/) for E2E testing.
 
 Once again it was collaboration with the same UX designer for the Figma sketches and the feedback, with the backend and AI engineers to make it work, and all the meetings that come around. We started 6-7 devs on the frontend splitting components, and ended up just 2 of us.
 

@@ -14,4 +14,4 @@ skills:
   - CSS
 ---
 
-Small Node.js server (Express) and web app to display pokemons, for school.
+Small [Node.js](https://nodejs.org/) server ([Express](https://expressjs.com/)) and web app to display pokemons, for school.

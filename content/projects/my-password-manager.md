@@ -13,7 +13,7 @@ skills:
   - Chrome Extension
 ---
 
-I made a Chrome extension to store and autofill passwords, with React, which is uncommon for extensions, but I found a template (create-react-extension), and stored the data in Firebase Firestore.
+I made a [Chrome extension](https://developer.chrome.com/docs/extensions) to store and autofill passwords, with [React](https://react.dev/), which is uncommon for extensions, but I found a template (create-react-extension), and stored the data in [Firebase](https://firebase.google.com/) Firestore.
 
 Everything is encrypted with AES (CryptoJS) before being sent to Firestore, and the secret key is generated and stored locally on your computer, so nobody else can read your data. It could also auto-submit the login form for you if you enabled it.
 

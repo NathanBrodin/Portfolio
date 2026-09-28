@@ -12,11 +12,11 @@ skills:
   - Tailwind CSS
 ---
 
-My newest portfolio, built with TanStack Start (static pre-rendering) and Content Collections for content in Markdown, with a borderline-obsessive focus on performance, accessibility, and SEO.
+My newest portfolio, built with [TanStack Start](https://tanstack.com/start/latest) (static pre-rendering) and Content Collections for content in Markdown, with a borderline-obsessive focus on performance, accessibility, and SEO.
 
 <!-- more -->
 
-I finally moved away from Next.js and went with [TanStack Start](https://tanstack.com/start/latest) instead. Also using [coss ui](https://coss.com/ui) over shadcn/ui, it looks so nice.
+I finally moved away from Next.js and went with TanStack Start instead. Also using coss ui over shadcn/ui, it looks so nice.
 
 Full SEO (JSON-LD, sitemap, OG image generation, llms.txt, RSS feed), sound design, and lots of tiny details in the UX as well as in the code. I've spent a lot of time working on performance, accessibility and SEO.
 

@@ -78,13 +78,6 @@ export const TECH_STACK: TechStack[] = [
     theme: true,
   },
   {
-    key: 'radixui',
-    title: 'Radix UI',
-    href: 'https://www.radix-ui.com/',
-    category: 'Frontend',
-    theme: true,
-  },
-  {
     key: 'base-ui',
     title: 'Base UI',
     href: 'https://base-ui.com/',
