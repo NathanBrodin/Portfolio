@@ -18,6 +18,8 @@ export function ExperienceItem({ experience }: { experience: Experience }) {
               alt=""
               width={24}
               height={24}
+              fetchPriority="high"
+              decoding="async"
               className="rounded-full"
               aria-hidden="true"
             />

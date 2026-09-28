@@ -69,6 +69,7 @@ function TechIcon({ tech }: { tech: TechStackItem }) {
           width={14}
           height={14}
           loading="lazy"
+          decoding="async"
           className="block dark:hidden"
         />
         <img
@@ -78,6 +79,7 @@ function TechIcon({ tech }: { tech: TechStackItem }) {
           width={14}
           height={14}
           loading="lazy"
+          decoding="async"
           className="hidden dark:block"
         />
       </>
@@ -92,6 +94,7 @@ function TechIcon({ tech }: { tech: TechStackItem }) {
       width={14}
       height={14}
       loading="lazy"
+      decoding="async"
     />
   )
 }

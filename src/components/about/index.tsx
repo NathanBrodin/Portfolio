@@ -1,15 +1,15 @@
 import { useQuery } from '@tanstack/react-query'
-import { ScriptOnce } from '@tanstack/react-router'
 import { useServerFn } from '@tanstack/react-start'
-import { useState } from 'react'
+import { lazy, Suspense, useState } from 'react'
 
 import { siteConfig } from '@/config/site'
 import { getUsersLocation as getServerUsersLocation } from '@/lib/functions'
 
 import { Diamond } from '../ui/diamond'
 import { Section } from '../ui/section'
-import { Globe } from './globe'
 import { PLACES, USER_MARKER, type UserLocation } from './locations'
+
+const Globe = lazy(() => import('./globe').then((mod) => ({ default: mod.Globe })))
 
 function LegendDot({ animated }: { animated: boolean }) {
   if (animated) {
@@ -31,11 +31,6 @@ function getGreeting(hour: number) {
   if (hour < 18) return 'Good afternoon'
   return 'Good evening'
 }
-
-// Runs during HTML parsing, before first paint, so the prerendered "About"
-// fallback is swapped before the user ever sees it. Self-removes after running
-// (via ScriptOnce), so hydration sees the same DOM the client renders.
-const GREETING_SCRIPT = `try{var h=new Date().getHours();var g=h<12?'Good morning':h<18?'Good afternoon':'Good evening';var el=document.getElementById('about-greeting');if(el)el.textContent=g;}catch(e){}`
 
 function getInitialGreeting() {
   if (typeof window === 'undefined') return 'About'
@@ -71,7 +66,6 @@ export function About() {
         >
           {greeting}
         </h2>
-        <ScriptOnce>{GREETING_SCRIPT}</ScriptOnce>
         <p className="text-sm whitespace-pre-line text-foreground">{siteConfig.about}</p>
         <ul className="flex flex-col">
           {PLACES.map((item) => (
@@ -94,30 +88,41 @@ export function About() {
               </span>
             </li>
           ))}
-          {userLocation ? (
-            <li
-              tabIndex={0}
-              className={`flex cursor-pointer items-start gap-2 rounded-sm px-1 py-0.5 transition-colors duration-150 ${
-                hoveredId === USER_MARKER.id ? 'bg-primary/10' : 'hover:bg-muted/50'
-              }`}
-              onMouseEnter={() => setHoveredId(USER_MARKER.id)}
-              onMouseLeave={() => setHoveredId(null)}
-              onFocus={() => setHoveredId(USER_MARKER.id)}
-              onBlur={() => setHoveredId(null)}
-            >
-              <LegendDot animated />
-              <span className="text-xs leading-tight text-muted-foreground">
-                <span className="font-medium text-foreground">{USER_MARKER.label}</span>
-                {' — '}
-                {USER_MARKER.description}
-              </span>
-            </li>
-          ) : (
-            <li className="h-4.75" />
-          )}
+          {/* Same <li> shell prerendered and post-load: only its contents fill
+              in when the visitor location resolves, so hydration always matches. */}
+          <li
+            tabIndex={userLocation ? 0 : -1}
+            className={`flex min-h-4.75 cursor-pointer items-start gap-2 rounded-sm px-1 py-0.5 transition-colors duration-150 ${
+              hoveredId === USER_MARKER.id ? 'bg-primary/10' : 'hover:bg-muted/50'
+            }`}
+            onMouseEnter={() => setHoveredId(USER_MARKER.id)}
+            onMouseLeave={() => setHoveredId(null)}
+            onFocus={() => setHoveredId(USER_MARKER.id)}
+            onBlur={() => setHoveredId(null)}
+          >
+            {userLocation ? (
+              <>
+                <LegendDot animated />
+                <span className="text-xs leading-tight text-muted-foreground">
+                  <span className="font-medium text-foreground">{USER_MARKER.label}</span>
+                  {' — '}
+                  {USER_MARKER.description}
+                </span>
+              </>
+            ) : null}
+          </li>
         </ul>
       </div>
-      <Globe userLocation={userLocation} highlightedId={hoveredId} />
+      <Suspense
+        fallback={
+          <div
+            className="relative flex h-full min-h-84 w-full flex-1 items-end justify-end border-t bg-[radial-gradient(circle_at_60%_45%,var(--primary)/12%,transparent_65%)] md:border-t-0 md:border-l"
+            aria-hidden="true"
+          />
+        }
+      >
+        <Globe userLocation={userLocation} highlightedId={hoveredId} />
+      </Suspense>
     </Section>
   )
 }

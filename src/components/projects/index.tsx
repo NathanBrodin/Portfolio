@@ -8,7 +8,10 @@ export function Projects() {
   const projects = getSortedProjects().filter((p) => p.display !== false)
 
   return (
-    <Section id="projects" className="flex flex-col">
+    <Section
+      id="projects"
+      className="flex flex-col [contain-intrinsic-size:auto_1000px] [content-visibility:auto]"
+    >
       <SectionTitle>Projects</SectionTitle>
       <CollapsibleList
         items={projects}

@@ -9,7 +9,10 @@ export function Experiences() {
   const education = getEducation()
 
   return (
-    <Section id="experience" className="flex flex-col">
+    <Section
+      id="experience"
+      className="flex flex-col [contain-intrinsic-size:auto_1200px] [content-visibility:auto]"
+    >
       <SectionTitle>Experiences</SectionTitle>
       <div>
         {workExperiences.map((experience) => (
