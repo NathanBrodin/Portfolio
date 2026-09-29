@@ -41,21 +41,7 @@ function LegendDot({ animated }: { animated: boolean }) {
   return <span className="mt-0.5 size-2 shrink-0 rounded-full bg-primary" aria-hidden="true" />
 }
 
-function getGreeting(hour: number) {
-  if (hour < 12) return 'Good morning'
-  if (hour < 18) return 'Good afternoon'
-  return 'Good evening'
-}
-
-function getInitialGreeting() {
-  if (typeof window === 'undefined') return 'About'
-  return getGreeting(new Date().getHours())
-}
-
 export function About() {
-  // Read synchronously (like ThemeProvider does) instead of in useEffect, so
-  // the first client render already matches the script-patched DOM: no swap flash.
-  const [greeting] = useState(getInitialGreeting)
   const getUsersLocation = useServerFn(getServerUsersLocation)
 
   const { data: location } = useQuery({
@@ -77,12 +63,11 @@ export function About() {
         <Diamond top right />
         <Diamond bottom right />
         <Diamond bottom left />
-        <h2
-          id="about-greeting"
-          suppressHydrationWarning
-          className="font-display font-medium text-primary italic"
-        >
-          {greeting}
+        <h2 id="about-greeting" className="font-display font-medium text-primary italic">
+          <span className="greet greet-default">About</span>
+          <span className="greet greet-morning">Good morning</span>
+          <span className="greet greet-afternoon">Good afternoon</span>
+          <span className="greet greet-evening">Good evening</span>
         </h2>
         <p className="text-sm whitespace-pre-line text-foreground">{siteConfig.about}</p>
         <ul className="flex flex-col">

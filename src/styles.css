@@ -304,3 +304,25 @@
     opacity: 1;
   }
 }
+
+/* Boot-script driven variants (datasets set by BOOT_SCRIPT in
+   routes/__root.tsx before first paint): the server renders every variant
+   and CSS reveals the matching one, so there is no hydration mismatch and
+   no content flash. Without JS, the prerendered defaults show. */
+.greet {
+  display: none;
+}
+html:not([data-period]) .greet-default,
+html[data-period='morning'] .greet-morning,
+html[data-period='afternoon'] .greet-afternoon,
+html[data-period='evening'] .greet-evening {
+  display: inline;
+}
+
+.os {
+  display: none;
+}
+html[data-os='mac'] .os-mac,
+html:not([data-os='mac']) .os-other {
+  display: inline;
+}

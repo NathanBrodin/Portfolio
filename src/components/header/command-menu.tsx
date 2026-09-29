@@ -1,5 +1,5 @@
 import { useHotkey } from '@tanstack/react-hotkeys'
-import { Link, ScriptOnce } from '@tanstack/react-router'
+import { Link } from '@tanstack/react-router'
 import {
   ArrowDownIcon,
   ArrowUpIcon,
@@ -29,12 +29,10 @@ import {
 } from '@/components/ui/command'
 import { Kbd, KbdGroup } from '@/components/ui/kbd'
 import { OTHER_LINKS } from '@/config/portfolio-links'
-import { IS_MAC_SCRIPT, useIsMac } from '@/hooks/use-is-mac'
 
 import type { Group } from '.'
 
 export function CommandMenu({ items }: { items: Group[] }) {
-  const isMac = useIsMac()
   const [open, setOpen] = useState(false)
 
   useHotkey('Mod+K', () => {
@@ -54,13 +52,13 @@ export function CommandMenu({ items }: { items: Group[] }) {
         <span className="sr-only">Open Command Palette</span>
         <span aria-hidden="true" className="hidden sm:flex">
           <KbdGroup className="hidden sm:flex">
-            <Kbd data-platform-key suppressHydrationWarning>
-              {isMac ? '⌘' : 'Ctrl'}
+            <Kbd>
+              <span className="os os-mac">⌘</span>
+              <span className="os os-other">Ctrl</span>
             </Kbd>
             <Kbd>K</Kbd>
           </KbdGroup>
         </span>
-        <ScriptOnce>{IS_MAC_SCRIPT}</ScriptOnce>
       </CommandDialogTrigger>
       <CommandDialogPopup>
         <Command items={items}>

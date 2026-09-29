@@ -100,10 +100,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 const THEME_COLOR_SCRIPT = `try{if(localStorage.theme==='dark'||((!('theme' in localStorage)||localStorage.theme==='system')&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.querySelector('meta[name="theme-color"]').setAttribute('content','${META_THEME_COLORS.dark}')}}catch(_){}`
 
+// Parser-blocking boot script: runs during HTML parsing (before first paint
+// and before hydration) and stamps environment values as html datasets.
+// Server renders every variant, CSS picks the matching one — so there is no
+// hydration mismatch and no content flash. Same technique as THEME_COLOR_SCRIPT.
+const BOOT_SCRIPT = `try{var h=new Date().getHours();document.documentElement.dataset.period=h<12?'morning':h<18?'afternoon':'evening';}catch(e){}try{document.documentElement.dataset.os=/Mac|iPhone|iPad/i.test(navigator.platform||navigator.userAgent||'')?'mac':'other';}catch(e){}`
+
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: BOOT_SCRIPT }} />
         <HeadContent />
         <script dangerouslySetInnerHTML={{ __html: THEME_COLOR_SCRIPT }} />
       </head>
