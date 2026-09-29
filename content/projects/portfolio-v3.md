@@ -11,8 +11,6 @@ skills:
   - React
   - Next.js
   - Tailwind CSS
-  - Lighthouse
-  - Vercel
 ---
 
 I rebuilt my portfolio once again, as I got heavily inspired by Chronark's portfolio. But it wasn't a fork, I rebuilt everything to follow my code style, updated the UI to match my style as well.

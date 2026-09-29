@@ -10,8 +10,6 @@ skills:
   - HTML
   - CSS
   - JavaScript
-  - Figma
-  - GitHub Pages
 ---
 
 After we had a workshop at school to create our CV and LinkedIn, the teacher mentioned portfolios, so I was interested to make mine. This was also after I started to work on the ESIEABOT mobile app, so I discovered that I liked building UIs (even if I already loved making fancy PowerPoints and other designs).

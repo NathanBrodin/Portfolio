@@ -14,11 +14,8 @@ skills:
   - React
   - Redux
   - CSS
-  - Emotion
-  - Eufemia
-  - Axios
+  - styled-components
   - React Router
-  - Figma
   - AWS
 
 order: 4
@@ -38,7 +35,7 @@ When these product owners wanted to change something for their chat solution, th
 
 So I worked with the UX designer of the team, that had all designs of the application on Figma, and the backend engineer, that created the API to handle the data, and I was by myself on the frontend.
 
-I started the project from scratch, with a bare CRA app in JavaScript, Emotion for styling, [Redux](https://redux.js.org/) for state, Axios for API calls. It was my first "real" [React](https://react.dev/) app, as I had only worked on a Chrome extension made with React before that, a simple "Password Manager".
+I started the project from scratch, with a bare CRA app in JavaScript, styled-components for styling, [Redux](https://redux.js.org/) for state, Axios for API calls. It was my first "real" [React](https://react.dev/) app, as I had only worked on a Chrome extension made with React before that, a simple "Password Manager".
 So this was quite a simple CRUD app, with basic React Router navigation. It was not meeting the high production standards and modern stack that I now master, but this was still a very good application which received very good feedback.
 
 One challenge was with styling: DNB has a component library ("Eufemia") that was the base of the app, but the Figma sketches modified it a lot, with different colors, spacings, and even light/dark mode... while the component library has not been built to be modified (like with shadcn/ui for example). So it was quite tricky to overwrite the CSS and make it consistent.

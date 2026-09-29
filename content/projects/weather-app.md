@@ -9,8 +9,6 @@ endDate: '2023-03'
 skills:
   - Dart
   - Flutter
-  - OpenWeatherMap
-  - Midjourney
 ---
 
 For school we had to make a weather app in [Flutter](https://flutter.dev/). I went all in with the UI, used [Midjourney](https://www.midjourney.com/) to generate the background images, so that it would show a nice landscape based on the weather. It fetches data from the [OpenWeatherMap](https://openweathermap.org/) API: current conditions, temperature, wind speed, and a forecast for the next 5 days. Icons picked from a Dribbble shot, mockups made with shots.so.

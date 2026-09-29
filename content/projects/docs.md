@@ -10,7 +10,6 @@ skills:
   - TypeScript
   - React
   - Next.js
-  - Nextra
   - MDX
 ---
 

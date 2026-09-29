@@ -12,8 +12,6 @@ skills:
   - CSS
   - Node.js
   - Express
-  - Socket.IO
-  - Figma
 ---
 
 For school we had to make a chat app with [Node.js](https://nodejs.org/), as the end of semester project of our web class. I first made the UI on [Figma](https://www.figma.com/), then built the server, and the HTML/CSS.

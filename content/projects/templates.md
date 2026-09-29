@@ -9,12 +9,9 @@ endDate: '2026-06'
 skills:
   - TypeScript
   - React
-  - TanStack Start
+  - TanStack
   - Tailwind CSS
   - Convex
-  - Better Auth
-  - Polar
-  - i18n
   - SEO
 ---
 

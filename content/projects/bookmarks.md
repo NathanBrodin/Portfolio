@@ -13,7 +13,6 @@ skills:
   - Tailwind CSS
   - Drizzle
   - SQLite
-  - Turso
 
 order: 2
 ---

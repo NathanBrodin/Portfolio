@@ -6,12 +6,7 @@ link: https://github.com/search?q=is%3Apr+author%3ANathanBrodin+is%3Apublic+-use
 type: personal
 startDate: '2022-08'
 skills:
-  - TypeScript
-  - React
   - GitHub
-  - Eufemia
-  - Zed
-  - Supabase
 
 order: 5
 ---

@@ -9,11 +9,9 @@ endDate: '2025-04'
 skills:
   - TypeScript
   - React
-  - Redux Toolkit
+  - Redux
   - Tailwind CSS
   - shadcn/ui
-  - Vite
-  - GitHub API
 ---
 
 During the interview process for Capia, I got tasked to create a small project over the weekend: a simple [React](https://react.dev/) app with [Redux Toolkit](https://redux-toolkit.js.org/) to fetch the list of GitHub repos for a given username. Simple stuff.

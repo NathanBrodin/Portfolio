@@ -14,7 +14,6 @@ skills:
   - React
   - TanStack
   - Tailwind CSS
-  - Recharts
   - Django
   - PostgreSQL
   - ClickHouse

@@ -12,9 +12,6 @@ skills:
   - Next.js
   - Tailwind CSS
   - Convex
-  - Clerk
-  - Markdown
-
 order: 3
 ---
 

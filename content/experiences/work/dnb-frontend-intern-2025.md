@@ -14,9 +14,6 @@ skills:
   - React
   - Redux
   - CSS
-  - Eufemia
-  - Vite
-  - Gatsby
   - AWS
   - Playwright
 

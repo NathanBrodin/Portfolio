@@ -6,11 +6,15 @@
  * - Themed (when `theme === true`):
  *   - Dark:  /public/tech-stack-icons/[key]-dark.svg
  *   - Light: /public/tech-stack-icons/[key]-light.svg
+ *
+ * This list is the curated "fluent now" stack: what Nathan masters or works
+ * with recently. The full career history lives in content/ frontmatter skills
+ * and surfaces per-item in llms.txt / llms-full.txt.
  */
 export type TechStack = {
   /** Unique identifier used to resolve icon files. */
   key: string
-  /** Display name of the technology. */
+  /** Display name of the technology. Must match content/ frontmatter exactly. */
   title: string
   /** Official website URL. */
   href: string
@@ -21,6 +25,7 @@ export type TechStack = {
 }
 
 export const TECH_STACK: TechStack[] = [
+  // Languages
   {
     key: 'typescript',
     title: 'TypeScript',
@@ -39,17 +44,20 @@ export const TECH_STACK: TechStack[] = [
     href: 'https://www.python.org/',
     category: 'Languages',
   },
-  {
-    key: 'dart',
-    title: 'Dart',
-    href: 'https://dart.dev/',
-    category: 'Languages',
-  },
+
+  // Frontend
   {
     key: 'react',
     title: 'React',
     href: 'https://react.dev/',
     category: 'Frontend',
+  },
+  {
+    key: 'tanstack',
+    title: 'TanStack',
+    href: 'https://tanstack.com/',
+    category: 'Frontend',
+    theme: true,
   },
   {
     key: 'nextjs2',
@@ -79,17 +87,10 @@ export const TECH_STACK: TechStack[] = [
     theme: true,
   },
   {
-    key: 'motion',
-    title: 'Motion',
-    href: 'https://motion.dev/',
+    key: 'vite',
+    title: 'Vite',
+    href: 'https://vite.dev/',
     category: 'Frontend',
-  },
-  {
-    key: 'tanstack',
-    title: 'TanStack',
-    href: 'https://tanstack.com/',
-    category: 'Frontend',
-    theme: true,
   },
   {
     key: 'redux',
@@ -98,33 +99,23 @@ export const TECH_STACK: TechStack[] = [
     category: 'Frontend',
   },
   {
-    key: 'recharts',
-    title: 'Recharts',
-    href: 'https://recharts.github.io/',
+    key: 'playwright',
+    title: 'Playwright',
+    href: 'https://playwright.dev/',
     category: 'Frontend',
   },
+
+  // Backend
   {
-    key: 'flutter',
-    title: 'Flutter',
-    href: 'https://flutter.dev/',
-    category: 'Frontend',
-  },
-  {
-    key: 'vite',
-    title: 'Vite',
-    href: 'https://vite.dev/',
-    category: 'Frontend',
+    key: 'nodejs',
+    title: 'Node.js',
+    href: 'https://nodejs.org/',
+    category: 'Backend',
   },
   {
     key: 'django',
     title: 'Django',
     href: 'https://www.django-rest-framework.org/',
-    category: 'Backend',
-  },
-  {
-    key: 'nodejs',
-    title: 'Node.js',
-    href: 'https://nodejs.org/',
     category: 'Backend',
   },
   {
@@ -134,40 +125,51 @@ export const TECH_STACK: TechStack[] = [
     category: 'Backend',
   },
   {
-    key: 'supabase',
-    title: 'Supabase',
-    href: 'https://supabase.com/',
+    key: 'drizzle',
+    title: 'Drizzle',
+    href: 'https://orm.drizzle.team/',
+    category: 'Backend',
+    theme: true,
+  },
+  {
+    key: 'openapi',
+    title: 'OpenAPI',
+    href: 'https://www.openapis.org/',
     category: 'Backend',
   },
+
+  // Databases
   {
     key: 'postgresql',
     title: 'PostgreSQL',
     href: 'https://www.postgresql.org/',
-    category: 'Database',
-  },
-  {
-    key: 'redis',
-    title: 'Redis',
-    href: 'https://redis.io/',
-    category: 'Database',
-  },
-  {
-    key: 'clickhouse',
-    title: 'ClickHouse',
-    href: 'https://clickhouse.com/',
-    category: 'Database',
-  },
-  {
-    key: 'drizzle',
-    title: 'Drizzle',
-    href: 'https://orm.drizzle.team/',
-    category: 'Database',
+    category: 'Databases',
   },
   {
     key: 'sqlite',
     title: 'SQLite',
     href: 'https://www.sqlite.org/',
-    category: 'Database',
+    category: 'Databases',
+  },
+  {
+    key: 'clickhouse',
+    title: 'ClickHouse',
+    href: 'https://clickhouse.com/',
+    category: 'Databases',
+  },
+  {
+    key: 'redis',
+    title: 'Redis',
+    href: 'https://redis.io/',
+    category: 'Databases',
+  },
+
+  // Infrastructure
+  {
+    key: 'linux',
+    title: 'Linux',
+    href: 'https://www.linux.org/',
+    category: 'Infrastructure',
   },
   {
     key: 'docker',
@@ -176,10 +178,11 @@ export const TECH_STACK: TechStack[] = [
     category: 'Infrastructure',
   },
   {
-    key: 'nginx',
-    title: 'Nginx',
-    href: 'https://nginx.org/',
+    key: 'aws',
+    title: 'AWS',
+    href: 'https://aws.amazon.com/',
     category: 'Infrastructure',
+    theme: true,
   },
   {
     key: 'vercel',
@@ -188,53 +191,44 @@ export const TECH_STACK: TechStack[] = [
     category: 'Infrastructure',
     theme: true,
   },
-  {
-    key: 'linux',
-    title: 'Linux',
-    href: 'https://www.linux.org/',
-    category: 'Infrastructure',
-  },
-  {
-    key: 'playwright',
-    title: 'Playwright',
-    href: 'https://playwright.dev/',
-    category: 'Tools',
-  },
-  {
-    key: 'cypress',
-    title: 'Cypress',
-    href: 'https://www.cypress.io/',
-    category: 'Tools',
-  },
+
+  // Workflow
   {
     key: 'git',
     title: 'Git',
     href: 'https://git-scm.com/',
-    category: 'Tools',
+    category: 'Workflow',
   },
   {
     key: 'github',
     title: 'GitHub',
     href: 'https://github.com/',
-    category: 'Tools',
+    category: 'Workflow',
+    theme: true,
+  },
+  {
+    key: 'vim',
+    title: 'VIM',
+    href: 'https://vim.org/',
+    category: 'Workflow',
+  },
+  {
+    key: 'zed',
+    title: 'Zed',
+    href: 'https://zed.dev/',
+    category: 'Workflow',
+  },
+  {
+    key: 'opencode',
+    title: 'OpenCode',
+    href: 'https://opencode.ai/',
+    category: 'Workflow',
     theme: true,
   },
   {
     key: 'figma',
     title: 'Figma',
     href: 'https://www.figma.com/',
-    category: 'Tools',
-  },
-  {
-    key: 'vim',
-    title: 'VIM',
-    href: 'https://vim.org/',
-    category: 'Tools',
-  },
-  {
-    key: 'zed',
-    title: 'Zed',
-    href: 'https://zed.dev/',
-    category: 'Tools',
+    category: 'Workflow',
   },
 ]

@@ -11,7 +11,6 @@ skills:
   - React
   - Next.js
   - Tailwind CSS
-  - OpenAI
 ---
 
 At the very start of [OpenAI](https://openai.com/) and LLMs, I made a grammar checker with a very similar UI to the Quillbot Grammar Checker, and made the logic by having a simple prompt to GPT-3 to correct the text I'm passing. Seeing how AI is at the center of the world now, it's fun to see I made this project in Autumn 2022, before ChatGPT even existed.

@@ -12,10 +12,6 @@ skills:
   - Next.js
   - Tailwind CSS
   - shadcn/ui
-  - NextAuth.js
-  - PostHog
-  - Sentry
-  - Cypress
 ---
 
 "Redefining Your Inbox Experience" is a mail client to rethink how you manage messages, prioritizing and responding with intuitive simplicity (that's what the README says at least).
