@@ -8,9 +8,9 @@ startDate: '2026-06'
 skills:
   - TypeScript
   - React
-  - TanStack Start
+  - TanStack
+  - Next.js
   - Tailwind CSS
-  - shadcn/ui
   - Convex
 ---
 

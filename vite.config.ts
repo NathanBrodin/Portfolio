@@ -1,9 +1,8 @@
 import contentCollections from '@content-collections/vite'
-import babel from '@rolldown/plugin-babel'
 import tailwindcss from '@tailwindcss/vite'
 import { devtools } from '@tanstack/devtools-vite'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
-import viteReact, { reactCompilerPreset } from '@vitejs/plugin-react'
+import viteReact from '@vitejs/plugin-react'
 import { nitro } from 'nitro/vite'
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite-plus'
@@ -48,9 +47,32 @@ const config = defineConfig({
     },
   },
   plugins: [
-    contentCollections(),
+    contentCollections({ environment: 'client' }),
     devtools(),
-    nitro(),
+    nitro({
+      rolldownConfig: {
+        onwarn(warning, warn) {
+          if (
+            warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
+            (warning.message.includes('use client') || warning.message.includes('use server'))
+          ) {
+            return
+          }
+          warn(warning)
+        },
+      },
+      rollupConfig: {
+        onwarn(warning, warn) {
+          if (
+            warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
+            (warning.message.includes('use client') || warning.message.includes('use server'))
+          ) {
+            return
+          }
+          warn(warning)
+        },
+      },
+    }),
     tailwindcss(),
     tanstackStart({
       prerender: {
@@ -59,10 +81,7 @@ const config = defineConfig({
         filter: ({ path }) => !path.includes('#'),
       },
     }),
-    viteReact(),
-    babel({
-      presets: [reactCompilerPreset()],
-    }),
+    viteReact({ compiler: true }),
   ],
   optimizeDeps: {
     // Pre-bundle barrel-heavy libraries to improve dev server startup time

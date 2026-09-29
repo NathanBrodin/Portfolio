@@ -12,6 +12,7 @@ skills:
   - Next.js
   - Tailwind CSS
   - Drizzle
+  - SQLite
 
 order: 2
 ---

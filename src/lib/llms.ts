@@ -83,6 +83,11 @@ function generateExperiencesMarkdown(full: boolean): string {
       lines.push('')
       lines.push(full ? fullContent(position.excerpt, position.detail) : position.excerpt)
 
+      if (position.skills.length > 0) {
+        lines.push('')
+        lines.push(`*Skills: ${position.skills.join(', ')}*`)
+      }
+
       lines.push('')
     }
   }

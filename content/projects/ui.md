@@ -12,6 +12,7 @@ skills:
   - Next.js
   - Tailwind CSS
   - shadcn/ui
+  - Base UI
 ---
 
 My own component library. It was created before [shadcn/ui](https://ui.shadcn.com/) released a tool to create themes directly, and before the migration to Base UI, so I abandoned it.

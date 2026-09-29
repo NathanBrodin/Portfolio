@@ -7,8 +7,9 @@ type: personal
 startDate: '2023-03'
 endDate: '2023-06'
 skills:
+  - TypeScript
+  - React
   - Next.js
-  - Nextra
   - MDX
 ---
 

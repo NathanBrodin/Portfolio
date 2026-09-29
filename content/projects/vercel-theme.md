@@ -8,8 +8,6 @@ startDate: '2024-10'
 endDate: '2025-03'
 skills:
   - Zed
-  - VIM
-
 order: 4
 ---
 

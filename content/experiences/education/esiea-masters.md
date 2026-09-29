@@ -11,11 +11,11 @@ skills:
   - JavaScript
   - Python
   - C
-  - Full Stack Development
-  - Application Design
   - Algorithms
   - Systems Programming
   - Distributed Systems
+  - Full Stack Development
+  - Application Design
 
 order: 1
 ---

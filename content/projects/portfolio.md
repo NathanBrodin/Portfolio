@@ -8,8 +8,9 @@ startDate: '2026-02'
 skills:
   - TypeScript
   - React
-  - TanStack Start
+  - TanStack
   - Tailwind CSS
+  - SEO
 ---
 
 My newest portfolio, built with [TanStack Start](https://tanstack.com/start/latest) (static pre-rendering) and Content Collections for content in Markdown, with a borderline-obsessive focus on performance, accessibility, and SEO.

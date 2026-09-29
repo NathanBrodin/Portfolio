@@ -8,8 +8,6 @@ startDate: '2024-11'
 endDate: '2025-01'
 skills:
   - Rust
-  - MQTT
-  - CoAP
   - Docker
 ---
 

@@ -9,9 +9,6 @@ endDate: '2022-06'
 skills:
   - Kotlin
   - Android
-  - Python
-  - Raspberry Pi
-  - Bluetooth
 ---
 
 An [Android](https://developer.android.com/) mobile app to control remotely the ESIEABOT (a robot with two wheels and a camera). I made a tiny [Raspberry Pi](https://www.raspberrypi.com/) image to put on the bot, which listens to Bluetooth, can receive directions, and sends the video feedback. And I made the mobile app (in [Kotlin](https://kotlinlang.org/)) to send the controls, and see the video feedback. I made a nice UI, nice features to control and connect to the robot.
