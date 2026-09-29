@@ -61,13 +61,36 @@
     U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/* Metric-matched fallbacks: same x-height and line box as the webfont, so a
+   fallback -> webfont swap changes paint only (no reflow, no CLS).
+   Tuned against Georgia (serif) and Arial (sans); primaries measured with
+   fonttools — Lora: upm 1000, x-height 0.50, sTypo asc 1006 / desc 274;
+   Writer: upm 1000, x-height 0.516, hhea asc 1025 / desc 275. */
+@font-face {
+  font-family: 'Lora Fallback';
+  src: local('Georgia');
+  size-adjust: 103.86%;
+  ascent-override: 105.63%;
+  descent-override: 120.34%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Writer Fallback';
+  src: local('Arial'), local('Liberation Sans'), local('Helvetica Neue'), local('Helvetica');
+  size-adjust: 99.5%;
+  ascent-override: 113.8%;
+  descent-override: 130.42%;
+  line-gap-override: 0%;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --animate-skeleton: skeleton 2s -1s infinite linear;
-  --font-sans: 'Writer', sans-serif;
+  --font-sans: 'Writer', 'Writer Fallback', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'Writer-Mono', mono;
-  --font-display: 'Lora', serif;
+  --font-display: 'Lora', 'Lora Fallback', Georgia, 'Times New Roman', serif;
   --color-warning-foreground: var(--warning-foreground);
   --color-warning: var(--warning);
   --color-success-foreground: var(--success-foreground);

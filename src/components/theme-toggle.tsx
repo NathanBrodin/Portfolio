@@ -8,13 +8,20 @@ import { SunMediumIcon } from '@/components/ui/icons/sun-medium'
 import { Kbd } from '@/components/ui/kbd'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { META_THEME_COLORS } from '@/config/site'
+import { useMounted } from '@/hooks/use-mounted'
 import { playSound } from '@/lib/play-sound'
 import { switch005Sound } from '@/sounds/switch-005'
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme()
-
-  const isDark = resolvedTheme === 'dark'
+  // The prerender bakes one theme while the client resolves its own
+  // (storage/system) — reading it during the first render mismatches SSR and
+  // forces a full client re-render. Gate on mount instead: same output on
+  // server and first client render, live value right after. The page itself
+  // never flashes (the themer script applies the theme pre-paint); only this
+  // icon button's label syncs a frame late, with identical geometry.
+  const mounted = useMounted()
+  const isDark = mounted && resolvedTheme === 'dark'
 
   useEffect(() => {
     document
