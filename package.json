@@ -31,7 +31,6 @@
     "knip": "knip --config knip.json",
     "lh": "vpx unlighthouse --no-cache",
     "generate:og": "tsx scripts/generate-og.ts",
-    "generate:resume": "tsx scripts/generate-resume.ts",
     "prepare": "vp config"
   },
   "dependencies": {
