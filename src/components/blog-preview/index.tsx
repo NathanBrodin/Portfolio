@@ -1,18 +1,14 @@
 import { Link } from '@tanstack/react-router'
-import { allBlogPosts } from 'content-collections'
 import { ArrowRightIcon } from 'lucide-react'
+
+import type { BlogPreviewPost } from '@/lib/functions'
 
 import { Lines } from '@/components/ui/backgrounds/lines'
 import { Button } from '@/components/ui/button'
 import { Diamond } from '@/components/ui/diamond'
 import { Section, SectionTitle } from '@/components/ui/section'
 
-export function BlogPreview() {
-  const posts = allBlogPosts
-    .filter((post) => post.published)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 4)
-
+export function BlogPreview({ posts }: { posts: BlogPreviewPost[] }) {
   return (
     <Section id="blog-preview" className="relative flex flex-col">
       <SectionTitle>Blog</SectionTitle>

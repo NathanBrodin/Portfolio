@@ -139,109 +139,152 @@ export function Globe({ userLocation, highlightedId }: GlobeProps) {
   }, [highlightedId, userLocation])
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
+    const canvasNode = canvasRef.current
+    const containerNode = containerRef.current
+    if (canvasNode === null || containerNode === null) return
+    const canvas: HTMLCanvasElement = canvasNode
+    const container: HTMLDivElement = containerNode
 
-    const width = canvas.offsetWidth
-    if (width === 0) return
-
-    const initialTheme =
-      document.documentElement.classList.contains('dark') ||
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light'
-
-    // Read viewport once at mount instead of subscribing to useIsMobile:
-    // the value is identical for sizing, but doesn't recreate the WebGL
-    // context when the media query flips (or hydrates false -> true).
-    const isSmallScreen = window.innerWidth < 640
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-    const globe = createGlobe(canvas, {
-      devicePixelRatio: Math.min(window.devicePixelRatio || 1, isSmallScreen ? 1 : 2),
-      width,
-      height: width,
-      phi: phiRef.current,
-      theta: thetaRef.current,
-      mapSamples: isSmallScreen ? 4000 : 16000,
-      markerElevation: 0.01,
-      markers: buildMarkers(null, null).map((m) => ({
-        location: m.location,
-        size: m.size,
-        id: m.id,
-      })),
-      arcs: buildArcs(null).map((a) => ({ from: a.from, to: a.to, id: a.id })),
-      arcWidth: 0.5,
-      arcHeight: 0.25,
-      opacity: 0.7,
-      scale: 1.7,
-      offset: [110, 170],
-      ...getThemePreset(initialTheme),
-    })
-    globeRef.current = globe
-
+    let rafId = 0
+    let attempts = 0
     let animationId = 0
     let revealed = false
+    let observer: IntersectionObserver | null = null
+    let sizeObserver: ResizeObserver | null = null
+    let cancelled = false
+    let started = false
 
-    function reveal() {
-      if (revealed) return
-      revealed = true
-      requestAnimationFrame(() => {
-        canvasRef.current?.style.setProperty('opacity', '1')
+    // Size via ResizeObserver: the callback carries content-box sizes, so no
+    // synchronous layout read (and no forced reflow) is ever needed.
+    function init() {
+      if (cancelled || started) return
+      if (typeof ResizeObserver !== 'undefined') {
+        sizeObserver = new ResizeObserver((entries) => {
+          if (cancelled || started) return
+          const entry = entries[0]
+          const box = entry.contentBoxSize?.[0]
+          const size = box ? box.inlineSize : entry.contentRect.width
+          if (size === 0) return
+          started = true
+          sizeObserver?.disconnect()
+          sizeObserver = null
+          start(size)
+        })
+        sizeObserver.observe(canvas)
+        return
+      }
+      // Fallback for ancient browsers: single deferred read after paint.
+      rafId = requestAnimationFrame(function fallback() {
+        if (cancelled || started) return
+        const size = canvas.clientWidth || container.clientWidth || 0
+        if (size === 0) {
+          attempts += 1
+          if (attempts < 10) rafId = requestAnimationFrame(fallback)
+          return
+        }
+        started = true
+        start(size)
       })
     }
 
-    // Static frame: no rotation loop, no continuous GPU work.
-    if (prefersReducedMotion) {
-      globe.update({ phi: phiRef.current, theta: thetaRef.current })
-      reveal()
-      return () => {
-        globe.destroy()
-        globeRef.current = null
-      }
-    }
+    function start(width: number) {
+      if (cancelled) return
+      const initialTheme =
+        document.documentElement.classList.contains('dark') ||
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light'
 
-    function animate() {
-      // Pause GPU work when offscreen or tab-hidden, but keep the rAF
-      // chain alive so it resumes automatically without re-creating
-      // the globe. The globe is above the fold, so this only saves
-      // work after scrolling away — which is the common mobile case.
-      if (!document.hidden && visibleRef.current) {
-        const target = targetRef.current
-        if (target) {
-          const dPhi = shortestAngleDelta(target.phi, phiRef.current)
-          const dTheta = target.theta - thetaRef.current
-          phiRef.current += dPhi * FOCUS_EASE
-          thetaRef.current += dTheta * FOCUS_EASE
-          if (Math.abs(dPhi) < SNAP_THRESHOLD) phiRef.current = target.phi
-          if (Math.abs(dTheta) < SNAP_THRESHOLD) thetaRef.current = target.theta
-        } else {
-          phiRef.current += ROTATION_SPEED
-          thetaRef.current += (DEFAULT_THETA - thetaRef.current) * FOCUS_EASE
-        }
+      // Read viewport once at mount instead of subscribing to useIsMobile:
+      // the value is identical for sizing, but doesn't recreate the WebGL
+      // context when the media query flips (or hydrates false -> true).
+      const isSmallScreen = window.innerWidth < 640
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+      const globe = createGlobe(canvas, {
+        devicePixelRatio: Math.min(window.devicePixelRatio || 1, isSmallScreen ? 1 : 2),
+        width,
+        height: width,
+        phi: phiRef.current,
+        theta: thetaRef.current,
+        mapSamples: isSmallScreen ? 4000 : 16000,
+        markerElevation: 0.01,
+        markers: buildMarkers(null, null).map((m) => ({
+          location: m.location,
+          size: m.size,
+          id: m.id,
+        })),
+        arcs: buildArcs(null).map((a) => ({ from: a.from, to: a.to, id: a.id })),
+        arcWidth: 0.5,
+        arcHeight: 0.25,
+        opacity: 0.7,
+        scale: 1.7,
+        offset: [110, 170],
+        ...getThemePreset(initialTheme),
+      })
+      globeRef.current = globe
+
+      function reveal() {
+        if (revealed) return
+        revealed = true
+        requestAnimationFrame(() => {
+          canvasRef.current?.style.setProperty('opacity', '1')
+        })
+      }
+
+      // Static frame: no rotation loop, no continuous GPU work.
+      if (prefersReducedMotion) {
         globe.update({ phi: phiRef.current, theta: thetaRef.current })
         reveal()
+        return
       }
-      animationId = requestAnimationFrame(animate)
-    }
-    animate()
 
-    const container = containerRef.current
-    const observer =
-      typeof IntersectionObserver !== 'undefined' && container
-        ? new IntersectionObserver(
-            ([entry]) => {
-              visibleRef.current = entry.isIntersecting
-            },
-            { threshold: 0 },
-          )
-        : null
-    observer?.observe(container as Element)
+      function animate() {
+        if (cancelled) return
+        // Pause GPU work when offscreen or tab-hidden, but keep the rAF
+        // chain alive so it resumes automatically without re-creating
+        // the globe. The globe is above the fold, so this only saves
+        // work after scrolling away — which is the common mobile case.
+        if (!document.hidden && visibleRef.current) {
+          const target = targetRef.current
+          if (target) {
+            const dPhi = shortestAngleDelta(target.phi, phiRef.current)
+            const dTheta = target.theta - thetaRef.current
+            phiRef.current += dPhi * FOCUS_EASE
+            thetaRef.current += dTheta * FOCUS_EASE
+            if (Math.abs(dPhi) < SNAP_THRESHOLD) phiRef.current = target.phi
+            if (Math.abs(dTheta) < SNAP_THRESHOLD) thetaRef.current = target.theta
+          } else {
+            phiRef.current += ROTATION_SPEED
+            thetaRef.current += (DEFAULT_THETA - thetaRef.current) * FOCUS_EASE
+          }
+          globe.update({ phi: phiRef.current, theta: thetaRef.current })
+          reveal()
+        }
+        animationId = requestAnimationFrame(animate)
+      }
+      animate()
+
+      if (typeof IntersectionObserver !== 'undefined') {
+        observer = new IntersectionObserver(
+          ([entry]) => {
+            visibleRef.current = entry.isIntersecting
+          },
+          { threshold: 0 },
+        )
+        observer.observe(container)
+      }
+    }
+
+    rafId = requestAnimationFrame(init)
 
     return () => {
+      cancelled = true
+      cancelAnimationFrame(rafId)
       cancelAnimationFrame(animationId)
       observer?.disconnect()
-      globe.destroy()
+      sizeObserver?.disconnect()
+      globeRef.current?.destroy()
       globeRef.current = null
     }
   }, [])
@@ -273,6 +316,8 @@ export function Globe({ userLocation, highlightedId }: GlobeProps) {
       <div className="relative aspect-square h-full overflow-hidden contain-[layout_style] select-none [--cobe-bg:var(--background)] [--cobe-ink:var(--primary)]">
         <canvas
           ref={canvasRef}
+          width={512}
+          height={512}
           className="aspect-square h-full w-full touch-none opacity-0 transition-opacity duration-1000 contain-[layout_paint_size]"
         />
         {labels.map((m) => (

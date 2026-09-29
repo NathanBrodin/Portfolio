@@ -1,4 +1,5 @@
-import { allBlogPosts } from 'content-collections'
+import { useQuery } from '@tanstack/react-query'
+import { useServerFn } from '@tanstack/react-start'
 import { TextAlignStartIcon } from 'lucide-react'
 
 import type { MenuItem } from '@/config'
@@ -8,6 +9,7 @@ import { ThemeToggle } from '@/components/theme-toggle'
 import { Diamond } from '@/components/ui/diamond'
 import { OTHER_LINKS, PORTFOLIO_LINKS } from '@/config/portfolio-links'
 import { SOCIAL_LINKS } from '@/config/social-links'
+import { getBlogNav as getServerBlogNav } from '@/lib/functions'
 
 import { CommandMenu } from './command-menu'
 import { Nav } from './nav'
@@ -18,9 +20,19 @@ export interface Group {
 }
 
 export function Header() {
-  const posts = allBlogPosts
-    .filter((post) => post.published)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  const getBlogNav = useServerFn(getServerBlogNav)
+  // Blog index loads after mount inside the (hidden) menus, so the full
+  // post collection never ships in the critical client bundle and can't
+  // shift the header layout when it resolves.
+  const { data: blogNav } = useQuery({
+    queryKey: ['blog-nav'],
+    queryFn: () => getBlogNav(),
+    staleTime: Infinity,
+    retry: false,
+    refetchOnWindowFocus: false,
+  })
+
+  const posts = blogNav ?? []
 
   const items: Group[] = [
     { items: PORTFOLIO_LINKS, value: 'Menu' },

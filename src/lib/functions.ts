@@ -66,3 +66,36 @@ export const getUsersLocation = createServerFn({ method: 'GET' }).handler(() => 
     lng: parseFloat(lng),
   }
 })
+
+export type BlogPreviewPost = {
+  slug: string
+  title: string
+}
+
+export type BlogNavItem = {
+  slug: string
+  title: string
+}
+
+// Dynamic imports keep `content-collections` (full post markup) out of the
+// client bundle: these handlers run server-side only.
+export const getBlogPreview = createServerFn({ method: 'GET' }).handler(
+  async (): Promise<BlogPreviewPost[]> => {
+    const { allBlogPosts } = await import('content-collections')
+    return allBlogPosts
+      .filter((post) => post.published)
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 4)
+      .map((post) => ({ slug: post.slug, title: post.title }))
+  },
+)
+
+export const getBlogNav = createServerFn({ method: 'GET' }).handler(
+  async (): Promise<BlogNavItem[]> => {
+    const { allBlogPosts } = await import('content-collections')
+    return allBlogPosts
+      .filter((post) => post.published)
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .map((post) => ({ slug: post.slug, title: post.title }))
+  },
+)

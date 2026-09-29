@@ -11,6 +11,21 @@ import { PLACES, USER_MARKER, type UserLocation } from './locations'
 
 const Globe = lazy(() => import('./globe').then((mod) => ({ default: mod.Globe })))
 
+// Pixel-identical skeleton for the lazy Globe: same outer + inner boxes and
+// same canvas box, so swapping fallback -> globe changes paint only (no CLS).
+function GlobeFallback() {
+  return (
+    <div
+      className="relative flex h-full min-h-84 w-full flex-1 items-end justify-end border-t bg-[radial-gradient(circle_at_60%_45%,var(--primary)/12%,transparent_65%)] md:border-t-0 md:border-l"
+      aria-hidden="true"
+    >
+      <div className="relative aspect-square h-full overflow-hidden contain-[layout_style] select-none">
+        <div className="aspect-square h-full w-full animate-pulse bg-muted/20 contain-[layout_paint_size]" />
+      </div>
+    </div>
+  )
+}
+
 function LegendDot({ animated }: { animated: boolean }) {
   if (animated) {
     return (
@@ -44,8 +59,11 @@ export function About() {
   const getUsersLocation = useServerFn(getServerUsersLocation)
 
   const { data: location } = useQuery({
-    queryKey: [],
+    queryKey: ['user-location'],
     queryFn: () => getUsersLocation(),
+    staleTime: Infinity,
+    retry: false,
+    refetchOnWindowFocus: false,
   })
 
   const [hoveredId, setHoveredId] = useState<string | null>(null)
@@ -113,14 +131,7 @@ export function About() {
           </li>
         </ul>
       </div>
-      <Suspense
-        fallback={
-          <div
-            className="relative flex h-full min-h-84 w-full flex-1 items-end justify-end border-t bg-[radial-gradient(circle_at_60%_45%,var(--primary)/12%,transparent_65%)] md:border-t-0 md:border-l"
-            aria-hidden="true"
-          />
-        }
-      >
+      <Suspense fallback={<GlobeFallback />}>
         <Globe userLocation={userLocation} highlightedId={hoveredId} />
       </Suspense>
     </Section>

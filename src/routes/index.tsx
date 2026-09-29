@@ -12,7 +12,7 @@ import { Page, PageDescription, PageHeader, PageTitle } from '@/components/ui/pa
 import { Section } from '@/components/ui/section'
 import { FancySectionDivider, SectionDivider } from '@/components/ui/section-divider'
 import { siteConfig } from '@/config/site'
-import { getGithubContributions } from '@/lib/functions'
+import { getBlogPreview, getGithubContributions } from '@/lib/functions'
 
 export const Route = createFileRoute('/')({
   component: App,
@@ -26,16 +26,19 @@ export const Route = createFileRoute('/')({
     'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=604800',
   }),
   loader: async () => {
-    const contributions = await getGithubContributions({
-      data: { user: siteConfig.githubHandle },
-    })
-    return { contributions }
+    const [contributions, blogPreview] = await Promise.all([
+      getGithubContributions({
+        data: { user: siteConfig.githubHandle },
+      }),
+      getBlogPreview(),
+    ])
+    return { contributions, blogPreview }
   },
   staleTime: 60_000,
 })
 
 function App() {
-  const { contributions } = Route.useLoaderData()
+  const { contributions, blogPreview } = Route.useLoaderData()
 
   return (
     <Page>
@@ -58,7 +61,7 @@ function App() {
       <FancySectionDivider offset={-0.3} />
       <Certifications />
       <FancySectionDivider offset={1.2} />
-      <BlogPreview />
+      <BlogPreview posts={blogPreview} />
       <SectionDivider />
       <Section className="h-16" />
     </Page>
