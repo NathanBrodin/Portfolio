@@ -11,7 +11,7 @@ export function Page({ className, children, ...props }: React.ComponentProps<'ma
   return (
     <main
       className={cn(
-        'relative flex h-full flex-1 flex-col items-center overflow-x-hidden px-4',
+        'relative flex h-full flex-1 flex-col items-center overflow-x-clip px-4',
         className,
       )}
       {...props}

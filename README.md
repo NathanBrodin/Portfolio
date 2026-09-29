@@ -97,3 +97,19 @@ This project uses **Vite+**, a unified toolchain built on top of Vite, Rolldown,
 ## Star History
 
 [![Star History](https://starchart.cc/NathanBrodin/Portfolio.svg?variant=adaptive&line=%23d37f2c)](https://starchart.cc/NathanBrodin/Portfolio)
+
+---
+
+Ideas for the resume builder:
+
+- Chips to select skills
+- pre-defined fields/better defaults
+- remove export
+- check if the pdf fits on one page: error if not
+- Control Z kdb
+- New project to reference it?
+- refactor loading
+- sticky toolbar
+- use tanstack store for `src/features/resume-builder/store.tsx`?
+- MCP and AI to generate a resume based on a job post
+- change the route? resume/builder
