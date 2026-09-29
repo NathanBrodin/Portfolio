@@ -191,6 +191,13 @@ export const TECH_STACK: TechStack[] = [
     category: 'Infrastructure',
     theme: true,
   },
+  {
+    key: 'opentelemetry',
+    title: 'OpenTelemetry',
+    href: 'https://opentelemetry.io/',
+    category: 'Infrastructure',
+    theme: true,
+  },
 
   // Workflow
   {
