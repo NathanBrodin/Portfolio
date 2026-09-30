@@ -4,6 +4,7 @@ import {
   CircleCheckBigIcon,
   FilesIcon,
   FileTextIcon,
+  FileUserIcon,
   LayersIcon,
   NewspaperIcon,
   RssIcon,
@@ -44,6 +45,11 @@ export const PORTFOLIO_LINKS: LinkItem[] = [
     label: 'Blog',
     value: '/blog',
     icon: NewspaperIcon,
+  },
+  {
+    label: 'Resume Builder',
+    value: '/resume/builder',
+    icon: FileUserIcon,
   },
 ]
 

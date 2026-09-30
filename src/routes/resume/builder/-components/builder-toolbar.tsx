@@ -1,9 +1,11 @@
+import { useHotkey } from '@tanstack/react-hotkeys'
 import { Link } from '@tanstack/react-router'
 import { ArrowLeftIcon, FileDown, FileUp, Redo2, RotateCcw, Undo2 } from 'lucide-react'
 import { useRef, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { Group } from '@/components/ui/group'
+import { Kbd, KbdGroup } from '@/components/ui/kbd'
 import { Section } from '@/components/ui/section'
 import { anchoredToastManager } from '@/components/ui/toast'
 import { Tooltip, TooltipPopup, TooltipTrigger } from '@/components/ui/tooltip'
@@ -32,6 +34,15 @@ function useAnchoredErrorToast(id: string) {
 
 export function BuilderToolbar() {
   const { data, canUndo, canRedo, undo, redo, resetToBase, importJson } = useResumeBuilder()
+
+  useHotkey('Mod+Z', () => {
+    undo()
+  })
+
+  useHotkey('Mod+Shift+Z', () => {
+    redo()
+  })
+
   const [downloading, setDownloading] = useState(false)
   const fileRef = useRef<HTMLInputElement>(null)
   const [downloadButtonRef, showDownloadError] = useAnchoredErrorToast(
@@ -93,12 +104,24 @@ export function BuilderToolbar() {
                   disabled={!canUndo}
                   noSound
                   aria-label="Undo"
+                  aria-keyshortcuts="Control+Z Meta+Z"
                 />
               }
             >
               <Undo2 />
             </TooltipTrigger>
-            <TooltipPopup side="bottom">Undo</TooltipPopup>
+            <TooltipPopup side="bottom">
+              <div className="flex shrink-0 items-center justify-center gap-2">
+                Undo
+                <KbdGroup>
+                  <Kbd>
+                    <span className="os os-mac">⌘</span>
+                    <span className="os os-other">Ctrl</span>
+                  </Kbd>
+                  <Kbd>Z</Kbd>
+                </KbdGroup>
+              </div>
+            </TooltipPopup>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger
@@ -110,12 +133,25 @@ export function BuilderToolbar() {
                   disabled={!canRedo}
                   noSound
                   aria-label="Redo"
+                  aria-keyshortcuts="Control+Shift+Z Meta+Shift+Z"
                 />
               }
             >
               <Redo2 />
             </TooltipTrigger>
-            <TooltipPopup side="bottom">Redo</TooltipPopup>
+            <TooltipPopup side="bottom">
+              <div className="flex shrink-0 items-center justify-center gap-2">
+                Redo
+                <KbdGroup>
+                  <Kbd>
+                    <span className="os os-mac">⌘</span>
+                    <span className="os os-other">Ctrl</span>
+                  </Kbd>
+                  <Kbd>⇧</Kbd>
+                  <Kbd>Z</Kbd>
+                </KbdGroup>
+              </div>
+            </TooltipPopup>
           </Tooltip>
         </Group>
         <div className="flex flex-wrap items-center justify-end gap-2">
