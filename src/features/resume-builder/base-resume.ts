@@ -12,7 +12,7 @@ export const baseResume: ResumeData = {
     websiteLabel: 'brodin.dev',
   },
   summary:
-    'Frontend-leaning full-stack engineer. I build things for the web that are fast, accessible, documented, and polished — owning features end to end, from architecture to deployed systems.',
+    'Frontend-leaning full-stack engineer. I build fast, accessible, polished web apps — owning features end to end, from architecture to deployed systems.',
   experience: [
     {
       id: 'capia',
@@ -24,10 +24,9 @@ export const baseResume: ResumeData = {
       current: true,
       skills: ['TypeScript', 'React', 'TanStack', 'Tailwind CSS', 'Django', 'PostgreSQL'],
       bullets: [
-        'Built two production apps from empty repo to deployed systems: a multi-tenant organization-data platform and a traffic dashboard.',
-        'Own everything end to end: architecture, design, frontend, backend, infrastructure, CI/CD, and docs.',
-        'Type safety end to end: frontend types generated from the backend OpenAPI schema, CI fails on drift.',
-        'Set up OpenTelemetry across 8 repos into self-hosted SigNoz, from frontend API calls down to DB queries.',
+        'Built two production apps from empty repo to deployed: a multi-tenant data platform and a traffic dashboard.',
+        'Own everything end to end: architecture, design, frontend, backend, infra, CI/CD, docs.',
+        'Type-safe end to end with OpenAPI-generated types; OpenTelemetry across 8 repos into self-hosted SigNoz.',
       ],
     },
     {
@@ -40,8 +39,7 @@ export const baseResume: ResumeData = {
       current: false,
       skills: ['TypeScript', 'React', 'Design Systems'],
       bullets: [
-        'Frontend intern across three summers, working on design-system-driven web applications.',
-        'Shipped accessible, tested UI in close collaboration with designers and engineers.',
+        'Three summers on design-system-driven web apps; shipped accessible, tested UI with designers and engineers.',
       ],
     },
   ],
@@ -52,8 +50,8 @@ export const baseResume: ResumeData = {
       link: 'https://brodin.dev',
       skills: ['TypeScript', 'React', 'TanStack Start', 'Tailwind CSS', 'SEO'],
       bullets: [
-        'Personal portfolio with static pre-rendering, 100 Lighthouse scores on performance, accessibility, and SEO.',
-        'Full SEO setup: JSON-LD, sitemap, per-route OG images, llms.txt, and Markdown rendering of every post.',
+        'Statically pre-rendered personal portfolio: 100s on Lighthouse performance, accessibility, SEO.',
+        'Full SEO setup: JSON-LD, sitemap, OG images, llms.txt, Markdown-rendered posts.',
       ],
     },
     {
@@ -62,8 +60,8 @@ export const baseResume: ResumeData = {
       link: 'https://ui.brodin.dev',
       skills: ['TypeScript', 'React', 'Tailwind CSS', 'Base UI'],
       bullets: [
-        'Personal shadcn/ui registry and documentation site with a Zed-inspired theme.',
-        'Migrated toward Base UI primitives with reusable, accessible form and table components.',
+        'Personal shadcn/ui registry and docs site with a Zed-inspired theme.',
+        'Reusable, accessible components on Base UI primitives.',
       ],
     },
   ],
@@ -76,7 +74,7 @@ export const baseResume: ResumeData = {
       start: '2020-09',
       end: '2025-07',
       details:
-        'Top-10 French engineering school. Coursework across algorithms, systems programming, and full-stack development, plus three internships and two exchange semesters.',
+        'Top-10 French engineering school. Algorithms, systems, and full-stack coursework, three internships, two exchange semesters.',
     },
   ],
   skills: [

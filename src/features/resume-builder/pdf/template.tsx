@@ -1,7 +1,9 @@
-import '@takumi-rs/helpers/jsx'
 import type { ReactNode } from 'react'
 
 import type { ResumeData } from '../schema'
+
+// Unstyled content template: semantic JSX only, no classes, no inline
+// styles, no fonts. h1/h2 feed the PDF outline (bookmarks).
 
 function formatDates(start: string, end: string, current: boolean): string {
   if (current) return `${start} – Present`
@@ -22,7 +24,7 @@ function ContactLine({ data }: { data: ResumeData }) {
 
   if (basics.email) {
     parts.push(
-      <a key="email" href={`mailto:${basics.email}`} tw="text-primary no-underline">
+      <a key="email" href={`mailto:${basics.email}`}>
         {basics.email}
       </a>,
     )
@@ -32,21 +34,21 @@ function ContactLine({ data }: { data: ResumeData }) {
   }
   if (basics.linkedin) {
     parts.push(
-      <a key="linkedin" href={basics.linkedin} tw="text-primary no-underline">
+      <a key="linkedin" href={basics.linkedin}>
         {shortLinkLabel(basics.linkedin)}
       </a>,
     )
   }
   if (basics.github) {
     parts.push(
-      <a key="github" href={basics.github} tw="text-primary no-underline">
+      <a key="github" href={basics.github}>
         {shortLinkLabel(basics.github)}
       </a>,
     )
   }
   if (basics.websiteUrl) {
     parts.push(
-      <a key="website" href={basics.websiteUrl} tw="text-primary no-underline">
+      <a key="website" href={basics.websiteUrl}>
         {basics.websiteLabel || shortLinkLabel(basics.websiteUrl)}
       </a>,
     )
@@ -55,7 +57,7 @@ function ContactLine({ data }: { data: ResumeData }) {
   if (parts.length === 0) return null
 
   return (
-    <p tw="text-center text-[10px] text-muted-foreground">
+    <p>
       {parts.map((part, index) => (
         <span key={index}>
           {index > 0 ? '  ·  ' : ''}
@@ -70,14 +72,11 @@ function Bullets({ items }: { items: Array<string> }) {
   const lines = items.map((item) => item.trim()).filter(Boolean)
   if (lines.length === 0) return null
   return (
-    <div tw="flex flex-col">
+    <ul>
       {lines.map((line, index) => (
-        <div key={index} tw="flex flex-row gap-[6px]">
-          <span tw="shrink-0">•</span>
-          <span>{line}</span>
-        </div>
+        <li key={index}>{line}</li>
       ))}
-    </div>
+    </ul>
   )
 }
 
@@ -87,134 +86,100 @@ function SkillsLine({ items }: { items: Array<string> }) {
     .filter(Boolean)
     .join(' · ')
   if (!text) return null
-  return <p tw="text-[10px] text-muted-foreground">{text}</p>
-}
-
-function SectionTitle({ children }: { children: ReactNode }) {
-  return (
-    <h2 tw="mb-[8px] mt-[14px] border-b border-border pb-1 text-center font-display text-[13px] font-bold text-primary">
-      {children}
-    </h2>
-  )
+  return <p>{text}</p>
 }
 
 export function ResumePdfDocument({ data }: { data: ResumeData }) {
+  // Padding is page margin (format), not content styling.
   return (
-    <div tw="flex flex-col bg-background px-10 py-8 font-sans text-[11px] leading-[1.5] text-foreground">
-      <h1 tw="text-center font-display text-[27px] font-bold leading-[1.15] tracking-[-0.02em] text-primary">
-        {data.basics.name}
-      </h1>
-      {data.basics.headline ? (
-        <p tw="mt-1 text-center text-[12px] text-muted-foreground">{data.basics.headline}</p>
-      ) : null}
-      <div tw="mt-1.5">
-        <ContactLine data={data} />
-      </div>
+    <div style={{ paddingTop: 36, paddingRight: 48, paddingBottom: 36, paddingLeft: 48 }}>
+      <h1>{data.basics.name}</h1>
+      {data.basics.headline ? <p>{data.basics.headline}</p> : null}
+      <ContactLine data={data} />
 
       {data.summary
-        ? data.summary.split('\n\n').map((paragraph, index) => (
-            <p key={index} tw="mt-2">
-              {paragraph}
-            </p>
-          ))
+        ? data.summary.split('\n\n').map((paragraph, index) => <p key={index}>{paragraph}</p>)
         : null}
 
       {data.experience.length > 0 ? (
-        <div>
-          <SectionTitle>Experience</SectionTitle>
-          <div tw="flex flex-col gap-[9px]">
-            {data.experience.map((job) => (
-              <div key={job.id}>
-                <div tw="flex flex-row items-baseline justify-between gap-4">
-                  <p tw="text-[12px] font-bold">{job.role}</p>
-                  <p tw="shrink-0 text-[10px] text-muted-foreground">
-                    {formatDates(job.start, job.end, job.current)}
-                  </p>
-                </div>
-                {job.company || job.location ? (
-                  <p>
-                    {job.company}
-                    {job.company && job.location ? (
-                      <span tw="text-muted-foreground"> · {job.location}</span>
-                    ) : null}
-                    {!job.company && job.location ? job.location : null}
-                  </p>
-                ) : null}
-                <SkillsLine items={job.skills} />
-                <Bullets items={job.bullets} />
-              </div>
-            ))}
-          </div>
-        </div>
+        <section>
+          <h2>Experience</h2>
+          {data.experience.map((job) => (
+            <article key={job.id}>
+              <p>
+                {job.role} — {formatDates(job.start, job.end, job.current)}
+              </p>
+              {job.company || job.location ? (
+                <p>
+                  {job.company}
+                  {job.company && job.location ? ` · ${job.location}` : null}
+                  {!job.company && job.location ? job.location : null}
+                </p>
+              ) : null}
+              <SkillsLine items={job.skills} />
+              <Bullets items={job.bullets} />
+            </article>
+          ))}
+        </section>
       ) : null}
 
       {data.projects.length > 0 ? (
-        <div>
-          <SectionTitle>Projects</SectionTitle>
-          <div tw="flex flex-col gap-[9px]">
-            {data.projects.map((project) => (
-              <div key={project.id}>
-                <div tw="flex flex-row items-baseline justify-between gap-4">
-                  <p tw="text-[12px] font-bold">{project.name}</p>
-                  {project.link ? (
-                    <a href={project.link} tw="shrink-0 text-[10px] text-primary no-underline">
-                      {shortLinkLabel(project.link)}
-                    </a>
-                  ) : null}
-                </div>
-                <SkillsLine items={project.skills} />
-                <Bullets items={project.bullets} />
-              </div>
-            ))}
-          </div>
-        </div>
+        <section>
+          <h2>Projects</h2>
+          {data.projects.map((project) => (
+            <article key={project.id}>
+              <p>
+                {project.name}
+                {project.link ? (
+                  <>
+                    {' — '}
+                    <a href={project.link}>{shortLinkLabel(project.link)}</a>
+                  </>
+                ) : null}
+              </p>
+              <SkillsLine items={project.skills} />
+              <Bullets items={project.bullets} />
+            </article>
+          ))}
+        </section>
       ) : null}
 
       {data.skills.length > 0 ? (
-        <div>
-          <SectionTitle>Skills</SectionTitle>
-          <div tw="flex flex-col gap-[3px]">
+        <section>
+          <h2>Skills</h2>
+          <ul>
             {data.skills.map((group) => (
-              <div key={group.id} tw="flex flex-row gap-3">
-                <p tw="w-[130px] shrink-0 font-bold">{group.category}</p>
-                <p>
-                  {group.items
-                    .map((item) => item.trim())
-                    .filter(Boolean)
-                    .join(', ')}
-                </p>
-              </div>
+              <li key={group.id}>
+                {group.category}:{' '}
+                {group.items
+                  .map((item) => item.trim())
+                  .filter(Boolean)
+                  .join(', ')}
+              </li>
             ))}
-          </div>
-        </div>
+          </ul>
+        </section>
       ) : null}
 
       {data.education.length > 0 ? (
-        <div>
-          <SectionTitle>Education</SectionTitle>
-          <div tw="flex flex-col gap-[9px]">
-            {data.education.map((entry) => (
-              <div key={entry.id}>
-                <div tw="flex flex-row items-baseline justify-between gap-4">
-                  <p tw="text-[12px] font-bold">{entry.school}</p>
-                  <p tw="shrink-0 text-[10px] text-muted-foreground">
-                    {formatDates(entry.start, entry.end, false)}
-                  </p>
-                </div>
-                {entry.degree || entry.location ? (
-                  <p>
-                    {entry.degree}
-                    {entry.degree && entry.location ? (
-                      <span tw="text-muted-foreground"> · {entry.location}</span>
-                    ) : null}
-                    {!entry.degree && entry.location ? entry.location : null}
-                  </p>
-                ) : null}
-                {entry.details ? <p>{entry.details}</p> : null}
-              </div>
-            ))}
-          </div>
-        </div>
+        <section>
+          <h2>Education</h2>
+          {data.education.map((entry) => (
+            <article key={entry.id}>
+              <p>
+                {entry.school} — {formatDates(entry.start, entry.end, false)}
+              </p>
+              {entry.degree || entry.location ? (
+                <p>
+                  {entry.degree}
+                  {entry.degree && entry.location ? ` · ${entry.location}` : null}
+                  {!entry.degree && entry.location ? entry.location : null}
+                </p>
+              ) : null}
+              {entry.details ? <p>{entry.details}</p> : null}
+            </article>
+          ))}
+        </section>
       ) : null}
     </div>
   )

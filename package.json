@@ -40,7 +40,6 @@
     "@shikijs/rehype": "^4.0.2",
     "@t3-oss/env-core": "^0.13.10",
     "@tailwindcss/vite": "^4.2.2",
-    "@takumi-rs/helpers": "^2.14.0",
     "@tanstack/react-hotkeys": "^0.8.1",
     "@tanstack/react-query": "^5.91.2",
     "@tanstack/react-router": "^1.167.5",

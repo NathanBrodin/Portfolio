@@ -28,8 +28,3 @@ export function resumeFilename(name: string, ext: string): string {
       .replace(/^-+|-+$/g, '') || 'resume'
   return `${slug}.${ext}`
 }
-
-export function downloadResumeJson(data: ResumeData): void {
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
-  downloadBlob(blob, resumeFilename(data.basics.name, 'json'))
-}

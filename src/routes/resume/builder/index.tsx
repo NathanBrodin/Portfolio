@@ -50,7 +50,7 @@ function BuilderPage() {
         <Section className="bg-background p-4">
           <div className="grid w-full items-start gap-4 lg:grid-cols-[400px_minmax(0,1fr)]">
             <BuilderEditors />
-            <div className="lg:sticky lg:top-4">
+            <div className="lg:sticky lg:top-14">
               <Suspense fallback={<Skeleton className="h-[80vh] w-full rounded-lg" />}>
                 <ResumePreview />
               </Suspense>
