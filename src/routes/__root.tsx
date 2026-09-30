@@ -6,7 +6,7 @@ import { createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/reac
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { NotFound } from '@/components/not-found'
-import { ToastProvider } from '@/components/ui/toast'
+import { AnchoredToastProvider, ToastProvider } from '@/components/ui/toast'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { META_THEME_COLORS, siteConfig, siteJsonLd } from '@/config/site'
 import { githubStarsQueryOptions } from '@/lib/queries'
@@ -126,9 +126,11 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           <ThemeProvider disableTransitionOnChange>
             <TooltipProvider delay={0}>
               <ToastProvider>
-                <Header />
-                {children}
-                <Footer />
+                <AnchoredToastProvider>
+                  <Header />
+                  {children}
+                  <Footer />
+                </AnchoredToastProvider>
               </ToastProvider>
             </TooltipProvider>
           </ThemeProvider>
