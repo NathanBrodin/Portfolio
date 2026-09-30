@@ -63,4 +63,10 @@ export const OTHER_LINKS: LinkItem[] = [
       'https://claude.ai/new?q=Read+https%3A%2F%2Fbrodin.dev%2Fllms.txt%2C+I+want+to+ask+questions+about+it.',
     icon: Icons.claude,
   },
+  {
+    label: 'Open in ChatGPT',
+    value:
+      'https://chatgpt.com/?q=Read+https%3A%2F%2Fbrodin.dev%2Fllms.txt%2C+I+want+to+ask+questions+about+it.',
+    icon: Icons.openai,
+  },
 ]
