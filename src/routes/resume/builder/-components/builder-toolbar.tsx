@@ -1,4 +1,5 @@
-import { FileDown, FileUp, Redo2, RotateCcw, Undo2 } from 'lucide-react'
+import { Link } from '@tanstack/react-router'
+import { ArrowLeftIcon, FileDown, FileUp, Redo2, RotateCcw, Undo2 } from 'lucide-react'
 import { useRef, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
@@ -72,78 +73,87 @@ export function BuilderToolbar() {
   }
 
   return (
-    <Section className="flex-wrap justify-between gap-2 bg-background p-2">
-      <Group>
-        <Tooltip>
-          <TooltipTrigger
-            render={
-              <Button
-                variant="secondary"
-                size="icon-sm"
-                onClick={undo}
-                disabled={!canUndo}
-                noSound
-                aria-label="Undo"
-              />
-            }
+    <Section className="justify-between bg-background p-2">
+      <Link
+        to="/"
+        className="inline-flex items-center gap-1.5 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+      >
+        <ArrowLeftIcon className="size-3.5" />
+        Back to home
+      </Link>
+      <div className="flex gap-2">
+        <Group>
+          <Tooltip>
+            <TooltipTrigger
+              render={
+                <Button
+                  variant="secondary"
+                  size="icon-sm"
+                  onClick={undo}
+                  disabled={!canUndo}
+                  noSound
+                  aria-label="Undo"
+                />
+              }
+            >
+              <Undo2 />
+            </TooltipTrigger>
+            <TooltipPopup side="bottom">Undo</TooltipPopup>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger
+              render={
+                <Button
+                  variant="secondary"
+                  size="icon-sm"
+                  onClick={redo}
+                  disabled={!canRedo}
+                  noSound
+                  aria-label="Redo"
+                />
+              }
+            >
+              <Redo2 />
+            </TooltipTrigger>
+            <TooltipPopup side="bottom">Redo</TooltipPopup>
+          </Tooltip>
+        </Group>
+        <div className="flex flex-wrap items-center justify-end gap-2">
+          <Button size="sm" variant="secondary" onClick={resetToBase}>
+            <RotateCcw />
+            Reset
+          </Button>
+          <Button
+            size="sm"
+            variant="secondary"
+            onClick={() => fileRef.current?.click()}
+            ref={importButtonRef}
           >
-            <Undo2 />
-          </TooltipTrigger>
-          <TooltipPopup side="bottom">Undo</TooltipPopup>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger
-            render={
-              <Button
-                variant="secondary"
-                size="icon-sm"
-                onClick={redo}
-                disabled={!canRedo}
-                noSound
-                aria-label="Redo"
-              />
-            }
+            <FileUp />
+            Import
+          </Button>
+          <Button
+            size="sm"
+            onClick={handleDownloadPdf}
+            disabled={downloading}
+            ref={downloadButtonRef}
           >
-            <Redo2 />
-          </TooltipTrigger>
-          <TooltipPopup side="bottom">Redo</TooltipPopup>
-        </Tooltip>
-      </Group>
-      <div className="flex flex-wrap items-center justify-end gap-2">
-        <Button size="sm" variant="secondary" onClick={resetToBase}>
-          <RotateCcw />
-          Reset
-        </Button>
-        <Button
-          size="sm"
-          variant="secondary"
-          onClick={() => fileRef.current?.click()}
-          ref={importButtonRef}
-        >
-          <FileUp />
-          Import
-        </Button>
-        <Button
-          size="sm"
-          onClick={handleDownloadPdf}
-          disabled={downloading}
-          ref={downloadButtonRef}
-        >
-          <FileDown />
-          Download PDF
-        </Button>
-        <input
-          ref={fileRef}
-          type="file"
-          accept="application/json"
-          className="hidden"
-          aria-hidden="true"
-          tabIndex={-1}
-          onChange={(event) => {
-            void handleImportFile(event.target.files?.[0])
-            event.target.value = ''
-          }}
-        />
+            <FileDown />
+            Download PDF
+          </Button>
+          <input
+            ref={fileRef}
+            type="file"
+            accept="application/json"
+            className="hidden"
+            aria-hidden="true"
+            tabIndex={-1}
+            onChange={(event) => {
+              void handleImportFile(event.target.files?.[0])
+              event.target.value = ''
+            }}
+          />
+        </div>
       </div>
     </Section>
   )

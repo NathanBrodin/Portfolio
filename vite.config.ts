@@ -78,7 +78,7 @@ const config = defineConfig({
       prerender: {
         enabled: true,
         crawlLinks: true,
-        filter: ({ path }) => !path.includes('#') && !path.startsWith('/resume/builder'),
+        filter: ({ path }) => !path.includes('#') && !path.startsWith('/resume'),
       },
     }),
     viteReact({ compiler: true }),

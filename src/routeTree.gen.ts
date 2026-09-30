@@ -13,6 +13,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
 import { Route as BlogDotmdRouteImport } from './routes/blog[.]md'
+import { Route as ResumeRouteRouteImport } from './routes/resume/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OgIndexRouteImport } from './routes/og/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
@@ -41,6 +42,11 @@ const LlmsFullDottxtRoute = LlmsFullDottxtRouteImport.update({
 const BlogDotmdRoute = BlogDotmdRouteImport.update({
   id: '/blog.md',
   path: '/blog.md',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResumeRouteRoute = ResumeRouteRouteImport.update({
+  id: '/resume',
+  path: '/resume',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -75,9 +81,9 @@ const BlogRssRouteRoute = BlogRssRouteRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResumeBuilderIndexRoute = ResumeBuilderIndexRouteImport.update({
-  id: '/resume/builder/',
-  path: '/resume/builder/',
-  getParentRoute: () => rootRouteImport,
+  id: '/builder/',
+  path: '/builder/',
+  getParentRoute: () => ResumeRouteRoute,
 } as any)
 const BlogOgIndexRoute = BlogOgIndexRouteImport.update({
   id: '/blog/og/',
@@ -92,6 +98,7 @@ const BlogSlugOgIndexRoute = BlogSlugOgIndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/resume': typeof ResumeRouteRouteWithChildren
   '/blog.md': typeof BlogDotmdRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
@@ -107,6 +114,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/resume': typeof ResumeRouteRouteWithChildren
   '/blog.md': typeof BlogDotmdRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
@@ -123,6 +131,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/resume': typeof ResumeRouteRouteWithChildren
   '/blog.md': typeof BlogDotmdRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
@@ -140,6 +149,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/resume'
     | '/blog.md'
     | '/llms-full.txt'
     | '/llms.txt'
@@ -155,6 +165,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/resume'
     | '/blog.md'
     | '/llms-full.txt'
     | '/llms.txt'
@@ -170,6 +181,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/resume'
     | '/blog.md'
     | '/llms-full.txt'
     | '/llms.txt'
@@ -186,6 +198,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ResumeRouteRoute: typeof ResumeRouteRouteWithChildren
   BlogDotmdRoute: typeof BlogDotmdRoute
   LlmsFullDottxtRoute: typeof LlmsFullDottxtRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
@@ -196,7 +209,6 @@ export interface RootRouteChildren {
   BlogIndexRoute: typeof BlogIndexRoute
   OgIndexRoute: typeof OgIndexRoute
   BlogOgIndexRoute: typeof BlogOgIndexRoute
-  ResumeBuilderIndexRoute: typeof ResumeBuilderIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -227,6 +239,13 @@ declare module '@tanstack/react-router' {
       path: '/blog.md'
       fullPath: '/blog.md'
       preLoaderRoute: typeof BlogDotmdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resume': {
+      id: '/resume'
+      path: '/resume'
+      fullPath: '/resume'
+      preLoaderRoute: typeof ResumeRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -273,10 +292,10 @@ declare module '@tanstack/react-router' {
     }
     '/resume/builder/': {
       id: '/resume/builder/'
-      path: '/resume/builder'
+      path: '/builder'
       fullPath: '/resume/builder/'
       preLoaderRoute: typeof ResumeBuilderIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ResumeRouteRoute
     }
     '/blog/og/': {
       id: '/blog/og/'
@@ -295,6 +314,18 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface ResumeRouteRouteChildren {
+  ResumeBuilderIndexRoute: typeof ResumeBuilderIndexRoute
+}
+
+const ResumeRouteRouteChildren: ResumeRouteRouteChildren = {
+  ResumeBuilderIndexRoute: ResumeBuilderIndexRoute,
+}
+
+const ResumeRouteRouteWithChildren = ResumeRouteRoute._addFileChildren(
+  ResumeRouteRouteChildren,
+)
+
 interface BlogSlugRouteChildren {
   BlogSlugOgIndexRoute: typeof BlogSlugOgIndexRoute
 }
@@ -309,6 +340,7 @@ const BlogSlugRouteWithChildren = BlogSlugRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ResumeRouteRoute: ResumeRouteRouteWithChildren,
   BlogDotmdRoute: BlogDotmdRoute,
   LlmsFullDottxtRoute: LlmsFullDottxtRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
@@ -319,7 +351,6 @@ const rootRouteChildren: RootRouteChildren = {
   BlogIndexRoute: BlogIndexRoute,
   OgIndexRoute: OgIndexRoute,
   BlogOgIndexRoute: BlogOgIndexRoute,
-  ResumeBuilderIndexRoute: ResumeBuilderIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

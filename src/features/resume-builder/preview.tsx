@@ -2,7 +2,6 @@ import { TriangleAlertIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
 import { Alert, AlertTitle } from '@/components/ui/alert'
-import { Skeleton } from '@/components/ui/skeleton'
 
 import { exportResumePdf } from './export'
 import { checkResumeFits } from './pdf/server'
@@ -57,7 +56,7 @@ export default function ResumePreview() {
   }
 
   if (!url) {
-    return <Skeleton className="h-full min-h-96 w-full rounded-lg" />
+    return null
   }
 
   return (
