@@ -1,15 +1,20 @@
+import { TriangleAlertIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
+import { Alert, AlertTitle } from '@/components/ui/alert'
 import { Skeleton } from '@/components/ui/skeleton'
 
 import { exportResumePdf } from './export'
+import { checkResumeFits } from './pdf/server'
 import { useResumeBuilder } from './store'
 
-// Lazy-loaded by the route: @react-pdf/renderer never enters the main bundle.
+// Lazy-loaded by the route: rendering happens server-side, the client only
+// receives PDF bytes for the iframe preview.
 export default function ResumePreview() {
   const { data } = useResumeBuilder()
   const [url, setUrl] = useState<string | null>(null)
   const [failed, setFailed] = useState(false)
+  const [overflows, setOverflows] = useState(false)
   const latestUrl = useRef<string | null>(null)
   const sequence = useRef(0)
 
@@ -19,13 +24,14 @@ export default function ResumePreview() {
 
     const timer = setTimeout(() => {
       setFailed(false)
-      exportResumePdf(data)
-        .then((blob) => {
+      Promise.all([exportResumePdf(data), checkResumeFits({ data })])
+        .then(([blob, fits]) => {
           if (sequence.current !== current) return
           if (latestUrl.current) URL.revokeObjectURL(latestUrl.current)
           const objectUrl = URL.createObjectURL(blob)
           latestUrl.current = objectUrl
           setUrl(objectUrl)
+          setOverflows(!fits)
         })
         .catch(() => {
           if (sequence.current === current) setFailed(true)
@@ -55,10 +61,18 @@ export default function ResumePreview() {
   }
 
   return (
-    <iframe
-      title="Resume preview"
-      src={`${url}#toolbar=0&navpanes=0`}
-      className="h-[80vh] w-full rounded-lg border bg-white lg:h-[calc(100svh-2rem)]"
-    />
+    <div className="flex flex-col gap-2">
+      {overflows && (
+        <Alert variant="warning">
+          <TriangleAlertIcon />
+          <AlertTitle>This resume no longer fits on one page, trim some entries.</AlertTitle>
+        </Alert>
+      )}
+      <iframe
+        title="Resume preview"
+        src={url}
+        className="h-[80vh] w-full rounded-lg lg:h-[calc(100svh-2rem)]"
+      />
+    </div>
   )
 }

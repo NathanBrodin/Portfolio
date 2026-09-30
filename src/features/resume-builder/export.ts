@@ -1,16 +1,11 @@
-import { createElement } from 'react'
-
 import type { ResumeData } from './schema'
 
-// Heavy modules (@react-pdf/renderer + template) are dynamically imported so
-// the builder shell (editors, toolbar) stays interactive while they load.
+import { renderResumePdf } from './pdf/server'
+
 export async function exportResumePdf(data: ResumeData): Promise<Blob> {
-  const [{ pdf }, { ResumeDocument }] = await Promise.all([
-    import('@react-pdf/renderer'),
-    import('./document'),
-  ])
-  const document = createElement(ResumeDocument, { data }) as Parameters<typeof pdf>[0]
-  return pdf(document).toBlob()
+  const response = await renderResumePdf({ data })
+  if (!response.ok) throw new Error(`PDF render failed: ${response.status}`)
+  return response.blob()
 }
 
 export function downloadBlob(blob: Blob, filename: string): void {

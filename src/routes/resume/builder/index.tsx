@@ -19,7 +19,7 @@ export const Route = createFileRoute('/resume/builder/')({
   component: BuilderPage,
 })
 
-// Heavy preview (react-pdf) loads only when this route mounts.
+// Heavy preview (server-rendered PDF) loads only when this route mounts.
 const ResumePreview = lazy(() => import('@/features/resume-builder/preview'))
 
 function BuilderPending() {
