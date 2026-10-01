@@ -17,28 +17,19 @@ const ROTATION_SPEED = 0.001
 const FOCUS_EASE = 0.07
 const SNAP_THRESHOLD = 0.0008
 
-function markerSize(id: string, highlightedId?: string | null) {
-  if (highlightedId === id) return MARKER_SIZE
-  if (id === CURRENT_PLACE_ID || id === USER_MARKER.id) return MARKER_SIZE
-  return MARKER_SIZE
-}
-
-function buildMarkers(
-  userLocation: UserLocation | null | undefined,
-  highlightedId?: string | null,
-) {
+function buildMarkers(userLocation: UserLocation | null | undefined) {
   const markers = PLACES.map((p) => ({
     id: p.id,
     label: p.label,
     location: [p.lat, p.lng] as [number, number],
-    size: markerSize(p.id, highlightedId),
+    size: MARKER_SIZE,
   }))
   if (userLocation) {
     markers.push({
       id: USER_MARKER.id,
       label: USER_MARKER.label,
       location: [userLocation.lat, userLocation.lng] as [number, number],
-      size: markerSize(USER_MARKER.id, highlightedId),
+      size: MARKER_SIZE,
     })
   }
   return markers
@@ -50,17 +41,28 @@ function buildArcs(userLocation: UserLocation | null | undefined) {
   const current = PLACES.find((p) => p.id === CURRENT_PLACE_ID) ?? PLACES[PLACES.length - 1]
   return [
     {
-      id: `${current.id}-${USER_MARKER.id}`,
       from: [current.lat, current.lng] as [number, number],
       to: [userLocation.lat, userLocation.lng] as [number, number],
     },
   ]
 }
 
+function isLabeled(id: string, highlightedId?: string | null) {
+  return id === CURRENT_PLACE_ID || id === USER_MARKER.id || id === highlightedId
+}
+
+function toGlobeMarkers(
+  userLocation: UserLocation | null | undefined,
+  highlightedId?: string | null,
+) {
+  return buildMarkers(userLocation).map((m) => ({
+    location: m.location,
+    size: m.size,
+    ...(isLabeled(m.id, highlightedId) ? { id: m.id } : {}),
+  }))
+}
+
 // COBE exposes no focus API, only raw phi/theta rotations via update().
-// Inverting its projection: the lat/lng facing the viewer satisfies
-// phi = atan2(-x, z) and theta = atan2(y, hypot(x, z)) for the unit vector
-// of that location. Easing phi/theta toward those angles "focuses" a marker.
 function locationToAngles(lat: number, lng: number) {
   const latR = (lat * Math.PI) / 180
   const lngR = (lng * Math.PI) / 180 - Math.PI
@@ -117,22 +119,15 @@ function getThemePreset(theme: string | undefined) {
 export function Globe({ userLocation, highlightedId }: GlobeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const boxRef = useRef<HTMLDivElement>(null)
   const globeRef = useRef<CobeGlobe | null>(null)
   const phiRef = useRef(INITIAL_PHI)
   const thetaRef = useRef(DEFAULT_THETA)
   const targetRef = useRef<{ phi: number; theta: number } | null>(null)
-  const visibleRef = useRef(true)
   const { resolvedTheme } = useTheme()
 
-  // Only the current home and the visitor are labeled by default. Hovering a
-  // legend row reveals that place's label and rotates it into view, which
-  // keeps the clustered European markers readable.
-  const labels = buildMarkers(userLocation, highlightedId).filter(
-    (m) => m.id === CURRENT_PLACE_ID || m.id === USER_MARKER.id || m.id === highlightedId,
-  )
+  const labels = buildMarkers(userLocation).filter((m) => isLabeled(m.id, highlightedId))
 
-  // Steer the focus target whenever the hovered legend row changes. The
-  // animation loop below eases phi/theta toward it each frame.
   useEffect(() => {
     const focus = resolveFocusLocation(highlightedId, userLocation)
     targetRef.current = focus ? locationToAngles(focus.lat, focus.lng) : null
@@ -141,48 +136,116 @@ export function Globe({ userLocation, highlightedId }: GlobeProps) {
   useEffect(() => {
     const canvasNode = canvasRef.current
     const containerNode = containerRef.current
-    if (canvasNode === null || containerNode === null) return
+    const boxNode = boxRef.current
+    if (canvasNode === null || containerNode === null || boxNode === null) return
     const canvas: HTMLCanvasElement = canvasNode
     const container: HTMLDivElement = containerNode
+    const box: HTMLDivElement = boxNode
 
     let rafId = 0
     let attempts = 0
     let animationId = 0
+    let resizeRaf = 0
     let revealed = false
     let observer: IntersectionObserver | null = null
     let sizeObserver: ResizeObserver | null = null
     let cancelled = false
     let started = false
+    let running = false
+    let isVisible = true
+    let lastSize = 0
+    let onVisibilityChange: (() => void) | null = null
 
-    // Size via ResizeObserver: the callback carries content-box sizes, so no
-    // synchronous layout read (and no forced reflow) is ever needed.
+    function reveal() {
+      if (revealed) return
+      revealed = true
+      requestAnimationFrame(() => {
+        canvasRef.current?.style.setProperty('opacity', '1')
+      })
+    }
+
+    function frame() {
+      if (cancelled || !running) return
+      // Offscreen or tab-hidden: stop the chain here instead of scheduling
+      // no-op frames. The observer / visibility handler restarts it.
+      if (document.hidden || !isVisible) {
+        running = false
+        animationId = 0
+        return
+      }
+      const globe = globeRef.current
+      if (globe) {
+        const target = targetRef.current
+        if (target) {
+          const dPhi = shortestAngleDelta(target.phi, phiRef.current)
+          const dTheta = target.theta - thetaRef.current
+          phiRef.current += dPhi * FOCUS_EASE
+          thetaRef.current += dTheta * FOCUS_EASE
+          if (Math.abs(dPhi) < SNAP_THRESHOLD) phiRef.current = target.phi
+          if (Math.abs(dTheta) < SNAP_THRESHOLD) thetaRef.current = target.theta
+        } else {
+          phiRef.current += ROTATION_SPEED
+          thetaRef.current += (DEFAULT_THETA - thetaRef.current) * FOCUS_EASE
+        }
+        globe.update({ phi: phiRef.current, theta: thetaRef.current })
+        reveal()
+      }
+      animationId = requestAnimationFrame(frame)
+    }
+
+    function ensureRunning() {
+      if (cancelled || running) return
+      if (document.hidden || !isVisible) return
+      running = true
+      animationId = requestAnimationFrame(frame)
+    }
+
+    function stopLoop() {
+      running = false
+      cancelAnimationFrame(animationId)
+      animationId = 0
+    }
+
     function init() {
       if (cancelled || started) return
       if (typeof ResizeObserver !== 'undefined') {
         sizeObserver = new ResizeObserver((entries) => {
-          if (cancelled || started) return
+          if (cancelled) return
           const entry = entries[0]
-          const box = entry.contentBoxSize?.[0]
-          const size = box ? box.inlineSize : entry.contentRect.width
+          if (!entry) return
+          const boxSize = entry.contentBoxSize?.[0]
+          const size = boxSize ? boxSize.inlineSize : entry.contentRect.width
           if (size === 0) return
-          started = true
-          sizeObserver?.disconnect()
-          sizeObserver = null
-          start(size)
+          if (!started) {
+            started = true
+            lastSize = size
+            start(size)
+            return
+          }
+          // Resize path: COBE multiplies by devicePixelRatio internally, so
+          // pass CSS pixels just like at creation.
+          if (Math.abs(size - lastSize) < 1) return
+          lastSize = size
+          cancelAnimationFrame(resizeRaf)
+          resizeRaf = requestAnimationFrame(() => {
+            if (cancelled) return
+            globeRef.current?.update({ width: size, height: size })
+          })
         })
-        sizeObserver.observe(canvas)
+        sizeObserver.observe(box)
         return
       }
       // Fallback for ancient browsers: single deferred read after paint.
       rafId = requestAnimationFrame(function fallback() {
         if (cancelled || started) return
-        const size = canvas.clientWidth || container.clientWidth || 0
+        const size = box.clientWidth || container.clientWidth || 0
         if (size === 0) {
           attempts += 1
           if (attempts < 10) rafId = requestAnimationFrame(fallback)
           return
         }
         started = true
+        lastSize = size
         start(size)
       })
     }
@@ -191,9 +254,6 @@ export function Globe({ userLocation, highlightedId }: GlobeProps) {
       if (cancelled) return
       const initialTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
 
-      // Read viewport once at mount instead of subscribing to useIsMobile:
-      // the value is identical for sizing, but doesn't recreate the WebGL
-      // context when the media query flips (or hydrates false -> true).
       const isSmallScreen = window.innerWidth < 640
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -203,14 +263,10 @@ export function Globe({ userLocation, highlightedId }: GlobeProps) {
         height: width,
         phi: phiRef.current,
         theta: thetaRef.current,
-        mapSamples: isSmallScreen ? 4000 : 16000,
+        mapSamples: isSmallScreen ? 8000 : 16000,
         markerElevation: 0.01,
-        markers: buildMarkers(null, null).map((m) => ({
-          location: m.location,
-          size: m.size,
-          id: m.id,
-        })),
-        arcs: buildArcs(null).map((a) => ({ from: a.from, to: a.to, id: a.id })),
+        markers: toGlobeMarkers(null, null),
+        arcs: buildArcs(null),
         arcWidth: 0.5,
         arcHeight: 0.25,
         opacity: 0.7,
@@ -220,85 +276,66 @@ export function Globe({ userLocation, highlightedId }: GlobeProps) {
       })
       globeRef.current = globe
 
-      function reveal() {
-        if (revealed) return
-        revealed = true
-        requestAnimationFrame(() => {
-          canvasRef.current?.style.setProperty('opacity', '1')
-        })
-      }
-
-      // Static frame: no rotation loop, no continuous GPU work.
       if (prefersReducedMotion) {
         globe.update({ phi: phiRef.current, theta: thetaRef.current })
         reveal()
         return
       }
 
-      function animate() {
-        if (cancelled) return
-        // Pause GPU work when offscreen or tab-hidden, but keep the rAF
-        // chain alive so it resumes automatically without re-creating
-        // the globe. The globe is above the fold, so this only saves
-        // work after scrolling away — which is the common mobile case.
-        if (!document.hidden && visibleRef.current) {
-          const target = targetRef.current
-          if (target) {
-            const dPhi = shortestAngleDelta(target.phi, phiRef.current)
-            const dTheta = target.theta - thetaRef.current
-            phiRef.current += dPhi * FOCUS_EASE
-            thetaRef.current += dTheta * FOCUS_EASE
-            if (Math.abs(dPhi) < SNAP_THRESHOLD) phiRef.current = target.phi
-            if (Math.abs(dTheta) < SNAP_THRESHOLD) thetaRef.current = target.theta
-          } else {
-            phiRef.current += ROTATION_SPEED
-            thetaRef.current += (DEFAULT_THETA - thetaRef.current) * FOCUS_EASE
-          }
-          globe.update({ phi: phiRef.current, theta: thetaRef.current })
-          reveal()
-        }
-        animationId = requestAnimationFrame(animate)
-      }
-      animate()
+      ensureRunning()
 
       if (typeof IntersectionObserver !== 'undefined') {
         observer = new IntersectionObserver(
           ([entry]) => {
-            visibleRef.current = entry.isIntersecting
+            isVisible = entry?.isIntersecting ?? true
+            if (cancelled) return
+            if (isVisible) ensureRunning()
+            else stopLoop()
           },
           { threshold: 0 },
         )
         observer.observe(container)
       }
+
+      onVisibilityChange = () => {
+        if (cancelled) return
+        if (document.hidden) stopLoop()
+        else ensureRunning()
+      }
+      document.addEventListener('visibilitychange', onVisibilityChange)
     }
 
     rafId = requestAnimationFrame(init)
 
     return () => {
       cancelled = true
+      running = false
       cancelAnimationFrame(rafId)
       cancelAnimationFrame(animationId)
+      cancelAnimationFrame(resizeRaf)
+      if (onVisibilityChange) document.removeEventListener('visibilitychange', onVisibilityChange)
+      onVisibilityChange = null
       observer?.disconnect()
       sizeObserver?.disconnect()
       globeRef.current?.destroy()
       globeRef.current = null
+      const parent = canvas.parentElement
+      if (parent && parent !== box) {
+        box.prepend(canvas)
+        parent.remove()
+      }
     }
   }, [])
 
-  // Push marker/arc changes (visitor location resolving, legend hover growing
-  // a marker) into the live globe without recreating the canvas.
+  // Push marker/arc changes (visitor location resolving, legend hover
+  // focusing a marker) into the live globe without recreating the canvas.
   useEffect(() => {
     globeRef.current?.update({
-      markers: buildMarkers(userLocation, highlightedId).map((m) => ({
-        location: m.location,
-        size: m.size,
-        id: m.id,
-      })),
-      arcs: buildArcs(userLocation).map((a) => ({ from: a.from, to: a.to, id: a.id })),
+      markers: toGlobeMarkers(userLocation, highlightedId),
+      arcs: buildArcs(userLocation),
     })
   }, [userLocation, highlightedId])
 
-  // Apply the theme preset live whenever the resolved theme changes.
   useEffect(() => {
     globeRef.current?.update({ ...getThemePreset(resolvedTheme) })
   }, [resolvedTheme])
@@ -309,17 +346,22 @@ export function Globe({ userLocation, highlightedId }: GlobeProps) {
       className="relative flex h-full min-h-84 w-full flex-1 items-end justify-end border-t bg-[radial-gradient(circle_at_60%_45%,var(--primary)/12%,transparent_65%)] md:border-t-0 md:border-l"
     >
       <Dither />
-      <div className="relative aspect-square h-full overflow-hidden contain-[layout_style] select-none [--cobe-bg:var(--background)] [--cobe-ink:var(--primary)]">
+      <div
+        ref={boxRef}
+        className="relative aspect-square h-full overflow-hidden contain-[layout_style] select-none [--cobe-bg:var(--background)] [--cobe-ink:var(--primary)]"
+      >
         <canvas
           ref={canvasRef}
           width={512}
           height={512}
-          className="aspect-square h-full w-full touch-none opacity-0 transition-opacity duration-1000 contain-[layout_paint_size]"
+          aria-hidden="true"
+          className="aspect-square h-full w-full touch-pan-y opacity-0 transition-opacity duration-1000 contain-[layout_paint_size]"
         />
         {labels.map((m) => (
           <div
             key={m.id}
-            className="pointer-events-none absolute [bottom:anchor(top)] [left:anchor(center)] mb-2 [translate:-50%_0] rounded-xs bg-[var(--cobe-ink)] px-[0.35rem] py-[0.15rem] font-mono text-[0.6rem] tracking-[0.08em] whitespace-nowrap text-[var(--cobe-bg)] uppercase transition-[opacity,filter] duration-800 after:absolute after:top-full after:left-1/2 after:[transform:translate3d(-50%,-1px,0)] after:[border-width:5px] after:[border-style:solid] after:[border-color:var(--cobe-ink)_transparent_transparent_transparent] after:content-[''] max-sm:mb-1.5 max-sm:px-1 max-sm:py-[0.1rem] max-sm:text-[0.5rem] [@supports_not_(anchor-name:--test)]:hidden"
+            aria-hidden="true"
+            className="pointer-events-none absolute [bottom:anchor(top)] [left:anchor(center)] mb-2 [translate:-50%_0] rounded-xs bg-[var(--cobe-ink)] px-[0.35rem] py-[0.15rem] font-mono text-[0.6rem] tracking-[0.08em] whitespace-nowrap text-[var(--cobe-bg)] uppercase transition-[opacity,filter] duration-200 after:absolute after:top-full after:left-1/2 after:[transform:translate3d(-50%,-1px,0)] after:[border-width:5px] after:[border-style:solid] after:[border-color:var(--cobe-ink)_transparent_transparent_transparent] after:content-[''] max-sm:mb-1.5 max-sm:px-1 max-sm:py-[0.1rem] max-sm:text-[0.5rem] [@supports_not_(anchor-name:--test)]:hidden"
             style={
               {
                 positionAnchor: `--cobe-${m.id}`,

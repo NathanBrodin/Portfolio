@@ -4,6 +4,7 @@ import { lazy, Suspense, useState } from 'react'
 
 import { siteConfig } from '@/config/site'
 import { getUsersLocation as getServerUsersLocation } from '@/lib/functions'
+import { cn } from '@/lib/utils'
 
 import { Diamond } from '../ui/diamond'
 import { Section } from '../ui/section'
@@ -75,9 +76,10 @@ export function About() {
             <li
               key={item.id}
               tabIndex={0}
-              className={`flex cursor-pointer items-start gap-2 rounded-sm px-1 py-1.5 transition-colors duration-150 ${
-                hoveredId === item.id ? 'bg-primary/10' : 'hover:bg-muted/50'
-              }`}
+              className={cn(
+                'flex cursor-pointer items-start gap-2 rounded-sm px-1 py-1.5 transition-colors duration-150',
+                hoveredId === item.id ? 'bg-primary/10' : 'hover:bg-muted/50',
+              )}
               onMouseEnter={() => setHoveredId(item.id)}
               onMouseLeave={() => setHoveredId(null)}
               onFocus={() => setHoveredId(item.id)}
@@ -91,28 +93,23 @@ export function About() {
               </span>
             </li>
           ))}
-          {/* Same <li> shell prerendered and post-load: only its contents fill
-              in when the visitor location resolves, so hydration always matches. */}
           <li
             tabIndex={userLocation ? 0 : -1}
-            className={`flex min-h-4.75 cursor-pointer items-start gap-2 rounded-sm px-1 py-0.5 transition-colors duration-150 ${
-              hoveredId === USER_MARKER.id ? 'bg-primary/10' : 'hover:bg-muted/50'
-            }`}
+            className={cn(
+              'flex cursor-pointer items-start gap-2 rounded-sm px-1 py-1.5 transition-colors duration-150',
+              hoveredId === USER_MARKER.id ? 'bg-primary/10' : 'hover:bg-muted/50',
+            )}
             onMouseEnter={() => setHoveredId(USER_MARKER.id)}
             onMouseLeave={() => setHoveredId(null)}
             onFocus={() => setHoveredId(USER_MARKER.id)}
             onBlur={() => setHoveredId(null)}
           >
-            {userLocation ? (
-              <>
-                <LegendDot animated />
-                <span className="text-xs leading-tight text-muted-foreground">
-                  <span className="font-medium text-foreground">{USER_MARKER.label}</span>
-                  {' — '}
-                  {USER_MARKER.description}
-                </span>
-              </>
-            ) : null}
+            <LegendDot animated />
+            <span className="text-xs leading-tight text-muted-foreground">
+              <span className="font-medium text-foreground">{USER_MARKER.label}</span>
+              {' — '}
+              {USER_MARKER.description}
+            </span>
           </li>
         </ul>
       </div>
