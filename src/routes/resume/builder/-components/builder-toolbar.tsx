@@ -84,7 +84,7 @@ export function BuilderToolbar() {
   }
 
   return (
-    <Section variant="panel" size="sm" className="justify-between">
+    <Section variant="panel" size="sm" className="justify-between gap-2 max-sm:flex-col">
       <Link
         to="/"
         className="inline-flex items-center gap-1.5 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -157,7 +157,7 @@ export function BuilderToolbar() {
         <div className="flex flex-wrap items-center justify-end gap-2">
           <Button size="sm" variant="secondary" onClick={resetToBase}>
             <RotateCcw />
-            Reset
+            <span className="max-sm:sr-only">Reset</span>
           </Button>
           <Button
             size="sm"
@@ -166,7 +166,7 @@ export function BuilderToolbar() {
             ref={importButtonRef}
           >
             <FileUp />
-            Import
+            <span className="max-sm:sr-only">Import</span>
           </Button>
           <Button
             size="sm"
