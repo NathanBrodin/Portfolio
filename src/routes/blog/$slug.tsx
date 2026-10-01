@@ -118,7 +118,7 @@ function RouteComponent() {
         </PageDescription>
       </PageHeader>
       <SectionDivider />
-      <Section className="bg-background p-4">
+      <Section variant="panel" size="md">
         <article className="w-full min-w-0">
           <Prose>
             <Markdown content={post.markup} />

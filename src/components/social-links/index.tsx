@@ -8,7 +8,7 @@ export function SocialLinks() {
   return (
     <Section className="relative flex flex-col px-4 sm:px-16">
       <h2 className="sr-only">Social Links</h2>
-      <Lines className="opacity-5 select-none dark:opacity-2" />
+      <Lines variant="faint" />
       <div className="relative">
         <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
           {SOCIAL_LINKS.map((link, index) => {

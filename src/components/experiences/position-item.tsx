@@ -7,6 +7,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
   CollapsibleWithContext,
+  LearnMoreTrigger,
 } from '@/components/ui/collapsible'
 import { Separator } from '@/components/ui/separator'
 import {
@@ -18,7 +19,6 @@ import {
 import { cn } from '@/lib/utils'
 
 import { Markdown } from '../markdown'
-import { Button } from '../ui/button'
 import { Tag } from '../ui/tag'
 import { Prose } from '../ui/typography'
 import { ExperienceIcon } from './position-icon'
@@ -51,11 +51,12 @@ export function ExperiencePositionItem({
     >
       <CollapsibleTrigger
         aria-label={accessibleLabel}
-        className={cn(
-          'block w-full text-left',
-          'hover:before:bg-muted/50 relative before:absolute before:-top-1 before:-right-1 before:-bottom-1.5 before:left-7 before:-z-1 before:rounded-lg before:transition-[background-color] before:ease-out',
-        )}
+        className={cn('group relative block w-full text-left')}
       >
+        <div
+          aria-hidden
+          className="absolute -top-1 -right-1 -bottom-1.5 left-7 -z-1 rounded-lg transition-[background-color] ease-out group-hover:bg-muted/50"
+        />
         <div className="relative z-1 mb-1 flex items-center gap-3">
           <div
             className={cn(
@@ -121,28 +122,17 @@ export function ExperiencePositionItem({
 
       <CollapsibleContent hiddenUntilFound className="relative">
         {position.description && (
-          <Prose className="pt-2 pl-9 sm:prose-sm">
+          <Prose size="compact" className="pt-2 pl-9">
             <Markdown content={position.description} />
           </Prose>
         )}
         {moreContent && (
           <CollapsibleWithContext render={<div className="contents" />}>
             <div className="pl-6">
-              <CollapsibleTrigger
-                render={
-                  <Button
-                    variant="link"
-                    size="xs"
-                    className="absolute right-0 -bottom-1 text-transparent transition-colors duration-300 hover:text-muted-foreground"
-                  />
-                }
-              >
-                Learn more
-                <CollapsibleChevronsIcon />
-              </CollapsibleTrigger>
+              <LearnMoreTrigger className="-bottom-1" />
             </div>
             <CollapsibleContent hiddenUntilFound>
-              <Prose className="pt-2 pl-9 sm:prose-sm">
+              <Prose size="compact" className="pt-2 pl-9">
                 <Markdown content={moreContent} />
               </Prose>
             </CollapsibleContent>

@@ -15,7 +15,7 @@ export function Nav({ items }: { items: Group[] }) {
     <div className="flex items-center">
       <Button size="icon" variant="ghost" render={<Link to="/" />}>
         <span className="sr-only">Go to home</span>
-        <Logo className="mr-2 text-primary" size={16} />
+        <Logo className="mr-2" size={16} />
       </Button>
       <Sheet onOpenChange={setOpen} open={open}>
         <SheetTrigger
@@ -29,7 +29,7 @@ export function Nav({ items }: { items: Group[] }) {
           <div className="flex flex-col gap-6 overflow-auto p-6 pt-8">
             {items.map((groupedItem) => (
               <div key={groupedItem.value} className="flex flex-col gap-3">
-                <div className="text-md font-display font-medium text-primary">
+                <div className="font-display text-base font-medium text-primary">
                   {groupedItem.value}
                 </div>
                 <div className="flex flex-col gap-1">

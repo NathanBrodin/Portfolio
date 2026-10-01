@@ -35,7 +35,7 @@ function RouteComponent() {
           </PageDescription>
         </div>
         <div>
-          <ul className="flew-wrap relative flex gap-4 p-4">
+          <ul className="relative flex flex-wrap gap-4 p-4">
             {stack.map((tech) => {
               return (
                 <li key={tech.key} className="flex">

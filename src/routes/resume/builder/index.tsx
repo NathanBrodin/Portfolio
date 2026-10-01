@@ -9,6 +9,7 @@ import { BuilderEditors } from '@/features/resume-builder/editors'
 import { ResumeBuilderProvider } from '@/features/resume-builder/store'
 
 import { BuilderToolbar } from './-components/builder-toolbar'
+import { EditorSkeleton, PreviewSkeleton } from './-components/preview-skeleton'
 
 export const Route = createFileRoute('/resume/builder/')({
   ssr: false,
@@ -25,14 +26,14 @@ const ResumePreview = lazy(() => import('@/features/resume-builder/preview'))
 function BuilderPending() {
   return (
     <Page>
-      <Section className="bg-background p-2">
+      <Section variant="panel" size="sm">
         <Skeleton className="h-7 w-full" />
       </Section>
       <SubSectionDivider />
-      <Section className="bg-background p-4">
+      <Section variant="panel" size="md">
         <div className="grid w-full items-start gap-4 lg:grid-cols-[400px_minmax(0,1fr)]">
-          <Skeleton className="h-screen w-full rounded-xl" />
-          <Skeleton className="h-screen w-full rounded-lg" />
+          <EditorSkeleton />
+          <PreviewSkeleton />
         </div>
       </Section>
       <SectionDivider />
@@ -47,11 +48,11 @@ function BuilderPage() {
       <Page>
         <BuilderToolbar />
         <SubSectionDivider />
-        <Section className="bg-background p-4">
+        <Section variant="panel" size="md">
           <div className="grid w-full items-start gap-4 lg:grid-cols-[400px_minmax(0,1fr)]">
             <BuilderEditors />
             <div className="lg:sticky lg:top-14">
-              <Suspense fallback={<Skeleton className="h-screen w-full rounded-lg" />}>
+              <Suspense fallback={<PreviewSkeleton />}>
                 <ResumePreview />
               </Suspense>
             </div>

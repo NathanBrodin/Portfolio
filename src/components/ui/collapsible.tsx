@@ -3,6 +3,7 @@ import { createContext, useCallback, useContext, useEffect, useRef, useState } f
 
 import type { ChevronsDownUpIconHandle } from '@/components/ui/icons/chevrons-down-up-icon'
 
+import { Button } from '@/components/ui/button'
 import { ChevronsDownUpIcon } from '@/components/ui/icons/chevrons-down-up-icon'
 import { playSound } from '@/lib/play-sound'
 import { cn } from '@/lib/utils'
@@ -95,6 +96,30 @@ function CollapsibleChevronsIcon() {
   return <ChevronsDownUpIcon ref={ref} />
 }
 
+function LearnMoreTrigger({
+  className,
+  ...props
+}: Omit<CollapsiblePrimitive.Trigger.Props, 'render'>) {
+  return (
+    <CollapsibleTrigger
+      render={
+        <Button
+          variant="link"
+          size="xs"
+          className={cn(
+            'absolute right-0 text-transparent transition-colors duration-300 hover:text-muted-foreground',
+            className,
+          )}
+        />
+      }
+      {...props}
+    >
+      Learn more
+      <CollapsibleChevronsIcon />
+    </CollapsibleTrigger>
+  )
+}
+
 export {
   Collapsible,
   CollapsibleTrigger,
@@ -102,4 +127,5 @@ export {
   CollapsiblePanel as CollapsibleContent,
   CollapsibleWithContext,
   CollapsibleChevronsIcon,
+  LearnMoreTrigger,
 }

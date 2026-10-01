@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { cn } from '@/lib/utils'
+
 interface LogoProps {
   className?: string
   size?: number
@@ -8,7 +10,7 @@ interface LogoProps {
 export const Logo: React.FC<LogoProps> = ({ className = '', size = 24 }) => {
   return (
     <svg
-      className={className}
+      className={cn('text-primary', className)}
       width={size}
       height={size}
       viewBox="0 0 201 200"

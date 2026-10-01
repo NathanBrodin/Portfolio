@@ -1,18 +1,30 @@
+import { cva, type VariantProps } from 'class-variance-authority'
 import { useId } from 'react'
 
 import { cn } from '@/lib/utils'
 
-export function Lines({ className, ...props }: React.ComponentProps<'svg'>) {
+const linesVariants = cva(
+  'text-primary pointer-events-none absolute inset-0 -z-1 size-full py-px select-none',
+  {
+    defaultVariants: {
+      variant: 'default',
+    },
+    variants: {
+      variant: {
+        default: 'opacity-10 dark:opacity-5',
+        faint: 'opacity-5 dark:opacity-2',
+        strong: 'opacity-10 dark:opacity-6',
+      },
+    },
+  },
+)
+
+interface LinesProps extends React.ComponentProps<'svg'>, VariantProps<typeof linesVariants> {}
+
+export function Lines({ className, variant, ...props }: LinesProps) {
   const patternId = useId()
   return (
-    <svg
-      aria-hidden="true"
-      className={cn(
-        'text-primary pointer-events-none absolute inset-0 -z-1 size-full py-px opacity-10 select-none dark:opacity-5',
-        className,
-      )}
-      {...props}
-    >
+    <svg aria-hidden="true" className={cn(linesVariants({ variant }), className)} {...props}>
       <defs>
         <pattern
           id={patternId}

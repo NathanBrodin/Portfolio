@@ -56,7 +56,7 @@ export function BlogNavigation() {
   })
 
   return (
-    <Section className="justify-between bg-background p-2">
+    <Section variant="panel" size="sm" className="justify-between">
       <Link
         to="/blog"
         className="inline-flex items-center gap-1.5 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"

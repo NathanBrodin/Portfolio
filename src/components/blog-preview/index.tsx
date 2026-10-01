@@ -14,7 +14,7 @@ export function BlogPreview({ posts }: { posts: BlogPreviewPost[] }) {
       <SectionTitle>Blog</SectionTitle>
 
       <div className="relative border-y">
-        <Lines className="opacity-10 select-none dark:opacity-6" />
+        <Lines variant="strong" />
         <div className="grid grid-cols-1 sm:grid-cols-2">
           {posts.map((post) => (
             <Link

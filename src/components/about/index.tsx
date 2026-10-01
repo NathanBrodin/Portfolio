@@ -58,7 +58,7 @@ export function About() {
     location?.lat != null && location?.lng != null ? { lat: location.lat, lng: location.lng } : null
 
   return (
-    <Section id="about" className="grid w-full grid-cols-1 bg-background/50 md:grid-cols-2">
+    <Section id="about" variant="panel" className="grid w-full grid-cols-1 md:grid-cols-2">
       <div className="relative flex flex-col gap-4 p-4 md:p-6">
         <Diamond top right />
         <Diamond bottom right />

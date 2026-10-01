@@ -12,8 +12,8 @@ export function Footer() {
   const linkedinLink = SOCIAL_LINKS.find((link) => link.label === 'LinkedIn')
 
   return (
-    <footer className="item-center flex justify-center border-t px-4 pb-[env(safe-area-inset-bottom)]">
-      <div className="item-center relative flex w-full max-w-5xl flex-col justify-between border-x px-4 sm:flex-row">
+    <footer className="flex items-center justify-center border-t px-4 pb-[env(safe-area-inset-bottom)]">
+      <div className="relative flex w-full max-w-5xl flex-col justify-between border-x px-4 sm:flex-row">
         <p className="py-2 text-sm text-muted-foreground">
           Built by{' '}
           <a className="link" href="https://brodin.dev" target="_blank" rel="noopener">

@@ -12,11 +12,35 @@ const config = defineConfig({
     '*': 'vp check --fix',
   },
   lint: {
+    jsPlugins: ['@shadcn/lint'],
     options: { typeAware: true, typeCheck: true },
     plugins: ['react', 'typescript'],
     rules: {
       'no-floating-promises': 'off',
+      'shadcn/no-unknown-classes': 'warn',
+      'shadcn/no-restyle': [
+        'warn',
+        {
+          allow: ['layout'],
+          contracts: [
+            { pattern: '^Section$', allow: ['layout', 'spacing'] },
+            { pattern: '^Prose$', allow: ['layout', 'spacing'] },
+            { pattern: '^Skeleton$', allow: ['layout', 'shape'] },
+            { pattern: '^CollapsibleTrigger$', allow: ['layout', 'spacing'] },
+          ],
+        },
+      ],
     },
+    overrides: [
+      {
+        files: ['src/components/ui/**'],
+        rules: { 'shadcn/no-restyle': 'off' },
+      },
+      {
+        files: ['src/routes/**/og/**'],
+        rules: { 'shadcn/no-restyle': 'off' },
+      },
+    ],
   },
   fmt: {
     semi: false,

@@ -8,6 +8,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
   CollapsibleWithContext,
+  LearnMoreTrigger,
 } from '@/components/ui/collapsible'
 import { Tag } from '@/components/ui/tag'
 import { Prose } from '@/components/ui/typography'
@@ -120,7 +121,7 @@ export function ProjectItem({ className, project }: { className?: string; projec
       <CollapsibleContent hiddenUntilFound className="relative">
         <div className="space-y-2 px-4 py-2">
           {project.markup && (
-            <Prose className="sm:prose-sm">
+            <Prose size="compact">
               <Markdown content={project.markup} />
             </Prose>
           )}
@@ -128,21 +129,10 @@ export function ProjectItem({ className, project }: { className?: string; projec
           {project.hasDetail && project.detailMarkup && (
             <CollapsibleWithContext render={<div className="contents" />}>
               <div className="pl-6">
-                <CollapsibleTrigger
-                  render={
-                    <Button
-                      variant="link"
-                      size="xs"
-                      className="absolute right-0 bottom-8 text-transparent transition-colors duration-300 hover:text-muted-foreground"
-                    />
-                  }
-                >
-                  Learn more
-                  <CollapsibleChevronsIcon />
-                </CollapsibleTrigger>
+                <LearnMoreTrigger className="bottom-8" />
               </div>
               <CollapsibleContent hiddenUntilFound>
-                <Prose className="sm:prose-sm">
+                <Prose size="compact">
                   <Markdown content={project.detailMarkup} />
                 </Prose>
               </CollapsibleContent>
