@@ -189,11 +189,7 @@ export function Globe({ userLocation, highlightedId }: GlobeProps) {
 
     function start(width: number) {
       if (cancelled) return
-      const initialTheme =
-        document.documentElement.classList.contains('dark') ||
-        window.matchMedia('(prefers-color-scheme: dark)').matches
-          ? 'dark'
-          : 'light'
+      const initialTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
 
       // Read viewport once at mount instead of subscribing to useIsMobile:
       // the value is identical for sizing, but doesn't recreate the WebGL
