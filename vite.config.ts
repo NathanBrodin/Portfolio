@@ -70,11 +70,15 @@ const config = defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  ssr: {
+    external: ['takumi-pdf', '@takumi-rs/helpers'],
+  },
   plugins: [
     contentCollections({ environment: 'client' }),
     devtools(),
     nitro({
       rolldownConfig: {
+        external: ['takumi-pdf', '@takumi-rs/helpers'],
         onwarn(warning, warn) {
           if (
             warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
@@ -86,6 +90,7 @@ const config = defineConfig({
         },
       },
       rollupConfig: {
+        external: ['takumi-pdf', '@takumi-rs/helpers'],
         onwarn(warning, warn) {
           if (
             warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
