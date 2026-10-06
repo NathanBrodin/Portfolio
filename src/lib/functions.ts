@@ -10,7 +10,7 @@ type GitHubContributionsResponse = {
 }
 
 export const getStargazersCount = createServerFn({ method: 'GET' })
-  .inputValidator((data: { repo: string }) => data)
+  .validator((data: { repo: string }) => data)
   .middleware([staticFunctionMiddleware])
   .handler(async ({ data }) => {
     try {
@@ -34,7 +34,7 @@ export const getStargazersCount = createServerFn({ method: 'GET' })
   })
 
 export const getGithubContributions = createServerFn({ method: 'GET' })
-  .inputValidator((data: { user: string }) => data)
+  .validator((data: { user: string }) => data)
   .handler(async ({ data }) => {
     try {
       const response = await fetch(
