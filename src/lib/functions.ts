@@ -11,10 +11,7 @@ type GitHubContributionsResponse = {
 
 export const getStargazersCount = createServerFn({ method: 'GET' })
   .inputValidator((data: { repo: string }) => data)
-  .middleware([
-    // @ts-expect-error types currently mismatch between start-static-server-functions and react-start
-    staticFunctionMiddleware,
-  ])
+  .middleware([staticFunctionMiddleware])
   .handler(async ({ data }) => {
     try {
       const response = await fetch(`https://api.github.com/repos/${data.repo}`, {

@@ -9,35 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
-import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
-import { Route as BlogDotmdRouteImport } from './routes/blog[.]md'
-import { Route as ResumeRouteRouteImport } from './routes/resume/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as OgIndexRouteImport } from './routes/og/index'
-import { Route as BlogIndexRouteImport } from './routes/blog/index'
-import { Route as BlogChar123slugChar125DotmdRouteImport } from './routes/blog/{$slug}[.]md'
-import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
+import { Route as BlogDotmdRouteImport } from './routes/blog[.]md'
+import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
+import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
+import { Route as ResumeRouteRouteImport } from './routes/resume/route'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ApiResumePdfRouteImport } from './routes/api/resume-pdf'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as BlogRssRouteRouteImport } from './routes/blog/rss/route'
-import { Route as ResumeBuilderIndexRouteImport } from './routes/resume/builder/index'
+import { Route as BlogChar123slugChar125DotmdRouteImport } from './routes/blog/{$slug}[.]md'
+import { Route as OgIndexRouteImport } from './routes/og/index'
 import { Route as BlogOgIndexRouteImport } from './routes/blog/og/index'
+import { Route as ResumeBuilderIndexRouteImport } from './routes/resume/builder/index'
 import { Route as BlogSlugOgIndexRouteImport } from './routes/blog/$slug/og/index'
 
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
-  id: '/llms.txt',
-  path: '/llms.txt',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LlmsFullDottxtRoute = LlmsFullDottxtRouteImport.update({
-  id: '/llms-full.txt',
-  path: '/llms-full.txt',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogDotmdRoute = BlogDotmdRouteImport.update({
@@ -45,24 +35,44 @@ const BlogDotmdRoute = BlogDotmdRouteImport.update({
   path: '/blog.md',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LlmsFullDottxtRoute = LlmsFullDottxtRouteImport.update({
+  id: '/llms-full.txt',
+  path: '/llms-full.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
+  id: '/llms.txt',
+  path: '/llms.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResumeRouteRoute = ResumeRouteRouteImport.update({
   id: '/resume',
   path: '/resume',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OgIndexRoute = OgIndexRouteImport.update({
-  id: '/og/',
-  path: '/og/',
+const ApiResumePdfRoute = ApiResumePdfRouteImport.update({
+  id: '/api/resume-pdf',
+  path: '/api/resume-pdf',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRssRouteRoute = BlogRssRouteRouteImport.update({
+  id: '/blog/rss',
+  path: '/blog/rss',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogChar123slugChar125DotmdRoute =
@@ -71,30 +81,20 @@ const BlogChar123slugChar125DotmdRoute =
     path: '/blog/{$slug}.md',
     getParentRoute: () => rootRouteImport,
   } as any)
-const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/blog/$slug',
-  path: '/blog/$slug',
+const OgIndexRoute = OgIndexRouteImport.update({
+  id: '/og/',
+  path: '/og/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiResumePdfRoute = ApiResumePdfRouteImport.update({
-  id: '/api/resume-pdf',
-  path: '/api/resume-pdf',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BlogRssRouteRoute = BlogRssRouteRouteImport.update({
-  id: '/blog/rss',
-  path: '/blog/rss',
+const BlogOgIndexRoute = BlogOgIndexRouteImport.update({
+  id: '/blog/og/',
+  path: '/blog/og/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResumeBuilderIndexRoute = ResumeBuilderIndexRouteImport.update({
   id: '/builder/',
   path: '/builder/',
   getParentRoute: () => ResumeRouteRoute,
-} as any)
-const BlogOgIndexRoute = BlogOgIndexRouteImport.update({
-  id: '/blog/og/',
-  path: '/blog/og/',
-  getParentRoute: () => rootRouteImport,
 } as any)
 const BlogSlugOgIndexRoute = BlogSlugOgIndexRouteImport.update({
   id: '/og/',
@@ -226,25 +226,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/llms.txt': {
-      id: '/llms.txt'
-      path: '/llms.txt'
-      fullPath: '/llms.txt'
-      preLoaderRoute: typeof LlmsDottxtRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/llms-full.txt': {
-      id: '/llms-full.txt'
-      path: '/llms-full.txt'
-      fullPath: '/llms-full.txt'
-      preLoaderRoute: typeof LlmsFullDottxtRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog.md': {
@@ -254,6 +240,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogDotmdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/llms-full.txt': {
+      id: '/llms-full.txt'
+      path: '/llms-full.txt'
+      fullPath: '/llms-full.txt'
+      preLoaderRoute: typeof LlmsFullDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms.txt': {
+      id: '/llms.txt'
+      path: '/llms.txt'
+      fullPath: '/llms.txt'
+      preLoaderRoute: typeof LlmsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resume': {
       id: '/resume'
       path: '/resume'
@@ -261,39 +261,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResumeRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/og/': {
-      id: '/og/'
-      path: '/og'
-      fullPath: '/og/'
-      preLoaderRoute: typeof OgIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blog/': {
-      id: '/blog/'
-      path: '/blog'
-      fullPath: '/blog/'
-      preLoaderRoute: typeof BlogIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blog/{$slug}.md': {
-      id: '/blog/{$slug}.md'
-      path: '/blog/{$slug}.md'
-      fullPath: '/blog/{$slug}.md'
-      preLoaderRoute: typeof BlogChar123slugChar125DotmdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blog/$slug': {
-      id: '/blog/$slug'
-      path: '/blog/$slug'
-      fullPath: '/blog/$slug'
-      preLoaderRoute: typeof BlogSlugRouteImport
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/resume-pdf': {
@@ -303,11 +275,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiResumePdfRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/rss': {
       id: '/blog/rss'
       path: '/blog/rss'
       fullPath: '/blog/rss'
       preLoaderRoute: typeof BlogRssRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/{$slug}.md': {
+      id: '/blog/{$slug}.md'
+      path: '/blog/{$slug}.md'
+      fullPath: '/blog/{$slug}.md'
+      preLoaderRoute: typeof BlogChar123slugChar125DotmdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/og/': {
+      id: '/og/'
+      path: '/og'
+      fullPath: '/og/'
+      preLoaderRoute: typeof OgIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/og/': {
+      id: '/blog/og/'
+      path: '/blog/og'
+      fullPath: '/blog/og/'
+      preLoaderRoute: typeof BlogOgIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resume/builder/': {
@@ -316,13 +323,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/resume/builder/'
       preLoaderRoute: typeof ResumeBuilderIndexRouteImport
       parentRoute: typeof ResumeRouteRoute
-    }
-    '/blog/og/': {
-      id: '/blog/og/'
-      path: '/blog/og'
-      fullPath: '/blog/og/'
-      preLoaderRoute: typeof BlogOgIndexRouteImport
-      parentRoute: typeof rootRouteImport
     }
     '/blog/$slug/og/': {
       id: '/blog/$slug/og/'
