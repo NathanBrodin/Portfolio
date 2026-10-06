@@ -1,5 +1,5 @@
 import { createElement } from 'react'
-import { measure, PdfRenderer } from 'takumi-pdf'
+import { measure, render } from 'takumi-pdf'
 
 import type { ResumeData } from '../schema'
 
@@ -10,14 +10,12 @@ import { ResumePdfDocument } from './template'
 // No fonts, no CSS: the built-in fallback covers the content.
 const VIEWPORT = { width: 794, height: 1123 }
 
-const renderer = new PdfRenderer()
-
 function element(data: ResumeData) {
   return createElement(ResumePdfDocument, { data })
 }
 
 export async function renderResume(data: ResumeData): Promise<Uint8Array> {
-  return renderer.render(element(data), {
+  return render(element(data), {
     viewport: VIEWPORT,
     lang: 'en',
     outline: true,

@@ -55,7 +55,7 @@ export function BuilderToolbar() {
   const handleDownloadPdf = async () => {
     setDownloading(true)
     try {
-      const blob = await exportResumePdf(data)
+      const blob = (await exportResumePdf(data)).blob
       downloadBlob(blob, resumeFilename(data.basics.name, 'pdf'))
     } catch {
       showDownloadError('Could not generate the PDF. Try again.')

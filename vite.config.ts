@@ -4,8 +4,11 @@ import { devtools } from '@tanstack/devtools-vite'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
 import { nitro } from 'nitro/vite'
+import { createRequire } from 'node:module'
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite-plus'
+
+const takumiServerEntry = createRequire(import.meta.url).resolve('takumi-pdf/next')
 
 const config = defineConfig({
   staged: {
@@ -74,6 +77,7 @@ const config = defineConfig({
     contentCollections({ environment: 'client' }),
     devtools(),
     nitro({
+      moduleSideEffects: [takumiServerEntry],
       rolldownConfig: {
         onwarn(warning, warn) {
           if (

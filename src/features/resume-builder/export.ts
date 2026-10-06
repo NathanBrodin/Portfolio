@@ -1,11 +1,20 @@
 import type { ResumeData } from './schema'
 
-import { renderResumePdf } from './pdf/server'
+export interface ResumePdfResult {
+  blob: Blob
+  fits: boolean
+}
 
-export async function exportResumePdf(data: ResumeData): Promise<Blob> {
-  const response = await renderResumePdf({ data })
+export async function exportResumePdf(data: ResumeData): Promise<ResumePdfResult> {
+  const response = await fetch('/api/resume-pdf', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ data }),
+  })
   if (!response.ok) throw new Error(`PDF render failed: ${response.status}`)
-  return response.blob()
+  const blob = await response.blob()
+  const fits = response.headers.get('x-resume-fits') !== 'false'
+  return { blob, fits }
 }
 
 export function downloadBlob(blob: Blob, filename: string): void {

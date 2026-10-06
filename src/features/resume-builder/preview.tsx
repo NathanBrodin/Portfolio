@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react'
 import { Alert, AlertTitle } from '@/components/ui/alert'
 
 import { exportResumePdf } from './export'
-import { checkResumeFits } from './pdf/server'
 import { useResumeBuilder } from './store'
 
 // Lazy-loaded by the route: rendering happens server-side, the client only
@@ -23,8 +22,8 @@ export default function ResumePreview() {
 
     const timer = setTimeout(() => {
       setFailed(false)
-      Promise.all([exportResumePdf(data), checkResumeFits({ data })])
-        .then(([blob, fits]) => {
+      exportResumePdf(data)
+        .then(({ blob, fits }) => {
           if (sequence.current !== current) return
           if (latestUrl.current) URL.revokeObjectURL(latestUrl.current)
           const objectUrl = URL.createObjectURL(blob)
