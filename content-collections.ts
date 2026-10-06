@@ -41,14 +41,17 @@ const experiences = defineCollection({
   }),
   transform: async (doc) => {
     const { excerpt, detail } = splitContent(doc.content)
-    const { markup } = await renderMarkdown(excerpt)
-    const { markup: detailMarkup } = await renderMarkdown(detail)
+    const hasDetail = detail.length > 0
+    const [{ markup }, { markup: detailMarkup }] = await Promise.all([
+      renderMarkdown(excerpt),
+      hasDetail ? renderMarkdown(detail) : Promise.resolve({ markup: '' }),
+    ])
     return {
       ...doc,
       category: doc._meta.path.startsWith('work/') ? ('work' as const) : ('education' as const),
       excerpt,
       detail,
-      hasDetail: detail.length > 0,
+      hasDetail,
       markup,
       detailMarkup,
     }
@@ -76,13 +79,16 @@ const projects = defineCollection({
   }),
   transform: async (doc) => {
     const { excerpt, detail } = splitContent(doc.content)
-    const { markup } = await renderMarkdown(excerpt)
-    const { markup: detailMarkup } = await renderMarkdown(detail)
+    const hasDetail = detail.length > 0
+    const [{ markup }, { markup: detailMarkup }] = await Promise.all([
+      renderMarkdown(excerpt),
+      hasDetail ? renderMarkdown(detail) : Promise.resolve({ markup: '' }),
+    ])
     return {
       ...doc,
       excerpt,
       detail,
-      hasDetail: detail.length > 0,
+      hasDetail,
       markup,
       detailMarkup,
     }
