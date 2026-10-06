@@ -2,12 +2,13 @@ import { TriangleAlertIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
 import { Alert, AlertTitle } from '@/components/ui/alert'
+import { Skeleton } from '@/components/ui/skeleton'
 
 import { exportResumePdf } from './export'
 import { useResumeBuilder } from './store'
 
-// Lazy-loaded by the route: rendering happens server-side, the client only
-// receives PDF bytes for the iframe preview.
+// Lazy-loaded by the route: rendering happens locally in the browser,
+// the PDF bytes are turned into an object URL for the iframe preview.
 export default function ResumePreview() {
   const { data } = useResumeBuilder()
   const [url, setUrl] = useState<string | null>(null)
@@ -31,8 +32,10 @@ export default function ResumePreview() {
           setUrl(objectUrl)
           setOverflows(!fits)
         })
-        .catch(() => {
-          if (sequence.current === current) setFailed(true)
+        .catch((error: unknown) => {
+          if (sequence.current !== current) return
+          console.error('Resume preview failed:', error)
+          setFailed(true)
         })
     }, 300)
 
@@ -55,7 +58,7 @@ export default function ResumePreview() {
   }
 
   if (!url) {
-    return null
+    return <Skeleton className="h-[80vh] w-full rounded-lg lg:h-[calc(100svh-2rem)]" />
   }
 
   return (
@@ -66,11 +69,13 @@ export default function ResumePreview() {
           <AlertTitle>This resume no longer fits on one page, trim some entries.</AlertTitle>
         </Alert>
       )}
-      <iframe
-        title="Resume preview"
-        src={url}
-        className="h-[80vh] w-full rounded-lg lg:h-[calc(100svh-2rem)]"
-      />
+      <div className="relative">
+        <iframe
+          title="Resume preview"
+          src={url}
+          className="h-[80vh] w-full rounded-lg lg:h-[calc(100svh-2rem)]"
+        />
+      </div>
     </div>
   )
 }

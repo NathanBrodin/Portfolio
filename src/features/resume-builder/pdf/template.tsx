@@ -1,3 +1,5 @@
+'use no memo'
+
 import type { ReactNode } from 'react'
 
 import type { ResumeData } from '../schema'

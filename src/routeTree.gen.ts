@@ -15,7 +15,6 @@ import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as ResumeRouteRouteImport } from './routes/resume/route'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as ApiResumePdfRouteImport } from './routes/api/resume-pdf'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as BlogRssRouteRouteImport } from './routes/blog/rss/route'
@@ -53,11 +52,6 @@ const ResumeRouteRoute = ResumeRouteRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiResumePdfRoute = ApiResumePdfRouteImport.update({
-  id: '/api/resume-pdf',
-  path: '/api/resume-pdf',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -110,7 +104,6 @@ export interface FileRoutesByFullPath {
   '/llms.txt': typeof LlmsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/rss': typeof BlogRssRouteRoute
-  '/api/resume-pdf': typeof ApiResumePdfRoute
   '/blog/$slug': typeof BlogSlugRouteWithChildren
   '/blog/{$slug}.md': typeof BlogChar123slugChar125DotmdRoute
   '/blog/': typeof BlogIndexRoute
@@ -127,7 +120,6 @@ export interface FileRoutesByTo {
   '/llms.txt': typeof LlmsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/rss': typeof BlogRssRouteRoute
-  '/api/resume-pdf': typeof ApiResumePdfRoute
   '/blog/$slug': typeof BlogSlugRouteWithChildren
   '/blog/{$slug}.md': typeof BlogChar123slugChar125DotmdRoute
   '/blog': typeof BlogIndexRoute
@@ -145,7 +137,6 @@ export interface FileRoutesById {
   '/llms.txt': typeof LlmsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/rss': typeof BlogRssRouteRoute
-  '/api/resume-pdf': typeof ApiResumePdfRoute
   '/blog/$slug': typeof BlogSlugRouteWithChildren
   '/blog/{$slug}.md': typeof BlogChar123slugChar125DotmdRoute
   '/blog/': typeof BlogIndexRoute
@@ -164,7 +155,6 @@ export interface FileRouteTypes {
     | '/llms.txt'
     | '/sitemap.xml'
     | '/blog/rss'
-    | '/api/resume-pdf'
     | '/blog/$slug'
     | '/blog/{$slug}.md'
     | '/blog/'
@@ -181,7 +171,6 @@ export interface FileRouteTypes {
     | '/llms.txt'
     | '/sitemap.xml'
     | '/blog/rss'
-    | '/api/resume-pdf'
     | '/blog/$slug'
     | '/blog/{$slug}.md'
     | '/blog'
@@ -198,7 +187,6 @@ export interface FileRouteTypes {
     | '/llms.txt'
     | '/sitemap.xml'
     | '/blog/rss'
-    | '/api/resume-pdf'
     | '/blog/$slug'
     | '/blog/{$slug}.md'
     | '/blog/'
@@ -216,7 +204,6 @@ export interface RootRouteChildren {
   LlmsDottxtRoute: typeof LlmsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   BlogRssRouteRoute: typeof BlogRssRouteRoute
-  ApiResumePdfRoute: typeof ApiResumePdfRoute
   BlogSlugRoute: typeof BlogSlugRouteWithChildren
   BlogChar123slugChar125DotmdRoute: typeof BlogChar123slugChar125DotmdRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -266,13 +253,6 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/resume-pdf': {
-      id: '/api/resume-pdf'
-      path: '/api/resume-pdf'
-      fullPath: '/api/resume-pdf'
-      preLoaderRoute: typeof ApiResumePdfRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -366,7 +346,6 @@ const rootRouteChildren: RootRouteChildren = {
   LlmsDottxtRoute: LlmsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   BlogRssRouteRoute: BlogRssRouteRoute,
-  ApiResumePdfRoute: ApiResumePdfRoute,
   BlogSlugRoute: BlogSlugRouteWithChildren,
   BlogChar123slugChar125DotmdRoute: BlogChar123slugChar125DotmdRoute,
   BlogIndexRoute: BlogIndexRoute,

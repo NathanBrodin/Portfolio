@@ -6,14 +6,11 @@ export interface ResumePdfResult {
 }
 
 export async function exportResumePdf(data: ResumeData): Promise<ResumePdfResult> {
-  const response = await fetch('/api/resume-pdf', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ data }),
-  })
-  if (!response.ok) throw new Error(`PDF render failed: ${response.status}`)
-  const blob = await response.blob()
-  const fits = response.headers.get('x-resume-fits') !== 'false'
+  // Dynamically imported so the renderer (and its WASM init) only ever loads
+  // in the browser, never in a server bundle.
+  const { fitsOnePage, renderResume } = await import('./pdf/render')
+  const [pdf, fits] = await Promise.all([renderResume(data), fitsOnePage(data)])
+  const blob = new Blob([new Uint8Array(pdf)], { type: 'application/pdf' })
   return { blob, fits }
 }
 
