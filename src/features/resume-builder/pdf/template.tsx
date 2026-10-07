@@ -61,7 +61,7 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
             <li tw="m-0">
               Turned &quot;build a chatbot&quot; into a workspace-scoped analytics agent: async
               streaming tool-calling, workspace-aware context, read-only SQL with strict data
-              isolation, and themed charts visualizations.
+              isolation, and themed chart visualizations.
             </li>
             <li tw="m-0">
               Made quality non-optional: ~1,530 backend tests plus Playwright E2E, CI checks for
@@ -162,8 +162,8 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
           <ul tw="m-0 list-disc pl-5 mt-1">
             <li tw="m-0">
               Top-10 French engineering school. Coursework in algorithms, systems programming,
-              distributed systems, and full stack development; 3 internships (1 year of professional
-              experience) during the program.
+              distributed systems, and full stack development; 3 internships (for a total of 1 year
+              of professional experience) during the program.
             </li>
             <li tw="m-0">
               Exchange semesters at Mid Sweden University (Sundsvall, Sweden) and Centria University
