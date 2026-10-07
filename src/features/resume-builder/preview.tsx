@@ -72,7 +72,7 @@ export default function ResumePreview() {
       <div className="relative">
         <iframe
           title="Resume preview"
-          src={url}
+          src={`${url}#toolbar=0&navpanes=0`}
           className="h-[80vh] w-full rounded-lg lg:h-[calc(100svh-2rem)]"
         />
       </div>
