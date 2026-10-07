@@ -10,7 +10,10 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
     <main tw="px-12 py-6 text-xs leading-tight">
       <section tw="flex w-full flex-col items-center gap-0.5">
         <h1 tw="m-0 text-center text-2xl font-bold leading-none">Nathan Brodin</h1>
-        <p tw="m-0 text-center text-sm leading-tight">Software Engineer</p>
+        <p tw="m-0 text-center leading-tight">
+          Frontend-leaning full-stack engineer owning features end to end, from architecture to
+          tested, deployed systems.
+        </p>
         <ul tw="m-0 flex list-none flex-row justify-center gap-3 p-0">
           <li tw="m-0 p-0">
             <a href="mailto:nathan@brodin.dev">nathan@brodin.dev</a>
@@ -46,23 +49,31 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
           </div>
           <ul tw="m-0 list-disc pl-5 mt-1">
             <li tw="m-0">
-              Built a production-grade web application from scratch: React 19 frontend with TanStack
-              Router/Query, Django REST Framework backend with PostgreSQL, Redis, and ClickHouse,
-              deployed via Docker and NGINX on self-managed servers.
+              Built two production apps from empty repo to deployed systems: a multi-tenant
+              organization-data platform and a traffic dashboard, owning architecture, design,
+              frontend, backend, infrastructure, CI/CD, and docs from one-line briefs.
             </li>
             <li tw="m-0">
-              Implemented full end-to-end type safety using OpenAPI schema generation and
-              auto-generated TanStack Query hooks, along with RBAC, admin tooling, and resource
-              management features.
+              Made stack choices to remove failure modes: codegen plus CI schema checks for type
+              safety on the mandated Django/React/Keycloak platform; full-TypeScript monorepo for
+              the dashboard to skip the codegen round trip. Both self-hosted with Docker and Nginx.
             </li>
             <li tw="m-0">
-              Set up CI pipelines covering linting, builds, schema generation, and automated testing
-              (~700 backend tests, ~100 Playwright E2E tests) with caching and sharding. Wrote full
-              documentation, DX tooling, and database seeding.
+              Turned &quot;build a chatbot&quot; into a workspace-scoped analytics agent: async
+              streaming tool-calling loop, per-request prompt built from the user&apos;s workspace,
+              and strict read-only SQL guardrails over scoped relations so it cannot read outside
+              the workspace, with themed Vega-Lite charts.
             </li>
             <li tw="m-0">
-              Own features end to end from one-line briefs: set up OpenTelemetry tracing across 8
-              repos into self-hosted SigNoz and moved CI to self-hosted runners.
+              Made quality non-optional: ~1,530 backend tests plus Playwright E2E, CI failing on
+              schema or type drift, staging auto-deploys with DB backups and health-gated promotion,
+              and documented one-command setup. Precomputed ClickHouse tables serve filtered queries
+              over 20M rows in ~0.3s.
+            </li>
+            <li tw="m-0">
+              Shipped solutions to silent problems: OpenTelemetry tracing across 8 repos into
+              self-hosted SigNoz, and org-level self-hosted CI runners after hitting GitHub Actions
+              limits.
             </li>
           </ul>
         </div>
@@ -92,15 +103,7 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
               under 90 seconds with caching and sharding.
             </li>
           </ul>
-        </div>
-        <div tw="mt-1.5">
-          <div tw="flex flex-row justify-between">
-            <p tw="m-0">
-              <strong>DNB</strong>
-            </p>
-            <p tw="m-0">Oslo, Norway</p>
-          </div>
-          <div tw="flex flex-row justify-between">
+          <div tw="flex flex-row justify-between mt-1">
             <p tw="m-0">
               <em>Frontend Engineer Intern</em>
             </p>
@@ -110,23 +113,15 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
           </div>
           <ul tw="m-0 list-disc pl-5 mt-1">
             <li tw="m-0">
-              Built the frontend of a GenAI chatbot platform from blank repository to well-tested
-              application with 92% test coverage and documented architecture.
+              Built the frontend of a GenAI chatbot platform from blank repository to tested
+              application with 92% coverage, Storybook docs, and documented architecture.
             </li>
             <li tw="m-0">
-              Established developer experience standards including Storybook component
-              documentation, consistent styling conventions, and a comprehensive testing setup.
+              Implemented SSE streaming, API integration from evolving OpenAPI specs, and PDF export
+              with working links and controlled page breaks.
             </li>
           </ul>
-        </div>
-        <div tw="mt-1.5">
-          <div tw="flex flex-row justify-between">
-            <p tw="m-0">
-              <strong>DNB</strong>
-            </p>
-            <p tw="m-0">Oslo, Norway</p>
-          </div>
-          <div tw="flex flex-row justify-between">
+          <div tw="flex flex-row justify-between mt-1">
             <p tw="m-0">
               <em>Frontend Engineer Intern</em>
             </p>
@@ -136,12 +131,9 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
           </div>
           <ul tw="m-0 list-disc pl-5 mt-1">
             <li tw="m-0">
-              Shipped an internal admin panel from scratch based on Figma designs, used by 10+
-              users.
-            </li>
-            <li tw="m-0">
-              Handled end-to-end ownership: UI implementation, API integration, authentication, and
-              deployment.
+              Shipped an internal admin panel from scratch from Figma designs, letting product
+              owners edit their chatbots without waiting on developers. Handled UI, API integration,
+              auth, and AWS deployment.
             </li>
           </ul>
         </div>
@@ -158,7 +150,7 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
           </div>
           <div tw="flex flex-row justify-between">
             <p tw="m-0">
-              <em>Master of Engineering in Software Engineering — Graduated 92/100</em>
+              <em>Master of Engineering in Software Engineering</em>
             </p>
             <p tw="m-0">
               <em>Sep 2020 – Jul 2025</em>
@@ -166,9 +158,9 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
           </div>
           <ul tw="m-0 list-disc pl-5 mt-1">
             <li tw="m-0">
-              Coursework in algorithms, systems programming, distributed systems, and full stack
-              development. Completed 3 internships (1 year of professional experience) during the
-              program.
+              Top-10 French engineering school. Coursework in algorithms, systems programming,
+              distributed systems, and full stack development; 3 internships (1 year of professional
+              experience) during the program.
             </li>
             <li tw="m-0">
               Exchange semesters at Mid Sweden University (Sundsvall, Sweden) and Centria University
@@ -186,20 +178,32 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
         <h2 tw="m-0 border-b pb-0.5 text-sm font-bold uppercase leading-tight">Projects</h2>
         <div tw="mt-1 flex flex-col gap-1">
           <p tw="m-0">
-            <strong>Chat</strong> — AI-powered conversational portfolio using React Server
-            Components with streaming. Built with Next.js, Vercel AI SDK, Tailwind CSS, and Drizzle.
+            <strong>
+              <a href="https://brodin.dev">Portfolio</a>
+            </strong>{' '}
+            — Personal site with 100/100/100 Lighthouse scores and full SEO/GEO setup (JSON-LD,
+            sitemap, OG images, llms.txt). Built with React 19, TanStack Start, and Tailwind CSS.
           </p>
           <p tw="m-0">
-            <strong>Zed Vercel Theme</strong> — A theme for the Zed Editor inspired by Vercel&apos;s
-            design language. Top 15 most downloaded with 52k+ downloads.
+            <strong>
+              <a href="https://zed.dev/extensions?query=vercel">Zed Vercel Theme</a>
+            </strong>{' '}
+            — Theme for the Zed Editor inspired by Vercel&apos;s design language. 90k+ downloads.
           </p>
           <p tw="m-0">
-            <strong>Portfolio</strong> — Personal website built with React 19, TanStack Start, and
-            Tailwind CSS. SSR, SEO-optimized, perfect Lighthouse score.
+            <strong>
+              <a href="https://chat.brodin.dev">Chat</a>
+            </strong>{' '}
+            — Conversational portfolio answering career questions from full portfolio context, with
+            smooth streaming and persisted conversations. Built with Next.js, React Server
+            Components, Vercel AI SDK, and Drizzle.
           </p>
           <p tw="m-0">
-            <strong>Write</strong> — Notion-style markdown editor with real-time preview and PDF
-            export. Built with Next.js, Tailwind CSS, and Convex.
+            <strong>
+              <a href="https://write.brodin.dev">Write</a>
+            </strong>{' '}
+            — Notion-style editor with live Markdown preview, real-time database, shareable links,
+            and PDF export. Built with Next.js, Tailwind CSS, and Convex.
           </p>
         </div>
       </section>
@@ -208,17 +212,19 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
         <h2 tw="m-0 border-b pb-0.5 text-sm font-bold uppercase leading-tight">Technical Skills</h2>
         <div tw="mt-1 flex flex-col gap-0.5">
           <p tw="m-0">
-            <strong>Languages: </strong>TypeScript, JavaScript, Python, C
+            <strong>Languages: </strong>TypeScript, JavaScript, Python
           </p>
           <p tw="m-0">
-            <strong>Frameworks &amp; Libraries: </strong>React, Next.js, Django, TanStack, Tailwind
-            CSS, Redux, shadcn/ui, Base UI, Playwright
+            <strong>Frontend: </strong>React, TanStack, Next.js, Tailwind CSS, Base UI, Redux, Vite,
+            Storybook, AI SDK
           </p>
           <p tw="m-0">
-            <strong>Tools &amp; Infrastructure: </strong>Docker, NGINX, Git, Linux, Vercel, Figma
+            <strong>Backend &amp; Data: </strong>Node.js, Django, Hono, PostgreSQL, Redis,
+            ClickHouse, Drizzle, OpenAPI, Keycloak
           </p>
           <p tw="m-0">
-            <strong>Databases: </strong>PostgreSQL, Redis
+            <strong>Tools &amp; Quality: </strong>Docker, Nginx, Playwright, OpenTelemetry, Git,
+            AWS, Figma
           </p>
         </div>
       </section>
