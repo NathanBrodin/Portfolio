@@ -7,7 +7,7 @@ import { siteConfig } from '@/config/site'
 import type { ResumeData } from '../schema'
 
 import { loadPdfFonts } from './fonts'
-import { ResumePdfDocument } from './template'
+import { ResumeTemplate } from './template'
 import { PDF_CSS, PDF_FONT_FAMILIES } from './theme'
 
 // A4 portrait in CSS px at 96dpi.
@@ -29,7 +29,7 @@ function ensureInit(): Promise<void> {
 }
 
 function element(data: ResumeData) {
-  return createElement(ResumePdfDocument, { data })
+  return createElement(ResumeTemplate, { data })
 }
 
 export async function renderResume(data: ResumeData): Promise<Uint8Array> {
@@ -46,30 +46,6 @@ export async function renderResume(data: ResumeData): Promise<Uint8Array> {
       title: `${siteConfig.name} | Resume`,
       description: siteConfig.description,
       authors: [siteConfig.name],
-      // Mirrors visible content only: every keyword appears in the document body.
-      keywords: [
-        'Nathan Brodin',
-        'Resume',
-        'Software Engineer',
-        'Full Stack Engineer',
-        'Frontend Engineer',
-        'React',
-        'TypeScript',
-        'TanStack',
-        'Next.js',
-        'Django',
-        'PostgreSQL',
-        'Redis',
-        'ClickHouse',
-        'Docker',
-        'NGINX',
-        'Playwright',
-        'Tailwind CSS',
-        'Redux',
-        'Capia AS',
-        'DNB',
-        'ESIEA',
-      ],
       creator: 'brodin.dev/resume/builder',
       creationDate: new Date().toISOString().slice(0, 10),
     },

@@ -3,7 +3,7 @@
 import '@takumi-rs/helpers/jsx'
 import type { ResumeData } from '../schema'
 
-export function ResumePdfDocument({ data }: { data: ResumeData }) {
+export function ResumeTemplate({ data }: { data: ResumeData }) {
   void data
 
   return (
