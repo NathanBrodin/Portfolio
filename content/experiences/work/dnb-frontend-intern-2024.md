@@ -20,7 +20,7 @@ skills:
 order: 3
 ---
 
-Built the frontend of a GenAI chatbot platform used by 100+ users. From blank repo to well-tested app (92% coverage, [Storybook](https://storybook.js.org/), documented architecture). Focused on developer experience: clean code, consistent styling, and full test setup.
+Built the frontend of a GenAI chatbot platform used by 100+ users. From an empty repo to a well-tested app (92% coverage, [Storybook](https://storybook.js.org/), documented architecture). Focused on developer experience: clean code, consistent styling, and full test setup.
 
 <!-- more -->
 

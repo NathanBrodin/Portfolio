@@ -11,7 +11,7 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
       <section tw="flex w-full flex-col items-center gap-0.5">
         <h1 tw="m-0 text-center text-2xl font-bold leading-none">Nathan Brodin</h1>
         <p tw="m-0 text-center leading-tight">
-          Frontend-leaning full-stack engineer owning features end to end, from architecture to
+          Frontend-leaning full-stack engineer owning products end to end, from architecture to
           tested, deployed systems.
         </p>
         <ul tw="m-0 flex list-none flex-row justify-center gap-3 p-0">
@@ -47,7 +47,7 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
               <em>Aug 2025 – Present</em>
             </p>
           </div>
-          <ul tw="m-0 list-disc pl-5 mt-1">
+          <ul tw="m-0 mt-1 list-disc pl-5">
             <li tw="m-0">
               Built two production apps from empty repo to deployed systems: a multi-tenant
               organization-data platform and a traffic dashboard, owning architecture, design,
@@ -60,20 +60,23 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
             </li>
             <li tw="m-0">
               Turned &quot;build a chatbot&quot; into a workspace-scoped analytics agent: async
-              streaming tool-calling loop, per-request prompt built from the user&apos;s workspace,
-              and strict read-only SQL guardrails over scoped relations so it cannot read outside
-              the workspace, with themed Vega-Lite charts.
+              streaming tool-calling, workspace-aware context, read-only SQL with strict data
+              isolation, and themed charts visualizations.
             </li>
             <li tw="m-0">
-              Made quality non-optional: ~1,530 backend tests plus Playwright E2E, CI failing on
-              schema or type drift, staging auto-deploys with DB backups and health-gated promotion,
-              and documented one-command setup. Precomputed ClickHouse tables serve filtered queries
-              over 20M rows in ~0.3s.
+              Made quality non-optional: ~1,530 backend tests plus Playwright E2E, CI checks for
+              schema and type drift, staging auto-deploys with DB backups and health-gated
+              promotion, and documented one-command setup. Precomputed ClickHouse tables serve
+              filtered queries over 20M rows in ~0.3s.
             </li>
             <li tw="m-0">
-              Shipped solutions to silent problems: OpenTelemetry tracing across 8 repos into
-              self-hosted SigNoz, and org-level self-hosted CI runners after hitting GitHub Actions
-              limits.
+              Introduced production observability across 8 repositories: implemented OpenTelemetry
+              with self-hosted SigNoz, providing end-to-end traces from frontend requests to
+              database queries, error monitoring, and usage analytics.
+            </li>
+            <li tw="m-0">
+              Removed CI capacity limits by deploying organization-wide self-hosted GitHub Actions
+              runners with Docker, automated scaling, and cleanup.
             </li>
           </ul>
         </div>
@@ -95,7 +98,7 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
           <ul tw="m-0 list-disc pl-5 mt-1">
             <li tw="m-0">
               Shipped 15+ features to production across 3 frontend applications serving AI products
-              used by 100k+ users. End-of-studies internship graded 92/100.
+              used by 100k+ users. Counted toward my End-of-studies internship, graded 92/100.
             </li>
             <li tw="m-0">
               Migrated a production application from Gatsby to Vite, cutting build times by 60%, and
@@ -113,7 +116,7 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
           </div>
           <ul tw="m-0 list-disc pl-5 mt-1">
             <li tw="m-0">
-              Built the frontend of a GenAI chatbot platform from blank repository to tested
+              Built the frontend of a GenAI chatbot platform from an empty repository to a tested
               application with 92% coverage, Storybook docs, and documented architecture.
             </li>
             <li tw="m-0">
@@ -196,7 +199,7 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
             </strong>{' '}
             — Conversational portfolio answering career questions from full portfolio context, with
             smooth streaming and persisted conversations. Built with Next.js, React Server
-            Components, Vercel AI SDK, and Drizzle.
+            Components, AI SDK, and Drizzle.
           </p>
           <p tw="m-0">
             <strong>
