@@ -7,44 +7,54 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
   void data
 
   return (
-    <main tw="px-12 py-6 text-xs leading-tight">
+    <main tw="px-12 py-6 font-sans text-xs leading-tight text-foreground">
       <section tw="flex w-full flex-col items-center gap-0.5">
-        <h1 tw="m-0 text-center text-2xl font-bold leading-none">Nathan Brodin</h1>
+        <h1 tw="m-0 text-center font-display text-primary text-2xl leading-none">Nathan Brodin</h1>
         <p tw="m-0 text-center leading-tight">
           Frontend-leaning full-stack engineer owning products end to end, from architecture to
           tested, deployed systems.
         </p>
         <ul tw="m-0 flex list-none flex-row justify-center gap-3 p-0">
           <li tw="m-0 p-0">
-            <a href="mailto:nathan@brodin.dev">nathan@brodin.dev</a>
+            <a tw="font-medium text-primary underline" href="mailto:nathan@brodin.dev">
+              nathan@brodin.dev
+            </a>
           </li>
           <li tw="m-0 p-0">
-            <a href="https://brodin.dev">brodin.dev</a>
+            <a tw="font-medium text-primary underline" href="https://brodin.dev">
+              brodin.dev
+            </a>
           </li>
           <li tw="m-0 p-0">
-            <a href="https://linkedin.com/in/nathan-brodin">linkedin.com/in/nathan-brodin</a>
+            <a tw="font-medium text-primary underline" href="https://linkedin.com/in/nathan-brodin">
+              linkedin.com/in/nathan-brodin
+            </a>
           </li>
           <li tw="m-0 p-0">
-            <a href="https://github.com/NathanBrodin">github.com/NathanBrodin</a>
+            <a tw="font-medium text-primary underline" href="https://github.com/NathanBrodin">
+              github.com/NathanBrodin
+            </a>
           </li>
         </ul>
       </section>
 
       <section tw="mt-4">
-        <h2 tw="m-0 border-b pb-0.5 text-sm font-bold uppercase leading-tight">Experience</h2>
+        <h2 tw="m-0 border-b border-border pb-0.5 font-display text-primary text-sm font-bold leading-tight">
+          Experience
+        </h2>
         <div tw="mt-1">
           <div tw="flex flex-row justify-between">
             <p tw="m-0">
               <strong>Capia AS</strong>
             </p>
-            <p tw="m-0">Tromsø, Norway</p>
+            <p tw="m-0 text-muted-foreground">Tromsø, Norway</p>
           </div>
           <div tw="flex flex-row justify-between">
             <p tw="m-0">
-              <em>Full Stack Engineer</em>
+              <span tw="text-muted-foreground">Full Stack Engineer</span>
             </p>
             <p tw="m-0">
-              <em>Aug 2025 – Present</em>
+              <span tw="text-muted-foreground">Aug 2025 – Present</span>
             </p>
           </div>
           <ul tw="m-0 mt-1 list-disc pl-5">
@@ -85,14 +95,14 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
             <p tw="m-0">
               <strong>DNB</strong>
             </p>
-            <p tw="m-0">Oslo, Norway</p>
+            <p tw="m-0 text-muted-foreground">Oslo, Norway</p>
           </div>
           <div tw="flex flex-row justify-between">
             <p tw="m-0">
-              <em>Frontend Engineer Intern</em>
+              <span tw="text-muted-foreground">Frontend Engineer Intern</span>
             </p>
             <p tw="m-0">
-              <em>Feb 2025 – Jul 2025</em>
+              <span tw="text-muted-foreground">Feb 2025 – Jul 2025</span>
             </p>
           </div>
           <ul tw="m-0 list-disc pl-5 mt-1">
@@ -108,10 +118,10 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
           </ul>
           <div tw="flex flex-row justify-between mt-1">
             <p tw="m-0">
-              <em>Frontend Engineer Intern</em>
+              <span tw="text-muted-foreground">Frontend Engineer Intern</span>
             </p>
             <p tw="m-0">
-              <em>Apr 2024 – Aug 2024</em>
+              <span tw="text-muted-foreground">Apr 2024 – Aug 2024</span>
             </p>
           </div>
           <ul tw="m-0 list-disc pl-5 mt-1">
@@ -126,10 +136,10 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
           </ul>
           <div tw="flex flex-row justify-between mt-1">
             <p tw="m-0">
-              <em>Frontend Engineer Intern</em>
+              <span tw="text-muted-foreground">Frontend Engineer Intern</span>
             </p>
             <p tw="m-0">
-              <em>Jul 2023 – Aug 2023</em>
+              <span tw="text-muted-foreground">Jul 2023 – Aug 2023</span>
             </p>
           </div>
           <ul tw="m-0 list-disc pl-5 mt-1">
@@ -143,20 +153,22 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
       </section>
 
       <section tw="mt-4">
-        <h2 tw="m-0 border-b pb-0.5 text-sm font-bold uppercase leading-tight">Education</h2>
+        <h2 tw="m-0 border-b border-border pb-0.5 font-display text-primary text-sm font-bold leading-tight">
+          Education
+        </h2>
         <div tw="mt-1">
           <div tw="flex flex-row justify-between">
             <p tw="m-0">
               <strong>ESIEA Graduate School of Engineering</strong>
             </p>
-            <p tw="m-0">Laval, France</p>
+            <p tw="m-0 text-muted-foreground">Laval, France</p>
           </div>
           <div tw="flex flex-row justify-between">
             <p tw="m-0">
-              <em>Master of Engineering in Software Engineering</em>
+              <span tw="text-muted-foreground">Master of Engineering in Software Engineering</span>
             </p>
             <p tw="m-0">
-              <em>Sep 2020 – Jul 2025</em>
+              <span tw="text-muted-foreground">Sep 2020 – Jul 2025</span>
             </p>
           </div>
           <ul tw="m-0 list-disc pl-5 mt-1">
@@ -178,24 +190,35 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
       </section>
 
       <section tw="mt-4">
-        <h2 tw="m-0 border-b pb-0.5 text-sm font-bold uppercase leading-tight">Projects</h2>
+        <h2 tw="m-0 border-b border-border pb-0.5 font-display text-primary text-sm font-bold leading-tight">
+          Projects
+        </h2>
         <div tw="mt-1 flex flex-col gap-1">
           <p tw="m-0">
             <strong>
-              <a href="https://brodin.dev">Portfolio</a>
+              <a tw="font-medium text-primary underline" href="https://brodin.dev">
+                Portfolio
+              </a>
             </strong>{' '}
             — Personal site with 100/100/100 Lighthouse scores and full SEO/GEO setup (JSON-LD,
             sitemap, OG images, llms.txt). Built with React 19, TanStack Start, and Tailwind CSS.
           </p>
           <p tw="m-0">
             <strong>
-              <a href="https://zed.dev/extensions?query=vercel">Zed Vercel Theme</a>
+              <a
+                tw="font-medium text-primary underline"
+                href="https://zed.dev/extensions?query=vercel"
+              >
+                Zed Vercel Theme
+              </a>
             </strong>{' '}
             — Theme for the Zed Editor inspired by Vercel&apos;s design language. 90k+ downloads.
           </p>
           <p tw="m-0">
             <strong>
-              <a href="https://chat.brodin.dev">Chat</a>
+              <a tw="font-medium text-primary underline" href="https://chat.brodin.dev">
+                Chat
+              </a>
             </strong>{' '}
             — Conversational portfolio answering career questions from full portfolio context, with
             smooth streaming and persisted conversations. Built with Next.js, React Server
@@ -203,7 +226,9 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
           </p>
           <p tw="m-0">
             <strong>
-              <a href="https://write.brodin.dev">Write</a>
+              <a tw="font-medium text-primary underline" href="https://write.brodin.dev">
+                Write
+              </a>
             </strong>{' '}
             — Notion-style editor with live Markdown preview, real-time database, shareable links,
             and PDF export. Built with Next.js, Tailwind CSS, and Convex.
@@ -212,7 +237,9 @@ export function ResumePdfDocument({ data }: { data: ResumeData }) {
       </section>
 
       <section tw="mt-4">
-        <h2 tw="m-0 border-b pb-0.5 text-sm font-bold uppercase leading-tight">Technical Skills</h2>
+        <h2 tw="m-0 border-b border-border pb-0.5 font-display text-primary text-sm font-bold leading-tight">
+          Technical Skills
+        </h2>
         <div tw="mt-1 flex flex-col gap-0.5">
           <p tw="m-0">
             <strong>Languages: </strong>TypeScript, JavaScript, Python

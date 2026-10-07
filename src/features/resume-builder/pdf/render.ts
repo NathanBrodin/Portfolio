@@ -6,7 +6,9 @@ import { siteConfig } from '@/config/site'
 
 import type { ResumeData } from '../schema'
 
+import { loadPdfFonts } from './fonts'
 import { ResumePdfDocument } from './template'
+import { PDF_CSS, PDF_FONT_FAMILIES } from './theme'
 
 // A4 portrait in CSS px at 96dpi.
 const VIEWPORT = { width: 794, height: 1123 }
@@ -32,8 +34,12 @@ function element(data: ResumeData) {
 
 export async function renderResume(data: ResumeData): Promise<Uint8Array> {
   await ensureInit()
+  const fonts = await loadPdfFonts()
   return render(element(data), {
     viewport: VIEWPORT,
+    fonts,
+    fontFamilies: PDF_FONT_FAMILIES,
+    css: PDF_CSS,
     lang: 'en',
     outline: true,
     metadata: {
@@ -73,6 +79,12 @@ export async function renderResume(data: ResumeData): Promise<Uint8Array> {
 // Viewport renders clip, so the UI warns instead of silently dropping content.
 export async function fitsOnePage(data: ResumeData): Promise<boolean> {
   await ensureInit()
-  const size = await measure(element(data), { viewport: VIEWPORT })
+  const fonts = await loadPdfFonts()
+  const size = await measure(element(data), {
+    viewport: VIEWPORT,
+    fonts,
+    fontFamilies: PDF_FONT_FAMILIES,
+    css: PDF_CSS,
+  })
   return size.height <= VIEWPORT.height
 }
