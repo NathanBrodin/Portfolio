@@ -55,7 +55,7 @@ function HeadlineEditor() {
   const headline = data.basics.headline
 
   return (
-    <div className="py-2">
+    <div className="pb-2">
       <Field>
         <Textarea
           aria-label="Headline"
