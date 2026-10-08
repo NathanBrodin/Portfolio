@@ -116,28 +116,30 @@ function ComboboxPopup({
   className,
   children,
   sideOffset = 4,
+  anchor,
   ...props
 }: ComboboxPrimitive.Popup.Props & {
   sideOffset?: number
+  anchor?: ComboboxPrimitive.Positioner.Props['anchor']
 }) {
   const { chipsRef } = React.useContext(ComboboxContext)
 
   return (
     <ComboboxPrimitive.Portal>
       <ComboboxPrimitive.Positioner
-        anchor={chipsRef}
+        anchor={anchor ?? chipsRef}
         className="z-50 select-none"
         data-slot="combobox-positioner"
         sideOffset={sideOffset}
       >
         <span
           className={cn(
-            'bg-popover relative flex max-h-full origin-(--transform-origin) rounded-lg border shadow-lg/5 transition-[scale,opacity] not-dark:bg-clip-padding before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-lg)-1px)] before:shadow-[0_1px_--theme(--color-black/6%)] dark:before:shadow-[0_-1px_--theme(--color-white/6%)]',
+            'bg-popover relative flex max-h-full min-w-(--anchor-width) max-w-(--available-width) origin-(--transform-origin) rounded-lg border shadow-lg/5 transition-[scale,opacity] not-dark:bg-clip-padding before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-lg)-1px)] before:shadow-[0_1px_--theme(--color-black/6%)] dark:before:shadow-[0_-1px_--theme(--color-white/6%)]',
             className,
           )}
         >
           <ComboboxPrimitive.Popup
-            className="flex max-h-[min(var(--available-height),23rem)] w-(--anchor-width) max-w-(--available-width) flex-col text-foreground"
+            className="flex max-h-[min(var(--available-height),23rem)] flex-1 flex-col text-foreground"
             data-slot="combobox-popup"
             {...props}
           >

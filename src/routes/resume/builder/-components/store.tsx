@@ -73,6 +73,8 @@ type ResumeBuilderContextValue = {
   updateBasics: (patch: Partial<Basics>) => void
   updateExperience: (id: string, patch: Partial<Omit<Experience, 'id'>>) => void
   updateProject: (id: string, patch: Partial<Omit<Project, 'id'>>) => void
+  addProject: (project: Project) => void
+  removeProject: (id: string) => void
   updateEducation: (id: string, patch: Partial<Omit<Education, 'id'>>) => void
   updateSkillGroup: (id: string, patch: Partial<Omit<SkillGroup, 'id'>>) => void
   undo: () => void
@@ -119,6 +121,12 @@ export function ResumeBuilderProvider({ children }: { children: React.ReactNode 
         projects: state.data.projects.map((item) =>
           item.id === id ? { ...item, ...patch } : item,
         ),
+      }),
+    addProject: (project) => set({ ...state.data, projects: [...state.data.projects, project] }),
+    removeProject: (id) =>
+      set({
+        ...state.data,
+        projects: state.data.projects.filter((item) => item.id !== id),
       }),
     updateEducation: (id, patch) =>
       set({
