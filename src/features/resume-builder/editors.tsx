@@ -1,8 +1,8 @@
-import { Checkbox } from '@/components/ui/checkbox'
 import { Field, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+
+import type { Position } from './schema'
 
 import { useResumeBuilder } from './store'
 
@@ -31,7 +31,7 @@ function BasicsEditor() {
   const basics = data.basics
 
   return (
-    <Section title="Basics" description="Name, headline, and contact details">
+    <Section title="Basics" description="Name, headline, and header links">
       <div className="grid gap-3 sm:grid-cols-2">
         <Field>
           <FieldLabel>Name</FieldLabel>
@@ -47,70 +47,38 @@ function BasicsEditor() {
             onChange={(event) => updateBasics({ headline: event.target.value })}
           />
         </Field>
-        <Field>
-          <FieldLabel>Email</FieldLabel>
-          <Input
-            type="email"
-            value={basics.email}
-            onChange={(event) => updateBasics({ email: event.target.value })}
-          />
-        </Field>
-        <Field>
-          <FieldLabel>Location</FieldLabel>
-          <Input
-            value={basics.location}
-            onChange={(event) => updateBasics({ location: event.target.value })}
-          />
-        </Field>
-        <Field>
-          <FieldLabel>LinkedIn URL</FieldLabel>
-          <Input
-            type="url"
-            value={basics.linkedin}
-            onChange={(event) => updateBasics({ linkedin: event.target.value })}
-          />
-        </Field>
-        <Field>
-          <FieldLabel>GitHub URL</FieldLabel>
-          <Input
-            type="url"
-            value={basics.github}
-            onChange={(event) => updateBasics({ github: event.target.value })}
-          />
-        </Field>
-        <Field>
-          <FieldLabel>Website label</FieldLabel>
-          <Input
-            value={basics.websiteLabel}
-            onChange={(event) => updateBasics({ websiteLabel: event.target.value })}
-          />
-        </Field>
-        <Field>
-          <FieldLabel>Website URL</FieldLabel>
-          <Input
-            type="url"
-            value={basics.websiteUrl}
-            onChange={(event) => updateBasics({ websiteUrl: event.target.value })}
-          />
-        </Field>
       </div>
-    </Section>
-  )
-}
-
-function SummaryEditor() {
-  const { data, updateSummary } = useResumeBuilder()
-
-  return (
-    <Section title="Summary" description="Tailor this paragraph per job post">
-      <Field>
-        <FieldLabel>Summary</FieldLabel>
-        <Textarea
-          value={data.summary}
-          onChange={(event) => updateSummary(event.target.value)}
-          placeholder="Two or three sentences. Blank line starts a new paragraph."
-        />
-      </Field>
+      {basics.links.map((link, index) => (
+        <div key={index} className="grid gap-3 sm:grid-cols-2">
+          <Field>
+            <FieldLabel>Link label</FieldLabel>
+            <Input
+              value={link.label}
+              onChange={(event) =>
+                updateBasics({
+                  links: basics.links.map((item, i) =>
+                    i === index ? { ...item, label: event.target.value } : item,
+                  ),
+                })
+              }
+            />
+          </Field>
+          <Field>
+            <FieldLabel>Link URL</FieldLabel>
+            <Input
+              type="url"
+              value={link.href}
+              onChange={(event) =>
+                updateBasics({
+                  links: basics.links.map((item, i) =>
+                    i === index ? { ...item, href: event.target.value } : item,
+                  ),
+                })
+              }
+            />
+          </Field>
+        </div>
+      ))}
     </Section>
   )
 }
@@ -119,17 +87,10 @@ function ExperienceEditor() {
   const { data, updateExperience } = useResumeBuilder()
 
   return (
-    <Section title="Experience" description="Roles and bullets, one bullet per line">
+    <Section title="Experience" description="Companies and positions, one bullet per line">
       {data.experience.map((job) => (
         <div key={job.id} className="flex flex-col gap-3 rounded-lg border p-3">
           <div className="grid gap-3 sm:grid-cols-2">
-            <Field>
-              <FieldLabel>Role</FieldLabel>
-              <Input
-                value={job.role}
-                onChange={(event) => updateExperience(job.id, { role: event.target.value })}
-              />
-            </Field>
             <Field>
               <FieldLabel>Company</FieldLabel>
               <Input
@@ -144,132 +105,54 @@ function ExperienceEditor() {
                 onChange={(event) => updateExperience(job.id, { location: event.target.value })}
               />
             </Field>
-            <Field>
-              <FieldLabel>Start</FieldLabel>
-              <Input
-                value={job.start}
-                placeholder="2025-08"
-                onChange={(event) => updateExperience(job.id, { start: event.target.value })}
-              />
-            </Field>
-            <Field>
-              <FieldLabel>End</FieldLabel>
-              <Input
-                value={job.end}
-                placeholder="2026-01"
-                disabled={job.current}
-                onChange={(event) => updateExperience(job.id, { end: event.target.value })}
-              />
-            </Field>
           </div>
-          <div className="flex items-center gap-2">
-            <Checkbox
-              checked={job.current}
-              onCheckedChange={(checked) => updateExperience(job.id, { current: checked === true })}
-            />
-            <Label>Current position</Label>
-          </div>
-          <Field>
-            <FieldLabel>Skills (comma separated)</FieldLabel>
-            <Input
-              value={job.skills.join(', ')}
-              onChange={(event) =>
-                updateExperience(job.id, {
-                  skills: event.target.value.split(',').map((skill) => skill.trim()),
-                })
-              }
-            />
-          </Field>
-          <Field>
-            <FieldLabel>Bullets (one per line)</FieldLabel>
-            <Textarea
-              value={job.bullets.join('\n')}
-              onChange={(event) =>
-                updateExperience(job.id, { bullets: event.target.value.split('\n') })
-              }
-            />
-          </Field>
-        </div>
-      ))}
-    </Section>
-  )
-}
+          {job.positions.map((position, positionIndex) => {
+            const updatePosition = (patch: Partial<Position>) =>
+              updateExperience(job.id, {
+                positions: job.positions.map((item, index) =>
+                  index === positionIndex ? { ...item, ...patch } : item,
+                ),
+              })
 
-function ProjectsEditor() {
-  const { data, updateProject } = useResumeBuilder()
-
-  return (
-    <Section title="Projects" description="Side projects, one bullet per line">
-      {data.projects.map((project) => (
-        <div key={project.id} className="flex flex-col gap-3 rounded-lg border p-3">
-          <div className="grid gap-3 sm:grid-cols-2">
-            <Field>
-              <FieldLabel>Name</FieldLabel>
-              <Input
-                value={project.name}
-                onChange={(event) => updateProject(project.id, { name: event.target.value })}
-              />
-            </Field>
-            <Field>
-              <FieldLabel>Link</FieldLabel>
-              <Input
-                type="url"
-                value={project.link}
-                onChange={(event) => updateProject(project.id, { link: event.target.value })}
-              />
-            </Field>
-          </div>
-          <Field>
-            <FieldLabel>Skills (comma separated)</FieldLabel>
-            <Input
-              value={project.skills.join(', ')}
-              onChange={(event) =>
-                updateProject(project.id, {
-                  skills: event.target.value.split(',').map((skill) => skill.trim()),
-                })
-              }
-            />
-          </Field>
-          <Field>
-            <FieldLabel>Bullets (one per line)</FieldLabel>
-            <Textarea
-              value={project.bullets.join('\n')}
-              onChange={(event) =>
-                updateProject(project.id, { bullets: event.target.value.split('\n') })
-              }
-            />
-          </Field>
-        </div>
-      ))}
-    </Section>
-  )
-}
-
-function SkillsEditor() {
-  const { data, updateSkillGroup } = useResumeBuilder()
-
-  return (
-    <Section title="Skills" description="Grouped keywords">
-      {data.skills.map((group) => (
-        <div key={group.id} className="grid gap-3 sm:grid-cols-[140px_1fr]">
-          <Field>
-            <FieldLabel>Category</FieldLabel>
-            <Input
-              value={group.category}
-              onChange={(event) => updateSkillGroup(group.id, { category: event.target.value })}
-            />
-          </Field>
-          <Field>
-            <FieldLabel>Items (comma separated)</FieldLabel>
-            <Input
-              value={group.items.join(', ')}
-              onChange={(event) =>
-                updateSkillGroup(group.id, {
-                  items: event.target.value.split(',').map((item) => item.trim()),
-                })
-              }
-            />
-          </Field>
+            return (
+              <div key={positionIndex} className="flex flex-col gap-3 rounded-lg border p-3">
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <Field>
+                    <FieldLabel>Role</FieldLabel>
+                    <Input
+                      value={position.role}
+                      onChange={(event) => updatePosition({ role: event.target.value })}
+                    />
+                  </Field>
+                  <Field>
+                    <FieldLabel>Start</FieldLabel>
+                    <Input
+                      value={position.start}
+                      placeholder="2025-08"
+                      onChange={(event) => updatePosition({ start: event.target.value })}
+                    />
+                  </Field>
+                  <Field>
+                    <FieldLabel>End (blank = Present)</FieldLabel>
+                    <Input
+                      value={position.end ?? ''}
+                      placeholder="2026-01"
+                      onChange={(event) => updatePosition({ end: event.target.value || undefined })}
+                    />
+                  </Field>
+                </div>
+                <Field>
+                  <FieldLabel>Bullets (one per line)</FieldLabel>
+                  <Textarea
+                    value={position.bullets.join('\n')}
+                    onChange={(event) =>
+                      updatePosition({ bullets: event.target.value.split('\n') })
+                    }
+                  />
+                </Field>
+              </div>
+            )
+          })}
         </div>
       ))}
     </Section>
@@ -280,7 +163,7 @@ function EducationEditor() {
   const { data, updateEducation } = useResumeBuilder()
 
   return (
-    <Section title="Education" description="Degrees and schools">
+    <Section title="Education" description="Degrees and schools, one bullet per line">
       {data.education.map((entry) => (
         <div key={entry.id} className="flex flex-col gap-3 rounded-lg border p-3">
           <div className="grid gap-3 sm:grid-cols-2">
@@ -321,10 +204,80 @@ function EducationEditor() {
             </Field>
           </div>
           <Field>
-            <FieldLabel>Details</FieldLabel>
+            <FieldLabel>Bullets (one per line)</FieldLabel>
             <Textarea
-              value={entry.details}
-              onChange={(event) => updateEducation(entry.id, { details: event.target.value })}
+              value={entry.bullets.join('\n')}
+              onChange={(event) =>
+                updateEducation(entry.id, { bullets: event.target.value.split('\n') })
+              }
+            />
+          </Field>
+        </div>
+      ))}
+    </Section>
+  )
+}
+
+function ProjectsEditor() {
+  const { data, updateProject } = useResumeBuilder()
+
+  return (
+    <Section title="Projects" description="One line per project, shown after the link">
+      {data.projects.map((project) => (
+        <div key={project.id} className="flex flex-col gap-3 rounded-lg border p-3">
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Field>
+              <FieldLabel>Name</FieldLabel>
+              <Input
+                value={project.name}
+                onChange={(event) => updateProject(project.id, { name: event.target.value })}
+              />
+            </Field>
+            <Field>
+              <FieldLabel>Link</FieldLabel>
+              <Input
+                type="url"
+                value={project.link}
+                onChange={(event) => updateProject(project.id, { link: event.target.value })}
+              />
+            </Field>
+          </div>
+          <Field>
+            <FieldLabel>Description</FieldLabel>
+            <Textarea
+              value={project.description}
+              onChange={(event) => updateProject(project.id, { description: event.target.value })}
+            />
+          </Field>
+        </div>
+      ))}
+    </Section>
+  )
+}
+
+function SkillsEditor() {
+  const { data, updateSkillGroup } = useResumeBuilder()
+
+  return (
+    <Section title="Skills" description="Grouped keywords">
+      {data.skills.map((group) => (
+        <div key={group.id} className="grid gap-3 sm:grid-cols-[140px_1fr]">
+          <Field>
+            <FieldLabel>Category</FieldLabel>
+            <Input
+              value={group.category}
+              onChange={(event) => updateSkillGroup(group.id, { category: event.target.value })}
+            />
+          </Field>
+          <Field>
+            <FieldLabel>Items (comma separated)</FieldLabel>
+            <Input
+              value={group.items.join(', ')}
+              onChange={(event) =>
+                updateSkillGroup(group.id, {
+                  items: event.target.value.split(',').map((item) => item.trim()),
+                })
+              }
             />
           </Field>
         </div>
@@ -337,11 +290,10 @@ export function BuilderEditors() {
   return (
     <div className="flex flex-col gap-3">
       <BasicsEditor />
-      <SummaryEditor />
       <ExperienceEditor />
+      <EducationEditor />
       <ProjectsEditor />
       <SkillsEditor />
-      <EducationEditor />
     </div>
   )
 }

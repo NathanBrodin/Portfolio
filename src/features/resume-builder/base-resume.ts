@@ -3,43 +3,81 @@ import type { Resume } from './schema'
 export const baseResume: Resume = {
   basics: {
     name: 'Nathan Brodin',
-    headline: 'Frontend Engineer',
-    email: 'nathan@brodin.dev',
-    location: 'Tromsø, Norway',
-    linkedin: 'https://linkedin.com/in/nathan-brodin',
-    github: 'https://github.com/NathanBrodin',
-    websiteUrl: 'https://brodin.dev',
-    websiteLabel: 'brodin.dev',
+    headline:
+      'Frontend-leaning full-stack engineer owning products end to end, from architecture to tested, deployed systems.',
+    links: [
+      { label: 'nathan@brodin.dev', href: 'mailto:nathan@brodin.dev' },
+      { label: 'brodin.dev', href: 'https://brodin.dev' },
+      { label: 'linkedin.com/in/nathan-brodin', href: 'https://linkedin.com/in/nathan-brodin' },
+      { label: 'github.com/NathanBrodin', href: 'https://github.com/NathanBrodin' },
+    ],
   },
-  summary:
-    'Frontend-leaning full-stack engineer. I build fast, accessible, polished web apps — owning features end to end, from architecture to deployed systems.',
   experience: [
     {
       id: 'capia',
       company: 'Capia AS',
-      role: 'Full Stack Engineer',
       location: 'Tromsø, Norway',
-      start: '2025-08',
-      end: '',
-      current: true,
-      skills: ['TypeScript', 'React', 'TanStack', 'Tailwind CSS', 'Django', 'PostgreSQL'],
-      bullets: [
-        'Built two production apps from empty repo to deployed: a multi-tenant data platform and a traffic dashboard.',
-        'Own everything end to end: architecture, design, frontend, backend, infra, CI/CD, docs.',
-        'Type-safe end to end with OpenAPI-generated types; OpenTelemetry across 8 repos into self-hosted SigNoz.',
+      positions: [
+        {
+          role: 'Full Stack Engineer',
+          start: '2025-08',
+          bullets: [
+            'Built two production apps from empty repo to deployed systems: a multi-tenant organization-data platform and a traffic dashboard, owning architecture, design, frontend, backend, infrastructure, CI/CD, and docs from one-line briefs.',
+            'Made stack choices to remove failure modes: codegen plus CI schema checks for type safety on the mandated Django/React/Keycloak platform; full-TypeScript monorepo for the dashboard to skip the codegen round trip. Both self-hosted with Docker and Nginx.',
+            'Turned "build a chatbot" into a workspace-scoped analytics agent: async streaming tool-calling, workspace-aware context, read-only SQL with strict data isolation, and themed chart visualizations.',
+            'Made quality non-optional: ~1,530 backend tests plus Playwright E2E, CI checks for schema and type drift, staging auto-deploys with DB backups and health-gated promotion, and documented one-command setup. Precomputed ClickHouse tables serve filtered queries over 20M rows in ~0.3s.',
+            'Introduced production observability across 8 repositories: implemented OpenTelemetry with self-hosted SigNoz, providing end-to-end traces from frontend requests to database queries, error monitoring, and usage analytics.',
+            'Removed CI capacity limits by deploying organization-wide self-hosted GitHub Actions runners with Docker, automated scaling, and cleanup.',
+          ],
+        },
       ],
     },
     {
       id: 'dnb',
       company: 'DNB',
-      role: 'Frontend Developer Intern',
       location: 'Oslo, Norway',
-      start: '2023-06',
-      end: '2025-12',
-      current: false,
-      skills: ['TypeScript', 'React', 'Design Systems'],
+      positions: [
+        {
+          role: 'Frontend Engineer Intern',
+          start: '2025-02',
+          end: '2025-07',
+          bullets: [
+            'Shipped 15+ features to production across 3 frontend applications serving AI products used by 100k+ users. Counted toward my End-of-studies internship, graded 92/100.',
+            'Migrated a production application from Gatsby to Vite, cutting build times by 60%, and built a full E2E test suite with Playwright: 350+ tests across browsers, CI running under 90 seconds with caching and sharding.',
+          ],
+        },
+        {
+          role: 'Frontend Engineer Intern',
+          start: '2024-04',
+          end: '2024-08',
+          bullets: [
+            'Built the frontend of a GenAI chatbot platform from an empty repository to a tested application with 92% coverage, Storybook docs, and documented architecture.',
+            'Implemented SSE streaming, API integration from evolving OpenAPI specs, and PDF export with working links and controlled page breaks.',
+          ],
+        },
+        {
+          role: 'Frontend Engineer Intern',
+          start: '2023-07',
+          end: '2023-08',
+          bullets: [
+            'Shipped an internal admin panel from scratch from Figma designs, letting product owners edit their chatbots without waiting on developers. Handled UI, API integration, auth, and AWS deployment.',
+          ],
+        },
+      ],
+    },
+  ],
+  education: [
+    {
+      id: 'esiea',
+      school: 'ESIEA Graduate School of Engineering',
+      degree: 'Master of Engineering in Software Engineering',
+      location: 'Laval, France',
+      start: '2020-09',
+      end: '2025-07',
       bullets: [
-        'Three summers on design-system-driven web apps; shipped accessible, tested UI with designers and engineers.',
+        'Top-10 French engineering school. Coursework in algorithms, systems programming, distributed systems, and full stack development; 3 internships (for a total of 1 year of professional experience) during the program.',
+        'Exchange semesters at Mid Sweden University (Sundsvall, Sweden) and Centria University of Applied Sciences (Kokkola, Finland).',
+        'Awarded 2nd Prize (Jury and Public) at PST Laval 2022 and 2024 for innovative mobile applications.',
       ],
     },
   ],
@@ -48,50 +86,70 @@ export const baseResume: Resume = {
       id: 'portfolio',
       name: 'Portfolio',
       link: 'https://brodin.dev',
-      skills: ['TypeScript', 'React', 'TanStack Start', 'Tailwind CSS', 'SEO'],
-      bullets: [
-        'Statically pre-rendered personal portfolio: 100s on Lighthouse performance, accessibility, SEO.',
-        'Full SEO setup: JSON-LD, sitemap, OG images, llms.txt, Markdown-rendered posts.',
-      ],
+      description:
+        'Personal site with 100/100/100 Lighthouse scores and full SEO/GEO setup (JSON-LD, sitemap, OG images, llms.txt). Built with React 19, TanStack Start, and Tailwind CSS.',
     },
     {
-      id: 'ui',
-      name: 'UI component library',
-      link: 'https://ui.brodin.dev',
-      skills: ['TypeScript', 'React', 'Tailwind CSS', 'Base UI'],
-      bullets: [
-        'Personal shadcn/ui registry and docs site with a Zed-inspired theme.',
-        'Reusable, accessible components on Base UI primitives.',
-      ],
+      id: 'zed-vercel-theme',
+      name: 'Zed Vercel Theme',
+      link: 'https://zed.dev/extensions?query=vercel',
+      description: "Theme for the Zed Editor inspired by Vercel's design language. 90k+ downloads.",
     },
-  ],
-  education: [
     {
-      id: 'esiea',
-      school: 'ESIEA Graduate School of Engineering',
-      degree: 'Master of Engineering, Software Engineering',
-      location: 'Paris, France',
-      start: '2020-09',
-      end: '2025-07',
-      details:
-        'Top-10 French engineering school. Algorithms, systems, and full-stack coursework, three internships, two exchange semesters.',
+      id: 'chat',
+      name: 'Chat',
+      link: 'https://chat.brodin.dev',
+      description:
+        'Conversational portfolio answering career questions from full portfolio context, with smooth streaming and persisted conversations. Built with Next.js, React Server Components, AI SDK, and Drizzle.',
+    },
+    {
+      id: 'write',
+      name: 'Write',
+      link: 'https://write.brodin.dev',
+      description:
+        'Notion-style editor with live Markdown preview, real-time database, shareable links, and PDF export. Built with Next.js, Tailwind CSS, and Convex.',
     },
   ],
   skills: [
     {
+      id: 'languages',
+      category: 'Languages',
+      items: ['TypeScript', 'JavaScript', 'Python'],
+    },
+    {
       id: 'frontend',
       category: 'Frontend',
-      items: ['TypeScript', 'React', 'TanStack Router', 'Tailwind CSS', 'Base UI'],
+      items: [
+        'React',
+        'TanStack',
+        'Next.js',
+        'Tailwind CSS',
+        'Base UI',
+        'Redux',
+        'Vite',
+        'Storybook',
+        'AI SDK',
+      ],
     },
     {
       id: 'backend',
-      category: 'Backend & Infra',
-      items: ['Node.js', 'Hono', 'PostgreSQL', 'Docker', 'Nginx'],
+      category: 'Backend & Data',
+      items: [
+        'Node.js',
+        'Django',
+        'Hono',
+        'PostgreSQL',
+        'Redis',
+        'ClickHouse',
+        'Drizzle',
+        'OpenAPI',
+        'Keycloak',
+      ],
     },
     {
-      id: 'quality',
-      category: 'Quality',
-      items: ['Playwright', 'Vitest', 'CI/CD', 'OpenTelemetry'],
+      id: 'tools',
+      category: 'Tools & Quality',
+      items: ['Docker', 'Nginx', 'Playwright', 'OpenTelemetry', 'Git', 'AWS', 'Figma'],
     },
   ],
 }

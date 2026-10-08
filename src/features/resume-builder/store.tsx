@@ -71,7 +71,6 @@ type ResumeBuilderContextValue = {
   canUndo: boolean
   canRedo: boolean
   updateBasics: (patch: Partial<Basics>) => void
-  updateSummary: (summary: string) => void
   updateExperience: (id: string, patch: Partial<Omit<Experience, 'id'>>) => void
   updateProject: (id: string, patch: Partial<Omit<Project, 'id'>>) => void
   updateEducation: (id: string, patch: Partial<Omit<Education, 'id'>>) => void
@@ -107,7 +106,6 @@ export function ResumeBuilderProvider({ children }: { children: React.ReactNode 
     canUndo: state.past.length > 0,
     canRedo: state.future.length > 0,
     updateBasics: (patch) => set({ ...state.data, basics: { ...state.data.basics, ...patch } }),
-    updateSummary: (summary) => set({ ...state.data, summary }),
     updateExperience: (id, patch) =>
       set({
         ...state.data,

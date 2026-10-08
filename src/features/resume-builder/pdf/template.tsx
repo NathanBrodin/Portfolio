@@ -1,223 +1,117 @@
 'use no memo'
 
 import '@takumi-rs/helpers/jsx'
+import { Fragment } from 'react'
+
 import type { Resume } from '../schema'
 
-export function ResumeTemplate({ data }: { data: Resume }) {
-  void data
+import { formatDateRange } from '../dates'
 
+const headingTw =
+  'm-0 border-b border-border pb-0.5 font-display font-medium text-primary text-[0.9375rem] leading-tight tracking-[-0.005em]'
+
+export function ResumeTemplate({ data }: { data: Resume }) {
   return (
     <main tw="px-12 py-6 font-sans text-xs leading-tight text-foreground">
       <section tw="flex w-full flex-col items-center gap-0.5">
         <h1 tw="m-0 text-center font-display font-normal text-primary text-2xl leading-[1.2] tracking-[-0.02em]">
-          Nathan Brodin
+          {data.basics.name}
         </h1>
-        <p tw="m-0 text-center leading-tight">
-          Frontend-leaning full-stack engineer owning products end to end, from architecture to
-          tested, deployed systems.
-        </p>
+        <p tw="m-0 text-center leading-tight">{data.basics.headline}</p>
         <ul tw="m-0 flex list-none flex-row justify-center gap-3 p-0">
-          <li tw="m-0 p-0">
-            <a tw="underline" href="mailto:nathan@brodin.dev">
-              nathan@brodin.dev
-            </a>
-          </li>
-          <li tw="m-0 p-0">
-            <a tw="underline" href="https://brodin.dev">
-              brodin.dev
-            </a>
-          </li>
-          <li tw="m-0 p-0">
-            <a tw="underline" href="https://linkedin.com/in/nathan-brodin">
-              linkedin.com/in/nathan-brodin
-            </a>
-          </li>
-          <li tw="m-0 p-0">
-            <a tw="underline" href="https://github.com/NathanBrodin">
-              github.com/NathanBrodin
-            </a>
-          </li>
+          {data.basics.links.map((link) => (
+            <li key={link.href} tw="m-0 p-0">
+              <a tw="underline" href={link.href}>
+                {link.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </section>
 
       <section tw="mt-3.5">
-        <h2 tw="m-0 border-b border-border pb-0.5 font-display font-medium text-primary text-[0.9375rem] leading-tight tracking-[-0.005em]">
-          Experience
-        </h2>
+        <h2 tw={headingTw}>Experience</h2>
         <div tw="mt-1 flex flex-col gap-1.5">
-          <div>
-            <div tw="flex flex-row justify-between">
-              <p tw="m-0">Capia AS</p>
-              <p tw="m-0 text-muted-foreground">Tromsø, Norway</p>
+          {data.experience.map((job) => (
+            <div key={job.id}>
+              <div tw="flex flex-row justify-between">
+                <p tw="m-0">{job.company}</p>
+                <p tw="m-0 text-muted-foreground">{job.location}</p>
+              </div>
+              {job.positions.map((position, index) => (
+                <Fragment key={index}>
+                  <div
+                    tw={
+                      index === 0
+                        ? 'flex flex-row justify-between'
+                        : 'mt-1 flex flex-row justify-between'
+                    }
+                  >
+                    <p tw="m-0 text-muted-foreground">{position.role}</p>
+                    <p tw="m-0 text-muted-foreground">
+                      {formatDateRange(position.start, position.end)}
+                    </p>
+                  </div>
+                  <ul tw="m-0 mt-1 list-disc pl-5">
+                    {position.bullets.map((bullet) => (
+                      <li key={bullet} tw="m-0">
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                </Fragment>
+              ))}
             </div>
-            <div tw="flex flex-row justify-between">
-              <p tw="m-0 text-muted-foreground">Full Stack Engineer</p>
-              <p tw="m-0 text-muted-foreground">Aug 2025 – Present</p>
-            </div>
-            <ul tw="m-0 mt-1 list-disc pl-5">
-              <li tw="m-0">
-                Built two production apps from empty repo to deployed systems: a multi-tenant
-                organization-data platform and a traffic dashboard, owning architecture, design,
-                frontend, backend, infrastructure, CI/CD, and docs from one-line briefs.
-              </li>
-              <li tw="m-0">
-                Made stack choices to remove failure modes: codegen plus CI schema checks for type
-                safety on the mandated Django/React/Keycloak platform; full-TypeScript monorepo for
-                the dashboard to skip the codegen round trip. Both self-hosted with Docker and
-                Nginx.
-              </li>
-              <li tw="m-0">
-                Turned &quot;build a chatbot&quot; into a workspace-scoped analytics agent: async
-                streaming tool-calling, workspace-aware context, read-only SQL with strict data
-                isolation, and themed chart visualizations.
-              </li>
-              <li tw="m-0">
-                Made quality non-optional: ~1,530 backend tests plus Playwright E2E, CI checks for
-                schema and type drift, staging auto-deploys with DB backups and health-gated
-                promotion, and documented one-command setup. Precomputed ClickHouse tables serve
-                filtered queries over 20M rows in ~0.3s.
-              </li>
-              <li tw="m-0">
-                Introduced production observability across 8 repositories: implemented OpenTelemetry
-                with self-hosted SigNoz, providing end-to-end traces from frontend requests to
-                database queries, error monitoring, and usage analytics.
-              </li>
-              <li tw="m-0">
-                Removed CI capacity limits by deploying organization-wide self-hosted GitHub Actions
-                runners with Docker, automated scaling, and cleanup.
-              </li>
-            </ul>
-          </div>
-          <div>
-            <div tw="flex flex-row justify-between">
-              <p tw="m-0">DNB</p>
-              <p tw="m-0 text-muted-foreground">Oslo, Norway</p>
-            </div>
-            <div tw="flex flex-row justify-between">
-              <p tw="m-0 text-muted-foreground">Frontend Engineer Intern</p>
-              <p tw="m-0 text-muted-foreground">Feb 2025 – Jul 2025</p>
-            </div>
-            <ul tw="m-0 mt-1 list-disc pl-5">
-              <li tw="m-0">
-                Shipped 15+ features to production across 3 frontend applications serving AI
-                products used by 100k+ users. Counted toward my End-of-studies internship, graded
-                92/100.
-              </li>
-              <li tw="m-0">
-                Migrated a production application from Gatsby to Vite, cutting build times by 60%,
-                and built a full E2E test suite with Playwright: 350+ tests across browsers, CI
-                running under 90 seconds with caching and sharding.
-              </li>
-            </ul>
-            <div tw="mt-1 flex flex-row justify-between">
-              <p tw="m-0 text-muted-foreground">Frontend Engineer Intern</p>
-              <p tw="m-0 text-muted-foreground">Apr 2024 – Aug 2024</p>
-            </div>
-            <ul tw="m-0 mt-1 list-disc pl-5">
-              <li tw="m-0">
-                Built the frontend of a GenAI chatbot platform from an empty repository to a tested
-                application with 92% coverage, Storybook docs, and documented architecture.
-              </li>
-              <li tw="m-0">
-                Implemented SSE streaming, API integration from evolving OpenAPI specs, and PDF
-                export with working links and controlled page breaks.
-              </li>
-            </ul>
-            <div tw="mt-1 flex flex-row justify-between">
-              <p tw="m-0 text-muted-foreground">Frontend Engineer Intern</p>
-              <p tw="m-0 text-muted-foreground">Jul 2023 – Aug 2023</p>
-            </div>
-            <ul tw="m-0 mt-1 list-disc pl-5">
-              <li tw="m-0">
-                Shipped an internal admin panel from scratch from Figma designs, letting product
-                owners edit their chatbots without waiting on developers. Handled UI, API
-                integration, auth, and AWS deployment.
-              </li>
-            </ul>
-          </div>
+          ))}
         </div>
       </section>
 
       <section tw="mt-3.5">
-        <h2 tw="m-0 border-b border-border pb-0.5 font-display font-medium text-primary text-[0.9375rem] leading-tight tracking-[-0.005em]">
-          Education
-        </h2>
+        <h2 tw={headingTw}>Education</h2>
         <div tw="mt-1 flex flex-col gap-1.5">
-          <div>
-            <div tw="flex flex-row justify-between">
-              <p tw="m-0">ESIEA Graduate School of Engineering</p>
-              <p tw="m-0 text-muted-foreground">Laval, France</p>
+          {data.education.map((entry) => (
+            <div key={entry.id}>
+              <div tw="flex flex-row justify-between">
+                <p tw="m-0">{entry.school}</p>
+                <p tw="m-0 text-muted-foreground">{entry.location}</p>
+              </div>
+              <div tw="flex flex-row justify-between">
+                <p tw="m-0 text-muted-foreground">{entry.degree}</p>
+                <p tw="m-0 text-muted-foreground">{formatDateRange(entry.start, entry.end)}</p>
+              </div>
+              <ul tw="m-0 mt-1 list-disc pl-5">
+                {entry.bullets.map((bullet) => (
+                  <li key={bullet} tw="m-0">
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div tw="flex flex-row justify-between">
-              <p tw="m-0 text-muted-foreground">Master of Engineering in Software Engineering</p>
-              <p tw="m-0 text-muted-foreground">Sep 2020 – Jul 2025</p>
-            </div>
-            <ul tw="m-0 mt-1 list-disc pl-5">
-              <li tw="m-0">
-                Top-10 French engineering school. Coursework in algorithms, systems programming,
-                distributed systems, and full stack development; 3 internships (for a total of 1
-                year of professional experience) during the program.
-              </li>
-              <li tw="m-0">
-                Exchange semesters at Mid Sweden University (Sundsvall, Sweden) and Centria
-                University of Applied Sciences (Kokkola, Finland).
-              </li>
-              <li tw="m-0">
-                Awarded 2nd Prize (Jury and Public) at PST Laval 2022 and 2024 for innovative mobile
-                applications.
-              </li>
-            </ul>
-          </div>
+          ))}
         </div>
       </section>
 
       <section tw="mt-3.5">
-        <h2 tw="m-0 border-b border-border pb-0.5 font-display font-medium text-primary text-[0.9375rem] leading-tight tracking-[-0.005em]">
-          Projects
-        </h2>
+        <h2 tw={headingTw}>Projects</h2>
         <div tw="mt-1 flex flex-col gap-1">
-          <p tw="m-0">
-            <a href="https://brodin.dev">Portfolio</a> — Personal site with 100/100/100 Lighthouse
-            scores and full SEO/GEO setup (JSON-LD, sitemap, OG images, llms.txt). Built with React
-            19, TanStack Start, and Tailwind CSS.
-          </p>
-          <p tw="m-0">
-            <a href="https://zed.dev/extensions?query=vercel">Zed Vercel Theme</a> — Theme for the
-            Zed Editor inspired by Vercel&apos;s design language. 90k+ downloads.
-          </p>
-          <p tw="m-0">
-            <a href="https://chat.brodin.dev">Chat</a> — Conversational portfolio answering career
-            questions from full portfolio context, with smooth streaming and persisted
-            conversations. Built with Next.js, React Server Components, AI SDK, and Drizzle.
-          </p>
-          <p tw="m-0">
-            <a href="https://write.brodin.dev">Write</a> — Notion-style editor with live Markdown
-            preview, real-time database, shareable links, and PDF export. Built with Next.js,
-            Tailwind CSS, and Convex.
-          </p>
+          {data.projects.map((project) => (
+            <p key={project.id} tw="m-0">
+              <a href={project.link}>{project.name}</a>
+              {` — ${project.description}`}
+            </p>
+          ))}
         </div>
       </section>
 
       <section tw="mt-3.5">
-        <h2 tw="m-0 border-b border-border pb-0.5 font-display font-medium text-primary text-[0.9375rem] leading-tight tracking-[-0.005em]">
-          Technical Skills
-        </h2>
+        <h2 tw={headingTw}>Technical Skills</h2>
         <div tw="mt-1 flex flex-col gap-0.5">
-          <p tw="m-0">
-            <span tw="text-muted-foreground">Languages: </span>TypeScript, JavaScript, Python
-          </p>
-          <p tw="m-0">
-            <span tw="text-muted-foreground">Frontend: </span>React, TanStack, Next.js, Tailwind
-            CSS, Base UI, Redux, Vite, Storybook, AI SDK
-          </p>
-          <p tw="m-0">
-            <span tw="text-muted-foreground">Backend &amp; Data: </span>Node.js, Django, Hono,
-            PostgreSQL, Redis, ClickHouse, Drizzle, OpenAPI, Keycloak
-          </p>
-          <p tw="m-0">
-            <span tw="text-muted-foreground">Tools &amp; Quality: </span>Docker, Nginx, Playwright,
-            OpenTelemetry, Git, AWS, Figma
-          </p>
+          {data.skills.map((group) => (
+            <p key={group.id} tw="m-0">
+              <span tw="text-muted-foreground">{group.category}: </span>
+              {group.items.join(', ')}
+            </p>
+          ))}
         </div>
       </section>
     </main>
