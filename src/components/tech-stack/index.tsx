@@ -1,6 +1,7 @@
 import { TECH_STACK, type TechStack as TechStackItem } from '@/config/tech-stack'
 
 import { Section, SectionTitle } from '../ui/section'
+import { TechIcon } from './tech-icon'
 
 const ID = 'tech-stack'
 
@@ -55,47 +56,6 @@ export function TechStack() {
         })}
       </div>
     </Section>
-  )
-}
-
-function TechIcon({ tech }: { tech: TechStackItem }) {
-  if (tech.theme) {
-    return (
-      <>
-        <img
-          src={`/tech-stack-icons/${tech.key}-light.svg`}
-          alt=""
-          aria-hidden
-          width={14}
-          height={14}
-          loading="lazy"
-          decoding="async"
-          className="block dark:hidden"
-        />
-        <img
-          src={`/tech-stack-icons/${tech.key}-dark.svg`}
-          alt=""
-          aria-hidden
-          width={14}
-          height={14}
-          loading="lazy"
-          decoding="async"
-          className="hidden dark:block"
-        />
-      </>
-    )
-  }
-
-  return (
-    <img
-      src={`/tech-stack-icons/${tech.key}.svg`}
-      alt=""
-      aria-hidden
-      width={14}
-      height={14}
-      loading="lazy"
-      decoding="async"
-    />
   )
 }
 
