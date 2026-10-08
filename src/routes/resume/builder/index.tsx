@@ -6,9 +6,9 @@ import { Section } from '@/components/ui/section'
 import { SectionDivider, SubSectionDivider } from '@/components/ui/section-divider'
 import { Skeleton } from '@/components/ui/skeleton'
 
-import { BuilderToolbar } from './~components/builder-toolbar'
-import { BuilderEditors } from './~components/editors'
-import { ResumeBuilderProvider } from './~components/store'
+import { BuilderToolbar } from './-components/builder-toolbar'
+import { BuilderEditors } from './-components/editors'
+import { ResumeBuilderProvider } from './-components/store'
 
 export const Route = createFileRoute('/resume/builder/')({
   ssr: false,
@@ -20,7 +20,7 @@ export const Route = createFileRoute('/resume/builder/')({
 })
 
 // Heavy preview (server-rendered PDF) loads only when this route mounts.
-const ResumePreview = lazy(() => import('./~components/preview'))
+const ResumePreview = lazy(() => import('./-components/preview'))
 
 function PendingRoute() {
   return (

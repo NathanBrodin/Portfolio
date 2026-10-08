@@ -13,8 +13,8 @@ import {
   downloadBlob,
   exportResumePdf,
   resumeFilename,
-} from '@/routes/resume/builder/~components/export'
-import { useResumeBuilder } from '@/routes/resume/builder/~components/store'
+} from '@/routes/resume/builder/-components/export'
+import { useResumeBuilder } from '@/routes/resume/builder/-components/store'
 
 function useAnchoredErrorToast(id: string) {
   const anchorRef = useRef<HTMLButtonElement>(null)
