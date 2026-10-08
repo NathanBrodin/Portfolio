@@ -56,14 +56,14 @@ export const resumeSchema = z.object({
   skills: z.array(skillGroupSchema),
 })
 
-export type ResumeData = z.infer<typeof resumeSchema>
+export type Resume = z.infer<typeof resumeSchema>
 export type Basics = z.infer<typeof basicsSchema>
 export type Experience = z.infer<typeof experienceSchema>
 export type Project = z.infer<typeof projectSchema>
 export type Education = z.infer<typeof educationSchema>
 export type SkillGroup = z.infer<typeof skillGroupSchema>
 
-export function safeParseResumeData(data: unknown): ResumeData | null {
+export function safeParseResumeData(data: unknown): Resume | null {
   const result = resumeSchema.safeParse(data)
   return result.success ? result.data : null
 }

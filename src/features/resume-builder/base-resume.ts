@@ -1,6 +1,6 @@
-import type { ResumeData } from './schema'
+import type { Resume } from './schema'
 
-export const baseResume: ResumeData = {
+export const baseResume: Resume = {
   basics: {
     name: 'Nathan Brodin',
     headline: 'Frontend Engineer',

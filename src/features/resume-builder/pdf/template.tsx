@@ -1,9 +1,9 @@
 'use no memo'
 
 import '@takumi-rs/helpers/jsx'
-import type { ResumeData } from '../schema'
+import type { Resume } from '../schema'
 
-export function ResumeTemplate({ data }: { data: ResumeData }) {
+export function ResumeTemplate({ data }: { data: Resume }) {
   void data
 
   return (

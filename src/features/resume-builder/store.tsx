@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from 'react'
 
-import type { Basics, Education, Experience, Project, ResumeData, SkillGroup } from './schema'
+import type { Basics, Education, Experience, Project, Resume, SkillGroup } from './schema'
 
 import { baseResume } from './base-resume'
 import { safeParseResumeData } from './schema'
@@ -9,13 +9,13 @@ const STORAGE_KEY = 'resume-builder:v1'
 const UNDO_LIMIT = 50
 
 type State = {
-  data: ResumeData
-  past: ResumeData[]
-  future: ResumeData[]
+  data: Resume
+  past: Resume[]
+  future: Resume[]
 }
 
 type Action =
-  | { type: 'set'; data: ResumeData }
+  | { type: 'set'; data: Resume }
   | { type: 'undo' }
   | { type: 'redo' }
   | { type: 'reset' }
@@ -55,7 +55,7 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-function loadInitialData(): ResumeData {
+function loadInitialData(): Resume {
   if (typeof window === 'undefined') return baseResume
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY)
@@ -67,7 +67,7 @@ function loadInitialData(): ResumeData {
 }
 
 type ResumeBuilderContextValue = {
-  data: ResumeData
+  data: Resume
   canUndo: boolean
   canRedo: boolean
   updateBasics: (patch: Partial<Basics>) => void
@@ -100,7 +100,7 @@ export function ResumeBuilderProvider({ children }: { children: React.ReactNode 
     }
   }, [state.data])
 
-  const set = (data: ResumeData) => dispatch({ type: 'set', data })
+  const set = (data: Resume) => dispatch({ type: 'set', data })
 
   const value: ResumeBuilderContextValue = {
     data: state.data,

@@ -4,7 +4,7 @@ import wasmUrl from 'takumi-pdf/wasm-url'
 
 import { siteConfig } from '@/config/site'
 
-import type { ResumeData } from '../schema'
+import type { Resume } from '../schema'
 
 import { loadPdfFonts } from './fonts'
 import { ResumeTemplate } from './template'
@@ -28,11 +28,11 @@ function ensureInit(): Promise<void> {
   return ready
 }
 
-function element(data: ResumeData) {
+function element(data: Resume) {
   return createElement(ResumeTemplate, { data })
 }
 
-export async function renderResume(data: ResumeData): Promise<Uint8Array> {
+export async function renderResume(data: Resume): Promise<Uint8Array> {
   await ensureInit()
   const fonts = await loadPdfFonts()
   return render(element(data), {
@@ -53,7 +53,7 @@ export async function renderResume(data: ResumeData): Promise<Uint8Array> {
 }
 
 // Viewport renders clip, so the UI warns instead of silently dropping content.
-export async function fitsOnePage(data: ResumeData): Promise<boolean> {
+export async function fitsOnePage(data: Resume): Promise<boolean> {
   await ensureInit()
   const fonts = await loadPdfFonts()
   const size = await measure(element(data), {

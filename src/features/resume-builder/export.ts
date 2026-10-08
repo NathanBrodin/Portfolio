@@ -1,11 +1,11 @@
-import type { ResumeData } from './schema'
+import type { Resume } from './schema'
 
 export interface ResumePdfResult {
   blob: Blob
   fits: boolean
 }
 
-export async function exportResumePdf(data: ResumeData): Promise<ResumePdfResult> {
+export async function exportResumePdf(data: Resume): Promise<ResumePdfResult> {
   // Dynamically imported so the renderer (and its WASM init) only ever loads
   // in the browser, never in a server bundle.
   const { fitsOnePage, renderResume } = await import('./pdf/render')
