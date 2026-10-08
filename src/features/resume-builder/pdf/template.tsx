@@ -3,8 +3,6 @@
 import '@takumi-rs/helpers/jsx'
 import type { ResumeData } from '../schema'
 
-import { ExperienceEntry, ProjectItem, Section, SkillLine } from './components'
-
 export function ResumeTemplate({ data }: { data: ResumeData }) {
   void data
 
@@ -42,109 +40,186 @@ export function ResumeTemplate({ data }: { data: ResumeData }) {
         </ul>
       </section>
 
-      <Section title="Experience" gap="1.5">
-        <ExperienceEntry
-          company="Capia AS"
-          location="Tromsø, Norway"
-          positions={[
-            {
-              role: 'Full Stack Engineer',
-              period: 'Aug 2025 – Present',
-              bullets: [
-                'Built two production apps from empty repo to deployed systems: a multi-tenant organization-data platform and a traffic dashboard, owning architecture, design, frontend, backend, infrastructure, CI/CD, and docs from one-line briefs.',
-                'Made stack choices to remove failure modes: codegen plus CI schema checks for type safety on the mandated Django/React/Keycloak platform; full-TypeScript monorepo for the dashboard to skip the codegen round trip. Both self-hosted with Docker and Nginx.',
-                'Turned "build a chatbot" into a workspace-scoped analytics agent: async streaming tool-calling, workspace-aware context, read-only SQL with strict data isolation, and themed chart visualizations.',
-                'Made quality non-optional: ~1,530 backend tests plus Playwright E2E, CI checks for schema and type drift, staging auto-deploys with DB backups and health-gated promotion, and documented one-command setup. Precomputed ClickHouse tables serve filtered queries over 20M rows in ~0.3s.',
-                'Introduced production observability across 8 repositories: implemented OpenTelemetry with self-hosted SigNoz, providing end-to-end traces from frontend requests to database queries, error monitoring, and usage analytics.',
-                'Removed CI capacity limits by deploying organization-wide self-hosted GitHub Actions runners with Docker, automated scaling, and cleanup.',
-              ],
-            },
-          ]}
-        />
-        <ExperienceEntry
-          company="DNB"
-          location="Oslo, Norway"
-          positions={[
-            {
-              role: 'Frontend Engineer Intern',
-              period: 'Feb 2025 – Jul 2025',
-              bullets: [
-                'Shipped 15+ features to production across 3 frontend applications serving AI products used by 100k+ users. Counted toward my End-of-studies internship, graded 92/100.',
-                'Migrated a production application from Gatsby to Vite, cutting build times by 60%, and built a full E2E test suite with Playwright: 350+ tests across browsers, CI running under 90 seconds with caching and sharding.',
-              ],
-            },
-            {
-              role: 'Frontend Engineer Intern',
-              period: 'Apr 2024 – Aug 2024',
-              bullets: [
-                'Built the frontend of a GenAI chatbot platform from an empty repository to a tested application with 92% coverage, Storybook docs, and documented architecture.',
-                'Implemented SSE streaming, API integration from evolving OpenAPI specs, and PDF export with working links and controlled page breaks.',
-              ],
-            },
-            {
-              role: 'Frontend Engineer Intern',
-              period: 'Jul 2023 – Aug 2023',
-              bullets: [
-                'Shipped an internal admin panel from scratch from Figma designs, letting product owners edit their chatbots without waiting on developers. Handled UI, API integration, auth, and AWS deployment.',
-              ],
-            },
-          ]}
-        />
-      </Section>
+      <section tw="mt-3.5">
+        <h2 tw="m-0 border-b border-border pb-0.5 font-display font-medium text-primary text-[0.9375rem] leading-tight tracking-[-0.005em]">
+          Experience
+        </h2>
+        <div tw="mt-1 flex flex-col gap-1.5">
+          <div>
+            <div tw="flex flex-row justify-between">
+              <p tw="m-0">Capia AS</p>
+              <p tw="m-0 text-muted-foreground">Tromsø, Norway</p>
+            </div>
+            <div tw="flex flex-row justify-between">
+              <p tw="m-0 text-muted-foreground">Full Stack Engineer</p>
+              <p tw="m-0 text-muted-foreground">Aug 2025 – Present</p>
+            </div>
+            <ul tw="m-0 mt-1 list-disc pl-5">
+              <li tw="m-0">
+                Built two production apps from empty repo to deployed systems: a multi-tenant
+                organization-data platform and a traffic dashboard, owning architecture, design,
+                frontend, backend, infrastructure, CI/CD, and docs from one-line briefs.
+              </li>
+              <li tw="m-0">
+                Made stack choices to remove failure modes: codegen plus CI schema checks for type
+                safety on the mandated Django/React/Keycloak platform; full-TypeScript monorepo for
+                the dashboard to skip the codegen round trip. Both self-hosted with Docker and
+                Nginx.
+              </li>
+              <li tw="m-0">
+                Turned &quot;build a chatbot&quot; into a workspace-scoped analytics agent: async
+                streaming tool-calling, workspace-aware context, read-only SQL with strict data
+                isolation, and themed chart visualizations.
+              </li>
+              <li tw="m-0">
+                Made quality non-optional: ~1,530 backend tests plus Playwright E2E, CI checks for
+                schema and type drift, staging auto-deploys with DB backups and health-gated
+                promotion, and documented one-command setup. Precomputed ClickHouse tables serve
+                filtered queries over 20M rows in ~0.3s.
+              </li>
+              <li tw="m-0">
+                Introduced production observability across 8 repositories: implemented OpenTelemetry
+                with self-hosted SigNoz, providing end-to-end traces from frontend requests to
+                database queries, error monitoring, and usage analytics.
+              </li>
+              <li tw="m-0">
+                Removed CI capacity limits by deploying organization-wide self-hosted GitHub Actions
+                runners with Docker, automated scaling, and cleanup.
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div tw="flex flex-row justify-between">
+              <p tw="m-0">DNB</p>
+              <p tw="m-0 text-muted-foreground">Oslo, Norway</p>
+            </div>
+            <div tw="flex flex-row justify-between">
+              <p tw="m-0 text-muted-foreground">Frontend Engineer Intern</p>
+              <p tw="m-0 text-muted-foreground">Feb 2025 – Jul 2025</p>
+            </div>
+            <ul tw="m-0 mt-1 list-disc pl-5">
+              <li tw="m-0">
+                Shipped 15+ features to production across 3 frontend applications serving AI
+                products used by 100k+ users. Counted toward my End-of-studies internship, graded
+                92/100.
+              </li>
+              <li tw="m-0">
+                Migrated a production application from Gatsby to Vite, cutting build times by 60%,
+                and built a full E2E test suite with Playwright: 350+ tests across browsers, CI
+                running under 90 seconds with caching and sharding.
+              </li>
+            </ul>
+            <div tw="mt-1 flex flex-row justify-between">
+              <p tw="m-0 text-muted-foreground">Frontend Engineer Intern</p>
+              <p tw="m-0 text-muted-foreground">Apr 2024 – Aug 2024</p>
+            </div>
+            <ul tw="m-0 mt-1 list-disc pl-5">
+              <li tw="m-0">
+                Built the frontend of a GenAI chatbot platform from an empty repository to a tested
+                application with 92% coverage, Storybook docs, and documented architecture.
+              </li>
+              <li tw="m-0">
+                Implemented SSE streaming, API integration from evolving OpenAPI specs, and PDF
+                export with working links and controlled page breaks.
+              </li>
+            </ul>
+            <div tw="mt-1 flex flex-row justify-between">
+              <p tw="m-0 text-muted-foreground">Frontend Engineer Intern</p>
+              <p tw="m-0 text-muted-foreground">Jul 2023 – Aug 2023</p>
+            </div>
+            <ul tw="m-0 mt-1 list-disc pl-5">
+              <li tw="m-0">
+                Shipped an internal admin panel from scratch from Figma designs, letting product
+                owners edit their chatbots without waiting on developers. Handled UI, API
+                integration, auth, and AWS deployment.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <Section title="Education" gap="1.5">
-        <ExperienceEntry
-          company="ESIEA Graduate School of Engineering"
-          location="Laval, France"
-          positions={[
-            {
-              role: 'Master of Engineering in Software Engineering',
-              period: 'Sep 2020 – Jul 2025',
-              bullets: [
-                'Top-10 French engineering school. Coursework in algorithms, systems programming, distributed systems, and full stack development; 3 internships (for a total of 1 year of professional experience) during the program.',
-                'Exchange semesters at Mid Sweden University (Sundsvall, Sweden) and Centria University of Applied Sciences (Kokkola, Finland).',
-                'Awarded 2nd Prize (Jury and Public) at PST Laval 2022 and 2024 for innovative mobile applications.',
-              ],
-            },
-          ]}
-        />
-      </Section>
+      <section tw="mt-3.5">
+        <h2 tw="m-0 border-b border-border pb-0.5 font-display font-medium text-primary text-[0.9375rem] leading-tight tracking-[-0.005em]">
+          Education
+        </h2>
+        <div tw="mt-1 flex flex-col gap-1.5">
+          <div>
+            <div tw="flex flex-row justify-between">
+              <p tw="m-0">ESIEA Graduate School of Engineering</p>
+              <p tw="m-0 text-muted-foreground">Laval, France</p>
+            </div>
+            <div tw="flex flex-row justify-between">
+              <p tw="m-0 text-muted-foreground">Master of Engineering in Software Engineering</p>
+              <p tw="m-0 text-muted-foreground">Sep 2020 – Jul 2025</p>
+            </div>
+            <ul tw="m-0 mt-1 list-disc pl-5">
+              <li tw="m-0">
+                Top-10 French engineering school. Coursework in algorithms, systems programming,
+                distributed systems, and full stack development; 3 internships (for a total of 1
+                year of professional experience) during the program.
+              </li>
+              <li tw="m-0">
+                Exchange semesters at Mid Sweden University (Sundsvall, Sweden) and Centria
+                University of Applied Sciences (Kokkola, Finland).
+              </li>
+              <li tw="m-0">
+                Awarded 2nd Prize (Jury and Public) at PST Laval 2022 and 2024 for innovative mobile
+                applications.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <Section title="Projects" gap="1">
-        <ProjectItem
-          name="Portfolio"
-          href="https://brodin.dev"
-          description="Personal site with 100/100/100 Lighthouse scores and full SEO/GEO setup (JSON-LD, sitemap, OG images, llms.txt). Built with React 19, TanStack Start, and Tailwind CSS."
-        />
-        <ProjectItem
-          name="Zed Vercel Theme"
-          href="https://zed.dev/extensions?query=vercel"
-          description="Theme for the Zed Editor inspired by Vercel's design language. 90k+ downloads."
-        />
-        <ProjectItem
-          name="Chat"
-          href="https://chat.brodin.dev"
-          description="Conversational portfolio answering career questions from full portfolio context, with smooth streaming and persisted conversations. Built with Next.js, React Server Components, AI SDK, and Drizzle."
-        />
-        <ProjectItem
-          name="Write"
-          href="https://write.brodin.dev"
-          description="Notion-style editor with live Markdown preview, real-time database, shareable links, and PDF export. Built with Next.js, Tailwind CSS, and Convex."
-        />
-      </Section>
+      <section tw="mt-3.5">
+        <h2 tw="m-0 border-b border-border pb-0.5 font-display font-medium text-primary text-[0.9375rem] leading-tight tracking-[-0.005em]">
+          Projects
+        </h2>
+        <div tw="mt-1 flex flex-col gap-1">
+          <p tw="m-0">
+            <a href="https://brodin.dev">Portfolio</a> — Personal site with 100/100/100 Lighthouse
+            scores and full SEO/GEO setup (JSON-LD, sitemap, OG images, llms.txt). Built with React
+            19, TanStack Start, and Tailwind CSS.
+          </p>
+          <p tw="m-0">
+            <a href="https://zed.dev/extensions?query=vercel">Zed Vercel Theme</a> — Theme for the
+            Zed Editor inspired by Vercel&apos;s design language. 90k+ downloads.
+          </p>
+          <p tw="m-0">
+            <a href="https://chat.brodin.dev">Chat</a> — Conversational portfolio answering career
+            questions from full portfolio context, with smooth streaming and persisted
+            conversations. Built with Next.js, React Server Components, AI SDK, and Drizzle.
+          </p>
+          <p tw="m-0">
+            <a href="https://write.brodin.dev">Write</a> — Notion-style editor with live Markdown
+            preview, real-time database, shareable links, and PDF export. Built with Next.js,
+            Tailwind CSS, and Convex.
+          </p>
+        </div>
+      </section>
 
-      <Section title="Technical Skills" gap="0.5">
-        <SkillLine label="Languages">TypeScript, JavaScript, Python</SkillLine>
-        <SkillLine label="Frontend">
-          React, TanStack, Next.js, Tailwind CSS, Base UI, Redux, Vite, Storybook, AI SDK
-        </SkillLine>
-        <SkillLine label="Backend & Data">
-          Node.js, Django, Hono, PostgreSQL, Redis, ClickHouse, Drizzle, OpenAPI, Keycloak
-        </SkillLine>
-        <SkillLine label="Tools & Quality">
-          Docker, Nginx, Playwright, OpenTelemetry, Git, AWS, Figma
-        </SkillLine>
-      </Section>
+      <section tw="mt-3.5">
+        <h2 tw="m-0 border-b border-border pb-0.5 font-display font-medium text-primary text-[0.9375rem] leading-tight tracking-[-0.005em]">
+          Technical Skills
+        </h2>
+        <div tw="mt-1 flex flex-col gap-0.5">
+          <p tw="m-0">
+            <span tw="text-muted-foreground">Languages: </span>TypeScript, JavaScript, Python
+          </p>
+          <p tw="m-0">
+            <span tw="text-muted-foreground">Frontend: </span>React, TanStack, Next.js, Tailwind
+            CSS, Base UI, Redux, Vite, Storybook, AI SDK
+          </p>
+          <p tw="m-0">
+            <span tw="text-muted-foreground">Backend &amp; Data: </span>Node.js, Django, Hono,
+            PostgreSQL, Redis, ClickHouse, Drizzle, OpenAPI, Keycloak
+          </p>
+          <p tw="m-0">
+            <span tw="text-muted-foreground">Tools &amp; Quality: </span>Docker, Nginx, Playwright,
+            OpenTelemetry, Git, AWS, Figma
+          </p>
+        </div>
+      </section>
     </main>
   )
 }
