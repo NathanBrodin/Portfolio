@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useReducer } from 'react'
 
 import type { Basics, Education, Experience, Project, Resume, SkillGroup } from './schema'
 
-import { baseResume } from './base-resume'
+import { baseResume } from './pdf/base-resume'
 import { safeParseResumeData } from './schema'
 
 const STORAGE_KEY = 'resume-builder:v1'

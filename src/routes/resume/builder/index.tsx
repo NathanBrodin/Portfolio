@@ -5,25 +5,24 @@ import { Page } from '@/components/ui/page'
 import { Section } from '@/components/ui/section'
 import { SectionDivider, SubSectionDivider } from '@/components/ui/section-divider'
 import { Skeleton } from '@/components/ui/skeleton'
-import { BuilderEditors } from '@/features/resume-builder/editors'
-import { ResumeBuilderProvider } from '@/features/resume-builder/store'
 
-import { BuilderToolbar } from './-components/builder-toolbar'
-import { EditorSkeleton, PreviewSkeleton } from './-components/preview-skeleton'
+import { BuilderToolbar } from './~components/builder-toolbar'
+import { BuilderEditors } from './~components/editors'
+import { ResumeBuilderProvider } from './~components/store'
 
 export const Route = createFileRoute('/resume/builder/')({
   ssr: false,
   head: () => ({
     meta: [{ name: 'robots', content: 'noindex, nofollow' }],
   }),
-  pendingComponent: BuilderPending,
-  component: BuilderPage,
+  pendingComponent: PendingRoute,
+  component: RouteComponent,
 })
 
 // Heavy preview (server-rendered PDF) loads only when this route mounts.
-const ResumePreview = lazy(() => import('@/features/resume-builder/preview'))
+const ResumePreview = lazy(() => import('./~components/preview'))
 
-function BuilderPending() {
+function PendingRoute() {
   return (
     <Page>
       <Section variant="panel" size="sm">
@@ -32,8 +31,8 @@ function BuilderPending() {
       <SubSectionDivider />
       <Section variant="panel" size="md">
         <div className="grid w-full items-start gap-4 lg:grid-cols-[400px_minmax(0,1fr)]">
-          <EditorSkeleton />
-          <PreviewSkeleton />
+          <Skeleton className="h-screen w-full rounded-xl" />
+          <Skeleton className="h-screen w-full rounded-lg" />
         </div>
       </Section>
       <SectionDivider />
@@ -42,7 +41,7 @@ function BuilderPending() {
   )
 }
 
-function BuilderPage() {
+function RouteComponent() {
   return (
     <ResumeBuilderProvider>
       <Page>
@@ -52,7 +51,7 @@ function BuilderPage() {
           <div className="grid w-full items-start gap-4 lg:grid-cols-[400px_minmax(0,1fr)]">
             <BuilderEditors />
             <div className="lg:sticky lg:top-14">
-              <Suspense fallback={<PreviewSkeleton />}>
+              <Suspense fallback={<Skeleton className="h-screen w-full rounded-lg" />}>
                 <ResumePreview />
               </Suspense>
             </div>

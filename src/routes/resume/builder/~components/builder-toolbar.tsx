@@ -9,8 +9,12 @@ import { Kbd, KbdGroup } from '@/components/ui/kbd'
 import { Section } from '@/components/ui/section'
 import { anchoredToastManager } from '@/components/ui/toast'
 import { Tooltip, TooltipPopup, TooltipTrigger } from '@/components/ui/tooltip'
-import { downloadBlob, exportResumePdf, resumeFilename } from '@/features/resume-builder/export'
-import { useResumeBuilder } from '@/features/resume-builder/store'
+import {
+  downloadBlob,
+  exportResumePdf,
+  resumeFilename,
+} from '@/routes/resume/builder/~components/export'
+import { useResumeBuilder } from '@/routes/resume/builder/~components/store'
 
 function useAnchoredErrorToast(id: string) {
   const anchorRef = useRef<HTMLButtonElement>(null)

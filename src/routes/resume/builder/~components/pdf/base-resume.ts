@@ -1,4 +1,4 @@
-import type { Resume } from './schema'
+import type { Resume } from '../schema'
 
 export const baseResume: Resume = {
   basics: {
