@@ -39,13 +39,30 @@ function useAnchoredErrorToast(id: string) {
 export function BuilderToolbar() {
   const { data, canUndo, canRedo, undo, redo, resetToBase, importJson } = useResumeBuilder()
 
-  useHotkey('Mod+Z', () => {
-    undo()
-  })
+  useHotkey(
+    'Mod+Z',
+    () => {
+      undo()
+    },
+    { enabled: canUndo },
+  )
 
-  useHotkey('Mod+Shift+Z', () => {
-    redo()
-  })
+  useHotkey(
+    'Mod+Shift+Z',
+    () => {
+      redo()
+    },
+    { enabled: canRedo },
+  )
+
+  // Windows/Linux convention (Mod+Y already covers Ctrl+Y off-macOS).
+  useHotkey(
+    'Mod+Y',
+    () => {
+      redo()
+    },
+    { enabled: canRedo },
+  )
 
   const [downloading, setDownloading] = useState(false)
   const fileRef = useRef<HTMLInputElement>(null)
@@ -137,7 +154,7 @@ export function BuilderToolbar() {
                   disabled={!canRedo}
                   noSound
                   aria-label="Redo"
-                  aria-keyshortcuts="Control+Shift+Z Meta+Shift+Z"
+                  aria-keyshortcuts="Control+Shift+Z Meta+Shift+Z Control+Y Meta+Y"
                 />
               }
             >

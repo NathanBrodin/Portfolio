@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Tooltip, TooltipPopup, TooltipTrigger } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
 
+import { useResumeBuilder } from '../store'
 import { EducationEditor } from './education'
 import { ExperienceEditor } from './experience'
 import { HeadlineEditor } from './headline'
@@ -82,8 +83,10 @@ export function EditorSectionTitle({ className, ...props }: React.ComponentProps
 }
 
 export function BuilderEditors() {
+  const { commit } = useResumeBuilder()
+
   return (
-    <div className="relative flex flex-col gap-2 p-4">
+    <div className="relative flex flex-col gap-2 p-4" onBlurCapture={commit}>
       <p className="text-center font-display text-xl text-balance text-primary">Resume Builder</p>
       <HeadlineEditor />
       <ExperienceEditor />
