@@ -2,7 +2,7 @@ import { PlusIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
-import { BulletField } from '.'
+import { BulletField, EditorSection, EditorSectionTitle } from '.'
 import { formatDateRange } from '../dates'
 import { useResumeBuilder } from '../store'
 
@@ -10,10 +10,8 @@ export function EducationEditor() {
   const { data, updateEducation } = useResumeBuilder()
 
   return (
-    <section className="flex flex-col gap-3 py-2">
-      <h2 className="border-b border-border pb-0.5 font-display text-[0.9375rem] leading-tight font-medium tracking-[-0.005em] text-primary">
-        Education
-      </h2>
+    <EditorSection>
+      <EditorSectionTitle>Education</EditorSectionTitle>
       <div>
         {data.education.map((entry) => (
           <div key={entry.id} className="flex flex-col pb-2">
@@ -27,7 +25,7 @@ export function EducationEditor() {
                 {formatDateRange(entry.start, entry.end)}
               </span>
             </div>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
               {entry.bullets.map((bullet, bulletIndex) => (
                 <BulletField
                   key={bulletIndex}
@@ -61,6 +59,6 @@ export function EducationEditor() {
           </div>
         ))}
       </div>
-    </section>
+    </EditorSection>
   )
 }

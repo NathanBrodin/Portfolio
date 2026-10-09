@@ -16,6 +16,7 @@ import {
 import { Tooltip, TooltipPopup, TooltipTrigger } from '@/components/ui/tooltip'
 import { TECH_STACK } from '@/config/tech-stack'
 
+import { EditorSection, EditorSectionTitle } from '.'
 import { useResumeBuilder } from '../store'
 
 const techByTitle = new Map(TECH_STACK.map((tech) => [tech.title, tech]))
@@ -148,10 +149,8 @@ export function SkillsEditor() {
   const { data, updateSkillGroup } = useResumeBuilder()
 
   return (
-    <section className="flex flex-col gap-3 py-2">
-      <h2 className="border-b border-border pb-0.5 font-display text-[0.9375rem] leading-tight font-medium tracking-[-0.005em] text-primary">
-        Technical Skills
-      </h2>
+    <EditorSection>
+      <EditorSectionTitle>Technical Skills</EditorSectionTitle>
       <div className="flex flex-col gap-2">
         {data.skills.map((group) => (
           <SkillGroupEditor
@@ -162,6 +161,6 @@ export function SkillsEditor() {
           />
         ))}
       </div>
-    </section>
+    </EditorSection>
   )
 }

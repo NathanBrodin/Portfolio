@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Field } from '@/components/ui/field'
 import { Textarea } from '@/components/ui/textarea'
 import { Tooltip, TooltipPopup, TooltipTrigger } from '@/components/ui/tooltip'
+import { cn } from '@/lib/utils'
 
 import { EducationEditor } from './education'
 import { ExperienceEditor } from './experience'
@@ -57,9 +58,33 @@ export function BulletField({
   )
 }
 
+export function EditorSection({ className, ...props }: React.ComponentProps<'section'>) {
+  return (
+    <section
+      className={cn('flex flex-col gap-2', className)}
+      {...props}
+      data-slot="editor-section"
+    />
+  )
+}
+
+export function EditorSectionTitle({ className, ...props }: React.ComponentProps<'h2'>) {
+  return (
+    <h2
+      className={cn(
+        'border-b border-border font-display text-balance text-base font-medium text-primary',
+        className,
+      )}
+      {...props}
+      data-slot="editor-section-title"
+    />
+  )
+}
+
 export function BuilderEditors() {
   return (
-    <div>
+    <div className="relative flex flex-col gap-2 p-4">
+      <p className="text-center font-display text-xl text-balance text-primary">Resume Builder</p>
       <HeadlineEditor />
       <ExperienceEditor />
       <EducationEditor />

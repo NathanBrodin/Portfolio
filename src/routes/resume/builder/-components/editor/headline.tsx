@@ -8,15 +8,12 @@ export function HeadlineEditor() {
   const headline = data.basics.headline
 
   return (
-    <div className="pb-2">
-      <Field>
-        <Textarea
-          aria-label="Headline"
-          value={headline}
-          placeholder="One line under your name"
-          onChange={(event) => updateBasics({ headline: event.target.value })}
-        />
-      </Field>
-    </div>
+    <Field>
+      <Textarea
+        aria-label="Headline"
+        value={headline}
+        onChange={(event) => updateBasics({ headline: event.target.value })}
+      />
+    </Field>
   )
 }

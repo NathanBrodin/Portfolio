@@ -35,7 +35,7 @@ export function ResumeTemplate({ data }: { data: Resume }) {
           {data.experience.map((job) => (
             <div key={job.id}>
               <div tw="flex flex-row justify-between">
-                <p tw="m-0">{job.company}</p>
+                <p tw="m-0 font-medium">{job.company}</p>
                 <p tw="m-0 text-muted-foreground">{job.location}</p>
               </div>
               {job.positions.map((position, index) => (
@@ -72,7 +72,7 @@ export function ResumeTemplate({ data }: { data: Resume }) {
           {data.education.map((entry) => (
             <div key={entry.id}>
               <div tw="flex flex-row justify-between">
-                <p tw="m-0">{entry.school}</p>
+                <p tw="m-0 font-medium">{entry.school}</p>
                 <p tw="m-0 text-muted-foreground">{entry.location}</p>
               </div>
               <div tw="flex flex-row justify-between">
@@ -96,7 +96,9 @@ export function ResumeTemplate({ data }: { data: Resume }) {
         <div tw="mt-1 flex flex-col gap-1">
           {data.projects.map((project) => (
             <p key={project.id} tw="m-0">
-              <a href={project.link}>{project.name}</a>
+              <a href={project.link} tw="font-medium">
+                {project.name}
+              </a>
               {` — ${project.description}`}
             </p>
           ))}
@@ -108,7 +110,7 @@ export function ResumeTemplate({ data }: { data: Resume }) {
         <div tw="mt-1 flex flex-col gap-0.5">
           {data.skills.map((group) => (
             <p key={group.id} tw="m-0">
-              <span tw="text-muted-foreground">{group.category}: </span>
+              <span tw="font-medium">{group.category}: </span>
               {group.items.join(', ')}
             </p>
           ))}

@@ -15,6 +15,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Tooltip, TooltipPopup, TooltipTrigger } from '@/components/ui/tooltip'
 import { getSortedProjects } from '@/lib/projects'
 
+import { EditorSection, EditorSectionTitle } from '.'
 import { useResumeBuilder } from '../store'
 
 const projects = getSortedProjects()
@@ -76,10 +77,8 @@ export function ProjectsEditor() {
   const { data, addProject, removeProject, updateProject } = useResumeBuilder()
 
   return (
-    <section className="flex flex-col gap-3 py-2">
-      <h2 className="border-b border-border pb-0.5 font-display text-[0.9375rem] leading-tight font-medium tracking-[-0.005em] text-primary">
-        Projects
-      </h2>
+    <EditorSection>
+      <EditorSectionTitle>Projects</EditorSectionTitle>
       <div className="flex flex-col gap-4">
         {data.projects.map((project) => (
           <div key={project.id} className="flex flex-col gap-1">
@@ -158,6 +157,6 @@ export function ProjectsEditor() {
           />
         </div>
       </div>
-    </section>
+    </EditorSection>
   )
 }

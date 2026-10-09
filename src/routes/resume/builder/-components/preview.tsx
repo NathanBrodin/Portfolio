@@ -51,29 +51,31 @@ export default function ResumePreview() {
 
   if (failed) {
     return (
-      <div className="flex h-full min-h-96 items-center justify-center rounded-lg border border-dashed p-8 text-center text-sm text-muted-foreground">
+      <div className="flex h-full min-h-96 items-center justify-center border border-dashed p-8 text-center text-sm text-muted-foreground">
         Could not generate the preview. Check the console and try again.
       </div>
     )
   }
 
   if (!url) {
-    return <Skeleton className="h-[80vh] w-full rounded-lg lg:h-[calc(100svh-2rem)]" />
+    return <Skeleton className="h-[80vh] w-full lg:h-[calc(100svh-2rem)]" />
   }
 
   return (
     <div className="flex flex-col gap-2">
       {overflows && (
-        <Alert variant="warning">
-          <TriangleAlertIcon />
-          <AlertTitle>This resume no longer fits on one page, trim some entries.</AlertTitle>
-        </Alert>
+        <div className="px-2 pt-2">
+          <Alert variant="warning">
+            <TriangleAlertIcon />
+            <AlertTitle>The resume no longer fits on one page, trim some entries.</AlertTitle>
+          </Alert>
+        </div>
       )}
       <div className="relative">
         <iframe
           title="Resume preview"
           src={`${url}#toolbar=0&navpanes=0`}
-          className="h-[80vh] w-full rounded-lg lg:h-[calc(100svh-2rem)]"
+          className="h-[80vh] w-full lg:h-[calc(100svh-2rem)]"
         />
       </div>
     </div>
