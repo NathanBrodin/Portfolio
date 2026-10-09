@@ -5,7 +5,7 @@ import type { Basics, Education, Experience, Project, Resume, SkillGroup } from 
 import { baseResume } from './pdf/base-resume'
 import { safeParseResumeData } from './schema'
 
-const STORAGE_KEY = 'resume-builder:v1'
+const STORAGE_KEY = 'resume-builder'
 const UNDO_LIMIT = 50
 
 type State = {
