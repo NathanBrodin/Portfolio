@@ -1,42 +1,33 @@
-# Agent Instructions
+This is my personal portfolio.
+It tries to focus on performances, accessibility, SEO, and GEO: all changes introduced should reflect on if these are considered.
 
-This is my portfolio, presenting my work, experiences, and myself.
+## Toolchain
 
-## Tech Stack & Conventions
+This project uses Vite+. Always use `vp`, never npm/pnpm/yarn/tsc/eslint/prettier directly.
 
-- **Framework**: React 19 + React Compiler + TanStack Router + TanStack Start (SSR)
-- **Styling**: Tailwind CSS v4
-- **UI Components**: Base UI + shadcn components
-- **Validation**: Zod
-- **Content**: Content Collections (Markdown)
-- **Rule**: Rely on the React Compiler; avoid manual memoization (`useMemo`, `useCallback`) unless strictly necessary.
+- `vp check`: format, lint, and typecheck. Run after every change and fix all errors.
+- `vp build`: run to verify the app actually works when your change touches routes, content, config, or dependencies.
+- `vp add` / `vp remove` / `vp update`: the only way to change dependencies. Ask before adding one.
 
-## Content and Voice
+There are no tests.
 
-When adding any text, blog posts, or UI copy, your primary goal is to make it feel exactly as if I wrote it. Do not use generic, overly formal "AI-sounding" language.
+## Rendering
 
-To accurately mimic my voice, you must follow this process:
+- The React Compiler is on. Don't write `useMemo`, `useCallback`, or `React.memo`; manual memoization fights the compiler.
+- Pages are statically pre-rendered with TanStack Start (see the Vite config).
 
-- **Analyze Context First:** Before generating new content, read existing Markdown files in `/content/` to analyze my vocabulary, sentence structure, and pacing.
-- **Match the Intent:** Ensure the new content aligns perfectly with the spirit of the surrounding application and feels like a natural extension of my existing blogs.
+## Code Style
 
-## Useful Commands
+Write the least code that does the job.
 
-This project is using Vite+, a unified toolchain built on top of Vite, Rolldown, Vitest, tsdown, Oxlint, Oxfmt, and Vite Task.
+- Inline logic that's only used once. Don't extract a helper or a constant unless it's reused or the name clearly makes the caller easier to read.
+- Don't hoist values into top-of-file constants unless they're shared.
+- Don't add comments. Only add one when the "why" is non-obvious and can't be expressed in code. Never comment what the code does.
+- Rely on type inference. No explicit annotations unless needed for exports. No `any`.
+- Validate unknown data once, at the boundary (Zod), then trust the types.
+- Don't add error handling, fallbacks, or abstractions for cases that can't realistically happen. If you think one is warranted, explain the concrete failure mode and ask first.
+- Stay in scope: don't refactor, rename, or restyle code unrelated to the task.
 
-### Develop
+## Content
 
-- `vp dev` - Run the development server
-- `vp check` - Run format, lint, and TypeScript type checks
-- `vp test` - Run tests
-
-### Build
-
-- `vp build` - Build for production
-- `vp preview` - Preview production build
-
-### Manage Dependencies
-
-- `vp add <package>` - Add packages to dependencies
-- `vp remove <package>` - Remove packages from dependencies
-- `vp update` - Update packages to latest versions
+When writing or editing any text, blog post, or UI copy, first read content files in `content/`. There's plenty of material there. Match the voice, vocabulary, and pacing so it reads as if I wrote it. No generic "AI-sounding" prose.
