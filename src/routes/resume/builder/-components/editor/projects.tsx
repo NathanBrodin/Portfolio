@@ -11,12 +11,13 @@ import {
   ComboboxPopup,
   ComboboxTrigger,
 } from '@/components/ui/combobox'
-import { Textarea } from '@/components/ui/textarea'
+import { InputGroup, InputGroupTextarea } from '@/components/ui/input-group'
 import { Tooltip, TooltipPopup, TooltipTrigger } from '@/components/ui/tooltip'
 import { getSortedProjects } from '@/lib/projects'
 
 import { EditorSection, EditorSectionTitle } from '.'
 import { useResumeBuilder } from '../store'
+import { LineMeter } from './line-meter'
 
 const projects = getSortedProjects()
 
@@ -129,13 +130,15 @@ export function ProjectsEditor() {
                 </Tooltip>
               </span>
             </div>
-            <Textarea
-              size="sm"
-              aria-label={`${project.name || 'Project'} description`}
-              value={project.description}
-              onChange={(event) => updateProject(project.id, { description: event.target.value })}
-              className="flex-1"
-            />
+            <InputGroup className="flex-1">
+              <InputGroupTextarea
+                size="sm"
+                aria-label={`${project.name || 'Project'} description`}
+                value={project.description}
+                onChange={(event) => updateProject(project.id, { description: event.target.value })}
+              />
+              <LineMeter text={project.description} variant="project" name={project.name} />
+            </InputGroup>
           </div>
         ))}
         <div className="self-start">

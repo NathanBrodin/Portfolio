@@ -45,10 +45,15 @@ function SkillGroupEditor({
     return available.length > 0 ? [{ label: group.label, items: available }] : []
   })
 
+  const maxSkills = 9
+  const full = items.length >= maxSkills
+  const emptyHint = items.length === 0 ? 'Type to add a skill…' : undefined
+  const placeholder = full ? `${maxSkills} skills max` : emptyHint
+
   const commit = (value: string) => {
     const trimmed = value.trim()
     setQuery('')
-    if (!trimmed || items.includes(trimmed)) return
+    if (!trimmed || items.includes(trimmed) || items.length >= maxSkills) return
     onChange([...items, trimmed])
   }
 
@@ -98,23 +103,33 @@ function SkillGroupEditor({
           }
         }}
       >
-        <AutocompleteInput
-          aria-label={`Add a skill to ${category}`}
-          placeholder={items.length === 0 ? 'Type to add a skill…' : undefined}
-          render={
-            <input className="h-7 w-full flex-1 px-1 font-mono text-xs outline-none placeholder:text-muted-foreground" />
-          }
-          onKeyDown={(event) => {
-            if (event.key !== 'Enter') return
-            const value = query.trim()
-            if (!value || hasTechMatch(value)) return
-            commit(value)
-          }}
-          onBlur={() => {
-            const value = query.trim()
-            if (value) commit(value)
-          }}
-        />
+        <Tooltip>
+          <TooltipTrigger render={<div className="flex w-full flex-1" />}>
+            <AutocompleteInput
+              aria-label={`Add a skill to ${category}`}
+              placeholder={placeholder}
+              disabled={full}
+              render={
+                <input className="h-7 w-full flex-1 px-1 font-mono text-xs outline-none placeholder:text-muted-foreground" />
+              }
+              onKeyDown={(event) => {
+                if (event.key !== 'Enter') return
+                const value = query.trim()
+                if (!value || hasTechMatch(value)) return
+                commit(value)
+              }}
+              onBlur={() => {
+                const value = query.trim()
+                if (value) commit(value)
+              }}
+            />
+          </TooltipTrigger>
+          {full && (
+            <TooltipPopup side="bottom">
+              {maxSkills} skills max, remove one to add another
+            </TooltipPopup>
+          )}
+        </Tooltip>
         <AutocompletePopup>
           <AutocompleteList>
             {(group: { label: string; items: string[] }) => (

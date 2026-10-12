@@ -2,7 +2,7 @@ import { XIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Field } from '@/components/ui/field'
-import { Textarea } from '@/components/ui/textarea'
+import { InputGroup, InputGroupTextarea } from '@/components/ui/input-group'
 import { Tooltip, TooltipPopup, TooltipTrigger } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
 
@@ -10,6 +10,7 @@ import { useResumeBuilder } from '../store'
 import { EducationEditor } from './education'
 import { ExperienceEditor } from './experience'
 import { HeadlineEditor } from './headline'
+import { LineMeter } from './line-meter'
 import { ProjectsEditor } from './projects'
 import { SkillsEditor } from './skills'
 
@@ -30,13 +31,15 @@ export function BulletField({
     <Field>
       <div className="flex w-full items-start gap-1.5">
         <span aria-hidden="true">•</span>
-        <Textarea
-          size="sm"
-          aria-label={label}
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
-          className="flex-1"
-        />
+        <InputGroup className="flex-1">
+          <InputGroupTextarea
+            size="sm"
+            aria-label={label}
+            value={value}
+            onChange={(event) => onChange(event.target.value)}
+          />
+          <LineMeter text={value} variant="bullet" />
+        </InputGroup>
         <Tooltip>
           <TooltipTrigger
             render={
