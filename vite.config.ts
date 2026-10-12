@@ -70,6 +70,10 @@ const config = defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  build: {
+    // Inline tiny processed assets (only src-imported files are affected).
+    assetsInlineLimit: 6144,
+  },
   plugins: [
     contentCollections({ environment: 'client' }),
     devtools(),

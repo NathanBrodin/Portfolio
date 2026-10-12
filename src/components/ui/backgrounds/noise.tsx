@@ -1,3 +1,4 @@
+import noiseWebp from '@/assets/noise.webp'
 import { cn } from '@/lib/utils'
 
 export function Noise({ className, ...props }: React.ComponentProps<'div'>) {
@@ -7,7 +8,7 @@ export function Noise({ className, ...props }: React.ComponentProps<'div'>) {
         'pointer-events-none absolute inset-0 z-[-1] bg-size-[180px] bg-repeat opacity-[0.035] dark:opacity-[0.012]',
         className,
       )}
-      style={{ backgroundImage: 'url(/backgrounds/noise.webp)' }}
+      style={{ backgroundImage: `url(${noiseWebp})` }}
       aria-hidden="true"
       {...props}
     />
