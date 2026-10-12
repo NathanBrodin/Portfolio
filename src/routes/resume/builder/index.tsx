@@ -29,7 +29,7 @@ function RouteComponent() {
         <BuilderToolbar />
         <SubSectionDivider />
         <Section variant="panel">
-          <div className="grid w-full items-start lg:grid-cols-[400px_minmax(0,1fr)]">
+          <div className="grid w-full grid-cols-[minmax(0,1fr)] items-start lg:grid-cols-[400px_minmax(0,1fr)]">
             <BuilderEditors />
             <div className="lg:sticky lg:top-10">
               <Suspense fallback={<Skeleton className="h-screen w-full" />}>
@@ -53,7 +53,7 @@ function PendingRoute() {
       </Section>
       <SubSectionDivider />
       <Section variant="panel">
-        <div className="grid w-full items-start lg:grid-cols-[400px_minmax(0,1fr)]">
+        <div className="grid w-full grid-cols-[minmax(0,1fr)] items-start lg:grid-cols-[400px_minmax(0,1fr)]">
           <Skeleton className="h-screen w-full" />
           <Skeleton className="h-screen w-full" />
         </div>
