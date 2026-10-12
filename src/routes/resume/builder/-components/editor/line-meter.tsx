@@ -16,10 +16,12 @@ export function LineMeter({
   text,
   variant,
   name = '',
+  id,
 }: {
   text: string
   variant: keyof typeof meterVariants
   name?: string
+  id: string
 }) {
   const [, refresh] = useState(0)
 
@@ -58,8 +60,7 @@ export function LineMeter({
           render={
             <span
               className="flex cursor-default flex-col items-end py-0.5 outline-none"
-              tabIndex={0}
-              aria-label={detail}
+              aria-hidden="true"
             />
           }
         >
@@ -76,10 +77,12 @@ export function LineMeter({
               </span>
             ))}
           </span>
-          <span className="sr-only">{detail}</span>
         </TooltipTrigger>
         <TooltipPopup side="bottom">{detail}</TooltipPopup>
       </Tooltip>
+      <span id={id} className="sr-only">
+        {detail}
+      </span>
     </InputGroupAddon>
   )
 }

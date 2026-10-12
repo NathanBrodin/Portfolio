@@ -1,5 +1,5 @@
 import { XIcon } from 'lucide-react'
-import { useState } from 'react'
+import { useId, useState } from 'react'
 
 import { TechIcon } from '@/components/tech-stack/tech-icon'
 import {
@@ -39,6 +39,7 @@ function SkillGroupEditor({
 }) {
   const [query, setQuery] = useState('')
   const filter = useAutocompleteFilter()
+  const labelId = useId()
 
   const availableGroups = techGroups.flatMap((group) => {
     const available = group.items.filter((title) => !items.includes(title))
@@ -61,8 +62,15 @@ function SkillGroupEditor({
     availableGroups.some((group) => group.items.some((title) => filter.contains(title, value)))
 
   return (
-    <div className="flex min-h-9 w-full flex-wrap items-center gap-1 rounded-lg border border-input bg-background p-[calc(--spacing(1)-1px)] shadow-xs/5 transition-shadow focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/24">
-      <span className="shrink-0 px-1 text-xs text-muted-foreground">{category}:</span>
+    <div
+      role="group"
+      aria-labelledby={labelId}
+      className="flex min-h-9 w-full flex-wrap items-center gap-1 rounded-lg border border-input bg-background p-[calc(--spacing(1)-1px)] shadow-xs/5 transition-shadow focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/24"
+    >
+      <span id={labelId} className="shrink-0 px-1 text-xs text-muted-foreground">
+        {category}
+        <span aria-hidden="true">:</span>
+      </span>
       {items.map((item) => {
         const tech = techByTitle.get(item)
         return (

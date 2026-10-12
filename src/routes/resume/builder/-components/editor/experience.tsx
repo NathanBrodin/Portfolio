@@ -40,6 +40,7 @@ export function ExperienceEditor() {
                       <BulletField
                         key={bulletIndex}
                         label={`Bullet ${bulletIndex + 1}`}
+                        context={`${position.role} at ${job.company}, ${formatDateRange(position.start, position.end)}`}
                         value={bullet}
                         removable={position.bullets.length > 1}
                         onChange={(value) =>
@@ -61,6 +62,7 @@ export function ExperienceEditor() {
                     size="xs"
                     variant="ghost"
                     className="self-start"
+                    aria-label={`Add bullet to ${position.role} at ${job.company}, ${formatDateRange(position.start, position.end)}`}
                     onClick={() => updatePosition({ bullets: [...position.bullets, ''] })}
                   >
                     <PlusIcon />

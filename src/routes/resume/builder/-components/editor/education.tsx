@@ -30,6 +30,7 @@ export function EducationEditor() {
                 <BulletField
                   key={bulletIndex}
                   label={`Bullet ${bulletIndex + 1}`}
+                  context={`${entry.degree} at ${entry.school}`}
                   value={bullet}
                   removable={entry.bullets.length > 1}
                   onChange={(value) =>
@@ -51,6 +52,7 @@ export function EducationEditor() {
               size="xs"
               variant="ghost"
               className="self-start"
+              aria-label={`Add bullet to ${entry.degree} at ${entry.school}`}
               onClick={() => updateEducation(entry.id, { bullets: [...entry.bullets, ''] })}
             >
               <PlusIcon />

@@ -1,4 +1,5 @@
 import { XIcon } from 'lucide-react'
+import { useId } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { Field } from '@/components/ui/field'
@@ -17,16 +18,20 @@ import { SkillsEditor } from './skills'
 export function BulletField({
   value,
   label,
+  context,
   removable,
   onChange,
   onRemove,
 }: {
   value: string
   label: string
+  context: string
   removable: boolean
   onChange: (value: string) => void
   onRemove: () => void
 }) {
+  const detailId = useId()
+
   return (
     <Field>
       <div className="flex w-full items-start gap-1.5">
@@ -34,17 +39,18 @@ export function BulletField({
         <InputGroup className="flex-1">
           <InputGroupTextarea
             size="sm"
-            aria-label={label}
+            aria-label={`${label} for ${context}`}
+            aria-describedby={detailId}
             value={value}
             onChange={(event) => onChange(event.target.value)}
           />
-          <LineMeter text={value} variant="bullet" />
+          <LineMeter id={detailId} text={value} variant="bullet" />
         </InputGroup>
         <Tooltip>
           <TooltipTrigger
             render={
               <Button
-                aria-label={`Remove ${label.toLowerCase()}`}
+                aria-label={`Remove ${label.toLowerCase()} for ${context}`}
                 size="icon-xs"
                 variant="ghost"
                 disabled={!removable}
@@ -90,7 +96,7 @@ export function BuilderEditors() {
 
   return (
     <div className="relative flex flex-col gap-2 p-4" onBlurCapture={commit}>
-      <p className="text-center font-display text-xl text-balance text-primary">Resume Builder</p>
+      <h1 className="text-center font-display text-xl text-balance text-primary">Resume Builder</h1>
       <HeadlineEditor />
       <ExperienceEditor />
       <EducationEditor />

@@ -97,7 +97,7 @@ export function ProjectsEditor() {
                   </a>
                 )}
                 <ProjectPicker
-                  ariaLabel="Pick a project"
+                  ariaLabel={`Pick a project to replace ${project.name || 'project'}`}
                   tooltip="Pick a project"
                   onPick={(content) =>
                     updateProject(project.id, {
@@ -134,15 +134,22 @@ export function ProjectsEditor() {
               <InputGroupTextarea
                 size="sm"
                 aria-label={`${project.name || 'Project'} description`}
+                aria-describedby={`project-${project.id}-description-detail`}
                 value={project.description}
                 onChange={(event) => updateProject(project.id, { description: event.target.value })}
               />
-              <LineMeter text={project.description} variant="project" name={project.name} />
+              <LineMeter
+                id={`project-${project.id}-description-detail`}
+                text={project.description}
+                variant="project"
+                name={project.name}
+              />
             </InputGroup>
           </div>
         ))}
         <div className="self-start">
           <ProjectPicker
+            ariaLabel="Add project"
             onPick={(content) =>
               addProject({
                 id: crypto.randomUUID(),
