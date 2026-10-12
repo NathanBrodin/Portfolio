@@ -27,7 +27,7 @@ function useAnchoredErrorToast(id: string) {
         anchor: anchorRef.current,
         sideOffset: 6,
       },
-      timeout: 2000,
+      timeout: 8000,
       title,
       type: 'error',
     })
@@ -183,6 +183,7 @@ export function BuilderToolbar() {
           <Button
             size="sm"
             variant="secondary"
+            aria-label="Import resume from JSON file"
             onClick={() => fileRef.current?.click()}
             ref={importButtonRef}
           >
@@ -193,6 +194,7 @@ export function BuilderToolbar() {
             size="sm"
             onClick={handleDownloadPdf}
             disabled={downloading}
+            aria-busy={downloading}
             ref={downloadButtonRef}
           >
             <FileDown />

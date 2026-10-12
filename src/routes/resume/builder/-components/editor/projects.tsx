@@ -93,7 +93,9 @@ export function ProjectsEditor() {
                     rel="noopener"
                     className="truncate text-xs break-all text-ellipsis text-muted-foreground"
                   >
+                    <span className="sr-only">{project.name} website: </span>
                     {project.link}
+                    <span className="sr-only"> (opens in new tab)</span>
                   </a>
                 )}
                 <ProjectPicker

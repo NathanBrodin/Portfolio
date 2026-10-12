@@ -10,6 +10,8 @@ import { Section } from './section'
 export function Page({ className, children, ...props }: React.ComponentProps<'main'>) {
   return (
     <main
+      id="main-content"
+      tabIndex={-1}
       className={cn(
         'relative flex h-full flex-1 flex-col items-center overflow-x-clip px-4',
         className,

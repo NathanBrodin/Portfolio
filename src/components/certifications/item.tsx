@@ -21,7 +21,6 @@ export function CertificationItem({
       href={certification.credentialUrl}
       target="_blank"
       rel="noopener"
-      aria-label={`${certification.title}, ${certification.issuer}`}
     >
       <div
         className={cn(
@@ -68,6 +67,7 @@ export function CertificationItem({
           aria-hidden
         />
       )}
+      <span className="sr-only"> (opens in new tab)</span>
     </a>
   )
 }

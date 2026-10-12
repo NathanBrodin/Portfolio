@@ -40,6 +40,7 @@ function SkillGroupEditor({
   const [query, setQuery] = useState('')
   const filter = useAutocompleteFilter()
   const labelId = useId()
+  const hintId = useId()
 
   const availableGroups = techGroups.flatMap((group) => {
     const available = group.items.filter((title) => !items.includes(title))
@@ -115,6 +116,7 @@ function SkillGroupEditor({
           <TooltipTrigger render={<div className="flex w-full flex-1" />}>
             <AutocompleteInput
               aria-label={`Add a skill to ${category}`}
+              aria-describedby={full ? hintId : undefined}
               placeholder={placeholder}
               disabled={full}
               render={
@@ -136,6 +138,11 @@ function SkillGroupEditor({
             <TooltipPopup side="bottom">
               {maxSkills} skills max, remove one to add another
             </TooltipPopup>
+          )}
+          {full && (
+            <span id={hintId} className="sr-only">
+              {category} has {maxSkills} skills max. Remove one to add another.
+            </span>
           )}
         </Tooltip>
         <AutocompletePopup>

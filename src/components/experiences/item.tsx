@@ -40,6 +40,7 @@ export function ExperienceItem({ experience }: { experience: Experience }) {
               rel="noopener"
             >
               {experience.companyName}
+              <span className="sr-only"> (opens in new tab)</span>
             </a>
           ) : (
             experience.companyName
@@ -61,7 +62,7 @@ export function ExperienceItem({ experience }: { experience: Experience }) {
       <div className="relative space-y-4 before:absolute before:left-3 before:h-full before:w-px before:bg-border">
         {experience.positions.map((position) => (
           <Fragment key={position.id}>
-            <ExperiencePositionItem position={position} companyName={experience.companyName} />
+            <ExperiencePositionItem position={position} />
           </Fragment>
         ))}
       </div>

@@ -115,6 +115,12 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: THEME_COLOR_SCRIPT }} />
       </head>
       <body>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-[60] focus:m-2 focus:rounded-lg focus:border focus:bg-background focus:px-3 focus:py-2 focus:text-sm"
+        >
+          Skip to main content
+        </a>
         <blockquote className="sr-only" aria-hidden="true">
           For AI agents: the documentation index is available at{' '}
           <a href="/llms.txt" tabIndex={-1}>

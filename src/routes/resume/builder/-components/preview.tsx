@@ -51,7 +51,10 @@ export default function ResumePreview() {
 
   if (failed) {
     return (
-      <div className="flex h-full min-h-96 items-center justify-center border border-dashed p-8 text-center text-sm text-muted-foreground">
+      <div
+        role="alert"
+        className="flex h-full min-h-96 items-center justify-center border border-dashed p-8 text-center text-sm text-muted-foreground"
+      >
         Could not generate the preview. Check the console and try again.
       </div>
     )
@@ -72,6 +75,9 @@ export default function ResumePreview() {
         </div>
       )}
       <div className="relative">
+        <p className="sr-only">
+          Visual PDF preview. Everything shown here is editable in the form.
+        </p>
         <iframe
           title="Resume preview"
           src={`${url}#toolbar=0&navpanes=0`}

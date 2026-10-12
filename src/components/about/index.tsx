@@ -75,15 +75,12 @@ export function About() {
           {PLACES.map((item) => (
             <li
               key={item.id}
-              tabIndex={0}
               className={cn(
-                'flex cursor-pointer items-start gap-2 rounded-sm px-1 py-1.5 transition-colors duration-150',
+                'flex items-start gap-2 rounded-sm px-1 py-1.5 transition-colors duration-150',
                 hoveredId === item.id ? 'bg-primary/10' : 'hover:bg-muted/50',
               )}
               onMouseEnter={() => setHoveredId(item.id)}
               onMouseLeave={() => setHoveredId(null)}
-              onFocus={() => setHoveredId(item.id)}
-              onBlur={() => setHoveredId(null)}
             >
               <LegendDot animated={item.current ?? false} />
               <span className="text-xs leading-tight text-muted-foreground">
@@ -94,15 +91,12 @@ export function About() {
             </li>
           ))}
           <li
-            tabIndex={userLocation ? 0 : -1}
             className={cn(
-              'flex cursor-pointer items-start gap-2 rounded-sm px-1 py-1.5 transition-colors duration-150',
+              'flex items-start gap-2 rounded-sm px-1 py-1.5 transition-colors duration-150',
               hoveredId === USER_MARKER.id ? 'bg-primary/10' : 'hover:bg-muted/50',
             )}
             onMouseEnter={() => setHoveredId(USER_MARKER.id)}
             onMouseLeave={() => setHoveredId(null)}
-            onFocus={() => setHoveredId(USER_MARKER.id)}
-            onBlur={() => setHoveredId(null)}
           >
             <LegendDot animated />
             <span className="text-xs leading-tight text-muted-foreground">

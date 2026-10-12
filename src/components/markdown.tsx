@@ -23,6 +23,7 @@ const options: HTMLReactParserOptions = {
         return (
           <a href={href} target="_blank" rel="noopener noreferrer">
             {domToReact(domNode.children as DOMNode[], options)}
+            <span className="sr-only"> (opens in new tab)</span>
           </a>
         )
       }

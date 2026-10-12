@@ -10,12 +10,7 @@ import {
   LearnMoreTrigger,
 } from '@/components/ui/collapsible'
 import { Separator } from '@/components/ui/separator'
-import {
-  calculateEmploymentDuration,
-  formatDate,
-  formatEmploymentDuration,
-  formatMonthYear,
-} from '@/lib/date'
+import { calculateEmploymentDuration, formatDate, formatEmploymentDuration } from '@/lib/date'
 import { cn } from '@/lib/utils'
 
 import { Markdown } from '../markdown'
@@ -23,22 +18,10 @@ import { Tag } from '../ui/tag'
 import { Prose } from '../ui/typography'
 import { ExperienceIcon } from './position-icon'
 
-export function ExperiencePositionItem({
-  position,
-  companyName,
-}: {
-  position: ExperiencePosition
-  companyName?: string
-}) {
+export function ExperiencePositionItem({ position }: { position: ExperiencePosition }) {
   const { start, end } = position.employmentPeriod
   const isOngoing = !end
 
-  const periodLabel = isOngoing
-    ? `${formatMonthYear(start)} to present`
-    : `${formatMonthYear(start)} to ${end ? formatMonthYear(end) : 'present'}`
-  const accessibleLabel = companyName
-    ? `${position.title}, ${companyName}, ${periodLabel}`
-    : `${position.title}, ${periodLabel}`
   const hasSkills = Array.isArray(position.skills) && position.skills.length > 0
   const moreContent = position.hasDetail ? position.detailDescription : undefined
 
@@ -49,10 +32,7 @@ export function ExperiencePositionItem({
         <div className="relative last:before:absolute last:before:left-3 last:before:h-full last:before:w-px last:before:bg-background" />
       }
     >
-      <CollapsibleTrigger
-        aria-label={accessibleLabel}
-        className={cn('group relative block w-full text-left')}
-      >
+      <CollapsibleTrigger className={cn('group relative block w-full text-left')}>
         <div
           aria-hidden
           className="absolute -top-1 -right-1 -bottom-1.5 left-7 -z-1 rounded-lg transition-[background-color] ease-out group-hover:bg-muted/50"

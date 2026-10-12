@@ -6,7 +6,7 @@ import rehypeStringify from 'rehype-stringify'
 import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
-import { unified } from 'unified'
+import { unified, type Plugin } from 'unified'
 
 type MarkdownHeading = {
   id: string
@@ -44,6 +44,33 @@ const SHIKI_LANGS = [
 
 const HAS_CODE_FENCE = /```/
 
+type HastNode = {
+  tagName?: string
+  properties?: Record<string, string | number>
+  children?: Array<HastNode>
+}
+
+// Shiki (and plain fences) render horizontally scrolling `pre` blocks.
+// Keyboard users cannot scroll them unless the region is focusable.
+const rehypeScrollableCode: Plugin = function () {
+  return (tree) => {
+    const visit = (nodes: Array<HastNode> | undefined) => {
+      for (const node of nodes ?? []) {
+        if (node.tagName === 'pre') {
+          node.properties = {
+            ...node.properties,
+            tabIndex: 0,
+            role: 'region',
+            'aria-label': 'Code sample',
+          }
+        }
+        if (node.children) visit(node.children)
+      }
+    }
+    visit((tree as unknown as { children?: Array<HastNode> }).children)
+  }
+}
+
 function createProcessor(withHighlighting: boolean) {
   const processor = unified()
     .use(remarkParse) // Parse markdown
@@ -62,6 +89,7 @@ function createProcessor(withHighlighting: boolean) {
     })
   }
   return processor
+    .use(rehypeScrollableCode)
     .use(rehypeSlug) // Add IDs to headings
     .use(rehypeAutolinkHeadings, {
       behavior: 'wrap',

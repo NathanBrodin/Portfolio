@@ -30,7 +30,8 @@ export function ThemeToggle() {
   }, [isDark])
 
   const switchTheme = useCallback(() => {
-    if (!document.startViewTransition) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (!document.startViewTransition || reduceMotion) {
       setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
       playSound(switch005Sound)
       return

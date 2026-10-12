@@ -17,7 +17,6 @@ export function SocialLinkItem({ iconImage, label, description, value }: LinkIte
       href={value}
       target="_blank"
       rel="noopener"
-      aria-label={description ? `${label}: ${description}` : label}
     >
       <div className="relative size-12 shrink-0">
         <img
@@ -47,6 +46,7 @@ export function SocialLinkItem({ iconImage, label, description, value }: LinkIte
         className="size-4 text-muted-foreground transition-[rotate] duration-300 group-hover:rotate-45"
         aria-hidden="true"
       />
+      <span className="sr-only"> (opens in new tab)</span>
     </a>
   )
 }

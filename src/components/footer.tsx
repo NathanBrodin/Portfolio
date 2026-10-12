@@ -17,7 +17,7 @@ export function Footer() {
         <p className="py-2 text-sm text-muted-foreground">
           Built by{' '}
           <a className="link" href="https://brodin.dev" target="_blank" rel="noopener">
-            Nathan Brodin
+            Nathan Brodin<span className="sr-only"> (opens in new tab)</span>
           </a>
         </p>
         <div className="mx-auto flex items-center justify-center gap-3 border-x bg-background px-4">
@@ -35,7 +35,7 @@ export function Footer() {
             rel="noopener noreferrer"
           >
             <Icons.x className="size-4" />
-            <span className="sr-only">Twitter</span>
+            <span className="sr-only">Twitter (opens in new tab)</span>
           </a>
           <Separator orientation="vertical" />
           <a
@@ -45,7 +45,7 @@ export function Footer() {
             rel="noopener noreferrer"
           >
             <Icons.github className="size-4" />
-            <span className="sr-only">GitHub</span>
+            <span className="sr-only">GitHub (opens in new tab)</span>
           </a>
           <Separator orientation="vertical" />
           <a
@@ -55,7 +55,7 @@ export function Footer() {
             rel="noopener noreferrer"
           >
             <Icons.linkedin className="size-4" />
-            <span className="sr-only">LinkedIn</span>
+            <span className="sr-only">LinkedIn (opens in new tab)</span>
           </a>
           <Separator orientation="vertical" />
           <a
@@ -69,11 +69,11 @@ export function Footer() {
         <p className="py-2 text-sm text-muted-foreground">
           Inspired by{' '}
           <a className="link" href="https://chanhdai.com/" target="_blank" rel="noopener">
-            Chanhdai
+            Chanhdai<span className="sr-only"> (opens in new tab)</span>
           </a>{' '}
           and{' '}
           <a className="link" href="https://zed.dev/" target="_blank" rel="noopener">
-            Zed
+            Zed<span className="sr-only"> (opens in new tab)</span>
           </a>
         </p>
         <Diamond top left />

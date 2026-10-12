@@ -83,6 +83,9 @@ export function LineMeter({
       <span id={id} className="sr-only">
         {detail}
       </span>
+      <span role="status" className="sr-only">
+        {over ? `${name ? `${name} over` : 'Over'} the ${maxLines}-line limit.` : ''}
+      </span>
     </InputGroupAddon>
   )
 }

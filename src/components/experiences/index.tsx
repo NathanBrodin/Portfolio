@@ -20,10 +20,7 @@ export function Experiences() {
         ))}
       </div>
       <SubSectionDivider />
-      <h2 className="sr-only" id="education">
-        Education
-      </h2>
-      <div>
+      <div id="education">
         {education.map((experience) => (
           <ExperienceItem key={experience.id} experience={experience} />
         ))}

@@ -25,7 +25,7 @@ export function GitHubStars({ repo }: GitHubStarsProps) {
           <Button
             className="gap-1.5 pr-1.5 pl-2"
             variant="ghost"
-            aria-label={`${count} GitHub stars`}
+            aria-label={`${count} GitHub stars (opens in new tab)`}
             render={
               <a href={`https://github.com/${repo}`} target="_blank" rel="noopener noreferrer" />
             }

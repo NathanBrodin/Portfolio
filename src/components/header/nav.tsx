@@ -6,7 +6,7 @@ import type { Group } from '.'
 
 import { Button } from '../ui/button'
 import { Logo } from '../ui/icons/logo'
-import { Sheet, SheetPopup, SheetTrigger } from '../ui/sheet'
+import { Sheet, SheetPopup, SheetTitle, SheetTrigger } from '../ui/sheet'
 
 export function Nav({ items }: { items: Group[] }) {
   const [open, setOpen] = useState(false)
@@ -26,6 +26,7 @@ export function Nav({ items }: { items: Group[] }) {
           }
         />
         <SheetPopup side="left">
+          <SheetTitle className="sr-only">Menu</SheetTitle>
           <div className="flex flex-col gap-6 overflow-auto p-6 pt-8">
             {items.map((groupedItem) => (
               <div key={groupedItem.value} className="flex flex-col gap-3">

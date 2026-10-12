@@ -44,7 +44,6 @@ export function CommandMenu({ items }: { items: Group[] }) {
   return (
     <CommandDialog onOpenChange={setOpen} open={open}>
       <CommandDialogTrigger
-        aria-label="Open Command Palette"
         aria-keyshortcuts="Control+K Meta+K"
         render={<Button variant="secondary" size="sm" className="hidden sm:flex" />}
       >
@@ -119,6 +118,7 @@ export function CommandMenu({ items }: { items: Group[] }) {
                           )}
                           <span className="line-clamp-1 flex-1">{item.label}</span>
                           {isExternal && <ExternalLinkIcon className="size-4" aria-hidden="true" />}
+                          {isExternal && <span className="sr-only"> (opens in new tab)</span>}
                         </CommandItem>
                       )
                     }}

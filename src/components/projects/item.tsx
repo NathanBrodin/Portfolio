@@ -106,13 +106,13 @@ export function ProjectItem({ className, project }: { className?: string; projec
                 <Button
                   variant="ghost"
                   size="icon"
-                  aria-label={`Visit ${project.title}`}
+                  aria-label={`Visit ${project.title} (opens in new tab)`}
                   render={<a href={project.link} target="_blank" rel="noopener" />}
                 />
               }
             >
               <LinkIcon className="size-4" />
-              <span className="sr-only">Visit {project.title}</span>
+              <span className="sr-only">Visit {project.title} (opens in new tab)</span>
             </TooltipTrigger>
             <TooltipPopup>Visit Project</TooltipPopup>
           </Tooltip>

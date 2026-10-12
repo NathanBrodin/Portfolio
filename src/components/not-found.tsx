@@ -8,7 +8,11 @@ import { Section } from './ui/section'
 
 export function NotFound() {
   return (
-    <main className="relative flex h-full w-full flex-1 flex-col items-center overflow-x-hidden px-4">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="relative flex h-full w-full flex-1 flex-col items-center overflow-x-hidden px-4"
+    >
       <Noise />
       <Section className="relative h-full w-full flex-1 p-4 py-8 sm:p-16">
         <div className="flex w-full flex-col items-center justify-center">

@@ -43,15 +43,31 @@ export function BlogNavigation() {
     }
   }
 
-  useHotkey('ArrowLeft', async () => {
+  useHotkey('ArrowLeft', (event) => {
+    const target = event.target as HTMLElement | null
+    if (
+      target?.closest(
+        'input, textarea, select, [contenteditable], pre, code, [role="dialog"], [role="menu"], [role="listbox"]',
+      )
+    ) {
+      return
+    }
     if (previousPost) {
-      await navigate({ to: '/blog/$slug', params: { slug: previousPost.slug } })
+      void navigate({ to: '/blog/$slug', params: { slug: previousPost.slug } })
     }
   })
 
-  useHotkey('ArrowRight', async () => {
+  useHotkey('ArrowRight', (event) => {
+    const target = event.target as HTMLElement | null
+    if (
+      target?.closest(
+        'input, textarea, select, [contenteditable], pre, code, [role="dialog"], [role="menu"], [role="listbox"]',
+      )
+    ) {
+      return
+    }
     if (nextPost) {
-      await navigate({ to: '/blog/$slug', params: { slug: nextPost.slug } })
+      void navigate({ to: '/blog/$slug', params: { slug: nextPost.slug } })
     }
   })
 
@@ -86,7 +102,7 @@ export function BlogNavigation() {
               }
             >
               <Icons.x />
-              Share on Twitter
+              Share on Twitter<span className="sr-only"> (opens in new tab)</span>
             </MenuItem>
             <MenuItem
               render={
@@ -98,7 +114,7 @@ export function BlogNavigation() {
               }
             >
               <Icons.linkedin />
-              Share on Linkedin
+              Share on Linkedin<span className="sr-only"> (opens in new tab)</span>
             </MenuItem>
             <MenuSeparator />
             <MenuItem render={<a href={`/blog/${slug}.md`} />}>
@@ -116,6 +132,7 @@ export function BlogNavigation() {
                   <Button
                     variant="secondary"
                     size="icon-sm"
+                    aria-label={`Previous post: ${previousPost.title}`}
                     render={<Link to="/blog/$slug" params={{ slug: previousPost.slug }} />}
                   />
                 }
@@ -139,6 +156,7 @@ export function BlogNavigation() {
                   <Button
                     variant="secondary"
                     size="icon-sm"
+                    aria-label={`Next post: ${nextPost.title}`}
                     render={<Link to="/blog/$slug" params={{ slug: nextPost.slug }} />}
                   />
                 }

@@ -26,7 +26,11 @@ export function GitHubContributionGraph({
       blockMargin={3}
       blockRadius={2}
     >
-      <ContributionGraphCalendar className="no-scrollbar px-2" title="GitHub Contributions">
+      <ContributionGraphCalendar
+        aria-hidden="true"
+        className="no-scrollbar px-2"
+        title="GitHub Contributions"
+      >
         {({ activity, dayIndex, weekIndex }) => (
           <ContributionGraphBlock activity={activity} dayIndex={dayIndex} weekIndex={weekIndex} />
         )}
@@ -43,14 +47,14 @@ export function GitHubContributionGraph({
                 target="_blank"
                 rel="noopener"
               >
-                GitHub
+                GitHub<span className="sr-only"> (opens in new tab)</span>
               </a>
               .
             </div>
           )}
         </ContributionGraphTotalCount>
 
-        <ContributionGraphLegend />
+        <ContributionGraphLegend aria-hidden="true" />
       </ContributionGraphFooter>
     </ContributionGraph>
   )

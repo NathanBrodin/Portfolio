@@ -26,7 +26,7 @@ I can also consider myself a proud Open Source Contributor after getting **two P
 
 ## Stealing...I Mean, Getting Inspired By Chanhdai and Zed
 
-Now I'm not going to lie and say I designed and coded everything myself. I took large parts of the code and page layout from the open-source portfolio by [Chanhdai](https://chanhdai.com) and design inspiration from [zed.dev](https://zed.dev), which I had previously attempted in unfinished side projects (https://trends.brodin.dev and https://ui.brodin.dev if they're still available).
+Now I'm not going to lie and say I designed and coded everything myself. I took large parts of the code and page layout from the open-source portfolio by [Chanhdai](https://chanhdai.com) and design inspiration from [zed.dev](https://zed.dev), which I had previously attempted in unfinished side projects ([trends demo](https://trends.brodin.dev) and [UI demo](https://ui.brodin.dev) if they're still available).
 
 I still went a different way than Chanhdai for the code implementation. For example, I chose to store my content in Markdown files using [Content Collections](https://www.content-collections.dev/). I did this specifically so I could easily serve my portfolio's content in plain text, perfect for LLM consumption, which ties right back into the needs of my [Nathan's AI](https://chat.brodin.dev) project.
 I also used Base UI (because of coss ui) for components, and generally went with a different style. So this was not just a simple copy/paste or a fork, there was still a lot of work involved.
