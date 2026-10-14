@@ -42,6 +42,7 @@ export async function renderResume(data: Resume): Promise<Uint8Array> {
     css: PDF_CSS,
     lang: 'en',
     outline: true,
+    tagged: 'ua1',
     metadata: {
       title: `${data.basics.name} | Resume`,
       description: data.basics.headline,

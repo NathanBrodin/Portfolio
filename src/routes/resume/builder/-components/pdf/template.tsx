@@ -35,18 +35,19 @@ export function ResumeTemplate({ data }: { data: Resume }) {
             {data.basics.name}
           </h1>
           <p tw="m-0 text-center leading-tight">{data.basics.headline}</p>
-          <ul tw="m-0 flex list-none flex-row justify-center gap-3 p-0">
-            {data.basics.links.map((link) => (
-              <li key={link.href} tw="m-0 p-0">
+          <p tw="m-0 text-center leading-tight">
+            {data.basics.links.map((link, index) => (
+              <Fragment key={link.href}>
+                {index > 0 && <span tw="text-muted-foreground">{' · '}</span>}
                 <a
                   tw="underline decoration-0 text-muted-foreground decoration-muted-foreground"
                   href={link.href}
                 >
                   {link.label}
                 </a>
-              </li>
+              </Fragment>
             ))}
-          </ul>
+          </p>
         </div>
       </section>
       <div tw="relative px-12 pb-8">
@@ -55,31 +56,31 @@ export function ResumeTemplate({ data }: { data: Resume }) {
           <div tw="mt-1 flex flex-col gap-1">
             {data.experience.map((job) => (
               <div key={job.id}>
-                <div tw="flex flex-row justify-between">
-                  <p tw="m-0 font-medium">{job.company}</p>
-                  <p tw="m-0 text-muted-foreground">{job.location}</p>
-                </div>
+                <p tw="m-0 flex flex-row justify-between">
+                  <span tw="font-medium">{job.company}</span>
+                  <span tw="text-muted-foreground">{job.location}</span>
+                </p>
                 {job.positions.map((position, index) => (
                   <Fragment key={index}>
-                    <div
+                    <p
                       tw={
                         index === 0
-                          ? 'flex flex-row justify-between'
-                          : 'mt-1 flex flex-row justify-between'
+                          ? 'm-0 flex flex-row justify-between'
+                          : 'm-0 mt-1 flex flex-row justify-between'
                       }
                     >
-                      <p tw="m-0 text-muted-foreground">{position.role}</p>
-                      <p tw="m-0 text-muted-foreground">
+                      <span tw="text-muted-foreground">{position.role}</span>
+                      <span tw="text-muted-foreground">
                         {formatDateRange(position.start, position.end)}
-                      </p>
-                    </div>
-                    <ul tw="m-0 mt-1 list-disc pl-5">
+                      </span>
+                    </p>
+                    <div tw="mt-1">
                       {position.bullets.map((bullet) => (
-                        <li key={bullet} tw="m-0">
-                          {bullet}
-                        </li>
+                        <p key={bullet} tw="m-0 pl-5" style={{ textIndent: '-12px' }}>
+                          {`• ${bullet}`}
+                        </p>
                       ))}
-                    </ul>
+                    </div>
                   </Fragment>
                 ))}
               </div>
@@ -92,21 +93,21 @@ export function ResumeTemplate({ data }: { data: Resume }) {
           <div tw="mt-1 flex flex-col gap-1">
             {data.education.map((entry) => (
               <div key={entry.id}>
-                <div tw="flex flex-row justify-between">
-                  <p tw="m-0 font-medium">{entry.school}</p>
-                  <p tw="m-0 text-muted-foreground">{entry.location}</p>
-                </div>
-                <div tw="flex flex-row justify-between">
-                  <p tw="m-0 text-muted-foreground">{entry.degree}</p>
-                  <p tw="m-0 text-muted-foreground">{formatDateRange(entry.start, entry.end)}</p>
-                </div>
-                <ul tw="m-0 mt-1 list-disc pl-5">
+                <p tw="m-0 flex flex-row justify-between">
+                  <span tw="font-medium">{entry.school}</span>
+                  <span tw="text-muted-foreground">{entry.location}</span>
+                </p>
+                <p tw="m-0 flex flex-row justify-between">
+                  <span tw="text-muted-foreground">{entry.degree}</span>
+                  <span tw="text-muted-foreground">{formatDateRange(entry.start, entry.end)}</span>
+                </p>
+                <div tw="mt-1">
                   {entry.bullets.map((bullet) => (
-                    <li key={bullet} tw="m-0">
-                      {bullet}
-                    </li>
+                    <p key={bullet} tw="m-0 pl-5" style={{ textIndent: '-12px' }}>
+                      {`• ${bullet}`}
+                    </p>
                   ))}
-                </ul>
+                </div>
               </div>
             ))}
           </div>
