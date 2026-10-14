@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 import { ensureMeasureFonts, estimateFills } from '../measure'
 
 const meterVariants = {
-  headline: { width: 698, maxLines: 1 },
+  headline: { width: 730, maxLines: 1 },
   bullet: { width: 678, maxLines: 3 },
   project: { width: 698, maxLines: 2 },
 }
