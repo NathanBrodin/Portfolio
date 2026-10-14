@@ -7,6 +7,7 @@ import { siteConfig } from '@/config/site'
 import type { Resume } from '../schema'
 
 import { loadPdfFonts } from './fonts'
+import { loadPdfImages } from './images'
 import { ResumeTemplate } from './template'
 import { PDF_CSS, PDF_FONT_FAMILIES } from './theme'
 
@@ -34,10 +35,11 @@ function element(data: Resume) {
 
 export async function renderResume(data: Resume): Promise<Uint8Array> {
   await ensureInit()
-  const fonts = await loadPdfFonts()
+  const [fonts, images] = await Promise.all([loadPdfFonts(), loadPdfImages()])
   return render(element(data), {
     viewport: VIEWPORT,
     fonts,
+    images,
     fontFamilies: PDF_FONT_FAMILIES,
     css: PDF_CSS,
     lang: 'en',
@@ -55,10 +57,11 @@ export async function renderResume(data: Resume): Promise<Uint8Array> {
 // Viewport renders clip, so the UI warns instead of silently dropping content.
 export async function fitsOnePage(data: Resume): Promise<boolean> {
   await ensureInit()
-  const fonts = await loadPdfFonts()
+  const [fonts, images] = await Promise.all([loadPdfFonts(), loadPdfImages()])
   const size = await measure(element(data), {
     viewport: VIEWPORT,
     fonts,
+    images,
     fontFamilies: PDF_FONT_FAMILIES,
     css: PDF_CSS,
   })
