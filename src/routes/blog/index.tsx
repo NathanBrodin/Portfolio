@@ -120,7 +120,9 @@ function RouteComponent() {
                 <RssIcon />
               </div>
               <div className="min-w-0 flex-1 space-y-1">
-                <h2 className="mb-1 line-clamp-2 leading-snug font-medium">{post.title}</h2>
+                <h2 className="mb-1 line-clamp-2 text-base leading-none font-medium">
+                  {post.title}
+                </h2>
                 <div className="flex flex-nowrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
                   <dl className="shrink-0">
                     <dt className="sr-only">Published</dt>
