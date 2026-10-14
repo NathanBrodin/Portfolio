@@ -2,8 +2,6 @@ import { createElement } from 'react'
 import init, { measure, render } from 'takumi-pdf/no-init'
 import wasmUrl from 'takumi-pdf/wasm-url'
 
-import { siteConfig } from '@/config/site'
-
 import type { Resume } from '../schema'
 
 import { loadPdfFonts } from './fonts'
@@ -45,9 +43,9 @@ export async function renderResume(data: Resume): Promise<Uint8Array> {
     lang: 'en',
     outline: true,
     metadata: {
-      title: `${siteConfig.name} | Resume`,
-      description: siteConfig.description,
-      authors: [siteConfig.name],
+      title: `${data.basics.name} | Resume`,
+      description: data.basics.headline,
+      authors: [data.basics.name],
       creator: 'brodin.dev/resume/builder',
       creationDate: new Date().toISOString().slice(0, 10),
     },
