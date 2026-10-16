@@ -48,19 +48,19 @@ function App() {
       </PageHeader>
       <SectionDivider />
       <About />
-      <FancySectionDivider offset={2.4} />
+      <FancySectionDivider />
       <SocialLinks />
       <SectionDivider />
       <GithubContributions contributions={contributions} />
       <SectionDivider />
       <TechStack />
-      <FancySectionDivider offset={-0.8} />
+      <FancySectionDivider />
       <Experiences />
-      <FancySectionDivider offset={0.4} />
+      <FancySectionDivider />
       <Projects />
-      <FancySectionDivider offset={-0.3} />
+      <FancySectionDivider />
       <Certifications />
-      <FancySectionDivider offset={1.2} />
+      <FancySectionDivider />
       <BlogPreview posts={blogPreview} />
       <SectionDivider />
       <Section className="h-16" />

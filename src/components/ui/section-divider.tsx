@@ -43,12 +43,12 @@ export function SubSectionDivider({ className, ...props }: React.ComponentProps<
   )
 }
 
-export function FancySectionDivider({ offset }: { offset?: number }) {
+export function FancySectionDivider() {
   return (
     <>
       <SectionDivider />
       <Section className="h-25">
-        <Dither offset={offset} />
+        <Dither />
       </Section>
       <SectionDivider />
     </>
