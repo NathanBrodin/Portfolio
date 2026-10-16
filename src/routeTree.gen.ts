@@ -13,16 +13,14 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogDotmdRouteImport } from './routes/blog[.]md'
 import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
+import { Route as OgRouteImport } from './routes/og'
 import { Route as ResumeRouteRouteImport } from './routes/resume/route'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as BlogRssRouteRouteImport } from './routes/blog/rss/route'
 import { Route as BlogChar123slugChar125DotmdRouteImport } from './routes/blog/{$slug}[.]md'
-import { Route as OgIndexRouteImport } from './routes/og/index'
-import { Route as BlogOgIndexRouteImport } from './routes/blog/og/index'
 import { Route as ResumeBuilderIndexRouteImport } from './routes/resume/builder/index'
-import { Route as BlogSlugOgIndexRouteImport } from './routes/blog/$slug/og/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -42,6 +40,11 @@ const LlmsFullDottxtRoute = LlmsFullDottxtRouteImport.update({
 const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
   id: '/llms.txt',
   path: '/llms.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OgRoute = OgRouteImport.update({
+  id: '/og',
+  path: '/og',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResumeRouteRoute = ResumeRouteRouteImport.update({
@@ -75,25 +78,10 @@ const BlogChar123slugChar125DotmdRoute =
     path: '/blog/{$slug}.md',
     getParentRoute: () => rootRouteImport,
   } as any)
-const OgIndexRoute = OgIndexRouteImport.update({
-  id: '/og/',
-  path: '/og/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BlogOgIndexRoute = BlogOgIndexRouteImport.update({
-  id: '/blog/og/',
-  path: '/blog/og/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ResumeBuilderIndexRoute = ResumeBuilderIndexRouteImport.update({
   id: '/builder/',
   path: '/builder/',
   getParentRoute: () => ResumeRouteRoute,
-} as any)
-const BlogSlugOgIndexRoute = BlogSlugOgIndexRouteImport.update({
-  id: '/og/',
-  path: '/og/',
-  getParentRoute: () => BlogSlugRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -102,15 +90,13 @@ export interface FileRoutesByFullPath {
   '/blog.md': typeof BlogDotmdRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/og': typeof OgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/rss': typeof BlogRssRouteRoute
-  '/blog/$slug': typeof BlogSlugRouteWithChildren
+  '/blog/$slug': typeof BlogSlugRoute
   '/blog/{$slug}.md': typeof BlogChar123slugChar125DotmdRoute
   '/blog/': typeof BlogIndexRoute
-  '/og/': typeof OgIndexRoute
-  '/blog/og/': typeof BlogOgIndexRoute
   '/resume/builder/': typeof ResumeBuilderIndexRoute
-  '/blog/$slug/og/': typeof BlogSlugOgIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -118,15 +104,13 @@ export interface FileRoutesByTo {
   '/blog.md': typeof BlogDotmdRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/og': typeof OgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/rss': typeof BlogRssRouteRoute
-  '/blog/$slug': typeof BlogSlugRouteWithChildren
+  '/blog/$slug': typeof BlogSlugRoute
   '/blog/{$slug}.md': typeof BlogChar123slugChar125DotmdRoute
   '/blog': typeof BlogIndexRoute
-  '/og': typeof OgIndexRoute
-  '/blog/og': typeof BlogOgIndexRoute
   '/resume/builder': typeof ResumeBuilderIndexRoute
-  '/blog/$slug/og': typeof BlogSlugOgIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -135,15 +119,13 @@ export interface FileRoutesById {
   '/blog.md': typeof BlogDotmdRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/og': typeof OgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/rss': typeof BlogRssRouteRoute
-  '/blog/$slug': typeof BlogSlugRouteWithChildren
+  '/blog/$slug': typeof BlogSlugRoute
   '/blog/{$slug}.md': typeof BlogChar123slugChar125DotmdRoute
   '/blog/': typeof BlogIndexRoute
-  '/og/': typeof OgIndexRoute
-  '/blog/og/': typeof BlogOgIndexRoute
   '/resume/builder/': typeof ResumeBuilderIndexRoute
-  '/blog/$slug/og/': typeof BlogSlugOgIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -153,15 +135,13 @@ export interface FileRouteTypes {
     | '/blog.md'
     | '/llms-full.txt'
     | '/llms.txt'
+    | '/og'
     | '/sitemap.xml'
     | '/blog/rss'
     | '/blog/$slug'
     | '/blog/{$slug}.md'
     | '/blog/'
-    | '/og/'
-    | '/blog/og/'
     | '/resume/builder/'
-    | '/blog/$slug/og/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -169,15 +149,13 @@ export interface FileRouteTypes {
     | '/blog.md'
     | '/llms-full.txt'
     | '/llms.txt'
+    | '/og'
     | '/sitemap.xml'
     | '/blog/rss'
     | '/blog/$slug'
     | '/blog/{$slug}.md'
     | '/blog'
-    | '/og'
-    | '/blog/og'
     | '/resume/builder'
-    | '/blog/$slug/og'
   id:
     | '__root__'
     | '/'
@@ -185,15 +163,13 @@ export interface FileRouteTypes {
     | '/blog.md'
     | '/llms-full.txt'
     | '/llms.txt'
+    | '/og'
     | '/sitemap.xml'
     | '/blog/rss'
     | '/blog/$slug'
     | '/blog/{$slug}.md'
     | '/blog/'
-    | '/og/'
-    | '/blog/og/'
     | '/resume/builder/'
-    | '/blog/$slug/og/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -202,13 +178,12 @@ export interface RootRouteChildren {
   BlogDotmdRoute: typeof BlogDotmdRoute
   LlmsFullDottxtRoute: typeof LlmsFullDottxtRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
+  OgRoute: typeof OgRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   BlogRssRouteRoute: typeof BlogRssRouteRoute
-  BlogSlugRoute: typeof BlogSlugRouteWithChildren
+  BlogSlugRoute: typeof BlogSlugRoute
   BlogChar123slugChar125DotmdRoute: typeof BlogChar123slugChar125DotmdRoute
   BlogIndexRoute: typeof BlogIndexRoute
-  OgIndexRoute: typeof OgIndexRoute
-  BlogOgIndexRoute: typeof BlogOgIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -239,6 +214,13 @@ declare module '@tanstack/react-router' {
       path: '/llms.txt'
       fullPath: '/llms.txt'
       preLoaderRoute: typeof LlmsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/og': {
+      id: '/og'
+      path: '/og'
+      fullPath: '/og'
+      preLoaderRoute: typeof OgRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resume': {
@@ -283,33 +265,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogChar123slugChar125DotmdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/og/': {
-      id: '/og/'
-      path: '/og'
-      fullPath: '/og/'
-      preLoaderRoute: typeof OgIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blog/og/': {
-      id: '/blog/og/'
-      path: '/blog/og'
-      fullPath: '/blog/og/'
-      preLoaderRoute: typeof BlogOgIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/resume/builder/': {
       id: '/resume/builder/'
       path: '/builder'
       fullPath: '/resume/builder/'
       preLoaderRoute: typeof ResumeBuilderIndexRouteImport
       parentRoute: typeof ResumeRouteRoute
-    }
-    '/blog/$slug/og/': {
-      id: '/blog/$slug/og/'
-      path: '/og'
-      fullPath: '/blog/$slug/og/'
-      preLoaderRoute: typeof BlogSlugOgIndexRouteImport
-      parentRoute: typeof BlogSlugRoute
     }
   }
 }
@@ -326,31 +287,18 @@ const ResumeRouteRouteWithChildren = ResumeRouteRoute._addFileChildren(
   ResumeRouteRouteChildren,
 )
 
-interface BlogSlugRouteChildren {
-  BlogSlugOgIndexRoute: typeof BlogSlugOgIndexRoute
-}
-
-const BlogSlugRouteChildren: BlogSlugRouteChildren = {
-  BlogSlugOgIndexRoute: BlogSlugOgIndexRoute,
-}
-
-const BlogSlugRouteWithChildren = BlogSlugRoute._addFileChildren(
-  BlogSlugRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ResumeRouteRoute: ResumeRouteRouteWithChildren,
   BlogDotmdRoute: BlogDotmdRoute,
   LlmsFullDottxtRoute: LlmsFullDottxtRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
+  OgRoute: OgRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   BlogRssRouteRoute: BlogRssRouteRoute,
-  BlogSlugRoute: BlogSlugRouteWithChildren,
+  BlogSlugRoute: BlogSlugRoute,
   BlogChar123slugChar125DotmdRoute: BlogChar123slugChar125DotmdRoute,
   BlogIndexRoute: BlogIndexRoute,
-  OgIndexRoute: OgIndexRoute,
-  BlogOgIndexRoute: BlogOgIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

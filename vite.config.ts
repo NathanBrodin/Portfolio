@@ -36,10 +36,6 @@ const config = defineConfig({
         files: ['src/components/ui/**'],
         rules: { 'shadcn/no-restyle': 'off' },
       },
-      {
-        files: ['src/routes/**/og/**'],
-        rules: { 'shadcn/no-restyle': 'off' },
-      },
     ],
   },
   fmt: {

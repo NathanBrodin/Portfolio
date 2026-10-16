@@ -67,6 +67,7 @@ export const getUsersLocation = createServerFn({ method: 'GET' }).handler(() => 
 export type BlogPreviewPost = {
   slug: string
   title: string
+  description: string
 }
 
 export type BlogNavItem = {
@@ -83,7 +84,7 @@ export const getBlogPreview = createServerFn({ method: 'GET' }).handler(
       .filter((post) => post.published)
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       .slice(0, 4)
-      .map((post) => ({ slug: post.slug, title: post.title }))
+      .map((post) => ({ slug: post.slug, title: post.title, description: post.description }))
   },
 )
 

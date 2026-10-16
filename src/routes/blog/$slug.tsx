@@ -9,7 +9,7 @@ import { Page, PageDescription, PageHeader, PageTitle } from '@/components/ui/pa
 import { Section } from '@/components/ui/section'
 import { SectionDivider, SubSectionDivider } from '@/components/ui/section-divider'
 import { Prose } from '@/components/ui/typography'
-import { siteConfig } from '@/config/site'
+import { siteConfig, ogImageUrl } from '@/config/site'
 import { formatFullDate } from '@/lib/date'
 
 import { BlogNavigation } from './-components/blog-navigation'
@@ -33,12 +33,12 @@ export const Route = createFileRoute('/blog/$slug')({
 
     const { post } = loaderData
     const url = `${siteConfig.url}/blog/${post.slug}`
-    const ogImage = `${siteConfig.url}/og/blog/${post.slug}.png`
     const title =
       post.title.length > 53
         ? `${post.title.slice(0, 53)}... | NB`
         : `${post.title} | Nathan Brodin`
     const description = post.description.slice(0, 160)
+    const ogImage = ogImageUrl({ title: post.title, description })
 
     const jsonLd: WithContext<BlogPosting> = {
       '@context': 'https://schema.org',

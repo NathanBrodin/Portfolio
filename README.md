@@ -4,7 +4,7 @@ My Portfolio, to showcase my work as a Frontend Engineer.
 
 → Check out the live site: [brodin.dev](https://brodin.dev)
 
-![OG Image](public/og.png)
+![OG Image](https://brodin.dev/og)
 
 ## Overview
 

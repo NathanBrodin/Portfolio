@@ -8,7 +8,7 @@ export const siteConfig = {
   about:
     "I'm a frontend-leaning full-stack engineer. Originally from the west of France, I've been moving north ever since: internships in Oslo, exchange semesters in Finland and Sweden, and now settled north of the Arctic Circle in Tromsø, Norway.\n\nI build things for the web that are fast, accessible, documented, and polished.",
   url: 'https://brodin.dev',
-  og: 'https://brodin.dev/og.png',
+  og: 'https://brodin.dev/og',
   authorUrl: 'https://brodin.dev',
   twitterHandle: '@nathan_brodin',
   githubHandle: 'NathanBrodin',
@@ -29,6 +29,18 @@ export const META_THEME_COLORS = {
   dark: '#0a0a0a',
 } as const
 
+export function ogImageUrl({ title, description }: { title?: string; description?: string }) {
+  const params = new URLSearchParams()
+  if (title) {
+    params.set('title', title)
+  }
+  if (description) {
+    params.set('description', description)
+  }
+  const query = params.toString()
+  return query ? `${siteConfig.url}/og?${query}` : `${siteConfig.url}/og`
+}
+
 export const siteJsonLd: Graph = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -37,7 +49,7 @@ export const siteJsonLd: Graph = {
       '@id': 'https://brodin.dev/#person',
       name: 'Nathan Brodin',
       url: 'https://brodin.dev',
-      image: 'https://brodin.dev/og.png',
+      image: 'https://brodin.dev/og',
       jobTitle: 'Frontend Engineer',
       description:
         'A frontend engineer with a passion for web development, design, and user experience.',

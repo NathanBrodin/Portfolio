@@ -30,7 +30,6 @@
     "check": "vp fmt . && vp lint --fix",
     "knip": "knip --config knip.json",
     "lh": "vpx unlighthouse --no-cache",
-    "generate:og": "tsx scripts/generate-og.ts",
     "prepare": "vp config"
   },
   "dependencies": {
@@ -57,7 +56,6 @@
     "lucide-react": "^0.577.0",
     "motion": "^12.38.0",
     "nitro": "npm:nitro-nightly@3.0.1-20260311-093920-80cd914c",
-    "puppeteer": "^24.40.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "rehype-autolink-headings": "^7.1.0",
@@ -70,6 +68,7 @@
     "schema-dts": "^2.0.0",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.2.2",
+    "takumi-js": "^2.16.2",
     "takumi-pdf": "^0.15.0",
     "unified": "^11.0.5"
   },

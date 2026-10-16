@@ -9,7 +9,7 @@ import { Section } from '@/components/ui/section'
 import { SectionDivider } from '@/components/ui/section-divider'
 import { Separator } from '@/components/ui/separator'
 import { Tag } from '@/components/ui/tag'
-import { siteConfig } from '@/config/site'
+import { siteConfig, ogImageUrl } from '@/config/site'
 import { formatFullDate } from '@/lib/date'
 import { cn } from '@/lib/utils'
 
@@ -21,6 +21,7 @@ export const Route = createFileRoute('/blog/')({
   head: () => {
     const url = `${siteConfig.url}/blog`
     const blogDescription = 'Articles on development, design and ideas by Nathan Brodin.'
+    const ogImage = ogImageUrl({ title: 'Blog', description: blogDescription })
 
     const jsonLd: WithContext<Blog> = {
       '@context': 'https://schema.org',
@@ -28,7 +29,7 @@ export const Route = createFileRoute('/blog/')({
       name: 'Blog | Nathan Brodin',
       description: blogDescription,
       url,
-      image: `${siteConfig.url}/og/blog.png`,
+      image: ogImage,
       author: {
         '@id': `${siteConfig.url}/#person`,
       },
@@ -45,7 +46,7 @@ export const Route = createFileRoute('/blog/')({
         description: post.description,
         datePublished: post.date,
         url: `${siteConfig.url}/blog/${post.slug}`,
-        image: `${siteConfig.url}/og/blog/${post.slug}.png`,
+        image: ogImageUrl({ title: post.title, description: post.description }),
         author: {
           '@id': `${siteConfig.url}/#person`,
         },
@@ -67,14 +68,14 @@ export const Route = createFileRoute('/blog/')({
         },
         { property: 'og:url', content: url },
         { property: 'og:type', content: 'website' },
-        { property: 'og:image', content: `${siteConfig.url}/og/blog.png` },
+        { property: 'og:image', content: ogImage },
         // Twitter Card
         { name: 'twitter:title', content: 'Blog | Nathan Brodin' },
         {
           name: 'twitter:description',
           content: blogDescription,
         },
-        { name: 'twitter:image', content: `${siteConfig.url}/og/blog.png` },
+        { name: 'twitter:image', content: ogImage },
       ],
       links: [
         { rel: 'canonical', href: url },

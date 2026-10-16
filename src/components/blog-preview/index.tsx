@@ -7,6 +7,7 @@ import { Lines } from '@/components/ui/backgrounds/lines'
 import { Button } from '@/components/ui/button'
 import { Diamond } from '@/components/ui/diamond'
 import { Section, SectionTitle } from '@/components/ui/section'
+import { ogImageUrl } from '@/config/site'
 
 export function BlogPreview({ posts }: { posts: BlogPreviewPost[] }) {
   return (
@@ -26,7 +27,7 @@ export function BlogPreview({ posts }: { posts: BlogPreviewPost[] }) {
             >
               <div className="relative transition-transform select-none hover:scale-101 [&_img]:aspect-1200/630 [&_img]:rounded-xl">
                 <img
-                  src={`/og/blog/${post.slug}.png`}
+                  src={ogImageUrl({ title: post.title, description: post.description })}
                   width={1200}
                   height={630}
                   fetchPriority="low"
