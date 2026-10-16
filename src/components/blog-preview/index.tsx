@@ -7,15 +7,13 @@ import { Lines } from '@/components/ui/backgrounds/lines'
 import { Button } from '@/components/ui/button'
 import { Diamond } from '@/components/ui/diamond'
 import { Section, SectionTitle } from '@/components/ui/section'
-import { ogImageUrl } from '@/config/site'
 
 export function BlogPreview({ posts }: { posts: BlogPreviewPost[] }) {
   return (
     <Section id="blog-preview" className="relative flex flex-col">
       <SectionTitle>Blog</SectionTitle>
-
       <div className="relative border-y">
-        <Lines variant="strong" />
+        <Lines />
         <div className="grid grid-cols-1 sm:grid-cols-2">
           {posts.map((post) => (
             <Link
@@ -25,16 +23,13 @@ export function BlogPreview({ posts }: { posts: BlogPreviewPost[] }) {
               className="relative border p-2"
               aria-label={post.title}
             >
-              <div className="relative transition-transform select-none hover:scale-101 [&_img]:aspect-1200/630 [&_img]:rounded-xl">
-                <img
-                  src={ogImageUrl({ title: post.title, description: post.description })}
-                  width={1200}
-                  height={630}
-                  fetchPriority="low"
-                  loading="lazy"
-                  alt=""
-                  aria-hidden="true"
-                />
+              <div className="relative flex h-full flex-col justify-between rounded-xl bg-background px-4 py-8 transition-transform select-none hover:scale-101">
+                <p className="line-clamp-2 font-display text-2xl font-medium text-primary">
+                  {post.title}
+                </p>
+                <p className="line-clamp-1 max-w-3xl font-sans text-sm text-muted-foreground">
+                  {post.description}
+                </p>
                 <div
                   className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 ring-inset dark:ring-white/10"
                   aria-hidden="true"

@@ -121,19 +121,22 @@ function RouteComponent() {
                 <RssIcon />
               </div>
               <div className="min-w-0 flex-1 space-y-1">
-                <h2 className="mb-1 line-clamp-2 text-base leading-none font-medium">
+                <h2 className="mb-1 line-clamp-1 text-base leading-none font-medium">
                   {post.title}
                 </h2>
-                <div className="flex flex-nowrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5 text-sm text-muted-foreground">
                   <dl className="shrink-0">
                     <dt className="sr-only">Published</dt>
                     <dd>
                       <time dateTime={post.date}>{formatFullDate(post.date)}</time>
                     </dd>
                   </dl>
-                  <Separator className="data-[orientation=vertical]:h-4" orientation="vertical" />
+                  <Separator
+                    className="hidden data-[orientation=vertical]:h-4 sm:block"
+                    orientation="vertical"
+                  />
                   {post.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex basis-full flex-wrap gap-1.5 sm:basis-auto">
                       {post.tags.map((tag) => (
                         <div key={tag} className="shrink-0">
                           <Tag>{tag}</Tag>
@@ -144,7 +147,7 @@ function RouteComponent() {
                 </div>
               </div>
               <ArrowUpRightIcon
-                className="size-4 text-muted-foreground transition-[rotate] duration-300 group-hover:rotate-45"
+                className="size-4 shrink-0 text-muted-foreground transition-[rotate] duration-300 group-hover:rotate-45"
                 aria-hidden
               />
             </Link>
