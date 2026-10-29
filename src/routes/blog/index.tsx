@@ -26,7 +26,7 @@ export const Route = createFileRoute('/blog/')({
     const jsonLd: WithContext<Blog> = {
       '@context': 'https://schema.org',
       '@type': 'Blog',
-      name: 'Blog | Nathan Brodin',
+      name: 'Blog · Nathan Brodin',
       description: blogDescription,
       url,
       image: ogImage,
@@ -55,13 +55,13 @@ export const Route = createFileRoute('/blog/')({
 
     return {
       meta: [
-        { title: 'Blog | Nathan Brodin' },
+        { title: 'Blog · Nathan Brodin' },
         {
           name: 'description',
           content: blogDescription,
         },
         // Open Graph
-        { property: 'og:title', content: 'Blog | Nathan Brodin' },
+        { property: 'og:title', content: 'Blog · Nathan Brodin' },
         {
           property: 'og:description',
           content: blogDescription,
@@ -70,7 +70,7 @@ export const Route = createFileRoute('/blog/')({
         { property: 'og:type', content: 'website' },
         { property: 'og:image', content: ogImage },
         // Twitter Card
-        { name: 'twitter:title', content: 'Blog | Nathan Brodin' },
+        { name: 'twitter:title', content: 'Blog · Nathan Brodin' },
         {
           name: 'twitter:description',
           content: blogDescription,

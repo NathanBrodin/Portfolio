@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: 'alternate',
         type: 'application/rss+xml',
-        title: 'Blog | Nathan Brodin',
+        title: 'Blog · Nathan Brodin',
         href: `${siteConfig.url}/blog/rss`,
       },
     ],

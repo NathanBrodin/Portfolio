@@ -35,7 +35,7 @@ export const Route = createFileRoute('/blog/$slug')({
     const url = `${siteConfig.url}/blog/${post.slug}`
     const title =
       post.title.length > 53
-        ? `${post.title.slice(0, 53)}... | NB`
+        ? `${post.title.slice(0, 53)}... · NB`
         : `${post.title} | Nathan Brodin`
     const description = post.description.slice(0, 160)
     const ogImage = ogImageUrl({ title: post.title, description })

@@ -1,7 +1,7 @@
 import type { Graph } from 'schema-dts'
 
 export const siteConfig = {
-  title: 'Nathan Brodin | Frontend Engineer',
+  title: 'Nathan Brodin · Frontend Engineer',
   name: 'Nathan Brodin',
   description:
     'A frontend engineer with a passion for web development, design, and user experience.',
@@ -82,7 +82,7 @@ export const siteJsonLd: Graph = {
     {
       '@type': 'WebSite',
       '@id': 'https://brodin.dev/#website',
-      name: 'Nathan Brodin | Frontend Engineer',
+      name: 'Nathan Brodin · Frontend Engineer',
       url: 'https://brodin.dev',
       description:
         'A frontend engineer with a passion for web development, design, and user experience.',
@@ -94,7 +94,7 @@ export const siteJsonLd: Graph = {
     {
       '@type': 'ProfilePage',
       '@id': 'https://brodin.dev/#profilepage',
-      name: 'Nathan Brodin | Frontend Engineer',
+      name: 'Nathan Brodin · Frontend Engineer',
       url: 'https://brodin.dev',
       description:
         'A frontend engineer with a passion for web development, design, and user experience.',

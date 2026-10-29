@@ -57,7 +57,7 @@ function generateExperiencesMarkdown(full: boolean): string {
 
     for (const position of exp.positions) {
       lines.push(
-        `#### ${position.title} | ${formatDateRange(position.employmentPeriod.start, position.employmentPeriod.end)}`,
+        `#### ${position.title} · ${formatDateRange(position.employmentPeriod.start, position.employmentPeriod.end)}`,
       )
       lines.push('')
       lines.push(full ? fullContent(position.excerpt, position.detail) : position.excerpt)
@@ -77,7 +77,7 @@ function generateExperiencesMarkdown(full: boolean): string {
 
     for (const position of edu.positions) {
       lines.push(
-        `#### ${position.title} | ${formatDateRange(position.employmentPeriod.start, position.employmentPeriod.end)}`,
+        `#### ${position.title} · ${formatDateRange(position.employmentPeriod.start, position.employmentPeriod.end)}`,
       )
 
       lines.push('')
@@ -103,7 +103,7 @@ function generateProjectsMarkdown(full: boolean): string {
   for (const project of projects) {
     const title = project.link ? `[${project.title}](${project.link})` : project.title
     const type = project.type === 'school' ? ' · School project' : ''
-    lines.push(`### ${title} | ${formatDateRange(project.startDate, project.endDate)}${type}`)
+    lines.push(`### ${title} · ${formatDateRange(project.startDate, project.endDate)}${type}`)
     lines.push('')
     lines.push(full ? fullContent(project.excerpt, project.detail) : project.excerpt)
 
@@ -127,7 +127,7 @@ function generateCertificationsMarkdown(): string {
 
   for (const certification of certifications) {
     lines.push(
-      `- [${certification.issuer} - ${certification.title}](${certification.credentialUrl}) | ${certification.issueDate}`,
+      `- [${certification.issuer} - ${certification.title}](${certification.credentialUrl}) · ${certification.issueDate}`,
     )
   }
 
@@ -146,7 +146,7 @@ export function generateBlogMarkdown(full: boolean): string {
 
   for (const post of posts) {
     lines.push(
-      `- [${post.title}](${siteConfig.url}/blog/${post.slug}.md) - ${post.description} | ${post.date}`,
+      `- [${post.title}](${siteConfig.url}/blog/${post.slug}.md) - ${post.description} · ${post.date}`,
     )
   }
 

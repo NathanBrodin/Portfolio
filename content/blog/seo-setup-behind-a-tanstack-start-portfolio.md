@@ -33,7 +33,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: 'alternate',
         type: 'application/rss+xml',
-        title: 'Blog | Nathan Brodin',
+        title: 'Blog · Nathan Brodin',
         href: `${siteConfig.url}/blog/rss`,
       },
     ],
@@ -53,7 +53,7 @@ head: ({ loaderData }) => {
   const url = `${siteConfig.url}/blog/${post.slug}`
   const ogImage = `${siteConfig.url}/og/blog/${post.slug}.png`
   const title =
-    post.title.length > 53 ? `${post.title.slice(0, 53)}... | NB` : `${post.title} | Nathan Brodin`
+    post.title.length > 53 ? `${post.title.slice(0, 53)}... · NB` : `${post.title} · Nathan Brodin`
   const description = post.description.slice(0, 160)
 
   return {
@@ -71,7 +71,7 @@ head: ({ loaderData }) => {
 
 Two non-obvious bits worth flagging:
 
-- **The title is truncated to 53 characters with a `... | NB` suffix.** SERP titles get cut around 50-60 chars. Truncating in code means the brand suffix always fits.
+- **The title is truncated to 53 characters with a `... · NB` suffix.** SERP titles get cut around 50-60 chars. Truncating in code means the brand suffix always fits.
 - **`description` is sliced to 160.** Same reason: meta descriptions max out around 155-160 in the SERP. Slice here so I see the truncation in the source, not in Google's render.
 
 The `og:image` for every post points to `/og/blog/<slug>.png`. Those images are generated from a sibling OG route by a Puppeteer script at build time. I wrote a [whole other post about that](/blog/og-images-without-an-image-cdn).

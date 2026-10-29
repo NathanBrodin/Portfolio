@@ -44,7 +44,7 @@ export async function renderResume(data: Resume): Promise<Uint8Array> {
     outline: true,
     tagged: 'ua1',
     metadata: {
-      title: `${data.basics.name} | Resume`,
+      title: `${data.basics.name} · Resume`,
       description: data.basics.headline,
       authors: [data.basics.name],
       creator: 'brodin.dev/resume/builder',
