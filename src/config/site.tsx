@@ -12,16 +12,6 @@ export const siteConfig = {
   authorUrl: 'https://brodin.dev',
   twitterHandle: '@nathan_brodin',
   githubHandle: 'NathanBrodin',
-  keywords: [
-    'Nathan Brodin',
-    'Frontend Engineer',
-    'portfolio',
-    'tech career',
-    'web development',
-    'developer insights',
-    'career information',
-    'project showcase',
-  ],
 }
 
 export const META_THEME_COLORS = {
