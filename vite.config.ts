@@ -7,6 +7,36 @@ import { nitro } from 'nitro/vite'
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite-plus'
 
+const markdownAccept = {
+  type: 'header',
+  key: 'accept',
+  value: { re: '(?i)text/markdown' },
+}
+
+// Run before Vercel's filesystem handler so these routes override prerendered HTML.
+const vercelRoutes = [
+  {
+    src: '^/(?:$|blog(?:/.*)?$)',
+    headers: { Vary: 'Accept' },
+    continue: true,
+  },
+  {
+    src: '^/$',
+    has: [markdownAccept],
+    dest: '/llms.md',
+  },
+  {
+    src: '^/blog/?$',
+    has: [markdownAccept],
+    dest: '/blog.md',
+  },
+  {
+    src: '^/blog/(?!rss$)(?!.*\\.(?:md|html)$)([^/]+)$',
+    has: [markdownAccept],
+    dest: '/blog/$1.md',
+  },
+]
+
 const config = defineConfig({
   staged: {
     '*': 'vp check --fix',
@@ -74,6 +104,7 @@ const config = defineConfig({
     contentCollections({ environment: 'client' }),
     devtools(),
     nitro({
+      vercel: { config: { version: 3, routes: vercelRoutes } },
       rolldownConfig: {
         onwarn(warning, warn) {
           if (

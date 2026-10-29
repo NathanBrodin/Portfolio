@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogDotmdRouteImport } from './routes/blog[.]md'
 import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
+import { Route as LlmsDotmdRouteImport } from './routes/llms[.]md'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as OgRouteImport } from './routes/og'
 import { Route as ResumeRouteRouteImport } from './routes/resume/route'
@@ -35,6 +36,11 @@ const BlogDotmdRoute = BlogDotmdRouteImport.update({
 const LlmsFullDottxtRoute = LlmsFullDottxtRouteImport.update({
   id: '/llms-full.txt',
   path: '/llms-full.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsDotmdRoute = LlmsDotmdRouteImport.update({
+  id: '/llms.md',
+  path: '/llms.md',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/resume': typeof ResumeRouteRouteWithChildren
   '/blog.md': typeof BlogDotmdRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/llms.md': typeof LlmsDotmdRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/og': typeof OgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -103,6 +110,7 @@ export interface FileRoutesByTo {
   '/resume': typeof ResumeRouteRouteWithChildren
   '/blog.md': typeof BlogDotmdRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/llms.md': typeof LlmsDotmdRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/og': typeof OgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -118,6 +126,7 @@ export interface FileRoutesById {
   '/resume': typeof ResumeRouteRouteWithChildren
   '/blog.md': typeof BlogDotmdRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/llms.md': typeof LlmsDotmdRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/og': typeof OgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -134,6 +143,7 @@ export interface FileRouteTypes {
     | '/resume'
     | '/blog.md'
     | '/llms-full.txt'
+    | '/llms.md'
     | '/llms.txt'
     | '/og'
     | '/sitemap.xml'
@@ -148,6 +158,7 @@ export interface FileRouteTypes {
     | '/resume'
     | '/blog.md'
     | '/llms-full.txt'
+    | '/llms.md'
     | '/llms.txt'
     | '/og'
     | '/sitemap.xml'
@@ -162,6 +173,7 @@ export interface FileRouteTypes {
     | '/resume'
     | '/blog.md'
     | '/llms-full.txt'
+    | '/llms.md'
     | '/llms.txt'
     | '/og'
     | '/sitemap.xml'
@@ -177,6 +189,7 @@ export interface RootRouteChildren {
   ResumeRouteRoute: typeof ResumeRouteRouteWithChildren
   BlogDotmdRoute: typeof BlogDotmdRoute
   LlmsFullDottxtRoute: typeof LlmsFullDottxtRoute
+  LlmsDotmdRoute: typeof LlmsDotmdRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
   OgRoute: typeof OgRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -207,6 +220,13 @@ declare module '@tanstack/react-router' {
       path: '/llms-full.txt'
       fullPath: '/llms-full.txt'
       preLoaderRoute: typeof LlmsFullDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms.md': {
+      id: '/llms.md'
+      path: '/llms.md'
+      fullPath: '/llms.md'
+      preLoaderRoute: typeof LlmsDotmdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/llms.txt': {
@@ -292,6 +312,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResumeRouteRoute: ResumeRouteRouteWithChildren,
   BlogDotmdRoute: BlogDotmdRoute,
   LlmsFullDottxtRoute: LlmsFullDottxtRoute,
+  LlmsDotmdRoute: LlmsDotmdRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
   OgRoute: OgRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

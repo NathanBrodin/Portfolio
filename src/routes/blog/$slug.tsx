@@ -127,6 +127,12 @@ function RouteComponent() {
       </Section>
       <SectionDivider />
       <Section className="h-16" />
+      <blockquote className="sr-only" aria-hidden="true">
+        Machine-readable version:{' '}
+        <a href={`/blog/${post.slug}.md`} tabIndex={-1}>
+          /blog/{post.slug}.md
+        </a>
+      </blockquote>
     </Page>
   )
 }

@@ -125,6 +125,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           <a href="/llms.txt" tabIndex={-1}>
             /llms.txt
           </a>
+          . A Markdown version is available at{' '}
+          <a href="/llms.md" tabIndex={-1}>
+            /llms.md
+          </a>
           .
         </blockquote>
         <AnalyticsProvider>

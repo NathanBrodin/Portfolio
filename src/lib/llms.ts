@@ -164,6 +164,8 @@ export function buildLlmsContent(full: boolean): string {
 
 ${siteConfig.about}
 
+${!full ? `> Full content available at ${siteConfig.url}/llms-full.txt` : ''}
+
 ---
 
 ## Social Links

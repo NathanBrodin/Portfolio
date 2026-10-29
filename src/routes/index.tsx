@@ -19,7 +19,7 @@ export const Route = createFileRoute('/')({
   head: () => ({
     links: [
       { rel: 'canonical', href: siteConfig.url },
-      { rel: 'alternate', type: 'text/markdown', href: `${siteConfig.url}/llms.txt` },
+      { rel: 'alternate', type: 'text/markdown', href: `${siteConfig.url}/llms.md` },
     ],
   }),
   headers: () => ({
