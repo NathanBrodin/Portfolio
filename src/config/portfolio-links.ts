@@ -69,4 +69,9 @@ export const OTHER_LINKS: LinkItem[] = [
       'https://chatgpt.com/?q=Read+https%3A%2F%2Fbrodin.dev%2Fllms.txt%2C+I+want+to+ask+questions+about+it.',
     icon: Icons.openai,
   },
+  {
+    label: "Open in Nathan's AI",
+    value: 'https://chat.brodin.dev',
+    icon: Icons.chat,
+  },
 ]
